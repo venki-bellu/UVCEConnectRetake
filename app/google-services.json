@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "463244415144",
+    "project_id": "uvce-app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463244415144:android:4463c3d3eaaa1ad2",
+        "android_client_info": {
+          "package_name": "com.venkibellu.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "463244415144-fsjs3qjrvli0oqhql32rrhp8al40bn9k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.venkibellu.myapplication",
+            "certificate_hash": "e1cd9684d822f089c95f381a816ca31f6de3d670"
+          }
+        },
+        {
+          "client_id": "463244415144-np8rodciuugj086t4fvoslpik90tqbi9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWqIGzYT4VeOsgHUu7HPHDd28GFM3NRpo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

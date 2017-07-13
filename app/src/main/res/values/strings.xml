@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">UVCE Connect</string>
+    <string name="facebook_app_id">125839481353081</string>
+    <string name="fb_login_protocol_scheme">fb125839481353081</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="branch">Branch</string>
+    <string name="semester">Semester</string>
+    <string name="Year">Year</string>
+    <string name="continue_to_be_removed_at_release">Continue(TO be removed at release)</string>
+
+    <string-array name="branch_array">
+        <item>Civil Engineering</item>
+        <item>Computer Science and Engineering</item>
+        <item>Electronics and Communication Engineering</item>
+        <item>Electronic and Electrical Engineering</item>
+        <item>Information Science and Engineering</item>
+        <item>Mechanical Engineering</item>
+    </string-array>
+
+    <string-array name="year_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="semester_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+</resources>
