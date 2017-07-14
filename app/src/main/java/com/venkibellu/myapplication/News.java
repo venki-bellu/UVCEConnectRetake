@@ -1,9 +1,10 @@
 package com.venkibellu.myapplication;
 
-import android.content.Context;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.widget.ListView;
+
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -53,6 +54,8 @@ public class News extends Activity {
         news_adapter = new News_Adapter(newsname, this, this, newsdetails, newsorganization, newsimage);
         ListView listView = (ListView)findViewById(R.id.news_list);
         listView.setAdapter(news_adapter);
+
+
 
     }
 

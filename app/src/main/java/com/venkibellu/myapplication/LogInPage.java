@@ -19,6 +19,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 
@@ -45,6 +46,8 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         //Start of facebook Log In Codes
         loginButton = (LoginButton) findViewById(R.id.fblogin_button);
         callbackManager = CallbackManager.Factory.create();
+
+
 
         if (isLoggedIn()) {
 
@@ -88,6 +91,17 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
                 .build();
 
         signInButton.setOnClickListener(this);
+
+        //This Might lead to fake sign ins. Just check this. Added by Jerry
+        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
+        if (opr.isDone())
+        {
+
+            GoogleSignInResult result = opr.get();
+
+            handleSignInResult(result);
+
+        }
     }
 
 
