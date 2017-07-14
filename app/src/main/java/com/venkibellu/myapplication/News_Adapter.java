@@ -1,38 +1,30 @@
 package com.venkibellu.myapplication;
 
 import android.app.Activity;
-import android.app.AlertDialog;
+
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
+
 import android.net.Uri;
-import android.os.Handler;
-import android.provider.ContactsContract;
-import android.support.design.widget.Snackbar;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
+
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.Target;
+
+
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
+
+import com.squareup.picasso.Picasso;
 
 
 public class News_Adapter extends BaseAdapter implements ListAdapter {
@@ -93,10 +85,13 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
 
 
             StorageReference mountainsRef = FirebaseStorage.getInstance().getReference().child(newsextraimage.get(position));
-            Glide.with(context)
+            mountainsRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Picasso.with(context).load(uri).into(news_extraimage);
+                }
+            });
 
-                    .load(newsextraimage.get(position))
-                    .into(news_extraimage);
 
         }
 
