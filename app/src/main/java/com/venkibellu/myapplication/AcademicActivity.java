@@ -28,7 +28,7 @@ public class AcademicActivity extends AppCompatActivity {
                 urlGetter.getSyllabusURL(branch, year),
                 Toast.LENGTH_SHORT).show();
 
-        System.out.println(urlGetter.getSyllabusURL(branch, year));
+        // TODO: use download manager to download the file!
     }
 
     private String getBranch() {
