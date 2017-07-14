@@ -46,4 +46,5 @@
     </string-array>
     <string name="title_activity_news">News</string>
     <string name="department">Department :</string>
+    <string name="title_activity_campus__says">Campus_Says</string>
 </resources>

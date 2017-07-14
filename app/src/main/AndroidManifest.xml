@@ -3,7 +3,7 @@
     package="com.venkibellu.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -45,7 +45,11 @@
         <activity android:name=".AcademicActivity" />
         <activity
             android:name=".News"
-            android:label="@string/title_activity_news"></activity>
+            android:label="@string/title_activity_news" />
+        <activity
+            android:name=".Campus_Says"
+            android:label="@string/title_activity_campus__says"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

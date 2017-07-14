@@ -35,7 +35,8 @@
         android:text="Campus Says"
         android:textColor="@color/cardview_light_background"
         android:gravity="bottom"
-        android:textSize="40dp"/>
+        android:textSize="40dp"
+        android:onClick="onCampusImageViewClicked"/>
 
     <TextView
         android:id="@+id/syllabus"
