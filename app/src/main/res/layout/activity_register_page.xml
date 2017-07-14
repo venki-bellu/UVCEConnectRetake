@@ -50,7 +50,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/registerpage_title_yearofjoining"
         android:hint="YYYY"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:inputType="number"
+        android:maxLength="4"/>
 
     <TextView
         android:id="@+id/registerpage_title_curentstatus"
