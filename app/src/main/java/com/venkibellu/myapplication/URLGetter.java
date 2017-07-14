@@ -1,9 +1,6 @@
 package com.venkibellu.myapplication;
 
 import android.content.Context;
-import android.content.res.Resources;
-
-import com.bumptech.glide.load.engine.Resource;
 
 import java.util.HashMap;
 
