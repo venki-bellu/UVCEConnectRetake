@@ -8,6 +8,8 @@
     <string name="semester">Semester</string>
     <string name="Year">Year</string>
     <string name="continue_to_be_removed_at_release">Continue(TO be removed at release)</string>
+    <string name="PREF_FILE">APP_PRIF_FILE</string>
+    <string name="LOGIN_TYPE">APP_LOGIN_TYPE</string>
 
     <!--HACK! DONT CHANGE THE NAME, Feel free to change the value!-->
     <string name="cse">Computer Science and Engineering</string>
