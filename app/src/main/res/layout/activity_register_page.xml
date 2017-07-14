@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFC125"
+    >
+
+    <TextView
+        android:id="@+id/registerpage_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tell us about yourself..."
+        android:textSize="30dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textColor="#ffffff"/>
+
+    <TextView
+        android:id="@+id/registerpage_title_branch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Branch:"
+        android:layout_below="@+id/registerpage_heading"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_marginTop="20dp"/>
+
+    <Spinner
+        android:id="@+id/registerpage_branch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dropDownWidth="match_parent"
+        android:entries="@array/branch_array"
+        android:layout_below="@+id/registerpage_title_branch"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/registerpage_title_yearofjoining"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Year Of Joining (yyyy format)"
+        android:layout_below="@+id/registerpage_branch"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/registerpage_yearofjoining"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registerpage_title_yearofjoining"
+        android:hint="YYYY"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/registerpage_title_curentstatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Current Status"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_below="@+id/registerpage_yearofjoining"
+        android:layout_marginTop="20dp"/>
+
+    <RadioGroup
+        android:id="@+id/registerpage_radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registerpage_title_curentstatus"
+        android:layout_marginTop="8dp">
+
+        <RadioButton
+            android:id="@+id/registerpage_status_student"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Student" />
+
+        <RadioButton
+            android:id="@+id/registerpage_status_Alumni"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alumni"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/registerpage_title_rollno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_below="@+id/registerpage_radiogroup"
+        android:text="Register Number:"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible"/>
+
+    <EditText
+        android:id="@+id/registerpage_registerno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registerpage_title_rollno"
+        android:hint="00ABCD0000"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/registerpage_button_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registerpage_registerno"
+        android:layout_centerHorizontal="true"
+        android:text="Register"
+        android:onClick="registerUser"/>
+
+
+
+
+
+</RelativeLayout>
