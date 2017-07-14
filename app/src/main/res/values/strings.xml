@@ -9,13 +9,22 @@
     <string name="Year">Year</string>
     <string name="continue_to_be_removed_at_release">Continue(TO be removed at release)</string>
 
+    <!--HACK! DONT CHANGE THE NAME, Feel free to change the value!-->
+    <string name="cse">Computer Science and Engineering</string>
+    <string name="ce">Civil Engineering</string>
+    <string name="eee">Electronic and Electrical Engineering</string>
+    <string name="ece">Electronics and Communication Engineering</string>
+    <string name="ise">Information Science and Engineering</string>
+    <string name="me">Mechanical Engineering</string>
+    <!--HACK-->
+
     <string-array name="branch_array">
-        <item>Civil Engineering</item>
-        <item>Computer Science and Engineering</item>
-        <item>Electronics and Communication Engineering</item>
-        <item>Electronic and Electrical Engineering</item>
-        <item>Information Science and Engineering</item>
-        <item>Mechanical Engineering</item>
+        <item>@string/cse</item>
+        <item>@string/ce</item>
+        <item>@string/ece</item>
+        <item>@string/eee</item>
+        <item>@string/ise</item>
+        <item>@string/me</item>
     </string-array>
 
     <string-array name="year_array">
@@ -36,4 +45,5 @@
         <item>8</item>
     </string-array>
     <string name="title_activity_news">News</string>
+    <string name="department">Department :</string>
 </resources>

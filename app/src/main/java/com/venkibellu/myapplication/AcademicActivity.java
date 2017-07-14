@@ -7,7 +7,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class AcademicActivity extends AppCompatActivity {
-
     private Spinner branchSpinner;
     private Spinner yearSpinner;
 
@@ -23,10 +22,13 @@ public class AcademicActivity extends AppCompatActivity {
     public void downloadButtonClicked(View view) {
         String branch = getBranch();
         Integer year = getYear();
+        URLGetter urlGetter = new URLGetter(getApplicationContext());
 
         Toast.makeText(getApplicationContext(),
-                "Branch: " + branch + "\nYear: " + year,
+                urlGetter.getSyllabusURL(branch, year),
                 Toast.LENGTH_SHORT).show();
+
+        System.out.println(urlGetter.getSyllabusURL(branch, year));
     }
 
     private String getBranch() {
