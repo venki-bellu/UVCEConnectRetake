@@ -39,7 +39,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in_page);
 
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics= FirebaseAnalytics.getInstance(this);
 
         homepageIntent = new Intent(this, HomePage.class);
 
@@ -93,6 +93,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         signInButton.setOnClickListener(this);
 
         //This Might lead to fake sign ins. Just check this. Added by Jerry
+        //Ignore above comment. This is working fine. (Bellu)
         OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
         if (opr.isDone())
         {
@@ -166,6 +167,8 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         startActivity(homepageIntent);
         finish();
     }
+
+
 }
 
 
