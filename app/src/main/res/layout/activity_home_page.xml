@@ -22,7 +22,8 @@
         android:text="News"
         android:textColor="@color/cardview_light_background"
         android:gravity="bottom"
-        android:textSize="40dp"/>
+        android:textSize="40dp"
+        android:onClick="onNewsImageViewClicked"/>
 
     <TextView
         android:id="@+id/campus_says"

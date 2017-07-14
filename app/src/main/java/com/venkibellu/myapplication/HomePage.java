@@ -23,6 +23,10 @@ public class HomePage extends AppCompatActivity {
         Intent AcademicPageIntent = new Intent(this, AcademicActivity.class);
         startActivity(AcademicPageIntent);
     }
+    public void onNewsImageViewClicked(View view) {
+        Intent AcademicPageIntent = new Intent(this, News.class);
+        startActivity(AcademicPageIntent);
+    }
 
 
 }
