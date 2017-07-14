@@ -11,5 +11,5 @@ A college app made during summer break
 # Contributors
 
 * [Jerry Allan Akshay](https://github.com/allanakshay12)
-* [Venkatesh Bellavadi](https://github.com/venki-bellu)
+* [Venkatesh Belavadi](https://github.com/venki-bellu)
 * [Yash Kothari](https://github.com/CaptainDaVinci)
