@@ -11,5 +11,6 @@ A college app made during summer break
 # Contributors
 
 * [Jerry Allan Akshay](https://github.com/allanakshay12)
+* [Mahith Shetty](https://github.com/Cybersmoke98)
 * [Venkatesh Belavadi](https://github.com/venki-bellu)
 * [Yash Kothari](https://github.com/CaptainDaVinci)
