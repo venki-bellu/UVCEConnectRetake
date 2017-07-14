@@ -16,10 +16,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class AcademicActivity extends AppCompatActivity {
-    private Spinner branchSpinner;
-    private Spinner yearSpinner;
-    private String fileName;
-    private String downloadURL;
+    private Spinner branchSpinner, yearSpinner;
+    private String fileName, downloadURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

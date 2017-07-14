@@ -20,6 +20,7 @@
     <string name="ece">Electronics and Communication Engineering</string>
     <string name="ise">Information Science and Engineering</string>
     <string name="me">Mechanical Engineering</string>
+    <string name="download">Download</string>
 
     <string-array name="branch_array">
         <item>@string/cse</item>
