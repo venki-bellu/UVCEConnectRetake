@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -69,7 +70,7 @@ public class AcademicActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case 1: {
                 if (grantResults.length > 0
@@ -106,7 +107,7 @@ public class AcademicActivity extends AppCompatActivity {
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
             DownloadManager manager = (DownloadManager)
-                    getApplicationContext().getSystemService(getApplicationContext().DOWNLOAD_SERVICE);
+                    getApplicationContext().getSystemService(DOWNLOAD_SERVICE);
             manager.enqueue(request);
             return null;
         }
