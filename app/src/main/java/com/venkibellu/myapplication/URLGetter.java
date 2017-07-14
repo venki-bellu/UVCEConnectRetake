@@ -8,7 +8,8 @@ import java.util.HashMap;
  * Created by captaindavinci on 14/7/17.
  */
 
-public class URLGetter {
+@SuppressWarnings("FieldCanBeLocal")
+class URLGetter {
     /*
         Following are the Google Drive URL for syllabus.
         On updating to a new syllabus, just paste the new 'shareable link'
@@ -19,37 +20,37 @@ public class URLGetter {
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk";
 
 
-    private final String CSEsyllabusURL[] = {
+    private final String CSE_SyllabusURL[] = {
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // second year
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // third year
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // fourth year
     };
 
-    private final String EEEsyllabusURL[] = {
+    private final String EEE_SyllabusURL[] = {
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // second year
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // third year
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // fourth year
     };
 
-    private final String ECEsyllabusURL[] = {
+    private final String ECE_SyllabusURL[] = {
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // second year
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // third year
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // fourth year
     };
 
-    private final String ISEsyllabusURL[] = {
+    private final String ISE_SyllabusURL[] = {
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // second year
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // third year
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // fourth year
     };
 
-    private final String MEsyllabusURL[] = {
+    private final String ME_SyllabusURL[] = {
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // second year
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // third year
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // fourth year
     };
 
-    private final String CEsyllabusURL[] = {
+    private final String CE_SyllabusURL[] = {
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // second year
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // third year
             "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // fourth year
@@ -69,15 +70,15 @@ public class URLGetter {
                      eee = context.getString(R.string.eee),
                      ece = context.getString(R.string.ece);
 
-        URLmapper.put(cse, CSEsyllabusURL);
-        URLmapper.put(ise, ISEsyllabusURL);
-        URLmapper.put(ce, CEsyllabusURL);
-        URLmapper.put(me, MEsyllabusURL);
-        URLmapper.put(eee, EEEsyllabusURL);
-        URLmapper.put(ece, ECEsyllabusURL);
+        URLmapper.put(cse, CSE_SyllabusURL);
+        URLmapper.put(ise, ISE_SyllabusURL);
+        URLmapper.put(ce, CE_SyllabusURL);
+        URLmapper.put(me, ME_SyllabusURL);
+        URLmapper.put(eee, EEE_SyllabusURL);
+        URLmapper.put(ece, ECE_SyllabusURL);
     }
 
-    public String getSyllabusURL(String branch, Integer year) {
+    String getSyllabusURL(String branch, Integer year) {
         String downloadURL = "https://docs.google.com/uc?id=[FILE_ID]&export=download";
         String ID = "";
 
