@@ -17,43 +17,43 @@ class URLGetter {
      */
 
     private final String firstYearSyllabusURL =
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk";
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE";
 
 
     private final String CSE_SyllabusURL[] = {
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // second year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // third year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // fourth year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // third year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // fourth year
     };
 
     private final String EEE_SyllabusURL[] = {
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // second year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // third year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // fourth year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // third year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // fourth year
     };
 
     private final String ECE_SyllabusURL[] = {
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // second year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // third year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // fourth year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // third year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // fourth year
     };
 
     private final String ISE_SyllabusURL[] = {
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // second year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // third year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // fourth year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // third year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // fourth year
     };
 
     private final String ME_SyllabusURL[] = {
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // second year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // third year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // fourth year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // third year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // fourth year
     };
 
     private final String CE_SyllabusURL[] = {
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // second year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // third year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGSTBYM3k2aHRIVUk", // fourth year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // third year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // fourth year
     };
 
     /*
