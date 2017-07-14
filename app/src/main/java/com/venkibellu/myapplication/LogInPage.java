@@ -19,10 +19,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 
 public class LogInPage extends AppCompatActivity implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener {
 
+    private FirebaseAnalytics mFirebaseAnalytics;
     Intent homepageIntent;
     LoginButton loginButton;
     CallbackManager callbackManager;
@@ -35,6 +37,8 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in_page);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         homepageIntent = new Intent(this, HomePage.class);
 
