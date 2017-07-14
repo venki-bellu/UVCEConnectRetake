@@ -39,6 +39,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     GoogleSignInOptions gso;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +52,13 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
         sharedPreferences=LogInPage.this.getSharedPreferences(getString(R.string.PREF_FILE),MODE_PRIVATE);
         editor=sharedPreferences.edit();
+        intent=getIntent();
 
-        signOut();
+        if (isLoggedIn()) {
+
+            startActivity(homepageIntent);
+            finish();
+        }
 
 
         //Start of facebook Log In Codes
@@ -94,13 +100,6 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
                 .build();
 
         signInButton.setOnClickListener(this);
-        signOut();
-
-        if (isLoggedIn()) {
-
-            startActivity(homepageIntent);
-            finish();
-        }
 
 
         //This Might lead to fake sign ins. Just check this. Added by Jerry
@@ -119,7 +118,6 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
     }
 
-
     // if already logged in accessToken will not be null
     public boolean isLoggedIn() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
@@ -137,8 +135,6 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         }
 
     }
-
-
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
@@ -178,35 +174,6 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
         }
-    }
-
-    public void signOut()
-    {
-        Float logInType=sharedPreferences.getFloat(getString(R.string.LOGIN_TYPE),0);
-        if(logInType==0)
-        {
-            return;
-        }
-        else if(logInType==1)
-        {
-            LoginManager.getInstance().logOut();
-            editor.clear();
-            editor.commit();
-            Toast.makeText(getApplicationContext(),"SignOut Successful",Toast.LENGTH_LONG).show();
-        }
-        else if (logInType==2)
-        {
-            Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
-                @Override
-                public void onResult(@NonNull Status status) {
-                    Toast.makeText(getApplicationContext(),"Sign Out Successful",Toast.LENGTH_LONG).show();
-                }
-            });
-            editor.clear();
-            editor.commit();
-        }
-
-
     }
 
 
