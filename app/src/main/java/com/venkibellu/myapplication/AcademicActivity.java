@@ -32,13 +32,20 @@ public class AcademicActivity extends AppCompatActivity {
         String branch = getBranch();
         Integer year = getYear();
 
+        /* invoke the class URLGetter, context needs to be passed
+            to access the strings in resource file.
+         */
         URLGetter urlGetter = new URLGetter(getApplicationContext());
 
+        // get the downloadURL on the basis of branch and year selected.
         downloadURL = urlGetter.getSyllabusURL(branch, year);
 
+        // stores the name of the file which will appear on downloading.
         fileName = branch.replaceAll("\\s+", "-") + "-Syllabus.pdf";
-        checkStoragePermission();
 
+
+        // required for android 6.0 and above.
+        checkStoragePermission();
     }
 
     private String getBranch() {
@@ -55,13 +62,18 @@ public class AcademicActivity extends AppCompatActivity {
                     getApplicationContext(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
 
+                // if permission was not granted initially, ask the user again.
                 ActivityCompat.requestPermissions(AcademicActivity.this,
                         new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
                         1);
             } else {
+
+                // if android >= 6.0 and permission already granted, continue to download.
                 startDownload();
             }
         } else {
+
+            // if android < 6.0 continue to download, no need to ask permission again.
             startDownload();
         }
     }
@@ -71,10 +83,14 @@ public class AcademicActivity extends AppCompatActivity {
                                            @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case 1: {
+
+                // if permission allowed by the user, continue to download.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     startDownload();
                 } else {
+
+                    // permission not granted, download can't take place.
                     Toast.makeText(getApplicationContext(),
                             "Permission denied to read your External storage",
                             Toast.LENGTH_SHORT).show();
@@ -83,10 +99,13 @@ public class AcademicActivity extends AppCompatActivity {
         }
     }
 
+    // execute the AsyncTask to download Files.
     private void startDownload() {
         new downloadSyllabus().execute(downloadURL);
     }
 
+
+    // AsyncTask which will take care of the download using, download manager.
     private class downloadSyllabus extends AsyncTask<String, Void, Void> {
         @Override
         protected void onPreExecute() {

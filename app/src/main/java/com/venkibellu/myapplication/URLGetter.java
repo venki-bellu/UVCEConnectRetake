@@ -56,10 +56,10 @@ class URLGetter {
             "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // fourth year
     };
 
-    /*
-        Here is map from the string to the String URL array defined above.
-     */
 
+
+
+    // Here is map from the string to the String URL array defined above.
     private final  static HashMap<String, String[]> URLmapper = new HashMap<>();
 
     URLGetter(Context context) {
@@ -78,6 +78,7 @@ class URLGetter {
         URLmapper.put(ece, ECE_SyllabusURL);
     }
 
+    // returns the download URL by obtaining the ID from the google drive URL.
     String getSyllabusURL(String branch, Integer year) {
         String downloadURL = "https://docs.google.com/uc?id=[FILE_ID]&export=download";
         String ID = "";
@@ -92,6 +93,7 @@ class URLGetter {
         return downloadURL.replace("[FILE_ID]", ID);
     }
 
+    // returns the ID from the google drive URL.
     private String getID(String url) {
         String ID = "";
 
