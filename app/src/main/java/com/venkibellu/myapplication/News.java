@@ -3,6 +3,8 @@ package com.venkibellu.myapplication;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.design.widget.FloatingActionButton;
+import android.view.View;
 import android.widget.ListView;
 
 
@@ -55,7 +57,8 @@ public class News extends Activity {
         ListView listView = (ListView)findViewById(R.id.news_list);
         listView.setAdapter(news_adapter);
 
-
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_news);
+        fab.setVisibility(View.GONE);
 
     }
 

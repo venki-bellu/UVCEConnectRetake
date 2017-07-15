@@ -16,6 +16,7 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
@@ -25,6 +26,12 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class LogInPage extends AppCompatActivity implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener {
@@ -40,6 +47,8 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Intent intent;
+    private DatabaseReference ref;
+    private GoogleSignInAccount account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,10 +161,34 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     {
         if(result.isSuccess())
         {
+            account = result.getSignInAccount();
+            ref = FirebaseDatabase.getInstance().getReference().child("Registered Users");
+            Query query = ref.orderByChild("Google_ID").equalTo(account.getEmail());
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    try {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Registered_User_Id.registered_user_id = account.getEmail();
+                            startActivity(homepageIntent);
+                            finish();
+                        }
+                    } catch(Exception e) {}
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            Registered_User_Id.registered_user_id = account.getEmail();
+            Intent intent = new Intent(this, RegisterPage.class);
+            startActivity(intent);
+            finish();
+
             editor.putFloat(getString(R.string.LOGIN_TYPE),2);
             editor.commit();
-            startActivity(homepageIntent);
-            finish();
+
         }
         else
         {

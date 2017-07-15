@@ -1,5 +1,6 @@
 package com.venkibellu.myapplication;
 
+import android.content.Intent;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 public class RegisterPage extends AppCompatActivity {
 
     Spinner spinner;
@@ -17,6 +25,8 @@ public class RegisterPage extends AppCompatActivity {
     EditText registerNumber;
     EditText yearOfJoining;
     RadioGroup radioGroup;
+    private DatabaseReference ref;
+    private String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,5 +61,26 @@ public class RegisterPage extends AppCompatActivity {
     public void registerUser(View view)
     {
         Toast.makeText(getApplicationContext(),"Registration Success",Toast.LENGTH_SHORT).show();
+        ref = FirebaseDatabase.getInstance().getReference().child("Registered Users");
+        Query query = ref.orderByKey().limitToLast(1);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                try{
+                    for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                    key = snapshot.getKey();
+                    ref.child(String.valueOf(Integer.parseInt(key)+1)).child("Google_ID").setValue(Registered_User_Id.registered_user_id);
+                    Intent intent = new Intent(RegisterPage.this, HomePage.class);
+                    startActivity(intent);
+                    finish();
+
+                }catch(Exception e) {}
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }
