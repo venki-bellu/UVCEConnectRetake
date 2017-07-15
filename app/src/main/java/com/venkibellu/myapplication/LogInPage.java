@@ -236,7 +236,8 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
 
     public void bypass(View v) {
-        startActivity(homepageIntent);
+        Intent i = new Intent(LogInPage.this,navigation_main.class);
+        startActivity(i);
         finish();
     }
 
