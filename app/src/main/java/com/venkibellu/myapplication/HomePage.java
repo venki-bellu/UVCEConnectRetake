@@ -11,20 +11,23 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class HomePage extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
-    Intent loginPageIntent;
+    Intent SigninPageIntent;
     SharedPreferences logintype;
     GoogleSignInOptions gso;
     GoogleApiClient googleApiClient;
+
+    FirebaseAuth mAuth;
+    FirebaseAuth.AuthStateListener authStateListener;
 
 
 
@@ -33,13 +36,28 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        loginPageIntent=new Intent(this,LogInPage.class);
+        SigninPageIntent=new Intent(this,SignInPage.class);
         logintype=getSharedPreferences(getString(R.string.PREF_FILE),MODE_PRIVATE);
         gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleApiClient=new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
+        mAuth=FirebaseAuth.getInstance();
+
+        authStateListener= new FirebaseAuth.AuthStateListener()
+        {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if(firebaseAuth.getCurrentUser()==null)
+                {
+                    Toast.makeText(getApplicationContext(),"Sign Out Success", Toast.LENGTH_SHORT).show();
+                    startActivity(SigninPageIntent);
+                    finish();
+                }
+            }
+        };
 
     }
 
@@ -69,28 +87,16 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==R.id.signout)
         {
-            Float type=logintype.getFloat(getString(R.string.LOGIN_TYPE),0);
-            if(type==0)
-            {
-                Toast.makeText(getApplicationContext(),"Not Logged In",Toast.LENGTH_SHORT).show();
-            }
-            else if(type==1)
-            {
-                Toast.makeText(getApplicationContext(),"Facebook Log Out Success",Toast.LENGTH_SHORT).show();
-                LoginManager.getInstance().logOut();
-                startActivity(loginPageIntent);
-                finish();
-            }
-            else if(type==2)
-            {
-                Toast.makeText(getApplicationContext(),"Google Sign Out Success",Toast.LENGTH_LONG).show();
-                Auth.GoogleSignInApi.signOut(googleApiClient);
-                startActivity(loginPageIntent);
-                finish();
-            }
+            mAuth.signOut();
             return true;
         }
         return false;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(authStateListener);
     }
 
     @Override

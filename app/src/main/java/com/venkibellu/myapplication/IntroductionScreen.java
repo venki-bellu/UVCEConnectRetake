@@ -13,7 +13,7 @@ public class IntroductionScreen extends AppCompatActivity {
         setContentView(R.layout.activity_introduction_screen);
 
         Handler handler=new Handler();
-        final Intent intent=new Intent(this,LogInPage.class);
+        final Intent intent=new Intent(this,SignInPage.class);
 
 
         handler.postDelayed(new Runnable() {
