@@ -1,15 +1,19 @@
 package com.venkibellu.myapplication;
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
+import android.support.annotation.NonNull;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
@@ -19,8 +23,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 
-
-public class HomePage extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class NewHomePage extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
 
     Intent loginPageIntent;
     SharedPreferences logintype;
@@ -30,13 +34,13 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener authStateListener;
 
-
-
-
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_new_home_page);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         loginPageIntent=new Intent(this,LogInPage.class);
         logintype=getSharedPreferences(getString(R.string.PREF_FILE),MODE_PRIVATE);
         gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
@@ -45,21 +49,25 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        /*mAuth=FirebaseAuth.getInstance();
 
-       authStateListener= new FirebaseAuth.AuthStateListener()
-        {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser()==null)
-                {
-                    Toast.makeText(getApplicationContext(),"Sign Out Success", Toast.LENGTH_SHORT).show();
-                    startActivity(SigninPageIntent);
-                    finish();
-                }
-            }
-        }; */
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     public void onSyllabusImageViewClicked(View view) {
@@ -75,7 +83,6 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
         startActivity(AcademicPageIntent);
     }
 
-    //Start of methods related to action bar menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater=getMenuInflater();
@@ -83,7 +90,6 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
         return true;
     }
 
-    //Coding related to sign Out. Added by Venkatesh Belavadi
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==R.id.signout)
@@ -111,10 +117,29 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
         return false;
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    protected void onStart() {
-        super.onStart();
-      //  mAuth.addAuthStateListener(authStateListener);
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     @Override

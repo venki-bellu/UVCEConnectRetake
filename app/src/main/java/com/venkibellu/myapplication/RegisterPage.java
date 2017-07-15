@@ -70,7 +70,7 @@ public class RegisterPage extends AppCompatActivity {
                     for(DataSnapshot snapshot : dataSnapshot.getChildren())
                     key = snapshot.getKey();
                     ref.child(String.valueOf(Integer.parseInt(key)+1)).child("Google_ID").setValue(Registered_User_Id.registered_user_id);
-                    Intent intent = new Intent(RegisterPage.this, HomePage.class);
+                    Intent intent = new Intent(RegisterPage.this, NewHomePage.class);
                     startActivity(intent);
                     finish();
 

@@ -13,7 +13,6 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
@@ -24,14 +23,11 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 
@@ -66,7 +62,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         progress.setTitle("Please Wait");
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
-        homepageIntent = new Intent(this, HomePage.class);
+        homepageIntent = new Intent(this, NewHomePage.class);
 
         sharedPreferences=LogInPage.this.getSharedPreferences(getString(R.string.PREF_FILE),MODE_PRIVATE);
         editor=sharedPreferences.edit();
@@ -236,8 +232,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
 
     public void bypass(View v) {
-        Intent i = new Intent(LogInPage.this,navigation_main.class);
-        startActivity(i);
+        startActivity(homepageIntent);
         finish();
     }
 

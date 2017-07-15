@@ -47,9 +47,6 @@
             android:name=".LogInPage"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".HomePage"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".AcademicActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -64,11 +61,12 @@
         <activity
             android:name=".RegisterPage"
             android:screenOrientation="portrait" />
-        <activity android:name=".SignInPage" />
+
         <activity
-            android:name=".navigation_main"
+            android:name=".NewHomePage"
             android:label="@string/title_activity_navigation_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
