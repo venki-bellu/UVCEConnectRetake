@@ -5,5 +5,6 @@ package com.venkibellu.myapplication;
  */
 
 public class Registered_User_Id {
+
     public static String registered_user_id;
 }
