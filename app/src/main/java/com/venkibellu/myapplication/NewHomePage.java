@@ -123,17 +123,19 @@ public class NewHomePage extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.About_us) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.Ieee) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.PO) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.Clubs) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.Fests) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.Developers) {
+
+        }else if (id == R.id.Help) {
 
         }
 

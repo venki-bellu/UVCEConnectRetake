@@ -3,34 +3,38 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/About_us"
+            android:icon="@drawable/ic_info_outline_black_24dp"
+            android:title="About Us" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/Ieee"
+            android:icon="@drawable/ic_action_name_ieee"
+            android:title="IEEE" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/PO"
+            android:icon="@drawable/ic_action_name_po"
+            android:title="Placement Office" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/Clubs"
+            android:icon="@drawable/ic_action_name"
+            android:title="Clubs" />
+        <item
+            android:id="@+id/Fests"
+            android:icon="@drawable/ic_action_name_fests"
+            android:title="Fests" />
     </group>
 
-    <item android:title="Communicate">
+     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/Developers"
+                android:icon="@drawable/ic_action_name_developers"
+                android:title="Develeopers" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/Help"
+                android:icon="@drawable/ic_help_outline_black_24dp"
+                android:title="Help" />
         </menu>
-    </item>
 
+     </item>
 </menu>
