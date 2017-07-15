@@ -49,6 +49,8 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     Intent intent;
     private DatabaseReference ref;
     private GoogleSignInAccount account;
+    public static  String accountcheck;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,28 +165,41 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         {
             account = result.getSignInAccount();
             ref = FirebaseDatabase.getInstance().getReference().child("Registered Users");
-            Query query = ref.orderByChild("Google_ID").equalTo(account.getEmail());
-            query.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    try {
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Registered_User_Id.registered_user_id = account.getEmail();
-                            startActivity(homepageIntent);
-                            finish();
-                        }
-                    } catch(Exception e) {}
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
             Registered_User_Id.registered_user_id = account.getEmail();
-            Intent intent = new Intent(this, RegisterPage.class);
-            startActivity(intent);
-            finish();
+            accountcheck = account.getEmail();
+
+
+            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        try {
+                            int counter = 0;
+                            for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                if(snapshot.child("Google_ID").getValue().toString().equals(accountcheck))
+                                {
+                                    counter++;
+                                    startActivity(homepageIntent);
+                                    finish();
+                                }
+                            }
+                            if(counter == 0)
+                            {
+                                Intent intent = new Intent(LogInPage.this, RegisterPage.class);
+                                startActivity(intent);
+                                finish();
+                            }
+
+                        } catch (Exception e) {
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
 
             editor.putFloat(getString(R.string.LOGIN_TYPE),2);
             editor.commit();
