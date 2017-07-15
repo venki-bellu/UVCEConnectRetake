@@ -9,8 +9,8 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -30,8 +30,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    compile 'com.android.support:multidex:1.0.1'
+
     compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:multidex:1.0.1'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'com.google.android.gms:play-services-auth:11.0.2'
     compile 'com.google.android.gms:play-services:11.0.2'

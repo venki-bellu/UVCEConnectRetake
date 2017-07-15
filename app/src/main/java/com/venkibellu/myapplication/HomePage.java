@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -21,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomePage extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
-    Intent SigninPageIntent;
+    Intent loginPageIntent;
     SharedPreferences logintype;
     GoogleSignInOptions gso;
     GoogleApiClient googleApiClient;
@@ -36,7 +37,7 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        SigninPageIntent=new Intent(this,SignInPage.class);
+        loginPageIntent=new Intent(this,LogInPage.class);
         logintype=getSharedPreferences(getString(R.string.PREF_FILE),MODE_PRIVATE);
         gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleApiClient=new GoogleApiClient.Builder(this)
@@ -44,9 +45,9 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        mAuth=FirebaseAuth.getInstance();
+        /*mAuth=FirebaseAuth.getInstance();
 
-        authStateListener= new FirebaseAuth.AuthStateListener()
+       authStateListener= new FirebaseAuth.AuthStateListener()
         {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -57,7 +58,7 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
                     finish();
                 }
             }
-        };
+        }; */
 
     }
 
@@ -87,8 +88,25 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==R.id.signout)
         {
-            mAuth.signOut();
-            return true;
+            Float type=logintype.getFloat(getString(R.string.LOGIN_TYPE),0);
+            if(type==0)
+            {
+                Toast.makeText(getApplicationContext(),"Not Logged In",Toast.LENGTH_SHORT).show();
+            }
+            else if(type==1)
+            {
+                Toast.makeText(getApplicationContext(),"Facebook Log Out Success",Toast.LENGTH_SHORT).show();
+                LoginManager.getInstance().logOut();
+                startActivity(loginPageIntent);
+                finish();
+            }
+            else if(type==2)
+            {
+                Toast.makeText(getApplicationContext(),"Google Sign Out Success",Toast.LENGTH_LONG).show();
+                Auth.GoogleSignInApi.signOut(googleApiClient);
+                startActivity(loginPageIntent);
+                finish();
+            }
         }
         return false;
     }
@@ -96,7 +114,7 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
     @Override
     protected void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(authStateListener);
+      //  mAuth.addAuthStateListener(authStateListener);
     }
 
     @Override

@@ -17,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -74,8 +75,6 @@ public class SignInPage extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     @Override
@@ -124,7 +123,7 @@ public class SignInPage extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        mAuth.addAuthStateListener(authStateListner);
+       mAuth.addAuthStateListener(authStateListner);
     }
 
     public void signIn()
@@ -134,9 +133,5 @@ public class SignInPage extends AppCompatActivity {
 
     }
 
-    public void bypassscreen(View v)
-    {
-        startActivity(homepageIntent);
-        finish();
-    }
+
 }
