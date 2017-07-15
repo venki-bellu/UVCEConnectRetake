@@ -1,6 +1,7 @@
 package com.venkibellu.myapplication;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
@@ -27,6 +28,7 @@ public class Campus_Says extends Activity {
     private ArrayList<String> campusorganization = new ArrayList<String>();
     private News_Adapter campus_adapter;
     private FloatingActionButton fab;
+    private ProgressDialog progress;
 
 
     @Override
@@ -47,6 +49,7 @@ public class Campus_Says extends Activity {
                         campusorganization.add(snapshot.child("Campus_Organization").getValue().toString());
                     }
                     campus_adapter.notifyDataSetChanged();
+                    progress.dismiss();
 
                 } catch (Exception e){}
             }
@@ -56,6 +59,11 @@ public class Campus_Says extends Activity {
 
             }
         });
+        progress = new ProgressDialog(Campus_Says.this);
+        progress.setMessage("Fetching Data.....");
+        progress.setTitle("Please Wait");
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.show();
         campus_adapter = new News_Adapter(campusname, this, this, campusdetails, campusorganization, campusimage);
         ListView listView = (ListView)findViewById(R.id.campus_list);
         listView.setAdapter(campus_adapter);

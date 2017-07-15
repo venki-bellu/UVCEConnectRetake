@@ -1,6 +1,7 @@
 package com.venkibellu.myapplication;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +13,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -25,11 +27,15 @@ public class News extends Activity {
     private ArrayList<String> newsimage = new ArrayList<String>();
     private ArrayList<String> newsorganization = new ArrayList<String>();
     private News_Adapter news_adapter;
+    private ProgressDialog progress;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+
+
 
         ref = mFirebaseDatabase.getInstance().getReference().child("News");
         ref.addValueEventListener(new ValueEventListener() {
@@ -44,6 +50,7 @@ public class News extends Activity {
                         newsorganization.add(snapshot.child("News_Organization").getValue().toString());
                     }
                     news_adapter.notifyDataSetChanged();
+                    progress.dismiss();
 
                 } catch (Exception e){}
             }
@@ -53,12 +60,34 @@ public class News extends Activity {
 
             }
         });
+        progress = new ProgressDialog(News.this);
+        progress.setMessage("Fetching Data.....");
+        progress.setTitle("Please Wait");
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.show();
         news_adapter = new News_Adapter(newsname, this, this, newsdetails, newsorganization, newsimage);
         ListView listView = (ListView)findViewById(R.id.news_list);
         listView.setAdapter(news_adapter);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_news);
-        fab.setVisibility(View.GONE);
+        fab = (FloatingActionButton) findViewById(R.id.add_news);
+        ref = FirebaseDatabase.getInstance().getReference().child("Registered Users");
+        Query query = ref.orderByChild("Google_ID").equalTo(Registered_User_Id.registered_user_id);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                try {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if(snapshot.child("Designation").getValue().toString().equals("Normal"))
+                            fab.setVisibility(View.GONE);
+                    }
+                }catch(Exception e) {}
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 

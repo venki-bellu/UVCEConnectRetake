@@ -1,5 +1,6 @@
 package com.venkibellu.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
@@ -50,6 +51,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     private DatabaseReference ref;
     private GoogleSignInAccount account;
     public static  String accountcheck;
+    private ProgressDialog progress;
 
 
     @Override
@@ -58,6 +60,11 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_log_in_page);
 
         mFirebaseAnalytics= FirebaseAnalytics.getInstance(this);
+
+        progress = new ProgressDialog(LogInPage.this);
+        progress.setMessage("Fetching Data.....");
+        progress.setTitle("Please Wait");
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
         homepageIntent = new Intent(this, HomePage.class);
 
@@ -118,7 +125,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
         if (opr.isDone())
         {
-
+            progress.show();
             GoogleSignInResult result = opr.get();
 
             handleSignInResult(result);
@@ -153,6 +160,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     }
 
     private void signIn() {
+        progress.show();
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         startActivityForResult(signInIntent, REQ_CODE);
     }
@@ -165,8 +173,8 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         {
             account = result.getSignInAccount();
             ref = FirebaseDatabase.getInstance().getReference().child("Registered Users");
-            Registered_User_Id.registered_user_id = account.getEmail();
-            accountcheck = account.getEmail();
+            Registered_User_Id.registered_user_id = account.getId();
+            accountcheck = account.getId();
 
 
             ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -177,6 +185,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
                             for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                 if(snapshot.child("Google_ID").getValue().toString().equals(accountcheck))
                                 {
+                                    progress.dismiss();
                                     counter++;
                                     startActivity(homepageIntent);
                                     finish();
@@ -184,6 +193,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
                             }
                             if(counter == 0)
                             {
+                                progress.dismiss();
                                 Intent intent = new Intent(LogInPage.this, RegisterPage.class);
                                 startActivity(intent);
                                 finish();
