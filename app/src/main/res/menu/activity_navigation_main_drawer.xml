@@ -7,13 +7,18 @@
             android:icon="@drawable/ic_info_outline_black_24dp"
             android:title="About Us" />
         <item
-            android:id="@+id/Ieee"
-            android:icon="@drawable/ic_action_name_ieee"
-            android:title="IEEE" />
+            android:id="@+id/Associations"
+            android:icon="@drawable/ic_associations"
+            android:title="Associations" />
         <item
             android:id="@+id/PO"
             android:icon="@drawable/ic_action_name_po"
             android:title="Placement Office" />
+        <item
+            android:id="@+id/Ieee"
+            android:icon="@drawable/ic_action_name_ieee"
+            android:title="IEEE" />
+
         <item
             android:id="@+id/Clubs"
             android:icon="@drawable/ic_action_name"
@@ -22,6 +27,18 @@
             android:id="@+id/Fests"
             android:icon="@drawable/ic_action_name_fests"
             android:title="Fests" />
+        <item
+        android:id="@+id/Sports"
+
+        android:title="Sports" />
+        <item
+            android:id="@+id/gb_RAM"
+
+            android:title="8GB RAM" />
+        <item
+            android:id="@+id/NCC"
+
+            android:title="NCC" />
     </group>
 
      <item android:title="Communicate">

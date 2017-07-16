@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.venkibellu.myapplication.clubs">
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="G2C2"
+        android:layout_marginBottom="75dp"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="112dp"
+        android:layout_marginEnd="63dp"
+        android:layout_above="@+id/button6"
+        android:layout_toStartOf="@+id/button8" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VINIMAYA"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="185dp"
+        android:layout_alignBaseline="@+id/button4"
+        android:layout_alignBottom="@+id/button4"
+        android:layout_alignStart="@+id/button5" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SAE"
+        tools:layout_editor_absoluteX="192dp"
+        tools:layout_editor_absoluteY="112dp"
+        android:layout_below="@+id/button6"
+        android:layout_alignStart="@+id/button6"
+        android:layout_marginTop="82dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ಚೇತನ "
+        tools:layout_editor_absoluteX="192dp"
+        tools:layout_editor_absoluteY="185dp"
+        android:layout_marginEnd="16dp"
+        android:layout_alignBaseline="@+id/button6"
+        android:layout_alignBottom="@+id/button6"
+        android:layout_alignEnd="@+id/button8" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="THATVA"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="256dp"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/button2" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CHAKRAVYUHA"
+        tools:layout_editor_absoluteX="192dp"
+        tools:layout_editor_absoluteY="256dp"
+        android:layout_marginEnd="34dp"
+        android:layout_alignBaseline="@+id/button2"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

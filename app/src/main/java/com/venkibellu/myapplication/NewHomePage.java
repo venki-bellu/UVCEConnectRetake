@@ -124,20 +124,50 @@ public class NewHomePage extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.About_us) {
-            // Handle the camera action
+            Intent i1 = new Intent(this, about_us.class);
+            startActivity(i1);
+
+        }else if (id == R.id.Associations) {
+            Intent i2 = new Intent(this, associations.class);
+            startActivity(i2);
+        }else if (id == R.id.PO) {
+            Intent i3 = new Intent(this, po.class);
+            startActivity(i3);
+
         } else if (id == R.id.Ieee) {
 
-        } else if (id == R.id.PO) {
-
         } else if (id == R.id.Clubs) {
+            Intent i5 = new Intent(this, clubs.class);
+            startActivity(i5);
 
         } else if (id == R.id.Fests) {
+            Intent i6 = new Intent(this, fests.class);
+            startActivity(i6);
 
         } else if (id == R.id.Developers) {
+            Intent i7 = new Intent(this, developers.class);
+            startActivity(i7);
 
         }else if (id == R.id.Help) {
 
         }
+        else if (id == R.id.NCC) {
+            Intent i9= new Intent(this, sports.class);
+            startActivity(i9);
+
+        }
+
+        else if (id == R.id.Sports) {
+            Intent i10 = new Intent(this, ncc.class);
+            startActivity(i10);
+
+        }
+        else if (id == R.id.gb_RAM) {
+            Intent i11 = new Intent(this, gb_ram.class);
+            startActivity(i11);
+        }
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
