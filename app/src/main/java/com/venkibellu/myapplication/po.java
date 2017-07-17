@@ -12,8 +12,6 @@ public class po extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_po);
 
-        final TextView myClickableUrl = (TextView) findViewById(R.id.textView8);
-        myClickableUrl.setText("http://campusuvce.in/index.php");
-        Linkify.addLinks(myClickableUrl, Linkify.WEB_URLS);
+
     }
 }

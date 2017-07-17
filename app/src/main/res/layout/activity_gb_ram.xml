@@ -13,7 +13,7 @@
             android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="*GB RAM"
+            android:text="8GB RAM"
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -32,7 +32,7 @@ Thats how 8GB RAM was started. Namma UVCEs proud band.
 Name sounds unique right, here's the story behind it. It was a time to name the band such that it gets recognized by the outside world. Team came up with many names and ideas but everything wasn't very convincing. It was then thought that the band needed to be named uniquely and usually no band name
 starts with a number, so we came up with 8 GB RAM.
 
-        8GB RAM now is a team of 9 members which is well known among the different bands in Bangalore. They have won numerous awards in the fests happening in and around Bangalore                        "
+8GB RAM now is a team of 9 members which is well known among the different bands in Bangalore. They have won numerous awards in the fests happening in and around Bangalore                        "
             android:textSize="24sp" />
 
     </RelativeLayout>
