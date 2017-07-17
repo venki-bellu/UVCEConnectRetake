@@ -29,19 +29,19 @@
             android:title="Fests" />
         <item
         android:id="@+id/Sports"
-
+            android:icon="@mipmap/ic_sports"
         android:title="Sports" />
         <item
             android:id="@+id/gb_RAM"
-
+            android:icon="@mipmap/ic_band"
             android:title="8GB RAM" />
         <item
             android:id="@+id/NCC"
-
+            android:icon="@mipmap/ic_ncc"
             android:title="NCC" />
     </group>
 
-     <item android:title="Communicate">
+     <item android:title="Additionsl info">
         <menu>
             <item
                 android:id="@+id/Developers"
@@ -50,7 +50,7 @@
             <item
                 android:id="@+id/Help"
                 android:icon="@drawable/ic_help_outline_black_24dp"
-                android:title="Help" />
+                android:title="About the app" />
         </menu>
 
      </item>
