@@ -35,8 +35,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
     private FirebaseAnalytics mFirebaseAnalytics;
     Intent homepageIntent;
-    LoginButton loginButton;
-    CallbackManager callbackManager;
+
     SignInButton signInButton;
     GoogleApiClient googleApiClient;
     static final int REQ_CODE=9001;
@@ -68,43 +67,8 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         editor=sharedPreferences.edit();
         intent=getIntent();
 
-        if (isLoggedIn()) {
-
-            startActivity(homepageIntent);
-            finish();
-        }
 
 
-        //Start of facebook Log In Codes
-        loginButton = (LoginButton) findViewById(R.id.fblogin_button);
-        callbackManager = CallbackManager.Factory.create();
-
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.e("FACEBOOK", "SignInSuccess");
-                editor.putFloat(getString(R.string.LOGIN_TYPE),1);
-                editor.commit();
-                startActivity(homepageIntent);
-                finish();
-            }
-
-            @Override
-            public void onCancel() {
-                Toast.makeText(getApplicationContext(), "Facebook LogIn Cancelled", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-            }
-        });
-
-        //End of facebook Sign In Codes
-        //
-        //
-        //
-        //
         //Start of google sign in codes
         signInButton=(SignInButton)findViewById(R.id.google_sign_in_button);
         gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
@@ -132,11 +96,6 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
     }
 
-    // if already logged in accessToken will not be null
-    public boolean isLoggedIn() {
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        return accessToken != null;
-    }
 
     //These methods belong to google sign in (Start)
     @Override
@@ -222,7 +181,6 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == REQ_CODE) {

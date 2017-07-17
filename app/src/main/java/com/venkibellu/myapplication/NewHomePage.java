@@ -15,8 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
-import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -98,13 +96,6 @@ public class NewHomePage extends AppCompatActivity
             if(type==0)
             {
                 Toast.makeText(getApplicationContext(),"Not Logged In",Toast.LENGTH_SHORT).show();
-            }
-            else if(type==1)
-            {
-                Toast.makeText(getApplicationContext(),"Facebook Log Out Success",Toast.LENGTH_SHORT).show();
-                LoginManager.getInstance().logOut();
-                startActivity(loginPageIntent);
-                finish();
             }
             else if(type==2)
             {
