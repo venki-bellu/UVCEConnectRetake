@@ -152,13 +152,13 @@ public class NewHomePage extends AppCompatActivity
 
         }
         else if (id == R.id.NCC) {
-            Intent i9= new Intent(this, sports.class);
+            Intent i9= new Intent(this, ncc.class);
             startActivity(i9);
 
         }
 
         else if (id == R.id.Sports) {
-            Intent i10 = new Intent(this, ncc.class);
+            Intent i10 = new Intent(this, sports.class);
             startActivity(i10);
 
         }

@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView   xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Tab 2"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
-</LinearLayout>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="UVCE FOUNDATIONS"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/textView"
+        android:text="The UVCE Foundation was created by alumni, faculty and well-wishers of UVCE in 2003 to help restore the glory of UVCE. The Foundation has members from around the world and has already executed various projects at UVCE to address immediate needs of the students of UVCE
+
+UVCE Foundation has been growing in strength ever since its inception and has been widely recognized as a strong support from the college authorities. The objective of the Foundation is to restore the ‘top-ten’ status the college.
+
+UVCE Foundation works with very high-levels of financial transparency and is now recognized with the Income Tax department and has filed tax returns up-to-date. The Foundation has obtained the 12A registration required for operation of the Trust in addition to the 80G exemption. A team is currently working to file for Prior approval (FCRA) to receive funds from the UVCE Foundation USA to execute projects in UVCE
+
+For more information:http://uvcefoundation.org"
+        android:textSize="24sp" />
+
+
+</RelativeLayout>
+    </ScrollView>

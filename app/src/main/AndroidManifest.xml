@@ -172,7 +172,7 @@
         </activity>
         <activity android:name=".developers">
             <intent-filter>
-                <action android:name="com.venkibellu.myapplication.developera" />
+                <action android:name="com.venkibellu.myapplication.developers" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

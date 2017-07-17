@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView   xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.venkibellu.myapplication.sae">
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.venkibellu.myapplication.sae">
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAE"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="-1dp"
+            tools:layout_editor_absoluteY="2dp" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView19"
+            android:text="SAE is the acronym for Society of automotive Engineers which is a World Wide organization who set standards and validate automotive projects.
+
+ A student branch of this organization exists in our college called as SAEINDIA UVCE. The motto of SAEINDIA stands as The Engineering Society for Advancing Mobility in Land Sea Air and Space.
+The student branch of SAE , SAEINDIA UVCE was set up in 2011 due to the earnest efforts
+of a group of seniors of Batch 2009-2013 from Mechanical.
+
+GKDC (go-cart building championship), BAJA (Pronounced as BAHA, is a all terrain vehicle building championship), SUPRA (Racing car building championship) are the main National Level competition organised by SAE.
+
+The club till date has involved in conducting many activities to benefit the members for improving their skills in the technical field.
+
+Team Em-power UVCE stood 6th (AIR) in GKDC and 124th(AIR) In BAJA are the best  figure in the history of its involvement.
+
+Contact us- sae.uvce@gmail.com               "
+            android:textSize="24sp" />
+
+    </RelativeLayout>
+</ScrollView>

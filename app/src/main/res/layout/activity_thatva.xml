@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView   xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.venkibellu.myapplication.thatva">
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.venkibellu.myapplication.thatva">
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="THATVA"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="-1dp"
+            tools:layout_editor_absoluteY="2dp" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView19"
+            android:text="We are aware of the fact that RAMESH ARAVIND, DATTANNA, MANOHMURTHY, namma UVCEs proud alumni who with their skills have created a everlasting  impact on Kannada film industry. UVCEs leading colligate Club which aims to improve one's skill in acting is Thathva. Currently the club consists of 60+ students involved in the activity.
+
+ Thathva was established by Abhishek chakma ECE batch of 2015. It was inspired by club Darpan which was once pretty established in college
+
+Thathva put up plays in all fests in our college
+Team also made a short movie.
+It took part in a street play enseble called manthan which took place in Forum mall, Kormangla.
+
+The objective is to
+Promote theatre in college
+Set up a platform For theatre enthusiasts to collaborate and do what they love                       "
+            android:textSize="24sp" />
+
+    </RelativeLayout>
+</ScrollView>

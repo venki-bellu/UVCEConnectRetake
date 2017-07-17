@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView   xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.venkibellu.myapplication.chethana">
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.venkibellu.myapplication.chethana">
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ಚೇತನ - ಯು.ವಿ.ಸಿ.ಇ ಕನ್ನಡ ಸಂಘ"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="-1dp"
+            tools:layout_editor_absoluteY="2dp" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView19"
+            android:text=" ನಾವು ಕನ್ನಡಿಗರು, ವಿಶಾಲ ಹೃದವನ್ನು ಹೊಂದವರು, ಜಗತ್ತಿನ ಮೂಲೆ-ಮೂಲೆಗಳಿಂದ ಹರಿದುಬರುವ ಜನರನ್ನು ತನ್ನ ಓಡಿಲಲ್ಲಿ ಇಟ್ಟು ಸಲಹುವವರು. ಈ ಸಲಹುವಿಕೆ ಹೆಚ್ಚಾಯಿತೇನೋ, ಬೆಂಗಳೂರಿನಲ್ಲಿ ಕನ್ನಡಿಗರೇ ಅಲ್ಪಸಂಖ್ಯಾತರಾಗಿದ್ದರೆ. ಕನ್ನಡತನ ಎಂಬುದು ಮುಗಿದುಹೋದ ಅಧ್ಯಾಯವಾಗತೊಡಗಿದೆ. ಇಡೀಯ ಜಗತ್ತಿನಲ್ಲಿ ಅಂಗೈಯಷ್ಟು ಜಾಗದಲ್ಲಿ ಮಾತ್ರ ಕನ್ನಡ ಉಸಿರಾಡುತ್ತಿದೆ.
+
+ನಮ್ಮೆಲ್ಲರಲ್ಲೂ ಕನ್ನಡಾಭಿಮಾನ ಭೂದಿ ಮುಚ್ಚಿದ ಕೆಂಡದಂತಿದೆ. ಹಾಗೆಯೇ ನಮ್ಮ ಸಂಸ್ಥೆಯಲ್ಲಿ ಕನ್ನಡಾಭಿಮಾನಿಗಳು ಹರಿದು ಹಂಚಿಹೋಗಿದ್ದಾರೆ, ಹಾಗೂ ಕನ್ನಡವೇ ಉಸಿರು ಎಂದು ಬದುಕುತ್ತಿರುವವರು ಎಲೆಮರೆಯ ಕಾಯಿಯಂತಾಗಿದ್ದಾರೆ. ಇವರನ್ನೆಲ್ಲಾ ಒಂದುಗೂಡಿಸುವ ಪ್ರಯತ್ನ ಚೇತನದ ಉದ್ದೇಶ.
+
+ ಕನ್ನಡದ ಏಳಿಗೆಗಾಗಿ, ಅದರ ಸಾರ್ವಬೌಮತೆಗಾಗಿ , ಕನ್ನಡತಿಯ ಸೇವೆಗಾಗಿ ಹುಟ್ಟಿಕೊಂಡ ಗುಂಪು ಚೇತನ. ಇಲ್ಲಿ ಸಾಹಿತ್ಯ ಉತ್ಖನನ, ಸಂಗೀತ ಸಮರ್ಪಣಾ ಹಾಗೂ ವಯಕ್ತಿಕ ಏಳಿಗೆಗೆ ಶ್ರಮಿಸುತ್ತಿದೆ.                        "
+            android:textSize="24sp" />
+
+    </RelativeLayout>
+</ScrollView>
