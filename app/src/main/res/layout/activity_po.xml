@@ -18,6 +18,7 @@
         android:text="TRAINING AND PLACEMENT OFFICE"
         android:textAlignment="center"
         android:textAllCaps="true"
+        android:textColor="@android:color/holo_green_dark"
         android:textSize="24sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="-1dp"
@@ -29,10 +30,10 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/textView2"
-        android:text="Training and Placement Office . The power house of UVCE where Students handle the companies with the help of Placement Officer Mrs.Triveni. Placement Office was started from the year 1987, from then on it acts a bridge between companies and students. The TPO has the record of successfully placing 90% of its students into Globally recognized companies with an attractive CTC. It's just because of this Placement Office we have our alumni in higher posts in MNCs. Batch of 2016 witnessed a record of 1000+ offers which stood 1st in the state in terms of job ratio to number of students.
-            Contact us:- info@campusuvce.in
-For more information about TPO please click the below link.
-http://campusuvce.in/index.php"
+        android:text="\n \nTraining and Placement Office . The power house of UVCE where Students handle the companies with the help of Placement Officer Mrs.Triveni. Placement Office was started from the year 1987, from then on it acts a bridge between companies and students. The TPO has the record of successfully placing 90% of its students into Globally recognized companies with an attractive CTC. It's just because of this Placement Office we have our alumni in higher posts in MNCs. Batch of 2016 witnessed a record of 1000+ offers which stood 1st in the state in terms of job ratio to number of students.
+      \n \t \t      Contact us:- info@campusuvce.in
+\nFor more information about TPO please click the below link.
+\nhttp://campusuvce.in/index.php"
 
         android:textAlignment="textStart"
         android:textAllCaps="false"

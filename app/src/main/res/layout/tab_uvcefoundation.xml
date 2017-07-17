@@ -16,6 +16,7 @@
         android:layout_alignParentTop="true"
         android:text="UVCE FOUNDATIONS"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="?android:attr/colorFocusedHighlight"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -24,13 +25,10 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/textView"
-        android:text="The UVCE Foundation was created by alumni, faculty and well-wishers of UVCE in 2003 to help restore the glory of UVCE. The Foundation has members from around the world and has already executed various projects at UVCE to address immediate needs of the students of UVCE
-
-UVCE Foundation has been growing in strength ever since its inception and has been widely recognized as a strong support from the college authorities. The objective of the Foundation is to restore the ‘top-ten’ status the college.
-
-UVCE Foundation works with very high-levels of financial transparency and is now recognized with the Income Tax department and has filed tax returns up-to-date. The Foundation has obtained the 12A registration required for operation of the Trust in addition to the 80G exemption. A team is currently working to file for Prior approval (FCRA) to receive funds from the UVCE Foundation USA to execute projects in UVCE
-
-For more information:http://uvcefoundation.org"
+        android:text="\n \nThe UVCE Foundation was created by alumni, faculty and well-wishers of UVCE in 2003 to help restore the glory of UVCE. The Foundation has members from around the world and has already executed various projects at UVCE to address immediate needs of the students of UVCE
+\nUVCE Foundation has been growing in strength ever since its inception and has been widely recognized as a strong support from the college authorities. The objective of the Foundation is to restore the ‘top-ten’ status the college.
+\nUVCE Foundation works with very high-levels of financial transparency and is now recognized with the Income Tax department and has filed tax returns up-to-date. The Foundation has obtained the 12A registration required for operation of the Trust in addition to the 80G exemption. A team is currently working to file for Prior approval (FCRA) to receive funds from the UVCE Foundation USA to execute projects in UVCE
+\nFor more information:http://uvcefoundation.org"
         android:textSize="24sp" />
 
 

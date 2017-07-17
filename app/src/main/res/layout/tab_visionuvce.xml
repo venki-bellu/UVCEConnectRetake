@@ -17,6 +17,7 @@
         android:text="VISION UVCE"
         android:textAlignment="viewStart"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -26,20 +27,17 @@
         android:layout_height="fill_parent"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
-        android:text="VisionUVCE is a group of UVCE alumni who are focussed on Giving Back to UVCE by creating awareness among the strong alumni that UVCE has and make them understand the potential that the creation, of an alumni group working for the betterment of college, brings about. It is VU's responsibility to make sure, the flag of our alma mater flies high in the air and also as alumni of this college, there is a need to take part in the operations in the college.
-
-Sampada
-VU scholarship
-VU champs
-Project Visisth
-VU Vaahini
-Parichaya
-Samvaada
-Are the major programs held under VISION UVCE.
-
+        android:text="\n \nVisionUVCE is a group of UVCE alumni who are focussed on Giving Back to UVCE by creating awareness among the strong alumni that UVCE has and make them understand the potential that the creation, of an alumni group working for the betterment of college, brings about. It is VU's responsibility to make sure, the flag of our alma mater flies high in the air and also as alumni of this college, there is a need to take part in the operations in the college.
+\n-Sampada
+\n-VU scholarship
+\n-VU champs
+\n-Project Visisth
+\n-VU Vaahini
+\n-Parichaya
+\n-Samvaada
+\nAre the major programs held under VISION UVCE.
 VU also funds and support various student initiative which seems promising in terms of idea and it's reach. It's also involved in taking care of students utility in campus by funding to the required cause. VU Rises it's fund from alumni of UVCE and entrust it's donors by providing the details of transaction made through its website.
-
-For more details:-  http://www.visionuvce.in"
+\nFor more details:-  http://www.visionuvce.in"
         android:textSize="24sp" />
 </RelativeLayout>
 </ScrollView>

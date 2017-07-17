@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:text="VINIMAYA"
             android:textAlignment="center"
+            android:textColor="@color/com_facebook_blue"
             android:textSize="30sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="-1dp"
@@ -26,10 +27,10 @@
             android:layout_height="fill_parent"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView19"
-            android:text="Books; collection of enormous amount of knowledge and guidance in a compressed form is a vital asset for the mankind. VINIMAYA meaning Sharing in Kannada ,work on this very basic principle. Books that a student has can be shared with the club and the books that  VINIMAYA has can be borrowed by the students. There's no worry if one doesn't have a book to share. Any student can drop into G2C2 room and borrow their favorite book. VINIMAYA also shares TV series and anime for the one who seeks. In future days Sharing e-Textbooks and lab manuals will be made available through VINIMAYA.
+            android:text="\nBooks; collection of enormous amount of knowledge and guidance in a compressed form is a vital asset for the mankind. VINIMAYA meaning Sharing in Kannada ,work on this very basic principle. Books that a student has can be shared with the club and the books that  VINIMAYA has can be borrowed by the students. There's no worry if one doesn't have a book to share. Any student can drop into G2C2 room and borrow their favorite book. VINIMAYA also shares TV series and anime for the one who seeks. In future days Sharing e-Textbooks and lab manuals will be made available through VINIMAYA.
 VINIMAYA has its own web page developed by Anand who's a student from EC department.
-
-Click on this to know about books available at VINIMAYA:- http://aliengo.000webhostapp.com/first/vini2.0/vini2home.php "
+\nClick on this to know about books available at
+\n \tVINIMAYA:- http://aliengo.000webhostapp.com/first/vini2.0/vini2home.php "
             android:textSize="24sp" />
 
     </RelativeLayout>

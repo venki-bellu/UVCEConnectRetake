@@ -5,7 +5,7 @@
         <item
             android:id="@+id/About_us"
             android:icon="@drawable/ic_info_outline_black_24dp"
-            android:title="About Us" />
+            android:title="About UVCE" />
         <item
             android:id="@+id/Associations"
             android:icon="@drawable/ic_associations"
@@ -29,19 +29,19 @@
             android:title="Fests" />
         <item
         android:id="@+id/Sports"
-            android:icon="@mipmap/ic_sports"
+            android:icon="@drawable/ic_sport"
         android:title="Sports" />
         <item
             android:id="@+id/gb_RAM"
-            android:icon="@mipmap/ic_band"
+            android:icon="@drawable/ic_bands"
             android:title="8GB RAM" />
         <item
             android:id="@+id/NCC"
-            android:icon="@mipmap/ic_ncc"
+            android:icon="@drawable/ic_ncc"
             android:title="NCC" />
     </group>
 
-     <item android:title="Additionsl info">
+     <item android:title="Additional Information">
         <menu>
             <item
                 android:id="@+id/Developers"

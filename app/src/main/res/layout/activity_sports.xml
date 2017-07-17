@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:text="SPORTS DEPARTMENT"
             android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark"
             android:textSize="30sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="-1dp"
@@ -26,8 +27,8 @@
             android:layout_height="fill_parent"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView19"
-            android:text="Sports at uvce has remained at its best by the sportsman skill of uvceians. The physical education department is lead by Dr. Lokesh Reddy who is the mentor and monitor of sports at UVCE.
-
+            android:text="\n \nSports at uvce has remained at its best by the sportsman skill of uvceians. The physical education department is lead by Dr. Lokesh Reddy who is the mentor and monitor of sports at UVCE.
+\n
 Uvce have its football team and cricket team which is recognized across the state for its excellence in their respective field. Selection process happens once in a year and teams practice in Bangalore University ground located close to uvce campus.                       "
             android:textSize="24sp" />
 

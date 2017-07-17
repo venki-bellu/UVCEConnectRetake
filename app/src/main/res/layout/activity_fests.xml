@@ -12,44 +12,40 @@
     tools:context="com.venkibellu.myapplication.fests">
 
     <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="FESTS"
+        android:textColor="@color/colorcard"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="JAATHRE
-As the name indicates, it's a colourful one day event organised by 2nd year students. In this event various collegiate setup their stall at quadrangle and conduct innovative games. This event helps freshers to gain knowledge about their college.
-
-
-KAAGADA:
-It's a National level technical symposium, organised by Team ieee uvce.  Students across Bangalore take part in this event where they get to showcase their Paper and Poster presentation skills.
-
-
-FIESTA:
+As the name indicates, it's a colourful one day event organised by 2nd year students. In this event various collegiate setup their stall at quadrangle and conduct innovative games. This event helps freshers to gain knowledge about their college. \n \nKAAGADA:
+It's a National level technical symposium, organised by Team ieee uvce.  Students across Bangalore take part in this event where they get to showcase their Paper and Poster presentation skills.\n \nFIESTA:
 It's a one day intra colligate Cultural fest of uvce organised by 3rd year students in even semester. It's a Cultural extravaganza which accelerates uvceians to participate in widespread events. Skilled students from every department of uvce participate in this Cultural extravaganza.
-
-
-CIVISTA:
+\n \nCIVISTA:
 This event is similar to fiesta organised by our friends at JyanaBharathi campus. Civista is the annual Cultural fest of Civil department. Organised by 3rd year students. It attracts huge number of participants from the Bangalore University campus placed in the vicinity of department.
-
-
-INSPIRON:
+\n \nINSPIRON:
 Inspiron is an inter college  technical fest organized by the Placement and Training Center of UVCE,It is an entrepreneurship and management extravaganza which has various events which showcases technical, entrepreneurship and management skills. Happening at even semester.
-
-
-IMPETUS:
+\n \nIMPETUS:
 IMPETUS is our National Level Technical Extravaganza started in the year 2001. IMPETUS is a technical fest designed for a change and with vivid difference. Unlike other fests, every year this fest goes out with a message for the engineers. The fest was themed after Engineering for Society followed by Innovation and Entrepreneurship in 2013. This 2 day long fest has always had a diverse participation from all over the country. Over the years IMPETUS has emerged to be one of Bangalore's top technical fests
-
-
-ESPORTIVO:
+\n \nESPORTIVO:
 Sports has a high caliber in uvce. The craze setup for football and cricket is everlasting in the century old college. Esportivo is a week long event organised by sports geeks to uphold the sportsmanship sprit among various teams across Bangalore.
-
-
-MILAGRO:
+\n \nMILAGRO:
 MILAGRO is the biggest cultural festival in UVCE organised by final year students which is carried in the duration of a week . With the history of two decades, it forms a platform where every individual in college comes together to create a difference. It upholds the pride of UVCE. It has always been dealt with grandeur and festivity. Participants throughout Karnataka are attracted to this 2 day event. PS:- Rain adds up to the charm of milagro every time."
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteY="7dp"
         tools:layout_editor_absoluteX="0dp"
-        android:id="@+id/textView12"
-        android:layout_alignParentTop="true"
+        tools:layout_editor_absoluteY="7dp"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/textView13"
         android:layout_alignParentStart="true" />
 
 

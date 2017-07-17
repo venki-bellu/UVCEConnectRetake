@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:text="SAE"
             android:textAlignment="center"
+            android:textColor="@color/com_facebook_blue"
             android:textSize="30sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="-1dp"
@@ -26,19 +27,14 @@
             android:layout_height="fill_parent"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView19"
-            android:text="SAE is the acronym for Society of automotive Engineers which is a World Wide organization who set standards and validate automotive projects.
-
- A student branch of this organization exists in our college called as SAEINDIA UVCE. The motto of SAEINDIA stands as The Engineering Society for Advancing Mobility in Land Sea Air and Space.
+            android:text="\nSAE is the acronym for Society of automotive Engineers which is a World Wide organization who set standards and validate automotive projects.
+\nA student branch of this organization exists in our college called as SAEINDIA UVCE. The motto of SAEINDIA stands as The Engineering Society for Advancing Mobility in Land Sea Air and Space.
 The student branch of SAE , SAEINDIA UVCE was set up in 2011 due to the earnest efforts
 of a group of seniors of Batch 2009-2013 from Mechanical.
-
-GKDC (go-cart building championship), BAJA (Pronounced as BAHA, is a all terrain vehicle building championship), SUPRA (Racing car building championship) are the main National Level competition organised by SAE.
-
-The club till date has involved in conducting many activities to benefit the members for improving their skills in the technical field.
-
-Team Em-power UVCE stood 6th (AIR) in GKDC and 124th(AIR) In BAJA are the best  figure in the history of its involvement.
-
-Contact us- sae.uvce@gmail.com               "
+\nGKDC (go-cart building championship), BAJA (Pronounced as BAHA, is a all terrain vehicle building championship), SUPRA (Racing car building championship) are the main National Level competition organised by SAE.
+\nThe club till date has involved in conducting many activities to benefit the members for improving their skills in the technical field.
+\nTeam Em-power UVCE stood 6th (AIR) in GKDC and 124th(AIR) In BAJA are the best  figure in the history of its involvement.
+\n\tContact us- sae.uvce@gmail.com               "
             android:textSize="24sp" />
 
     </RelativeLayout>

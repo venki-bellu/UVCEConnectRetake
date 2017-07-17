@@ -26,7 +26,7 @@
             android:layout_height="fill_parent"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView19"
-            android:text="Discipline and National integrity are the vital principle on which uvces NCC squadron stands for. One can join NCC Air wing unit of uvce from 2nd semester dedicating our life towards the motto Touch the sky with glory.
+            android:text="\nDiscipline and National integrity are the vital principle on which uvces NCC squadron stands for. One can join NCC Air wing unit of uvce from 2nd semester dedicating our life towards the motto Touch the sky with glory.
                   "
             android:textSize="24sp" />
 

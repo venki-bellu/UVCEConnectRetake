@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:text="THATVA"
             android:textAlignment="center"
+            android:textColor="@color/com_facebook_blue"
             android:textSize="30sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="-1dp"
@@ -26,17 +27,14 @@
             android:layout_height="fill_parent"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView19"
-            android:text="We are aware of the fact that RAMESH ARAVIND, DATTANNA, MANOHMURTHY, namma UVCEs proud alumni who with their skills have created a everlasting  impact on Kannada film industry. UVCEs leading colligate Club which aims to improve one's skill in acting is Thathva. Currently the club consists of 60+ students involved in the activity.
-
- Thathva was established by Abhishek chakma ECE batch of 2015. It was inspired by club Darpan which was once pretty established in college
-
-Thathva put up plays in all fests in our college
+            android:text="\nWe are aware of the fact that RAMESH ARAVIND, DATTANNA, MANOHMURTHY, namma UVCEs proud alumni who with their skills have created a everlasting  impact on Kannada film industry. UVCEs leading colligate Club which aims to improve one's skill in acting is Thathva. Currently the club consists of 60+ students involved in the activity.
+\nThathva was established by Abhishek chakma ECE batch of 2015. It was inspired by club Darpan which was once pretty established in college
+\nThathva put up plays in all fests in our college
 Team also made a short movie.
 It took part in a street play enseble called manthan which took place in Forum mall, Kormangla.
-
-The objective is to
-Promote theatre in college
-Set up a platform For theatre enthusiasts to collaborate and do what they love                       "
+\nThe objective is to
+\n-Promote theatre in college
+\n-Set up a platform For theatre enthusiasts to collaborate and do what they love                       "
             android:textSize="24sp" />
 
     </RelativeLayout>

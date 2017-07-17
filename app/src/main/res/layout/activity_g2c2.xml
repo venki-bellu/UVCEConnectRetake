@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:text="G2C2"
         android:textAlignment="center"
+        android:textColor="@color/com_facebook_blue"
         android:textSize="30sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="-1dp"
@@ -26,13 +27,11 @@
         android:layout_height="fill_parent"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView19"
-        android:text="To accomplish the purpose of clean and green UVCE, we have a student run club, GO GREEN AND CLEAN CLUB which is simply known as G2C2 among the students.
+        android:text="\nTo accomplish the purpose of clean and green UVCE, we have a student run club, GO GREEN AND CLEAN CLUB which is simply known as G2C2 among the students.
 This club was started back in 2014 by a bunch of ME CSE department students for a greener and cleaner UVCE. It is now run by a team of enthusiastic students from 2nd and 3rd year BE. Presently it is a proud club of about 100 voluntary members who are dedicated towards the cause.
 Club aims to involve college faculty, alumni and larger number of students in future days in go green activities to improve it's effectiveness .
-
- Contact us through:- gogreenuvce@gmail.com.
-
-Find us in Facebook @ UVCE go green and clean club.                        "
+\n\t \tContact us through:- gogreenuvce@gmail.com.
+\nFind us in Facebook @ UVCE go green and clean club.                        "
         android:textSize="24sp" />
 
 </RelativeLayout>

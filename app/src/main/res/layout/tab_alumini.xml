@@ -16,6 +16,7 @@
         android:layout_alignParentTop="true"
         android:text="ALUMNI ASSOCIATION UVCE"
         android:textAlignment="textStart"
+        android:textColor="@android:color/holo_green_dark"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -26,19 +27,17 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView17"
         android:linksClickable="true"
-        android:text="Alumni association aims to build a stronger UVCE with its various initiative like,
-
- Lecture series
- Provide scholarship
- Guide, less privileged students by donating to UACF.
- Corpus funds
- Awarding achievers
- Planning Centenary building
- Community service
-
- The alumni association strives to keep it's members informed about the activities that happens in the college through its news letter.
-
- Contact us- http://uvcealumni.org/index.html"
+        android:text="\n \nAlumni association aims to build a stronger UVCE with its various initiative like,
+ \n-Lecture series
+ \n-Provide scholarship
+ \n-Guide, less privileged students by donating to UACF.
+ \n-Corpus funds
+ \n-Awarding achievers
+ \n-Planning Centenary building
+ \n-Community service
+ \n \n
+The alumni association strives to keep it's members informed about the activities that happens in the college through its news letter.
+\nContact us- http://uvcealumni.org/index.html"
         android:textSize="24sp" />
 </RelativeLayout>
 </ScrollView>
