@@ -4,9 +4,6 @@ import android.content.Context;
 
 import java.util.HashMap;
 
-/**
- * Created by captaindavinci on 14/7/17.
- */
 
 @SuppressWarnings("FieldCanBeLocal")
 class URLGetter {
@@ -17,43 +14,43 @@ class URLGetter {
      */
 
     private final String firstYearSyllabusURL =
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE";
+            "https://drive.google.com/open?id=0B1UVfii_DmyGSDBYUHZuYVczNDA";
 
 
     private final String CSE_SyllabusURL[] = {
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // second year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // third year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // fourth year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGclBQeDFJM1p5SzQ", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGeS1WVkhERnd5bU0", // third year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGLTNfRl83MVlXcVE", // fourth year
     };
 
     private final String EEE_SyllabusURL[] = {
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // second year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // third year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // fourth year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGYWFwV3E3TUJGZEE", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGbW1rUS0wZWlOWkU", // third year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGUnR2enN6SE1VbkU", // fourth year
     };
 
     private final String ECE_SyllabusURL[] = {
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // second year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // third year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // fourth year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGV1hGMnhWVlBMb2s", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGY2lwMkg2cDlzMlE", // third year
+            "", // fourth year
     };
 
     private final String ISE_SyllabusURL[] = {
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // second year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // third year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // fourth year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGS29TSlVYcWIzQjA", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGS29TSlVYcWIzQjA", // third year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGS29TSlVYcWIzQjA", // fourth year
     };
 
     private final String ME_SyllabusURL[] = {
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // second year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // third year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // fourth year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGa1M0ZGlET0lWVWM", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGaDdZeWlYd3VuS2c", // third year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGWHR6MU8tb2IzWFU", // fourth year
     };
 
     private final String CE_SyllabusURL[] = {
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // second year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // third year
-            "https://drive.google.com/open?id=0B1UVfii_DmyGZThIRmFibzkyOVE", // fourth year
+            "", // second year
+            "", // third year
+            "", // fourth year
     };
 
 
@@ -88,6 +85,10 @@ class URLGetter {
         } else {
             String branchArray[] = URLmapper.get(branch);
             ID = getID(branchArray[year - 2]);
+        }
+
+        if (ID.isEmpty()) {
+            return "";
         }
 
         return downloadURL.replace("[FILE_ID]", ID);

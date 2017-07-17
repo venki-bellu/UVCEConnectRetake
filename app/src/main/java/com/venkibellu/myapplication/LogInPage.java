@@ -213,6 +213,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         }
         else
         {
+            System.out.println("Sign-in Failed: " + result.getStatus());
             Toast.makeText(getApplicationContext(),"Google Sign In failure",Toast.LENGTH_LONG).show();
         }
     }

@@ -40,6 +40,14 @@ public class AcademicActivity extends AppCompatActivity {
         // get the downloadURL on the basis of branch and year selected.
         downloadURL = urlGetter.getSyllabusURL(branch, year);
 
+        // if syllabus not available return.
+        if (downloadURL.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Sorry! No resources found.",
+                                                        Toast.LENGTH_SHORT).show();
+
+            return ;
+        }
+
         // stores the name of the file which will appear on downloading.
         fileName = branch.replaceAll("\\s+", "-") + "-Syllabus.pdf";
 
