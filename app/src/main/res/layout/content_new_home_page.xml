@@ -61,7 +61,8 @@
             android:text="Question Papers"
             android:textColor="@color/cardview_light_background"
             android:gravity="bottom"
-            android:textSize="40dp"/>
+            android:textSize="40dp"
+            android:onClick="onQuestionPaperImageViewClicked"/>
 
     </RelativeLayout>
 </ScrollView>

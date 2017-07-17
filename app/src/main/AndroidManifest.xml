@@ -48,7 +48,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".AcademicActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="Syllabus"/>
         <activity
             android:name=".News"
             android:label="@string/title_activity_news"
@@ -176,6 +177,10 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".QuestionPapers"
+            android:label="Question Papers">
         </activity>
     </application>
 

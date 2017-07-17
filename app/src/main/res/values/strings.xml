@@ -22,6 +22,19 @@
     <string name="me">Mechanical Engineering</string>
     <string name="download">Download</string>
 
+    <string-array name="FirstYearSubjects">
+        <item>Engineering Chemistry</item>
+        <item>Engineering Mechanics</item>
+        <item>Engineering Mathematics I</item>
+        <item>Engineering Mathematics II</item>
+        <item>Programming with C</item>
+        <item>Electrical Science</item>
+        <item>Basic Electronics</item>
+        <item>Engineering Physics</item>
+        <item>Mechanical Engineering Science</item>
+        <item>Strength Of Materials</item>
+    </string-array>
+
     <string-array name="branch_array">
         <item>@string/cse</item>
         <item>@string/ce</item>
