@@ -1,6 +1,7 @@
 package com.venkibellu.myapplication;
 
 import android.app.DownloadManager;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -14,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.io.File;
 
 public class AcademicActivity extends AppCompatActivity {
     private Spinner branchSpinner, yearSpinner;
@@ -42,7 +45,7 @@ public class AcademicActivity extends AppCompatActivity {
 
         // if syllabus not available return.
         if (downloadURL.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Sorry! No resources found.",
+            Toast.makeText(getApplicationContext(), "No resources found.\nWill be added soon!",
                                                         Toast.LENGTH_SHORT).show();
 
             return ;
@@ -123,16 +126,21 @@ public class AcademicActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(String... url) {
+            File directory = new File(Environment.getExternalStorageDirectory() + "/UVCE-Connect");
+
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url[0]));
             request.setDescription("Syllabus");
             request.setTitle(fileName);
             request.allowScanningByMediaScanner();
-            request.setDestinationInExternalFilesDir(getApplicationContext(),
-                                             Environment.DIRECTORY_DOWNLOADS, fileName);
+            request.setDestinationInExternalPublicDir("/UVCE-Connect", fileName);
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
             DownloadManager manager = (DownloadManager)
-                    getApplicationContext().getSystemService(DOWNLOAD_SERVICE);
+                    getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);
             manager.enqueue(request);
             return null;
         }
