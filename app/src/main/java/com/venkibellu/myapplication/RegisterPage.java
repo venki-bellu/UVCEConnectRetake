@@ -159,27 +159,31 @@ public class RegisterPage extends AppCompatActivity {
                     for(DataSnapshot snapshot : dataSnapshot.getChildren())
                     key = snapshot.getKey();
 
-                    HashMap<String,String> hashMap=new HashMap<String, String>();
-                    hashMap.put("Name",name.getText().toString());
-                    hashMap.put("Branch",spinner.getSelectedItem().toString());
-                    hashMap.put("Year Of Joining",yearOfJoining.getText().toString());
-                    String userTYpe;
-                    if(radioGroup.getCheckedRadioButtonId()==R.id.registerpage_status_Alumni)
-                        userTYpe="Alumni";
-                    else {
-                        userTYpe = "Student";
-                        hashMap.put("Register Number",registerNumber.getText().toString());
-                    }
-                    hashMap.put("User Type",userTYpe);
-                    hashMap.put("Designation","NORMAL");
-                    hashMap.put("Phone Number",phoneNumber.getText().toString());
-                    hashMap.put("Email Id",Registered_User_Id.registered_user_email);
-                    hashMap.put("Google_ID",Registered_User_Id.registered_user_id);
+                    if(!(name.getText().toString().trim().equals("") || yearOfJoining.getText().toString().trim().equals("")) && yearOfJoining.getText().toString().trim().length() == 4) {
+                        HashMap<String, String> hashMap = new HashMap<String, String>();
+                        hashMap.put("Name", name.getText().toString());
+                        hashMap.put("Branch", spinner.getSelectedItem().toString());
+                        hashMap.put("Year Of Joining", yearOfJoining.getText().toString());
+                        String userTYpe;
+                        if (radioGroup.getCheckedRadioButtonId() == R.id.registerpage_status_Alumni)
+                            userTYpe = "Alumni";
+                        else {
+                            userTYpe = "Student";
+                            hashMap.put("Register Number", registerNumber.getText().toString());
+                        }
+                        hashMap.put("User Type", userTYpe);
+                        hashMap.put("Designation", "NORMAL");
+                        hashMap.put("Phone Number", phoneNumber.getText().toString());
+                        hashMap.put("Email Id", Registered_User_Id.registered_user_email);
+                        hashMap.put("Google_ID", Registered_User_Id.registered_user_id);
 
-                    ref.child(String.valueOf(Integer.parseInt(key)+1)).setValue(hashMap);
-                    Intent intent = new Intent(RegisterPage.this, NewHomePage.class);
-                    startActivity(intent);
-                    finish();
+                        ref.child(String.valueOf(Integer.parseInt(key) + 1)).setValue(hashMap);
+                        Intent intent = new Intent(RegisterPage.this, NewHomePage.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else
+                        Toast.makeText(getApplicationContext(), "Please Enter all the Fields", Toast.LENGTH_SHORT).show();
 
                 }catch(Exception e) {}
             }
