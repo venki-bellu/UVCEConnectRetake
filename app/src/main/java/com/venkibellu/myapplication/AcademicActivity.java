@@ -47,7 +47,8 @@ public class AcademicActivity extends AppCompatActivity {
 
         // get the downloadURL on the basis of branch and semester selected.
         if (syllabusRadioButton.isChecked()) {
-            downloadURL = urlGetter.getSyllabusURL(branch, semester / 2);
+            int year = (int) Math.ceil(semester / 2.0);
+            downloadURL = urlGetter.getSyllabusURL(branch, year);
             fileName = branch.replaceAll("\\s+", "-") + "-Syllabus.pdf";
 
         } else {
@@ -58,7 +59,7 @@ public class AcademicActivity extends AppCompatActivity {
         // if syllabus not available return.
         if (downloadURL.isEmpty()) {
             Toast.makeText(getApplicationContext(), "No resources found.\n" +
-                            "                           Will be added soon!",
+                                                    "Will be added soon!",
                                                         Toast.LENGTH_SHORT).show();
 
             return ;

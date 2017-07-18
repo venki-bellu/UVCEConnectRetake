@@ -81,7 +81,7 @@ class URLGetter {
         String downloadURL = "https://docs.google.com/uc?id=[FILE_ID]&export=download";
         String ID = "";
 
-        if (year == 1) {
+        if (year <= 1) {
             ID = getID(firstYearSyllabusURL);
         } else {
             String branchArray[] = syllabusURLmapper.get(branch);

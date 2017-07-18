@@ -28,7 +28,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".AcademicActivity"
-            android:label="Syllabus"
+            android:label="Academics"
             android:screenOrientation="portrait" />
         <activity
             android:name=".News"
@@ -184,9 +184,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".QuestionPapers"
-            android:label="Question Papers" />
         <activity
             android:name=".News_Adding"
             android:label="@string/title_activity_news__adding"
