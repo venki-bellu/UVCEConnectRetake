@@ -220,7 +220,6 @@ public class RegisterPage extends AppCompatActivity {
 
     public void requestOTP(View v)
     {
-        Toast.makeText(getApplicationContext(),"Button Clicked",Toast.LENGTH_SHORT).show();
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 "+91"+phoneNumber.getText().toString(),     //phone number to verify
                 60,                 // Timeout duration
