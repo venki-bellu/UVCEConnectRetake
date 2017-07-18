@@ -5,17 +5,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_marginTop="50dp">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_home_page"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-
-
-
         tools:context="com.venkibellu.myapplication.NewHomePage"
-        android:background="#061938">
+        android:background="#000000"
+        android:orientation="vertical">
 
 
         <TextView
@@ -28,7 +25,8 @@
             android:textColor="@color/cardview_light_background"
             android:gravity="bottom"
             android:textSize="40sp"
-            android:onClick="onNewsImageViewClicked"/>
+            android:onClick="onNewsImageViewClicked"
+            android:layout_marginBottom="5dp"/>
 
         <TextView
             android:id="@+id/campus_says"
@@ -41,7 +39,8 @@
             android:textColor="@color/cardview_light_background"
             android:gravity="bottom"
             android:textSize="40sp"
-            android:onClick="onCampusImageViewClicked"/>
+            android:onClick="onCampusImageViewClicked"
+            android:layout_marginBottom="5dp"/>
 
         <TextView
             android:id="@+id/syllabus"
@@ -68,5 +67,5 @@
             <!--android:gravity="bottom"-->
             <!--android:textSize="40sp"/>-->
 
-    </RelativeLayout>
+    </LinearLayout>
 </ScrollView>
