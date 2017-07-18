@@ -122,9 +122,12 @@ public class RegisterPage extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, enteredOTP.getText().toString());
-                signInWithPhoneAuthCredential(credential);
-
+                if(enteredOTP.getText().toString().trim().length()==6) {
+                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, enteredOTP.getText().toString());
+                    signInWithPhoneAuthCredential(credential);
+                }
+                else
+                    Toast.makeText(getApplicationContext(),"Please enter valid OTP",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -225,12 +228,18 @@ public class RegisterPage extends AppCompatActivity {
 
     public void requestOTP(View v)
     {
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+91"+phoneNumber.getText().toString(),     //phone number to verify
-                60,                 // Timeout duration
-                TimeUnit.SECONDS,   // Unit of timeout
-                RegisterPage.this,               // Activity (for callback binding)
-                mCallbacks                         //OnVerificationStateChangedCallbacks
-        );
+        if(phoneNumber.getText().toString().trim().length()==10) {
+            PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                    "+91" + phoneNumber.getText().toString(),     //phone number to verify
+                    60,                 // Timeout duration
+                    TimeUnit.SECONDS,   // Unit of timeout
+                    RegisterPage.this,               // Activity (for callback binding)
+                    mCallbacks                         //OnVerificationStateChangedCallbacks
+            );
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),"Please enter a valid 10 digit phone number",Toast.LENGTH_SHORT).show();
+        }
     }
 }

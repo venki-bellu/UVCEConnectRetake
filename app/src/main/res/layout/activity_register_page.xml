@@ -150,6 +150,7 @@
         android:layout_below="@+id/registerpage_title_phoneNumber"
         android:hint="Enter your phone number"
         android:layout_centerHorizontal="true"
+        android:maxLength="10"
         android:inputType="number" />
 
     <Button
