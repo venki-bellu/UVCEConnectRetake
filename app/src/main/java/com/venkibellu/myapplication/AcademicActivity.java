@@ -147,7 +147,12 @@ public class AcademicActivity extends AppCompatActivity {
             File directory = new File(Environment.getExternalStorageDirectory() + "/UVCE-Connect");
 
             if (!directory.exists()) {
-                directory.mkdirs();
+                if (directory.mkdirs()) {
+                    Toast.makeText(getApplicationContext(), "Oops! Something went wrong!",
+                            Toast.LENGTH_LONG).show();
+
+                    return null;
+                }
             }
 
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url[0]));
