@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -44,9 +45,9 @@ public class RegisterPage extends AppCompatActivity {
     private String key;
     Button registerUser;
     EditText name;
-    EditText phoneNumber,enteredOTP;
+    EditText phoneNumber, enteredOTP;
     Button submitButton, requesetOTP;
-    final String TAG="FIREBASE";
+    final String TAG = "FIREBASE";
     private FirebaseAuth mAuth;
     boolean mVerificationInProgress = false;
     String mVerificationId;
@@ -58,21 +59,21 @@ public class RegisterPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
 
-        spinner=(Spinner)findViewById(R.id.registerpage_branch);
-        textView=(TextView)findViewById(R.id.registerpage_title_rollno);
-        registerNumber=(EditText)findViewById(R.id.registerpage_registerno);
-        yearOfJoining=(EditText)findViewById(R.id.registerpage_yearofjoining);
-        radioGroup=(RadioGroup)findViewById(R.id.registerpage_radiogroup);
-        phoneNumber=(EditText)findViewById(R.id.registerpage_phoneNumber);
-        enteredOTP=(EditText)findViewById(R.id.registerpage_OTP);
-        requesetOTP=(Button)findViewById(R.id.registerpage_button_requestOTP);
-        submitButton=(Button)findViewById(R.id.registerpage_button_submit);
-        mAuth=FirebaseAuth.getInstance();
-        registerUser=(Button)findViewById(R.id.registerpage_button_register);
-        name=(EditText) findViewById(R.id.registerpage_name);
+        spinner = (Spinner) findViewById(R.id.registerpage_branch);
+        textView = (TextView) findViewById(R.id.registerpage_title_rollno);
+        registerNumber = (EditText) findViewById(R.id.registerpage_registerno);
+        yearOfJoining = (EditText) findViewById(R.id.registerpage_yearofjoining);
+        radioGroup = (RadioGroup) findViewById(R.id.registerpage_radiogroup);
+        phoneNumber = (EditText) findViewById(R.id.registerpage_phoneNumber);
+        enteredOTP = (EditText) findViewById(R.id.registerpage_OTP);
+        requesetOTP = (Button) findViewById(R.id.registerpage_button_requestOTP);
+        submitButton = (Button) findViewById(R.id.registerpage_button_submit);
+        mAuth = FirebaseAuth.getInstance();
+        registerUser = (Button) findViewById(R.id.registerpage_button_register);
+        name = (EditText) findViewById(R.id.registerpage_name);
 
 
-        mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
 
@@ -84,11 +85,11 @@ public class RegisterPage extends AppCompatActivity {
                 if (e instanceof FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
                     // ...
-                    Toast.makeText(getApplicationContext(),"Invalid Mobile number",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Invalid Mobile number", Toast.LENGTH_SHORT).show();
                 } else if (e instanceof FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded
                     // ...
-                    Toast.makeText(getApplicationContext(),"Server Error. Unable to register",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Server Error. Unable to register", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -97,7 +98,7 @@ public class RegisterPage extends AppCompatActivity {
             public void onCodeSent(String verificationId,
                                    PhoneAuthProvider.ForceResendingToken token) {
                 Log.d(TAG, "onCodeSent:" + verificationId);
-                Toast.makeText(getApplicationContext(),"Verification code sent to +91 "+phoneNumber.getText().toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Verification code sent to +91 " + phoneNumber.getText().toString(), Toast.LENGTH_SHORT).show();
                 mVerificationId = verificationId;
                 mResendToken = token;
                 requesetOTP.setEnabled(false);
@@ -131,8 +132,7 @@ public class RegisterPage extends AppCompatActivity {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                switch (checkedId)
-                {
+                switch (checkedId) {
                     case R.id.registerpage_status_student:
                         textView.setVisibility(View.VISIBLE);
                         registerNumber.setVisibility(View.VISIBLE);
@@ -147,19 +147,18 @@ public class RegisterPage extends AppCompatActivity {
         });
     }
 
-    public void registerUser(View view)
-    {
+    public void registerUser(View view) {
 
         ref = FirebaseDatabase.getInstance().getReference().child("Registered Users");
         Query query = ref.orderByKey().limitToLast(1);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                try{
-                    for(DataSnapshot snapshot : dataSnapshot.getChildren())
-                    key = snapshot.getKey();
+                try {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                        key = snapshot.getKey();
 
-                    if(!(name.getText().toString().trim().equals("") || yearOfJoining.getText().toString().trim().equals("")) && yearOfJoining.getText().toString().trim().length() == 4) {
+                    if (!(name.getText().toString().trim().equals("") || yearOfJoining.getText().toString().trim().equals("")) && yearOfJoining.getText().toString().trim().length() == 4) {
                         HashMap<String, String> hashMap = new HashMap<String, String>();
                         hashMap.put("Name", name.getText().toString());
                         hashMap.put("Branch", spinner.getSelectedItem().toString());
@@ -178,15 +177,15 @@ public class RegisterPage extends AppCompatActivity {
                         hashMap.put("Google_ID", Registered_User_Id.registered_user_id);
 
                         ref.child(String.valueOf(Integer.parseInt(key) + 1)).setValue(hashMap);
-                        Toast.makeText(getApplicationContext(),"Registration Success",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Registration Success", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(RegisterPage.this, NewHomePage.class);
                         startActivity(intent);
                         finish();
-                    }
-                    else
+                    } else
                         Toast.makeText(getApplicationContext(), "Please Enter all the Fields", Toast.LENGTH_SHORT).show();
 
-                }catch(Exception e) {}
+                } catch (Exception e) {
+                }
             }
 
             @Override
@@ -204,7 +203,7 @@ public class RegisterPage extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            Toast.makeText(getApplicationContext(),"Phone number verification success",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Phone number verification success", Toast.LENGTH_SHORT).show();
                             registerUser.setEnabled(true);
                             enteredOTP.setEnabled(false);
                             submitButton.setEnabled(false);
@@ -214,7 +213,7 @@ public class RegisterPage extends AppCompatActivity {
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(getApplicationContext(),"Phone number verification failed",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Phone number verification failed", Toast.LENGTH_SHORT).show();
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 // The verification code entered was invalid
                             }
@@ -223,10 +222,9 @@ public class RegisterPage extends AppCompatActivity {
                 });
     }
 
-    public void requestOTP(View v)
-    {
+    public void requestOTP(View v) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+91"+phoneNumber.getText().toString(),     //phone number to verify
+                "+91" + phoneNumber.getText().toString(),     //phone number to verify
                 60,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
                 RegisterPage.this,               // Activity (for callback binding)
