@@ -6,6 +6,7 @@ import android.content.Context;
 
 import android.net.Uri;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,6 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import com.google.firebase.storage.FirebaseStorage;
@@ -65,21 +65,41 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
+        final ViewHolder holder;
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.news_list, null);
+            holder = new ViewHolder();
+            holder.nameTextView = (TextView)view.findViewById(R.id.news_name);
+            holder.detailsTextView = (TextView)view.findViewById(R.id.news_details);
+            holder.extraImageView = (ImageView)view.findViewById(R.id.news_extraimage);
+            holder.organImageView = (ImageView)view.findViewById(R.id.news_image);
+            view.setTag(holder);
+
+        } else {
+            holder = (ViewHolder) view.getTag();
         }
 
 
         //Handle TextView and display string from your list
-        TextView name = (TextView)view.findViewById(R.id.news_name);
-        name.setText(listname.get(position));
-        TextView details = (TextView)view.findViewById(R.id.news_details);
-        details.setText(listdetails.get(position));
+
+        holder.nameTextView.setText(listname.get(position));
+
+        holder.detailsTextView.setText(listdetails.get(position));
 
 
-        final ImageView news_extraimage = (ImageView)view.findViewById(R.id.news_extraimage);
-        ImageView news_image = (ImageView)view.findViewById(R.id.news_image);
+
+
+        if(!newsimage.get(position).equals("")) {
+            StorageReference organref = FirebaseStorage.getInstance().getReference().child(newsimage.get(position));
+            organref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Picasso.with(context).load(uri).into(holder.organImageView);
+                }
+            });
+        } else
+            holder.organImageView.setImageBitmap(null);
 
 
         if(!newsextraimage.get(position).equals("")) {
@@ -88,14 +108,20 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             mountainsRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-                    Picasso.with(context).load(uri).into(news_extraimage);
+                    Picasso.with(context).load(uri).into(holder.extraImageView);
                 }
             });
 
 
         } else
-            news_extraimage.setImageBitmap(null);
+            holder.extraImageView.setImageBitmap(null);
 
         return view;
+    }
+    static class ViewHolder {
+        private TextView nameTextView;
+        private TextView detailsTextView;
+        private ImageView extraImageView;
+        private ImageView organImageView;
     }
 }

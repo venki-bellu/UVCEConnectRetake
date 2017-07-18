@@ -42,7 +42,6 @@ public class News_Adding extends AppCompatActivity {
     Button picture;
     ImageView pictureshow;
     Button add;
-    private String organization_image = "";
     private ValueEventListener myevent1;
 
 
@@ -56,6 +55,7 @@ public class News_Adding extends AppCompatActivity {
     private DatabaseReference ref;
     private FirebaseDatabase mfbdb;
     private String ID;
+    private  String organization_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,6 +148,14 @@ public class News_Adding extends AppCompatActivity {
                         ref.removeEventListener(myevent1);
 
                     }
+                    if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Administration Office"))
+                        organization_image = "newsorganisation/Administration Office.jpg";
+                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Placement Office"))
+                        organization_image = "newsorganisation/Placement Office.jpg";
+                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Principal's Office"))
+                        organization_image = "newsorganisation/Principal's Office.jpg";
+                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Vision UVCE"))
+                        organization_image = "newsorganisation/Vision UVCE.jpg";
 
                     if (filePath != null) {
                         //displaying a progress dialog while upload is going on

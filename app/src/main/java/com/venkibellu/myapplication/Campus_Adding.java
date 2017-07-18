@@ -99,7 +99,7 @@ public class Campus_Adding extends AppCompatActivity {
         add = (Button) findViewById(R.id.campus_add_button);
 
 
-        String organ[] = new String[]{"IEEE", "Thatva", "G2C2", "SAE", "Vinimaya", "Chakravyuha", "ಚೇತನ" };
+        String organ[] = new String[]{"IEEE", "Tatva", "G2C2", "SAE", "Vinimaya", "Chakravyuha", "ಚೇತನ" };
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, organ);
         organization.setAdapter(arrayAdapter);
 
@@ -148,6 +148,21 @@ public class Campus_Adding extends AppCompatActivity {
                         ref.removeEventListener(myevent1);
 
                     }
+
+                    if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("IEEE"))
+                        organization_image = "campusorganisation/IEEE.jpg";
+                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Tatva"))
+                        organization_image = "campusorganisation/tatva.jpg";
+                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("G2C2"))
+                        organization_image = "campusorganisation/G2C2.jpg";
+                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("SAE"))
+                        organization_image = "campusorganisation/SAE.jpg";
+                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Vinimaya"))
+                        organization_image = "campusorganisation/Vinimaya.jpg";
+                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Chakravyuha"))
+                        organization_image = "campusorganisation/chakravyuha.jpg";
+                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("ಚೇತನ"))
+                        organization_image = "campusorganisation/chethana.jpg";
 
                     if (filePath != null) {
                         //displaying a progress dialog while upload is going on
