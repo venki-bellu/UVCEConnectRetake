@@ -41,6 +41,10 @@ public class Campus_Says extends Activity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try{
+                    campusname.clear();
+                    campusdetails.clear();
+                    campusimage.clear();
+                    campusorganization.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren())
                     {
                         campusname.add(snapshot.child("Campus_Name").getValue().toString());

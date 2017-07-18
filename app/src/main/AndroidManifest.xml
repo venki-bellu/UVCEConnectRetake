@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".IntroductionScreen"
             android:screenOrientation="portrait"
@@ -25,11 +25,11 @@
         <activity
             android:name=".LogInPage"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".AcademicActivity"
-            android:screenOrientation="portrait"
-            android:label="Syllabus"/>
+            android:label="Syllabus"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".News"
             android:label="@string/title_activity_news"
@@ -67,7 +67,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".po"
+        <activity
+            android:name=".po"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.po" />
@@ -75,7 +76,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".fests"
+        <activity
+            android:name=".fests"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.fests" />
@@ -83,7 +85,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".clubs"
+        <activity
+            android:name=".clubs"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.clubs" />
@@ -91,7 +94,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".g2c2"
+        <activity
+            android:name=".g2c2"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.g2c2" />
@@ -99,7 +103,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".vinimaya"
+        <activity
+            android:name=".vinimaya"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.vinimaya" />
@@ -107,7 +112,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".sae"
+        <activity
+            android:name=".sae"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.sae" />
@@ -115,7 +121,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".chethana"
+        <activity
+            android:name=".chethana"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.chethana" />
@@ -123,7 +130,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".thatva"
+        <activity
+            android:name=".thatva"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.thatva" />
@@ -131,7 +139,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".chakravyuha"
+        <activity
+            android:name=".chakravyuha"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.chakravyuha" />
@@ -139,7 +148,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".sports"
+        <activity
+            android:name=".sports"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.sports" />
@@ -147,7 +157,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ncc"
+        <activity
+            android:name=".ncc"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.ncc" />
@@ -155,7 +166,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".gb_ram"
+        <activity
+            android:name=".gb_ram"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.gb_ram" />
@@ -163,7 +175,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".developers"
+        <activity
+            android:name=".developers"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.developers" />
@@ -173,8 +186,11 @@
         </activity>
         <activity
             android:name=".QuestionPapers"
-            android:label="Question Papers">
-        </activity>
+            android:label="Question Papers"></activity>
+        <activity
+            android:name=".News_Adding"
+            android:label="@string/title_activity_news__adding"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

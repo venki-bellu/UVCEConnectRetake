@@ -32,7 +32,8 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/campus_list">
+            android:id="@+id/campus_list"
+            android:dividerHeight="10dp">
         </ListView>
 
         <android.support.design.widget.FloatingActionButton
