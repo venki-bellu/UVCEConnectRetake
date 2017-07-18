@@ -13,14 +13,16 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
 
 public class AcademicActivity extends AppCompatActivity {
-    private Spinner branchSpinner, yearSpinner;
+    private Spinner branchSpinner, semesterSpinner;
     private String fileName, downloadURL;
+    private RadioButton syllabusRadioButton, qpRadioButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,31 +30,40 @@ public class AcademicActivity extends AppCompatActivity {
         setContentView(R.layout.activity_academic);
 
         branchSpinner = (Spinner) findViewById(R.id.branchSpinner);
-        yearSpinner = (Spinner) findViewById(R.id.yearSpinner);
+        semesterSpinner = (Spinner) findViewById(R.id.semesterSpinner);
+
+        syllabusRadioButton = (RadioButton) findViewById(R.id.syllabusRadioButton);
+        qpRadioButton = (RadioButton) findViewById(R.id.qpRadioButton);
     }
 
     public void downloadButtonClicked(View view) {
         String branch = getBranch();
-        Integer year = getYear();
+        Integer semester = getSemester();
 
         /* invoke the class URLGetter, context needs to be passed
             to access the strings in resource file.
          */
         URLGetter urlGetter = new URLGetter(getApplicationContext());
 
-        // get the downloadURL on the basis of branch and year selected.
-        downloadURL = urlGetter.getSyllabusURL(branch, year);
+        // get the downloadURL on the basis of branch and semester selected.
+        if (syllabusRadioButton.isChecked()) {
+            downloadURL = urlGetter.getSyllabusURL(branch, semester / 2);
+            fileName = branch.replaceAll("\\s+", "-") + "-Syllabus.pdf";
+
+        } else {
+            downloadURL = urlGetter.getQuestionPaperURL(branch, semester);
+            fileName = branch.replaceAll("\\s+", "-");
+        }
 
         // if syllabus not available return.
         if (downloadURL.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "No resources found.\nWill be added soon!",
+            Toast.makeText(getApplicationContext(), "No resources found.\n" +
+                            "                           Will be added soon!",
                                                         Toast.LENGTH_SHORT).show();
 
             return ;
         }
 
-        // stores the name of the file which will appear on downloading.
-        fileName = branch.replaceAll("\\s+", "-") + "-Syllabus.pdf";
 
 
         // required for android 6.0 and above.
@@ -63,8 +74,8 @@ public class AcademicActivity extends AppCompatActivity {
         return branchSpinner.getSelectedItem().toString();
     }
 
-    private Integer getYear() {
-        return Integer.parseInt(yearSpinner.getSelectedItem().toString());
+    private Integer getSemester() {
+        return Integer.parseInt(semesterSpinner.getSelectedItem().toString());
     }
 
     protected void checkStoragePermission() {

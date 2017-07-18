@@ -57,7 +57,8 @@ class URLGetter {
 
 
     // Here is map from the string to the String URL array defined above.
-    private final  static HashMap<String, String[]> URLmapper = new HashMap<>();
+    private final  static HashMap<String, String[]> syllabusURLmapper = new HashMap<>();
+
 
     URLGetter(Context context) {
         final String cse = context.getString(R.string.cse),
@@ -67,12 +68,12 @@ class URLGetter {
                      eee = context.getString(R.string.eee),
                      ece = context.getString(R.string.ece);
 
-        URLmapper.put(cse, CSE_SyllabusURL);
-        URLmapper.put(ise, ISE_SyllabusURL);
-        URLmapper.put(ce, CE_SyllabusURL);
-        URLmapper.put(me, ME_SyllabusURL);
-        URLmapper.put(eee, EEE_SyllabusURL);
-        URLmapper.put(ece, ECE_SyllabusURL);
+        syllabusURLmapper.put(cse, CSE_SyllabusURL);
+        syllabusURLmapper.put(ise, ISE_SyllabusURL);
+        syllabusURLmapper.put(ce, CE_SyllabusURL);
+        syllabusURLmapper.put(me, ME_SyllabusURL);
+        syllabusURLmapper.put(eee, EEE_SyllabusURL);
+        syllabusURLmapper.put(ece, ECE_SyllabusURL);
     }
 
     // returns the download URL by obtaining the ID from the google drive URL.
@@ -83,7 +84,7 @@ class URLGetter {
         if (year == 1) {
             ID = getID(firstYearSyllabusURL);
         } else {
-            String branchArray[] = URLmapper.get(branch);
+            String branchArray[] = syllabusURLmapper.get(branch);
             ID = getID(branchArray[year - 2]);
         }
 
@@ -92,6 +93,14 @@ class URLGetter {
         }
 
         return downloadURL.replace("[FILE_ID]", ID);
+    }
+
+    String getQuestionPaperURL(String branch, Integer semester) {
+        String downloadURL = "https://docs.google.com/uc?id=[FILE_ID]&export=download";
+        String ID = "";
+
+        // Todo: adding question paper url.
+        return "";
     }
 
     // returns the ID from the google drive URL.

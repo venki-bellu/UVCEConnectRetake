@@ -27,7 +27,7 @@
             android:text="News"
             android:textColor="@color/cardview_light_background"
             android:gravity="bottom"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:onClick="onNewsImageViewClicked"/>
 
         <TextView
@@ -40,7 +40,7 @@
             android:text="Campus Says"
             android:textColor="@color/cardview_light_background"
             android:gravity="bottom"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:onClick="onCampusImageViewClicked"/>
 
         <TextView
@@ -50,24 +50,23 @@
             android:layout_below="@id/campus_says"
             android:background="@drawable/syllabus_homepage"
             android:padding="10dp"
-            android:text="Syllabus"
+            android:text="Academics"
             android:textColor="@color/cardview_light_background"
             android:gravity="bottom"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:onClick="onSyllabusImageViewClicked"/>
 
-        <TextView
-            android:id="@+id/question_papers"
-            android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:layout_below="@id/syllabus"
-            android:background="@drawable/exam_homepage"
-            android:padding="10dp"
-            android:text="Question Papers"
-            android:textColor="@color/cardview_light_background"
-            android:gravity="bottom"
-            android:textSize="40dp"
-            android:onClick="onQuestionPaperImageViewClicked"/>
+        <!--<TextView-->
+            <!--android:id="@+id/question_papers"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="170dp"-->
+            <!--android:layout_below="@id/syllabus"-->
+            <!--android:background="@drawable/exam_homepage"-->
+            <!--android:padding="10dp"-->
+            <!--android:text="Question Papers"-->
+            <!--android:textColor="@color/cardview_light_background"-->
+            <!--android:gravity="bottom"-->
+            <!--android:textSize="40sp"/>-->
 
     </RelativeLayout>
 </ScrollView>
