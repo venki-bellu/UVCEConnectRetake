@@ -1,34 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView   xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
-
-<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.venkibellu.myapplication.about_us"
-    android:weightSum="1"
-    android:orientation="horizontal">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView3"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:text="ABOUT US"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="30sp"
-        android:textStyle="bold|italic"
-        tools:layout_editor_absoluteX="127dp"
-        tools:layout_editor_absoluteY="34dp" />
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"/>
+        android:layout_height="1000dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        tools:context="com.venkibellu.myapplication.about_us">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="ABOUT UVCE"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView24"
+            android:text="UVCE was established in the year 1917, under the name, Government Engineering college by BharatRatna Sir M Visvesvaraya, and was affiliated to University of Mysore.It is the 5th Engineering College to be established in the country.after the formation of Bangalore University in 1964, UVCE became one of the constituent college of Bangalore University. This is one of the oldest technical institutions in the country, imparting technical education leading to B.E, M.E, B.Arch, M.Sc (Engineering) and Ph D degrees in the various disciplines of Engineering and Architecture. It has completed 93 years of academic excellence since its inception. This pioneer has grown many folds and has acquired a leading position in technical education and is rated among the top 15 Engineering colleges in the country situate at K R Circle and in the neighbourhood of Vidhana Soudha, Govt of Karnataka, the city campus is housing the Department of Mechanical Engineering, Department of Electrical Engineering. Department of Electronics Engineering and Department of Computer Science and Engineering. Proximity to city bus stand connects one easily to any part of the city. Amidst the Jnana Bharathi campus, the hub of Bangalore University, Post graduate Academic activities, the Engineering campus has departments of Civil Engineering and Architecture.
+
+\nUVCE is recognized by the All India Council of Technical Education (AICTE) of the Govt of India and is a recipient of financial aid under World Bank’s Technical Education Quality Improvement Programme(TEQIP). UVCE has a NAAC rating of 5 Star for the past 4 consecutive years issued by the National Board of Accreditation. UVCE does not limit itself to being technically extravagant but also it is culturally diversified. The campus will be buzzing with activities all through the year, which provides opportunities to students to showcase their talent and prove their mettle in various genres. In a way, UVCE not only shapes the careers of its students but also makes them fit to face the real world challenges that are posed in the society. UVCE is witnessing even more positive improvements and is here to stay for very long time. The best part in UVCE has been the teacher-student partnership in achieving the missions and goals set. The students engross themselves enthusiastically and actively in the research work and gain knowledge before they venture either into the professional world or the teaching spectra. This facilitates the al round growth of any student here in the UVCE campus.\nDr. Venugopal K. R. has been in Bangalore University for the last four decades. He has Eleven
+Degrees with Ph.D. in Computer Science Engineering from IIT-Madras, Chennai and another
+Ph.D. in Economics from Bangalore University. He has degrees in Law, Mass Communication,
+Electronics, Economics, Business Finance, Computer Science, Public Relations and Industrial
+Relations. He has authored and edited 64 books and published more than 600 papers in refereed
+International Journals and International Conferences. He has supervised 630 M.E. dissertations,
+22 Ph.Ds and filed 101 Patents. He was a Post Doctoral Research Scholar and a visiting Professor
+at University of Southern California, USA. He has been conferred Fellow of IEEE, USA and
+ACM Distinguished Educator for contributions to Computer Science Engineering and Electrical
+Engineering Education." />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/princi"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imageView2"
+            android:text="\t \t \t\t\t\t\t\t \t\t\t\t\tDr. Venugopal K R\n
+B.E., M.A., D.J., L.L.B., B.S., D.P.R., M.B.F., D.I.R., M.E.,\n
+Ph.D. (Computer Science), Ph.D. (Economics), FIEEE (USA)\n
+ACM Distinguished Educator (USA)\n
+Principal, University Visvesvaraya College of Engineering, Bangalore University, Bangalore\n
+Special Officer, Government of Karnataka (December 2012 – June 2016)\n
+\t \t\t\t\t\t\t\t\t\t\t\t \t\t\t\tFormer:\n
+Dean, Faculty of Engineering, Member of Syndicate and Academic Council,\n
+Professor, Department of Computer Science and Engineering,\n
+University Visvesvaraya College of Engineering\nBangalore University, Bangalore – 560001."
+            android:textSize="12sp" />
+    </RelativeLayout>
 </ScrollView>
