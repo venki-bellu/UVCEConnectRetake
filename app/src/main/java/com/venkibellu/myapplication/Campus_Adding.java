@@ -265,4 +265,11 @@ public class Campus_Adding extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(Campus_Adding.this, Campus_Says.class);
+        startActivity(intent);
+        finish();
+    }
 }

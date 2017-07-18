@@ -258,4 +258,12 @@ public class News_Adding extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(News_Adding.this, News.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
