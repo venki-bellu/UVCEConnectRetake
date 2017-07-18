@@ -129,6 +129,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
             account = result.getSignInAccount();
             ref = FirebaseDatabase.getInstance().getReference().child("Registered Users");
             Registered_User_Id.registered_user_id = account.getId();
+            Registered_User_Id.registered_user_email=account.getEmail();
             accountcheck = account.getId();
 
 
