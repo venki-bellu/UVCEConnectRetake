@@ -73,11 +73,6 @@ public class NewHomePage extends AppCompatActivity
         startActivity(academicPageIntent);
     }
 
-    public void onQuestionPaperImageViewClicked(View view) {
-        Intent questionPaperPageIntent = new Intent(this, QuestionPapers.class);
-        startActivity(questionPaperPageIntent);
-    }
-
     public void onNewsImageViewClicked(View view) {
         Intent AcademicPageIntent = new Intent(this, News.class);
         startActivity(AcademicPageIntent);

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -31,21 +32,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class LogInPage extends AppCompatActivity implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener {
+public class LogInPage extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     private FirebaseAnalytics mFirebaseAnalytics;
     Intent homepageIntent;
 
     SignInButton signInButton;
     GoogleApiClient googleApiClient;
-    static final int REQ_CODE=9001;
+    static final int REQ_CODE = 9001;
     GoogleSignInOptions gso;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Intent intent;
     private DatabaseReference ref;
     private GoogleSignInAccount account;
-    public static  String accountcheck;
+    public static String accountcheck;
     private ProgressDialog progress;
 
 
@@ -54,7 +55,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in_page);
 
-        mFirebaseAnalytics= FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         progress = new ProgressDialog(LogInPage.this);
         progress.setMessage("Fetching Data.....");
@@ -63,16 +64,15 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
         homepageIntent = new Intent(this, NewHomePage.class);
 
-        sharedPreferences=LogInPage.this.getSharedPreferences(getString(R.string.PREF_FILE),MODE_PRIVATE);
-        editor=sharedPreferences.edit();
-        intent=getIntent();
-
+        sharedPreferences = LogInPage.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        intent = getIntent();
 
 
         //Start of google sign in codes
-        signInButton=(SignInButton)findViewById(R.id.google_sign_in_button);
-        gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        googleApiClient=new GoogleApiClient.Builder(this)
+        signInButton = (SignInButton) findViewById(R.id.google_sign_in_button);
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        googleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
@@ -83,19 +83,14 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         //This Might lead to fake sign ins. Just check this. Added by Jerry
         //Ignore above comment. This is working fine. (Bellu)
         OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
-        if (opr.isDone())
-        {
+        if (opr.isDone()) {
             progress.show();
             GoogleSignInResult result = opr.get();
 
             handleSignInResult(result);
 
         }
-
-
-
     }
-
 
     //These methods belong to google sign in (Start)
     @Override
@@ -106,7 +101,6 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
                 signIn();
                 break;
         }
-
     }
 
     @Override
@@ -121,61 +115,53 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     }
 
 
-
-    public void handleSignInResult(GoogleSignInResult result)
-    {
-        if(result.isSuccess())
-        {
+    public void handleSignInResult(GoogleSignInResult result) {
+        if (result.isSuccess()) {
             account = result.getSignInAccount();
             ref = FirebaseDatabase.getInstance().getReference().child("Registered Users");
             Registered_User_Id.registered_user_id = account.getId();
-            Registered_User_Id.registered_user_email=account.getEmail();
+            Registered_User_Id.registered_user_email = account.getEmail();
             accountcheck = account.getId();
 
 
             ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        try {
-                            int counter = 0;
-                            for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                if(snapshot.child("Google_ID").getValue().toString().equals(accountcheck))
-                                {
-                                    progress.dismiss();
-                                    counter++;
-                                    startActivity(homepageIntent);
-                                    finish();
-                                }
-                            }
-                            if(counter == 0)
-                            {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    try {
+                        int counter = 0;
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            if (snapshot.child("Google_ID").getValue().toString().equals(accountcheck)) {
                                 progress.dismiss();
-                                Intent intent = new Intent(LogInPage.this, RegisterPage.class);
-                                startActivity(intent);
+                                counter++;
+                                startActivity(homepageIntent);
                                 finish();
                             }
-
-                        } catch (Exception e) {
                         }
+                        if (counter == 0) {
+                            progress.dismiss();
+                            Intent intent = new Intent(LogInPage.this, RegisterPage.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                    } catch (Exception e) {
                     }
+                }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
+                }
+            });
 
 
-
-            editor.putFloat(getString(R.string.LOGIN_TYPE),2);
+            editor.putFloat(getString(R.string.LOGIN_TYPE), 2);
             editor.commit();
 
-        }
-        else
-        {
+        } else {
             progress.dismiss();
             System.out.println("Sign-in Failed: " + result.getStatus());
-            Toast.makeText(getApplicationContext(),"Google Sign In failure",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Google Sign In failure", Toast.LENGTH_LONG).show();
         }
     }
     //Stop of google sign in methods
