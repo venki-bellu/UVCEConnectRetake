@@ -22,19 +22,6 @@
     <string name="me">Mechanical Engineering</string>
     <string name="download">Download</string>
 
-    <string-array name="FirstYearSubjects">
-        <item>Engineering Chemistry</item>
-        <item>Engineering Mechanics</item>
-        <item>Engineering Mathematics I</item>
-        <item>Engineering Mathematics II</item>
-        <item>Programming with C</item>
-        <item>Electrical Science</item>
-        <item>Basic Electronics</item>
-        <item>Engineering Physics</item>
-        <item>Mechanical Engineering Science</item>
-        <item>Strength Of Materials</item>
-    </string-array>
-
     <string-array name="branch_array">
         <item>@string/cse</item>
         <item>@string/ce</item>
@@ -42,13 +29,6 @@
         <item>@string/eee</item>
         <item>@string/ise</item>
         <item>@string/me</item>
-    </string-array>
-
-    <string-array name="year_array">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
     </string-array>
 
     <string-array name="semester_array">
@@ -61,6 +41,17 @@
         <item>7</item>
         <item>8</item>
     </string-array>
+
+    <string name="Note">
+        <![CDATA[
+        <p>
+            <b> Note: </b>
+            Downloaded file contains syllabus for both
+            even and odd semester.
+        </p>
+        ]]>
+    </string>
+
     <string name="title_activity_navigation_main">navigation_main</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

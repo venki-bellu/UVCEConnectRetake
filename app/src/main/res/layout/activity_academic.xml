@@ -9,6 +9,31 @@
     android:paddingTop="36dp"
     android:orientation="vertical">
 
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <RadioButton
+            android:checked="true"
+            android:id="@+id/syllabusRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Syllabus"
+            android:layout_marginEnd="35dp"/>
+
+        <RadioButton
+            android:id="@+id/qpRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Question Papers"/>
+
+
+    </RadioGroup>
+
     <TextView
         android:id="@+id/branchTextView"
         android:layout_width="wrap_content"
@@ -38,17 +63,17 @@
             android:id="@+id/yearTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Year"
+            android:text="Semester: "
             android:textColor="@android:color/black"
             android:textSize="24sp"/>
 
         <Spinner
-            android:id="@+id/yearSpinner"
+            android:id="@+id/semesterSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
             android:dropDownWidth="50dp"
-            android:entries="@array/year_array">
+            android:entries="@array/semester_array">
     </Spinner>
 
     </LinearLayout>
@@ -64,6 +89,14 @@
         android:text="@string/download"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/noteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:textColor="@android:color/holo_blue_light"
+        android:layout_gravity="bottom"/>
 
 </LinearLayout>
