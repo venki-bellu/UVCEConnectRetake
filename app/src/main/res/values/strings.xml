@@ -41,6 +41,17 @@
         <item>7</item>
         <item>8</item>
     </string-array>
+
+    <string name="Note">
+        <![CDATA[
+        <p>
+            <b> Note: </b>
+            Downloaded file contains syllabus for both
+            even and odd semester.
+        </p>
+        ]]>
+    </string>
+
     <string name="title_activity_navigation_main">navigation_main</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

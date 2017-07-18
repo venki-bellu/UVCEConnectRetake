@@ -11,8 +11,8 @@
     tools:context="com.venkibellu.myapplication.IntroductionScreen">
 
     <ImageView
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:src="@mipmap/bu_logo"/>
 

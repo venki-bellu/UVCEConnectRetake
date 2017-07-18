@@ -12,9 +12,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -22,7 +24,8 @@ import java.io.File;
 public class AcademicActivity extends AppCompatActivity {
     private Spinner branchSpinner, semesterSpinner;
     private String fileName, downloadURL;
-    private RadioButton syllabusRadioButton, qpRadioButton;
+    private RadioButton syllabusRadioButton;
+    private TextView noteTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +36,11 @@ public class AcademicActivity extends AppCompatActivity {
         semesterSpinner = (Spinner) findViewById(R.id.semesterSpinner);
 
         syllabusRadioButton = (RadioButton) findViewById(R.id.syllabusRadioButton);
-        qpRadioButton = (RadioButton) findViewById(R.id.qpRadioButton);
+        noteTextView = (TextView) findViewById(R.id.noteTextView);
     }
 
     public void downloadButtonClicked(View view) {
+        noteTextView.setText("");
         String branch = getBranch();
         Integer semester = getSemester();
 
@@ -48,6 +52,8 @@ public class AcademicActivity extends AppCompatActivity {
         // get the downloadURL on the basis of branch and semester selected.
         if (syllabusRadioButton.isChecked()) {
             int year = (int) Math.ceil(semester / 2.0);
+            noteTextView.setText(Html.fromHtml(getString(R.string.Note)));
+
             downloadURL = urlGetter.getSyllabusURL(branch, year);
             fileName = branch.replaceAll("\\s+", "-") + "-Syllabus.pdf";
 
