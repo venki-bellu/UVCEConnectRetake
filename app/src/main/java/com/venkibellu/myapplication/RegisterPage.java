@@ -149,7 +149,7 @@ public class RegisterPage extends AppCompatActivity {
 
     public void registerUser(View view)
     {
-        Toast.makeText(getApplicationContext(),"Registration Success",Toast.LENGTH_SHORT).show();
+
         ref = FirebaseDatabase.getInstance().getReference().child("Registered Users");
         Query query = ref.orderByKey().limitToLast(1);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -178,6 +178,7 @@ public class RegisterPage extends AppCompatActivity {
                         hashMap.put("Google_ID", Registered_User_Id.registered_user_id);
 
                         ref.child(String.valueOf(Integer.parseInt(key) + 1)).setValue(hashMap);
+                        Toast.makeText(getApplicationContext(),"Registration Success",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(RegisterPage.this, NewHomePage.class);
                         startActivity(intent);
                         finish();
@@ -224,7 +225,7 @@ public class RegisterPage extends AppCompatActivity {
 
     public void requestOTP(View v)
     {
-        Toast.makeText(getApplicationContext(),"Button Clicked",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"OTP Requested",Toast.LENGTH_SHORT).show();
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 "+91"+phoneNumber.getText().toString(),     //phone number to verify
                 60,                 // Timeout duration
