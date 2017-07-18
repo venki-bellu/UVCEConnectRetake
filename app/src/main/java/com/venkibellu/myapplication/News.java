@@ -105,7 +105,7 @@ public class News extends Activity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        if(snapshot.child("Designation").getValue().toString().equals("Normal"))
+                        if(snapshot.child("Designation").getValue().toString().equals("NORMAL"))
                             fab.setVisibility(View.GONE);
                     }
                 }catch(Exception e) {}

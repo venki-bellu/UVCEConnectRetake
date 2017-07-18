@@ -2,6 +2,7 @@ package com.venkibellu.myapplication;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
@@ -29,6 +30,7 @@ public class Campus_Says extends Activity {
     private News_Adapter campus_adapter;
     private FloatingActionButton fab;
     private ProgressDialog progress;
+    private DatabaseReference myref;
 
 
     @Override
@@ -73,14 +75,22 @@ public class Campus_Says extends Activity {
         listView.setAdapter(campus_adapter);
 
         fab = (FloatingActionButton) findViewById(R.id.add_campus);
-        ref = FirebaseDatabase.getInstance().getReference().child("Registered Users");
-        Query query = ref.orderByChild("Google_ID").equalTo(Registered_User_Id.registered_user_id);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Campus_Says.this, Campus_Adding.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        myref = FirebaseDatabase.getInstance().getReference().child("Registered Users");
+        Query query = myref.orderByChild("Google_ID").equalTo(Registered_User_Id.registered_user_id);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        if(snapshot.child("Designation").getValue().toString().equals("Normal"))
+                        if(snapshot.child("Designation").getValue().toString().equals("NORMAL"))
                             fab.setVisibility(View.GONE);
                     }
                 }catch(Exception e) {}

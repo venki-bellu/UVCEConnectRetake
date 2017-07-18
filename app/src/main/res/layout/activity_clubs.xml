@@ -49,7 +49,7 @@
         android:layout_alignBottom="@+id/button6"
         android:layout_alignStart="@+id/button8"
         android:layout_marginStart="16dp"
-        android:text="ಚೇತನ "
+        android:text="ಚೇತನ"
         tools:layout_editor_absoluteX="192dp"
         tools:layout_editor_absoluteY="185dp" />
 

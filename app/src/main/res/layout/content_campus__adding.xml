@@ -6,34 +6,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="15dp"
-
     android:layout_width="match_parent"
+    android:padding="15dp"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.venkibellu.myapplication.News_Adding"
-    tools:showIn="@layout/activity_news__adding">
+    tools:context="com.venkibellu.myapplication.Campus_Adding"
+    tools:showIn="@layout/activity_campus__adding">
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/organisation_news_add"
+        android:id="@+id/organisation_campus_add"
         android:layout_marginTop="80dp"
         android:spinnerMode="dropdown">
     </Spinner>
 
     <android.support.design.widget.TextInputLayout
-        android:layout_below="@id/organisation_news_add"
+        android:layout_below="@id/organisation_campus_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:id="@+id/admin_relative_up_news">
+        android:id="@+id/admin_relative_up_campus">
         <EditText
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Enter News Details here"
-            android:id="@+id/news_details_add"
+            android:hint="Enter Campus Says Details"
+            android:id="@+id/campus_details_add"
             android:gravity="start"
             android:textAlignment="viewStart"/>
     </android.support.design.widget.TextInputLayout>
@@ -42,31 +41,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Choose Picture"
-        android:layout_below="@id/admin_relative_up_news"
+        android:layout_below="@id/admin_relative_up_campus"
         android:layout_marginTop="80dp"
         android:layout_centerHorizontal="true"
         android:background="@color/colorPrimary"
         android:textColor="@color/cardview_light_background"
         android:padding="10dp"
         android:textStyle="bold"
-        android:id="@+id/choose_pic_news"/>
+        android:id="@+id/choose_pic_campus"/>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/choose_pic_news"
+        android:layout_below="@id/choose_pic_campus"
         android:layout_marginTop="80dp"
         android:layout_centerHorizontal="true"
-        android:id="@+id/news_imageview"/>
+        android:id="@+id/campus_imageview"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:layout_marginTop="80dp"
         android:background="@color/colorAccent"
-        android:layout_below="@id/news_imageview"
+        android:layout_below="@id/campus_imageview"
         android:layout_centerHorizontal="true"
         android:text="Add"
-        android:id="@+id/news_add_button"/>
+        android:id="@+id/campus_add_button"/>
+
 
 </RelativeLayout>
-</ScrollView>
+    </ScrollView>

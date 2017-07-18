@@ -16,7 +16,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 
-
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import com.google.firebase.storage.FirebaseStorage;
@@ -76,13 +76,13 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
         name.setText(listname.get(position));
         TextView details = (TextView)view.findViewById(R.id.news_details);
         details.setText(listdetails.get(position));
-        View finalView = view;
+
 
         final ImageView news_extraimage = (ImageView)view.findViewById(R.id.news_extraimage);
         ImageView news_image = (ImageView)view.findViewById(R.id.news_image);
 
-        if(!newsextraimage.get(position).equals("")) {
 
+        if(!newsextraimage.get(position).equals("")) {
 
             StorageReference mountainsRef = FirebaseStorage.getInstance().getReference().child(newsextraimage.get(position));
             mountainsRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -93,7 +93,8 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             });
 
 
-        }
+        } else
+            news_extraimage.setImageBitmap(null);
 
         return view;
     }

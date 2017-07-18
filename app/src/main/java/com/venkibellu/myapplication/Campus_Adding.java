@@ -35,7 +35,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
-public class News_Adding extends AppCompatActivity {
+public class Campus_Adding extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 234;
     EditText details;
     Spinner organization;
@@ -61,10 +61,10 @@ public class News_Adding extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         storageReference = FirebaseStorage.getInstance().getReference();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news__adding);
+        setContentView(R.layout.activity_campus__adding);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ref = mfbdb.getInstance().getReference().child("News");
+        ref = mfbdb.getInstance().getReference().child("Campus Says");
 
 
 
@@ -92,14 +92,14 @@ public class News_Adding extends AppCompatActivity {
 
 
 
-        details = (EditText)findViewById(R.id.news_details_add);
-        organization = (Spinner) findViewById(R.id.organisation_news_add);
-        picture = (Button) findViewById(R.id.choose_pic_news);
-        pictureshow = (ImageView)findViewById(R.id.news_imageview);
-        add = (Button) findViewById(R.id.news_add_button);
+        details = (EditText)findViewById(R.id.campus_details_add);
+        organization = (Spinner) findViewById(R.id.organisation_campus_add);
+        picture = (Button) findViewById(R.id.choose_pic_campus);
+        pictureshow = (ImageView)findViewById(R.id.campus_imageview);
+        add = (Button) findViewById(R.id.campus_add_button);
 
 
-        String organ[] = new String[]{"Administration Office", "Placement Office", "Principal's Office", "Vision UVCE"};
+        String organ[] = new String[]{"IEEE", "Thatva", "G2C2", "SAE", "Vinimaya", "Chakravyuha", "ಚೇತನ" };
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, organ);
         organization.setAdapter(arrayAdapter);
 
@@ -131,10 +131,10 @@ public class News_Adding extends AppCompatActivity {
 
                                 for(int i = 0; i<19;i++)
                                 {
-                                    ref.child(String.valueOf(i+1)).child("News_Name").setValue(dataSnapshot.child(String.valueOf(i+2)).child("News_Name").getValue().toString());
-                                    ref.child(String.valueOf(i+1)).child("News_Image").setValue(dataSnapshot.child(String.valueOf(i+2)).child("News_Image").getValue().toString());
-                                    ref.child(String.valueOf(i+1)).child("News_Details").setValue(dataSnapshot.child(String.valueOf(i+2)).child("News_Details").getValue().toString());
-                                    ref.child(String.valueOf(i+1)).child("News_Organization").setValue(dataSnapshot.child(String.valueOf(i+2)).child("News_Organization").getValue().toString());
+                                    ref.child(String.valueOf(i+1)).child("Campus_Name").setValue(dataSnapshot.child(String.valueOf(i+2)).child("Campus_Name").getValue().toString());
+                                    ref.child(String.valueOf(i+1)).child("Campus_Image").setValue(dataSnapshot.child(String.valueOf(i+2)).child("Campus_Image").getValue().toString());
+                                    ref.child(String.valueOf(i+1)).child("Campus_Details").setValue(dataSnapshot.child(String.valueOf(i+2)).child("Campus_Details").getValue().toString());
+                                    ref.child(String.valueOf(i+1)).child("Campus_Organization").setValue(dataSnapshot.child(String.valueOf(i+2)).child("Campus_Organization").getValue().toString());
                                 }
                                 ref.child("21").removeValue();
 
@@ -151,17 +151,17 @@ public class News_Adding extends AppCompatActivity {
 
                     if (filePath != null) {
                         //displaying a progress dialog while upload is going on
-                        final ProgressDialog progressDialog = new ProgressDialog(News_Adding.this);
+                        final ProgressDialog progressDialog = new ProgressDialog(Campus_Adding.this);
                         progressDialog.setTitle("Updating");
                         progressDialog.show();
 
 
                         ID = organization.getItemAtPosition(organization.getSelectedItemPosition()).toString();
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Details").setValue(details.getText().toString());
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Organization").setValue(organization_image);
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Name").setValue(ID);
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Image").setValue("newsimages/" + filePath.getLastPathSegment()+"_"+ID);
-                        StorageReference riversRef = storageReference.child("newsimages/" + filePath.getLastPathSegment()+"_"+ID);
+                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("Campus_Details").setValue(details.getText().toString());
+                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("Campus_Organization").setValue(organization_image);
+                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("Campus_Name").setValue(ID);
+                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("Campus_Image").setValue("campusimages/" + filePath.getLastPathSegment()+"_"+ID);
+                        StorageReference riversRef = storageReference.child("campusimages/" + filePath.getLastPathSegment()+"_"+ID);
                         riversRef.putFile(filePath)
                                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
@@ -171,8 +171,8 @@ public class News_Adding extends AppCompatActivity {
                                         progressDialog.dismiss();
 
                                         //and displaying a success toast
-                                        Toast.makeText(getApplicationContext(), "News Successfully Updated", Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(News_Adding.this, News.class);
+                                        Toast.makeText(getApplicationContext(), "Campus Says Successfully Updated", Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(Campus_Adding.this, Campus_Says.class);
                                         startActivity(intent);
                                         finish();
 
@@ -208,18 +208,18 @@ public class News_Adding extends AppCompatActivity {
                     //if there is not any file
                     else {
                         //displaying a progress dialog while upload is going on
-                        final ProgressDialog progressDialog = new ProgressDialog(News_Adding.this);
+                        final ProgressDialog progressDialog = new ProgressDialog(Campus_Adding.this);
                         progressDialog.setTitle("Updating");
                         progressDialog.show();
 
                         ID = organization.getItemAtPosition(organization.getSelectedItemPosition()).toString();
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Details").setValue(details.getText().toString());
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Organization").setValue(organization_image);
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Name").setValue(ID);
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Image").setValue("");
-                        Toast.makeText(getApplicationContext(), "News Successfully Updated", Toast.LENGTH_SHORT).show();
+                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("Campus_Details").setValue(details.getText().toString());
+                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("Campus_Organization").setValue(organization_image);
+                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("Campus_Name").setValue(ID);
+                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("Campus_Image").setValue("");
+                        Toast.makeText(getApplicationContext(), "Campus Says Successfully Updated", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
-                        Intent intent = new Intent(News_Adding.this, News.class);
+                        Intent intent = new Intent(Campus_Adding.this, Campus_Says.class);
                         startActivity(intent);
                         finish();
 

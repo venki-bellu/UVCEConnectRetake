@@ -70,4 +70,5 @@
     <string name="title_activity_associations">associations</string>
     <string name="title_activity_g2c2">g2c2</string>
     <string name="title_activity_news__adding">Add News</string>
+    <string name="title_activity_campus__adding">Add Campus_Says</string>
 </resources>
