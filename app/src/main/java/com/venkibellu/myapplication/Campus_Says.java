@@ -83,6 +83,7 @@ public class Campus_Says extends Activity {
                 finish();
             }
         });
+        fab.setVisibility(View.GONE);
         myref = FirebaseDatabase.getInstance().getReference().child("Registered Users");
         Query query = myref.orderByChild("Google_ID").equalTo(Registered_User_Id.registered_user_id);
         query.addValueEventListener(new ValueEventListener() {
@@ -90,8 +91,8 @@ public class Campus_Says extends Activity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        if(snapshot.child("Designation").getValue().toString().equals("NORMAL"))
-                            fab.setVisibility(View.GONE);
+                        if(snapshot.child("Designation").getValue().toString().equals("ADMIN"))
+                           fab.setVisibility(View.VISIBLE);
                     }
                 }catch(Exception e) {}
             }
