@@ -54,7 +54,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RegisterPage"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".NewHomePage"
             android:label="@string/app_name"
