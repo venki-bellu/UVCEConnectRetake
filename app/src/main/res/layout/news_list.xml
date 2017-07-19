@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@color/cardview_light_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimaryDark"
     android:padding="10dp">
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:cardCornerRadius="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/news_image"/>
+        android:layout_width="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="70dp"
+        android:id="@+id/news_image"
+        android:padding="10dp"/>
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:layout_height="70dp"
         android:text="Name"
         android:textSize="25dp"
         android:gravity="center"
@@ -24,6 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/news_image"
+        android:padding="10dp"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:background="#00000000"
@@ -31,6 +46,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
         android:layout_below="@id/news_extraimage"
         android:text="Details"
         android:textColor="@color/colorPrimaryDark"
@@ -46,6 +62,9 @@
         android:textStyle="italic"
         android:text="TimeStamp"
         android:id="@+id/timestamp"
-        android:textColor="#7e7b7b"/>
+        android:textColor="#7e7b7b"
+        android:padding="10dp"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
 </RelativeLayout>
