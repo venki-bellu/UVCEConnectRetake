@@ -9,5 +9,7 @@ public class gb_ram extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gb_ram);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

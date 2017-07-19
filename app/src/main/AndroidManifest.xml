@@ -12,6 +12,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service
+            android:name=".NotificationHandle"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".TokenRefreshapp">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
         <activity
             android:name=".IntroductionScreen"
             android:screenOrientation="portrait"
@@ -50,7 +63,7 @@
         <activity
             android:name=".about_us"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.about_us" />
 
@@ -60,6 +73,7 @@
         <activity
             android:name=".associations"
             android:label="ASSOCIATIONS"
+            android:parentActivityName=".NewHomePage"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.associations" />
@@ -69,7 +83,7 @@
         </activity>
         <activity
             android:name=".po"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.po" />
 
@@ -78,7 +92,7 @@
         </activity>
         <activity
             android:name=".fests"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.fests" />
 
@@ -87,7 +101,7 @@
         </activity>
         <activity
             android:name=".clubs"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.clubs" />
 
@@ -96,7 +110,8 @@
         </activity>
         <activity
             android:name=".g2c2"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".clubs">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.g2c2" />
 
@@ -105,7 +120,7 @@
         </activity>
         <activity
             android:name=".vinimaya"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".clubs">>
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.vinimaya" />
 
@@ -114,7 +129,7 @@
         </activity>
         <activity
             android:name=".sae"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".clubs">>
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.sae" />
 
@@ -123,7 +138,7 @@
         </activity>
         <activity
             android:name=".chethana"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".clubs">>
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.chethana" />
 
@@ -132,7 +147,7 @@
         </activity>
         <activity
             android:name=".thatva"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".clubs">>
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.thatva" />
 
@@ -141,7 +156,7 @@
         </activity>
         <activity
             android:name=".chakravyuha"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".clubs">>
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.chakravyuha" />
 
@@ -150,7 +165,7 @@
         </activity>
         <activity
             android:name=".sports"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.sports" />
 
@@ -159,7 +174,7 @@
         </activity>
         <activity
             android:name=".ncc"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.ncc" />
 
@@ -168,7 +183,7 @@
         </activity>
         <activity
             android:name=".gb_ram"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.gb_ram" />
 
@@ -177,7 +192,7 @@
         </activity>
         <activity
             android:name=".developers"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.developers" />
 

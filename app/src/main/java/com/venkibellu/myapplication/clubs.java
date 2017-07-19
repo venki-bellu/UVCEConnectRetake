@@ -8,6 +8,8 @@ import android.widget.Button;
 
 public class clubs extends AppCompatActivity {
 
+    Intent intent1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +24,7 @@ public class clubs extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent("com.venkibellu.myapplication.g2c2");
+                intent1 = new Intent("com.venkibellu.myapplication.g2c2");
                 startActivity(intent1);    }
         });
 
