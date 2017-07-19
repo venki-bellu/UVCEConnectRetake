@@ -3,12 +3,15 @@ package com.venkibellu.myapplication;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -54,6 +57,21 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in_page);
+        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+
+        Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.background_video);
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
+
+        videoView.setDrawingCacheEnabled(true);
+        videoView.setVideoURI(uri);
+        videoView.requestFocus();
+        videoView.start();
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
