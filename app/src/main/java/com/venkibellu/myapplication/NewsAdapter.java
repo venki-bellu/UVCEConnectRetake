@@ -14,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -73,15 +74,13 @@ public class NewsAdapter extends ArrayAdapter<News> {
             organref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-
-
                     Glide.with(context).load(uri).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.organImageView);
                 }
             });
         }
 
         if (!currentNews.getOrganisation().isEmpty()) {
-            StorageReference mountainsRef = FirebaseStorage.getInstance().getReference().child(currentNews.getImage());
+            StorageReference mountainsRef = FirebaseStorage.getInstance().getReference().child(currentNews.getOrganisation());
             mountainsRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {

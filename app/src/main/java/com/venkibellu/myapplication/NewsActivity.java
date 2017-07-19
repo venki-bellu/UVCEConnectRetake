@@ -25,7 +25,7 @@ public class NewsActivity extends Activity {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference ref;
     private DatabaseReference myref;
-    private List<News> newsList = new ArrayList<>();
+    private List<News> newsList;
     private ArrayAdapter<News> newsAdapter;
     private ProgressDialog progress;
     private FloatingActionButton fab;
@@ -35,13 +35,15 @@ public class NewsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
 
+        newsList = new ArrayList<>();
+
         syncData();
         showProgress();
         populateNewsFeed();
         handleFloatingActionButton();
     }
     private void syncData() {
-        ref = mFirebaseDatabase.getInstance().getReference().child("NewsActivity");
+        ref = mFirebaseDatabase.getInstance().getReference().child("News");
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -58,7 +60,7 @@ public class NewsActivity extends Activity {
                         String time = snapshot.child("Timestamp").getValue().toString();
 
                         newsList.add(new News(name, time, details, image, organisation));
-                        System.out.println(name + '\n' + details + '\n' + image + '\n' + organisation + '\n' + time);
+                        System.out.println(image + ' ' + organisation);
                     }
 
                     newsAdapter.notifyDataSetChanged();
