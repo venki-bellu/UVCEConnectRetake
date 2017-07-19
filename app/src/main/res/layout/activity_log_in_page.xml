@@ -5,7 +5,8 @@
     android:id="@+id/activity_log_in_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.venkibellu.myapplication.LogInPage">
+    tools:context="com.venkibellu.myapplication.LogInPage"
+    android:background="@drawable/background">
 
 
 
@@ -17,18 +18,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="bypass"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    <VideoView android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:id="@+id/videoView" />
-    </RelativeLayout>
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/google_sign_in_button"
