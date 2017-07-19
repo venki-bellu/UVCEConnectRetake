@@ -110,7 +110,8 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                     Glide.with(context).load(uri).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.organImageView);
                 }
             });
-        }
+        } else
+            holder.organImageView.setImageBitmap(null);
 
 
         if(!newsextraimage.get(position).equals("")) {
@@ -127,7 +128,8 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             });
 
 
-        }
+        } else
+            holder.extraImageView.setImageBitmap(null);
 
         return view;
     }
