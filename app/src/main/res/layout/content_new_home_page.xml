@@ -16,6 +16,7 @@
         android:orientation="vertical">
 
 
+
         <TextView
             android:id="@+id/newsfeed"
             android:layout_width="match_parent"
@@ -25,9 +26,10 @@
             android:text="News"
             android:textColor="@color/cardview_light_background"
             android:gravity="bottom"
-            android:textSize="40sp"
+            android:textSize="40dp"
             android:onClick="onNewsImageViewClicked"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp" />
+
 
         <TextView
             android:id="@+id/campus_says"
@@ -39,9 +41,9 @@
             android:text="Campus Says"
             android:textColor="@color/cardview_light_background"
             android:gravity="bottom"
-            android:textSize="40sp"
+            android:textSize="40dp"
             android:onClick="onCampusImageViewClicked"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp" />
 
         <TextView
             android:id="@+id/syllabus"
@@ -53,8 +55,8 @@
             android:text="Academics"
             android:textColor="@color/cardview_light_background"
             android:gravity="bottom"
-            android:textSize="40sp"
-            android:onClick="onSyllabusImageViewClicked"/>
+            android:textSize="40dp"
+            android:onClick="onSyllabusImageViewClicked" />
 
         <!--<TextView-->
             <!--android:id="@+id/question_papers"-->
