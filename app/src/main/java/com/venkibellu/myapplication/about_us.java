@@ -14,7 +14,6 @@ public class about_us extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
