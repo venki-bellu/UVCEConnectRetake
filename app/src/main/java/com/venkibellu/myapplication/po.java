@@ -12,6 +12,6 @@ public class po extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_po);
 
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

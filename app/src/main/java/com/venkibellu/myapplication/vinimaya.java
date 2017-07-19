@@ -9,5 +9,7 @@ public class vinimaya extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vinimaya);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
