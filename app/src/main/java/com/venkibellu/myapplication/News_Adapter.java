@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 
 import android.widget.ImageView;
@@ -26,7 +28,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-
+import static java.security.AccessController.getContext;
 
 
 public class News_Adapter extends BaseAdapter implements ListAdapter {
@@ -37,6 +39,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
     private static ArrayList<String> listdetails = new ArrayList<>();
     private static ArrayList<String> timestamplist = new ArrayList<>();
     private Context context;
+    private int lastPosition = -1;
 
 
 
@@ -130,6 +133,10 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
 
         } else
             holder.extraImageView.setImageBitmap(null);
+
+        Animation animation = AnimationUtils.loadAnimation(context, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+        view.startAnimation(animation);
+        lastPosition = position;
 
         return view;
     }
