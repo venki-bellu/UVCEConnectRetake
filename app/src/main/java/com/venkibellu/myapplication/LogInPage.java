@@ -45,29 +45,18 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     private GoogleSignInAccount account;
     public static String accountcheck;
     private ProgressDialog progress;
-    private VideoView videoView;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in_page);
-        videoView = (VideoView) findViewById(R.id.videoView);
+
 
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.background_video);
 
 
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.setLooping(true);
-            }
-        });
-
-        videoView.setDrawingCacheEnabled(true);
-        videoView.setVideoURI(uri);
-        videoView.requestFocus();
-        videoView.start();
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
