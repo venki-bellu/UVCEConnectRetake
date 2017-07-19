@@ -128,6 +128,20 @@ public class Campus_Adding extends AppCompatActivity {
 
                     if(Integer.parseInt(newpos)<-19)
                     {
+                        Query mquery = ref.orderByKey().equalTo("-1");
+                        mquery.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                StorageReference remove = storageReference.child(dataSnapshot.child("-1").child("Campus_Image").getValue().toString());
+                                remove.delete();
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
                         newpos = "-19";
                         ref.addListenerForSingleValueEvent(myevent1 = new ValueEventListener() {
                             @Override
