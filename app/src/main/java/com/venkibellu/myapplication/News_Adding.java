@@ -68,7 +68,7 @@ public class News_Adding extends AppCompatActivity {
 
 
 
-        Query query = ref.orderByKey().limitToLast(1);
+        Query query = ref.orderByKey().limitToFirst(1);
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -122,21 +122,22 @@ public class News_Adding extends AppCompatActivity {
 
                 if (!details.getText().toString().trim().equals("")) {
 
-                    if(Integer.parseInt(newpos)>19)
+                    if(Integer.parseInt(newpos)<-19)
                     {
-                        newpos = "19";
+                        newpos = "-19";
                         ref.addListenerForSingleValueEvent(myevent1 = new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
 
                                 for(int i = 0; i<19;i++)
                                 {
-                                    ref.child(String.valueOf(i+1)).child("News_Name").setValue(dataSnapshot.child(String.valueOf(i+2)).child("News_Name").getValue().toString());
-                                    ref.child(String.valueOf(i+1)).child("News_Image").setValue(dataSnapshot.child(String.valueOf(i+2)).child("News_Image").getValue().toString());
-                                    ref.child(String.valueOf(i+1)).child("News_Details").setValue(dataSnapshot.child(String.valueOf(i+2)).child("News_Details").getValue().toString());
-                                    ref.child(String.valueOf(i+1)).child("News_Organization").setValue(dataSnapshot.child(String.valueOf(i+2)).child("News_Organization").getValue().toString());
+                                    ref.child(String.valueOf(-(i+1))).child("News_Name").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("News_Name").getValue().toString());
+                                    ref.child(String.valueOf(-(i+1))).child("News_Image").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("News_Image").getValue().toString());
+                                    ref.child(String.valueOf(-(i+1))).child("News_Details").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("News_Details").getValue().toString());
+                                    ref.child(String.valueOf(-(i+1))).child("News_Organization").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("News_Organization").getValue().toString());
+                                    ref.child(String.valueOf(-(i+1))).child("Added_By").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("Added_By").getValue().toString());
                                 }
-                                ref.child("21").removeValue();
+                                ref.child("-21").removeValue();
 
                             }
 
@@ -165,10 +166,11 @@ public class News_Adding extends AppCompatActivity {
 
 
                         ID = organization.getItemAtPosition(organization.getSelectedItemPosition()).toString();
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Details").setValue(details.getText().toString());
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Organization").setValue(organization_image);
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Name").setValue(ID);
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Image").setValue("newsimages/" + filePath.getLastPathSegment()+"_"+ID);
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Details").setValue(details.getText().toString());
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Organization").setValue(organization_image);
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Name").setValue(ID);
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Image").setValue("newsimages/" + filePath.getLastPathSegment()+"_"+ID);
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Added_By").setValue(Registered_User_Id.registered_user_email);
                         StorageReference riversRef = storageReference.child("newsimages/" + filePath.getLastPathSegment()+"_"+ID);
                         riversRef.putFile(filePath)
                                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -221,10 +223,11 @@ public class News_Adding extends AppCompatActivity {
                         progressDialog.show();
 
                         ID = organization.getItemAtPosition(organization.getSelectedItemPosition()).toString();
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Details").setValue(details.getText().toString());
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Organization").setValue(organization_image);
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Name").setValue(ID);
-                        ref.child(String.valueOf(Integer.parseInt(newpos) + 1)).child("News_Image").setValue("");
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Details").setValue(details.getText().toString());
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Organization").setValue(organization_image);
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Name").setValue(ID);
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Image").setValue("");
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Added_By").setValue(Registered_User_Id.registered_user_email);
                         Toast.makeText(getApplicationContext(), "News Successfully Updated", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                         Intent intent = new Intent(News_Adding.this, News.class);
