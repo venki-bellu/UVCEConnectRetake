@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 
 @SuppressWarnings("FieldCanBeLocal")
-class URLGetter {
+class GoogleDriveLinks {
     /*
         Following are the Google Drive URL for syllabus.
         On updating to a new syllabus, just paste the new 'shareable link'
@@ -60,7 +60,7 @@ class URLGetter {
     private final  static HashMap<String, String[]> syllabusURLmapper = new HashMap<>();
 
 
-    URLGetter(Context context) {
+    GoogleDriveLinks(Context context) {
         final String cse = context.getString(R.string.cse),
                      ise = context.getString(R.string.ise),
                      ce = context.getString(R.string.ce),

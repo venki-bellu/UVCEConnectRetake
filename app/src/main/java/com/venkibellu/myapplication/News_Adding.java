@@ -7,8 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.cast.framework.media.ImagePicker;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -68,7 +65,7 @@ public class News_Adding extends AppCompatActivity {
         setContentView(R.layout.activity_news__adding);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ref = mfbdb.getInstance().getReference().child("News");
+        ref = mfbdb.getInstance().getReference().child("NewsActivity");
 
 
 
@@ -203,8 +200,8 @@ public class News_Adding extends AppCompatActivity {
                                         progressDialog.dismiss();
 
                                         //and displaying a success toast
-                                        Toast.makeText(getApplicationContext(), "News Successfully Updated", Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(News_Adding.this, News.class);
+                                        Toast.makeText(getApplicationContext(), "NewsActivity Successfully Updated", Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(News_Adding.this, NewsActivity.class);
                                         startActivity(intent);
                                         finish();
 
@@ -252,9 +249,9 @@ public class News_Adding extends AppCompatActivity {
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Added_By").setValue(Registered_User_Id.registered_user_email);
                         Date date = new Date();
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Timestamp").setValue(dateFormat.format(date));
-                        Toast.makeText(getApplicationContext(), "News Successfully Updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "NewsActivity Successfully Updated", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
-                        Intent intent = new Intent(News_Adding.this, News.class);
+                        Intent intent = new Intent(News_Adding.this, NewsActivity.class);
                         startActivity(intent);
                         finish();
 
@@ -288,7 +285,7 @@ public class News_Adding extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(News_Adding.this, News.class);
+        Intent intent = new Intent(News_Adding.this, NewsActivity.class);
         startActivity(intent);
         finish();
     }

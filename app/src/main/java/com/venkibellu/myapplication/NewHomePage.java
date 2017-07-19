@@ -74,12 +74,13 @@ public class NewHomePage extends AppCompatActivity
     }
 
     public void onNewsImageViewClicked(View view) {
-        Intent AcademicPageIntent = new Intent(this, News.class);
+        Intent AcademicPageIntent = new Intent(this, NewsActivity.class);
         startActivity(AcademicPageIntent);
     }
     public void onCampusImageViewClicked(View view) {
-        Intent AcademicPageIntent = new Intent(this, Campus_Says.class);
-        startActivity(AcademicPageIntent);
+//        Intent AcademicPageIntent = new Intent(this, Campus_Says.class);
+//        startActivity(AcademicPageIntent);
+        Toast.makeText(getApplicationContext(), "Test", Toast.LENGTH_LONG).show();
     }
 
     @Override

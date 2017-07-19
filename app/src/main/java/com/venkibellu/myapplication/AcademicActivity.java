@@ -44,21 +44,21 @@ public class AcademicActivity extends AppCompatActivity {
         String branch = getBranch();
         Integer semester = getSemester();
 
-        /* invoke the class URLGetter, context needs to be passed
+        /* invoke the class GoogleDriveLinks, context needs to be passed
             to access the strings in resource file.
          */
-        URLGetter urlGetter = new URLGetter(getApplicationContext());
+        GoogleDriveLinks googleDriveLink = new GoogleDriveLinks(getApplicationContext());
 
         // get the downloadURL on the basis of branch and semester selected.
         if (syllabusRadioButton.isChecked()) {
             int year = (int) Math.ceil(semester / 2.0);
             noteTextView.setText(Html.fromHtml(getString(R.string.Note)));
 
-            downloadURL = urlGetter.getSyllabusURL(branch, year);
+            downloadURL = googleDriveLink.getSyllabusURL(branch, year);
             fileName = branch.replaceAll("\\s+", "-") + "-Syllabus.pdf";
 
         } else {
-            downloadURL = urlGetter.getQuestionPaperURL(branch, semester);
+            downloadURL = googleDriveLink.getQuestionPaperURL(branch, semester);
             fileName = branch.replaceAll("\\s+", "-");
         }
 

@@ -12,10 +12,9 @@ public class IntroductionScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_introduction_screen);
 
-        Handler handler=new Handler();
-        final Intent intent=new Intent(this,LogInPage.class);
+        final Intent intent = new Intent(this,LogInPage.class);
 
-
+        Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

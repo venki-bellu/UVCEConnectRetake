@@ -44,7 +44,7 @@
             android:label="Academics"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".News"
+            android:name=".NewsActivity"
             android:label="@string/title_activity_news"
             android:screenOrientation="portrait" />
         <activity
