@@ -4,17 +4,14 @@
     android:id="@+id/activity_introduction_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#161618"
     tools:context="com.venkibellu.myapplication.IntroductionScreen">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:src="@mipmap/bu_logo"/>
+        android:src="@drawable/drawer_img"/>
 
 
 </RelativeLayout>
