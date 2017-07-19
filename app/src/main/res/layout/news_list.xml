@@ -28,6 +28,7 @@
         android:textStyle="italic"
         android:layout_marginTop="10dp"
         android:id="@+id/news_details"/>
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,5 +38,14 @@
         android:background="#00000000"
         android:id="@+id/news_extraimage"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/news_extraimage"
+        android:layout_marginTop="10dp"
+        android:textStyle="italic"
+        android:text="TimeStamp"
+        android:id="@+id/timestamp"
+        android:textColor="#7e7b7b"/>
 
 </RelativeLayout>

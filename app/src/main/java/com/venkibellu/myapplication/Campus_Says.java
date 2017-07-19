@@ -27,6 +27,7 @@ public class Campus_Says extends Activity {
     private ArrayList<String> campusdetails = new ArrayList<String>();
     private ArrayList<String> campusimage = new ArrayList<String>();
     private ArrayList<String> campusorganization = new ArrayList<String>();
+    private ArrayList<String> campustime = new ArrayList<String>();
     private News_Adapter campus_adapter;
     private FloatingActionButton fab;
     private ProgressDialog progress;
@@ -47,12 +48,14 @@ public class Campus_Says extends Activity {
                     campusdetails.clear();
                     campusimage.clear();
                     campusorganization.clear();
+                    campustime.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren())
                     {
                         campusname.add(snapshot.child("Campus_Name").getValue().toString());
                         campusdetails.add(snapshot.child("Campus_Details").getValue().toString());
                         campusimage.add(snapshot.child("Campus_Image").getValue().toString());
                         campusorganization.add(snapshot.child("Campus_Organization").getValue().toString());
+                        campustime.add(snapshot.child("Timestamp").getValue().toString());
                     }
                     campus_adapter.notifyDataSetChanged();
                     progress.dismiss();
@@ -70,7 +73,7 @@ public class Campus_Says extends Activity {
         progress.setTitle("Please Wait");
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progress.show();
-        campus_adapter = new News_Adapter(campusname, this, this, campusdetails, campusorganization, campusimage);
+        campus_adapter = new News_Adapter(campusname, this, this, campusdetails, campusorganization, campusimage, campustime);
         ListView listView = (ListView)findViewById(R.id.campus_list);
         listView.setAdapter(campus_adapter);
 

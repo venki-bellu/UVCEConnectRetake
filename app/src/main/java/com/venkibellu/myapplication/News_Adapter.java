@@ -34,17 +34,19 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
     private static ArrayList<String> newsimage = new ArrayList<String>();
     private static ArrayList<String> newsextraimage = new ArrayList<String>();
     private static ArrayList<String> listdetails = new ArrayList<>();
+    private static ArrayList<String> timestamplist = new ArrayList<>();
     private Context context;
 
 
 
-    public News_Adapter(ArrayList<String> listname, Context context, Activity activity, ArrayList<String> listdetails, ArrayList<String> newsimage, ArrayList<String> newsextraimage) {
+    public News_Adapter(ArrayList<String> listname, Context context, Activity activity, ArrayList<String> listdetails, ArrayList<String> newsimage, ArrayList<String> newsextraimage, ArrayList<String> timestamplist) {
         this.listname = listname;
         this.context = context;
         this.activity = activity;
         this.listdetails = listdetails;
         this.newsimage = newsimage;
         this.newsextraimage = newsextraimage;
+        this.timestamplist = timestamplist;
     }
 
     @Override
@@ -72,6 +74,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             view = inflater.inflate(R.layout.news_list, null);
             holder = new ViewHolder();
             holder.nameTextView = (TextView)view.findViewById(R.id.news_name);
+            holder.timeTextView = (TextView)view.findViewById(R.id.timestamp);
             holder.detailsTextView = (TextView)view.findViewById(R.id.news_details);
             holder.extraImageView = (ImageView)view.findViewById(R.id.news_extraimage);
             holder.organImageView = (ImageView)view.findViewById(R.id.news_image);
@@ -87,6 +90,8 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
         holder.nameTextView.setText(listname.get(position));
 
         holder.detailsTextView.setText(listdetails.get(position));
+
+        holder.timeTextView.setText(timestamplist.get(position));
 
 
 
@@ -121,6 +126,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
     }
     static class ViewHolder {
         private TextView nameTextView;
+        private TextView timeTextView;
         private TextView detailsTextView;
         private ImageView extraImageView;
         private ImageView organImageView;

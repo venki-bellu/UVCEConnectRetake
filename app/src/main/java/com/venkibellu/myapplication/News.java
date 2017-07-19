@@ -28,20 +28,14 @@ public class News extends Activity {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference ref;
     private DatabaseReference myref;
-    private DatabaseReference removeref;
     private ArrayList<String> newsname = new ArrayList<String>();
+    private ArrayList<String> newstime = new ArrayList<String>();
     private ArrayList<String> newsdetails = new ArrayList<String>();
     private ArrayList<String> newsimage = new ArrayList<String>();
     private ArrayList<String> newsorganization = new ArrayList<String>();
-    private ArrayList<String> newnewsname = new ArrayList<String>();
-    private ArrayList<String> newnewsdetails = new ArrayList<String>();
-    private ArrayList<String> newnewsimage = new ArrayList<String>();
-    private ArrayList<String> newnewsorganization = new ArrayList<String>();
     private News_Adapter news_adapter;
     private ProgressDialog progress;
     private FloatingActionButton fab;
-    private AdapterView.OnItemClickListener itemclick;
-    AlertDialog.Builder builder;
 
 
 
@@ -62,12 +56,14 @@ public class News extends Activity {
                     newsdetails.clear();
                     newsimage.clear();
                     newsorganization.clear();
+                    newstime.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren())
                     {
                         newsname.add(snapshot.child("News_Name").getValue().toString());
                         newsdetails.add(snapshot.child("News_Details").getValue().toString());
                         newsimage.add(snapshot.child("News_Image").getValue().toString());
                         newsorganization.add(snapshot.child("News_Organization").getValue().toString());
+                        newstime.add(snapshot.child("Timestamp").getValue().toString());
                     }
                     news_adapter.notifyDataSetChanged();
                     progress.dismiss();
@@ -85,7 +81,7 @@ public class News extends Activity {
         progress.setTitle("Please Wait");
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progress.show();
-        news_adapter = new News_Adapter(newsname, this, this, newsdetails, newsorganization, newsimage);
+        news_adapter = new News_Adapter(newsname, this, this, newsdetails, newsorganization, newsimage, newstime);
         final ListView listView = (ListView)findViewById(R.id.news_list);
         listView.setAdapter(news_adapter);
 

@@ -34,6 +34,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class News_Adding extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 234;
@@ -56,6 +59,7 @@ public class News_Adding extends AppCompatActivity {
     private FirebaseDatabase mfbdb;
     private String ID;
     private  String organization_image;
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +140,7 @@ public class News_Adding extends AppCompatActivity {
                                     ref.child(String.valueOf(-(i+1))).child("News_Details").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("News_Details").getValue().toString());
                                     ref.child(String.valueOf(-(i+1))).child("News_Organization").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("News_Organization").getValue().toString());
                                     ref.child(String.valueOf(-(i+1))).child("Added_By").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("Added_By").getValue().toString());
+                                    ref.child(String.valueOf(-(i+1))).child("Timestamp").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("Timestamp").getValue().toString());
                                 }
                                 ref.child("-21").removeValue();
 
@@ -171,6 +176,8 @@ public class News_Adding extends AppCompatActivity {
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Name").setValue(ID);
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Image").setValue("newsimages/" + filePath.getLastPathSegment()+"_"+ID);
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Added_By").setValue(Registered_User_Id.registered_user_email);
+                        Date date = new Date();
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Timestamp").setValue(dateFormat.format(date));
                         StorageReference riversRef = storageReference.child("newsimages/" + filePath.getLastPathSegment()+"_"+ID);
                         riversRef.putFile(filePath)
                                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -228,6 +235,8 @@ public class News_Adding extends AppCompatActivity {
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Name").setValue(ID);
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Image").setValue("");
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Added_By").setValue(Registered_User_Id.registered_user_email);
+                        Date date = new Date();
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Timestamp").setValue(dateFormat.format(date));
                         Toast.makeText(getApplicationContext(), "News Successfully Updated", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                         Intent intent = new Intent(News_Adding.this, News.class);
