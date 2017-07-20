@@ -74,7 +74,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
             organref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-                    Glide.with(context).load(uri).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.organImageView);
+                    Glide.with(context).load(uri).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.extraImageView);
                 }
             });
         }
@@ -84,7 +84,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
             mountainsRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-                    Glide.with(context).load(uri).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.extraImageView);
+                    Glide.with(context).load(uri).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.organImageView);
                 }
             });
         }
