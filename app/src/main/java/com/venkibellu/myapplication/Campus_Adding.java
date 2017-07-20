@@ -59,7 +59,7 @@ public class Campus_Adding extends AppCompatActivity {
     private DatabaseReference ref;
     private FirebaseDatabase mfbdb;
     private String ID;
-    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy, hh:mm a");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

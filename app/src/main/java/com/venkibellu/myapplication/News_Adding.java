@@ -59,7 +59,7 @@ public class News_Adding extends AppCompatActivity {
     private FirebaseDatabase mfbdb;
     private String ID;
     private  String organization_image;
-    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy, hh:mm a");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
