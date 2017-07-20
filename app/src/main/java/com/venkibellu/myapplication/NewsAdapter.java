@@ -24,10 +24,14 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
+import static android.support.constraint.R.id.parent;
+
+
 public class NewsAdapter extends ArrayAdapter<News> {
     private int lastPosition;
     private List<News> newsList;
     private Context context;
+    private View view;
 
     public NewsAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<News> objects) {
         super(context, resource, objects);
@@ -38,7 +42,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view = convertView;
+        view = convertView;
         final ViewHolder viewHolder;
 
         if (view == null) {
@@ -74,7 +78,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
             organref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-                    Glide.with(context).load(uri).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.extraImageView);
+                    Glide.with(context).load(uri).override(view.getWidth(), view.getHeight()).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.extraImageView);
                 }
             });
         }
