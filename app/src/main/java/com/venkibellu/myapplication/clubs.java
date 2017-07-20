@@ -64,6 +64,33 @@ public class clubs extends AppCompatActivity {
                                                         startActivity(intent6);
             }
         });
+
+
+                Button b10= (Button)findViewById(R.id.button10);
+                b10.setOnClickListener(new View.OnClickListener() {
+                                           @Override
+                                           public void onClick(View v) {
+                                               Intent intent6 = new Intent("com.venkibellu.myapplication.ncc");
+                                               startActivity(intent6);
+                                           }
+                                       });
+                        Button b11= (Button)findViewById(R.id.button11);
+                        b11.setOnClickListener(new View.OnClickListener() {
+                                                   @Override
+                                                   public void onClick(View v) {
+                                                       Intent intent6 = new Intent("com.venkibellu.myapplication.sports");
+                                                       startActivity(intent6);
+                                                   }
+                                               });
+
+                                Button b12= (Button)findViewById(R.id.button12);
+                                b12.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent6 = new Intent("com.venkibellu.myapplication.gb_ram");
+                                        startActivity(intent6);
+                                    }
+                                });
     }
 
 

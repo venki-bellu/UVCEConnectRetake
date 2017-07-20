@@ -64,6 +64,7 @@
         <activity
             android:name=".about_us"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.about_us" />
@@ -166,7 +167,7 @@
         </activity>
         <activity
             android:name=".sports"
-            android:parentActivityName=".NewHomePage">
+            android:parentActivityName=".clubs">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.sports" />
 
@@ -175,7 +176,7 @@
         </activity>
         <activity
             android:name=".ncc"
-            android:parentActivityName=".NewHomePage">
+            android:parentActivityName=".clubs">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.ncc" />
 
@@ -184,7 +185,7 @@
         </activity>
         <activity
             android:name=".gb_ram"
-            android:parentActivityName=".NewHomePage">
+            android:parentActivityName=".clubs">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.gb_ram" />
 

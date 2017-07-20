@@ -126,8 +126,6 @@ public class NewHomePage extends AppCompatActivity
             Intent i3 = new Intent(this, po.class);
             startActivity(i3);
 
-        } else if (id == R.id.Ieee) {
-
         } else if (id == R.id.Clubs) {
             Intent i5 = new Intent(this, clubs.class);
             startActivity(i5);
@@ -143,21 +141,8 @@ public class NewHomePage extends AppCompatActivity
         }else if (id == R.id.Help) {
 
         }
-        else if (id == R.id.NCC) {
-            Intent i9= new Intent(this, ncc.class);
-            startActivity(i9);
 
-        }
 
-        else if (id == R.id.Sports) {
-            Intent i10 = new Intent(this, sports.class);
-            startActivity(i10);
-
-        }
-        else if (id == R.id.gb_RAM) {
-            Intent i11 = new Intent(this, gb_ram.class);
-            startActivity(i11);
-        }
 
 
 

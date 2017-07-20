@@ -14,10 +14,6 @@
             android:id="@+id/PO"
             android:icon="@drawable/ic_action_name_po"
             android:title="Placement Office" />
-        <item
-            android:id="@+id/Ieee"
-            android:icon="@drawable/ic_action_name_ieee"
-            android:title="IEEE" />
 
         <item
             android:id="@+id/Clubs"
@@ -27,18 +23,8 @@
             android:id="@+id/Fests"
             android:icon="@drawable/ic_action_name_fests"
             android:title="Fests" />
-        <item
-        android:id="@+id/Sports"
-            android:icon="@drawable/ic_sport"
-        android:title="Sports" />
-        <item
-            android:id="@+id/gb_RAM"
-            android:icon="@drawable/ic_bands"
-            android:title="8GB RAM" />
-        <item
-            android:id="@+id/NCC"
-            android:icon="@drawable/ic_ncc"
-            android:title="NCC" />
+
+
     </group>
 
      <item android:title="Additional Information">
