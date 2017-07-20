@@ -23,6 +23,6 @@ public class IntroductionScreen extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },1500);
+        },3000);
     }
 }

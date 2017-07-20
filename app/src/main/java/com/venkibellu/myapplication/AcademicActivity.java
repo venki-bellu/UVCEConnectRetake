@@ -2,6 +2,7 @@ package com.venkibellu.myapplication;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -13,6 +14,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -26,6 +30,8 @@ public class AcademicActivity extends AppCompatActivity {
     private String fileName, downloadURL;
     private RadioButton syllabusRadioButton;
     private TextView noteTextView;
+    Intent sendIntent;
+    Context context=this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,26 @@ public class AcademicActivity extends AppCompatActivity {
 
         syllabusRadioButton = (RadioButton) findViewById(R.id.syllabusRadioButton);
         noteTextView = (TextView) findViewById(R.id.noteTextView);
+
+        sendIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", "1917uvce@gmail.com", null));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater=getMenuInflater();
+        menuInflater.inflate(R.menu.academic_page_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.academicPage_contribute)
+        {
+            context.startActivity(Intent.createChooser(sendIntent, null));
+            return true;
+        }
+        return false;
     }
 
     public void downloadButtonClicked(View view) {
@@ -65,8 +91,9 @@ public class AcademicActivity extends AppCompatActivity {
         // if syllabus not available return.
         if (downloadURL.isEmpty()) {
             Toast.makeText(getApplicationContext(), "No resources found.\n" +
-                                                    "Will be added soon!",
-                                                        Toast.LENGTH_SHORT).show();
+                                                    "Will be added soon! \n" +
+                                                    "Please contribute if available.",
+                                                        Toast.LENGTH_LONG).show();
 
             return ;
         }
