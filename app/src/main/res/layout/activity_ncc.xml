@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView   xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.venkibellu.myapplication.ncc">
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:elevation="40dp"
+        app:cardCornerRadius="10dp"
+        android:padding="10dp"
 
+        >
         <TextView
-            android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NCC"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="-1dp"
-            tools:layout_editor_absoluteY="2dp" />
-
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView19"
-            android:text="\nDiscipline and National integrity are the vital principle on which uvces NCC squadron stands for. One can join NCC Air wing unit of uvce from 2nd semester dedicating our life towards the motto Touch the sky with glory.
-                  "
-            android:textSize="24sp" />
-
-    </RelativeLayout>
-</ScrollView>
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="Unity &amp; Discipline&#39; is the motto of every cadet . In living up to its motto, the NCC strives to be and is
+one of the greatest cohesive forces of the nation, bringing together the youth hailing from different
+parts of the country and moulding them into united, secular and disciplined citizens of the nation.\n
+Details about NCC: -\n
+Regiment: NO 2 KAR AIR SQUADRON NCC\n
+AIR WING\n
+COMMAND: KAR &amp; GOA DIRECTORATE\n
+BANGALORE B GROUP\n
+STRENGTH:200\n
+Practice done on every Saturday 1200 hours to 1700 hours\n
+Annual intake in the month of July and August.
+" />
+    </android.support.v7.widget.CardView>
+</android.support.v4.widget.NestedScrollView>

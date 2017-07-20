@@ -1,43 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView   xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/textView"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="VISION UVCE"
-        android:textAlignment="viewStart"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/colorPrimary"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:layout_margin="5dp"
+        android:elevation="40dp"
+        app:cardCornerRadius="10dp"
+        android:padding="10dp"
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView"
-        android:text="\n \nVisionUVCE is a group of UVCE alumni who are focussed on Giving Back to UVCE by creating awareness among the strong alumni that UVCE has and make them understand the potential that the creation, of an alumni group working for the betterment of college, brings about. It is VU's responsibility to make sure, the flag of our alma mater flies high in the air and also as alumni of this college, there is a need to take part in the operations in the college.
-\n-Sampada
-\n-VU scholarship
-\n-VU champs
-\n-Project Visisth
-\n-VU Vaahini
-\n-Parichaya
-\n-Samvaada
-\nAre the major programs held under VISION UVCE.
-VU also funds and support various student initiative which seems promising in terms of idea and it's reach. It's also involved in taking care of students utility in campus by funding to the required cause. VU Rises it's fund from alumni of UVCE and entrust it's donors by providing the details of transaction made through its website.
-\nFor more details:-  http://www.visionuvce.in"
-        android:textSize="24sp" />
-</RelativeLayout>
-</ScrollView>
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="VisionUVCE is a group of UVCE alumni who are focussed on &quot;Giving Back to UVCE&quot; by creating
+awareness among the strong alumni that UVCE has and make them understand the potential that the
+creation of an alumni group, working for the betterment of college brings about.
+\n
+It is VU&#39;s responsibility to make sure, the flag of our alma mater flies high in the air and also as proud
+alumni of this college, there is a need to take part in the operations involved with the institution.
+\n
+Sampada
+\n
+VU scholarship
+\n
+VU champs
+\n
+Project Visisth
+\n
+VU Vaahini
+\n
+Parichaya
+\n
+Samvaada Are the major programs held under VISION UVCE.
+\n
+VU also support and funds various student initiative which seems promising in terms of idea and its
+reach. It&#39;s also involved in taking care of students utility in campus by funding to the required cause.
+\nVU Rises it&#39;s fund from alumni of UVCE and entrust it&#39;s donors by providing the details of transaction
+made through its website.
+\n\n\n
+Website link: - http://www.visionuvce.in
+\n
+Write to us: - contact@visionuvce.in
+\n
+Contact us: - +91-9740111552
+" />
+    </android.support.v7.widget.CardView>
+</android.support.v4.widget.NestedScrollView>

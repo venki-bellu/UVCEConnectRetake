@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView   xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.venkibellu.myapplication.g2c2">
-
-    <TextView
-        android:id="@+id/textView19"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="G2C2"
-        android:textAlignment="center"
-        android:textColor="@color/com_facebook_blue"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="-1dp"
-        tools:layout_editor_absoluteY="2dp" />
+        android:layout_margin="5dp"
+        android:elevation="40dp"
+        app:cardCornerRadius="10dp"
+        android:padding="10dp"
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView19"
-        android:text="\nTo accomplish the purpose of clean and green UVCE, we have a student run club, GO GREEN AND CLEAN CLUB which is simply known as G2C2 among the students.
-This club was started back in 2014 by a bunch of ME CSE department students for a greener and cleaner UVCE. It is now run by a team of enthusiastic students from 2nd and 3rd year BE. Presently it is a proud club of about 100 voluntary members who are dedicated towards the cause.
-Club aims to involve college faculty, alumni and larger number of students in future days in go green activities to improve it's effectiveness .
-\n\t \tContact us through:- gogreenuvce@gmail.com.
-\nFind us in Facebook @ UVCE go green and clean club.                        "
-        android:textSize="24sp" />
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="To accomplish the purpose of clean and green UVCE, a student led initiative, &quot;Go Green and Clean
+Club&quot; which is simply known as G2C2 was setup.
+\nG 2 C 2 was started back in 2014 by a group of ME CSE department students. It is now run by a team of
+enthusiasts from 2nd and 3rd year BE. Presently it is a proud club of about 100 voluntary members
+who are dedicated towards the cause.
+\nClub aims to involve college faculty, alumni and larger number of students in future days to improve
+its effectiveness.
+\n\n\n
+Contact us through: - gogreenuvce@gmail.com
+\n
+For more information: - Harsha S (9480281997)
 
-</RelativeLayout>
-    </ScrollView>
+" />
+    </android.support.v7.widget.CardView>
+</android.support.v4.widget.NestedScrollView>

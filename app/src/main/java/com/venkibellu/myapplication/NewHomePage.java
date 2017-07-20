@@ -139,6 +139,8 @@ public class NewHomePage extends AppCompatActivity
             startActivity(i7);
 
         }else if (id == R.id.Help) {
+            Intent i8 = new Intent(this, aboutapp.class);
+            startActivity(i8);
 
         }
 

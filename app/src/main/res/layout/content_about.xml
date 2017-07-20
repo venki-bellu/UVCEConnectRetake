@@ -21,6 +21,24 @@ tools:showIn="@layout/activity_about_us">
     android:layout_margin="10dp"
     android:textSize="20sp"
     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-    android:text="IMPETUS, recognized to foster technological innovation and improve the skills of technical enthusiasts was started in the year 2001 and has been a grand success for sixteen years since. It is a technical fest which demonstrates the ever evolving nature of technology and strives to bring the cutting edge skills to our budding engineers. This year, also being theCentenary Year of UVCE, IMPETUS is themed on 'Smart Era' and we aim to conduct events which leads to research, thought, innovation and creativity. We have planned a number of events and workshops centered on the theme that will challenge the students to enhance their technical acumen." />
+    android:text="With the birth of the Mysore University, the ‘College of Engineering’ was established at Bengaluru in
+1917, giving a flip to higher education and to enable Mysore boys play their part in the Engineering
+field. Initially to start with, tuition and training were given only in two branches of Engineering
+namely, Civil and Mechanical Engineering. Dating back to 1917 College of Engineering’ was the 5 th
+Engineering College of the country and first in the Princely State of Mysore.
+Currently University offers
+\n
+\nFull time BE undergraduate course (5 years) - One
+\nFull time BE undergraduate course (4years) - Six
+\nFull time ME postgraduate course (2 years) - Twenty-four
+\nPart time BE evening under graduate courses (3 years)- Three
+\nM.Sc. (Engineering) by Research,
+\nThree-Year full time Ph.D.,
+\nFour-Year part time Ph.D. programmes in all disciplines.
+\nPh.D. (QIP) programme in Civil Engineering
+\nWith total Intake of 1159 students.
+\nLed by Principal Dr. Venugopal K R with main campus situated at K R Circle, Bengaluru and
+\nDepartment of Civil and Architecture in JyanaBharathi campus Kengeri Bengaluru.
+" />
 </android.support.v7.widget.CardView>
 </android.support.v4.widget.NestedScrollView>

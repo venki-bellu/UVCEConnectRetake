@@ -1,41 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView   xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.venkibellu.myapplication.thatva">
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:elevation="40dp"
+        app:cardCornerRadius="10dp"
+        android:padding="10dp"
 
+        >
         <TextView
-            android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="THATVA"
-            android:textAlignment="center"
-            android:textColor="@color/com_facebook_blue"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="-1dp"
-            tools:layout_editor_absoluteY="2dp" />
-
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView19"
-            android:text="\nWe are aware of the fact that RAMESH ARAVIND, DATTANNA, MANOHMURTHY, namma UVCEs proud alumni who with their skills have created a everlasting  impact on Kannada film industry. UVCEs leading colligate Club which aims to improve one's skill in acting is Thathva. Currently the club consists of 60+ students involved in the activity.
-\nThathva was established by Abhishek chakma ECE batch of 2015. It was inspired by club Darpan which was once pretty established in college
-\nThathva put up plays in all fests in our college
-Team also made a short movie.
-It took part in a street play enseble called manthan which took place in Forum mall, Kormangla.
-\nThe objective is to
-\n-Promote theatre in college
-\n-Set up a platform For theatre enthusiasts to collaborate and do what they love                       "
-            android:textSize="24sp" />
-
-    </RelativeLayout>
-</ScrollView>
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="We are aware of the fact that RAMESH ARAVIND, DATTANNA, MANOHMURTHY, namma UVCEs
+proud alumni who with their skills have created an everlasting impact on Kannada film industry.
+\nUVCEs leading colligate Club which aims to improve one&#39;s skill in acting is Thathva.
+\nThathva was established by Abhishek Chakma from ECE batch of 2015, inspired by club Darpan.
+Currently Thathva consists of 60+ students involved in the activity. Members of Thathva took part in a
+street play ensemble called Manthan which took place in Forum mall, Kormangla.
+\nThe main objective is to *Promote theatre in college *Set up a platform for theatre enthusiasts *to
+collaborate and do what they love
+\n\n\n
+Contact: - Darshan (8867362582)
+" />
+    </android.support.v7.widget.CardView>
+</android.support.v4.widget.NestedScrollView>

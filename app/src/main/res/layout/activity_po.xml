@@ -1,47 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.venkibellu.myapplication.po">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:elevation="40dp"
+        app:cardCornerRadius="10dp"
+        android:padding="10dp"
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="387dp"
-        android:layout_height="64dp"
-        android:text="TRAINING AND PLACEMENT OFFICE"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="-1dp"
-        tools:layout_editor_absoluteY="4dp"
-        tools:text="TRAINING AND PLACEMENT OFFICE" />
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="The power house of UVCE where, Student coordinators take the responsibility to interact with companies under the guidance of Placement Officer Dr.Triveni. Placement Office was established in the year 1989, from then on it acts a bridge between companies and students.
+\nThe TPO has the record of successfully placing 90% of its students into Globally recognized companies with an attractive offer. Batch of 2016 witnessed an all-time record of grabbing 1012 offers which stood 1st in the State in terms of job ratio to number of students.
+\n\n\n
+Write to us: - info@campusuvce.in
+\n
+Contact us: - +91-7899037717
+\n
+          \t    08022276070
+              \n
+Website: - http://campusuvce.in/index.php
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/textView2"
-        android:text="\n \nTraining and Placement Office . The power house of UVCE where Students handle the companies with the help of Placement Officer Mrs.Triveni. Placement Office was started from the year 1987, from then on it acts a bridge between companies and students. The TPO has the record of successfully placing 90% of its students into Globally recognized companies with an attractive CTC. It's just because of this Placement Office we have our alumni in higher posts in MNCs. Batch of 2016 witnessed a record of 1000+ offers which stood 1st in the state in terms of job ratio to number of students.
-      \n \t \t      Contact us:- info@campusuvce.in
-\nFor more information about TPO please click the below link.
-\nhttp://campusuvce.in/index.php"
-
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="82dp" />
-
-</RelativeLayout>
-
-</ScrollView>
+" />
+    </android.support.v7.widget.CardView>
+</android.support.v4.widget.NestedScrollView>
