@@ -2,6 +2,7 @@ package com.venkibellu.myapplication;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -11,7 +12,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.Menu;
@@ -31,7 +34,7 @@ public class AcademicActivity extends AppCompatActivity {
     private RadioButton syllabusRadioButton;
     private TextView noteTextView;
     Intent sendIntent;
-    Context context=this;
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,22 +49,31 @@ public class AcademicActivity extends AppCompatActivity {
 
         sendIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                 "mailto", "1917uvce@gmail.com", null));
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater=getMenuInflater();
+        MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.academic_page_menu,menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==R.id.academicPage_contribute)
-        {
-            context.startActivity(Intent.createChooser(sendIntent, null));
-            return true;
+
+        switch (item.getItemId()) {
+            case R.id.academicPage_contribute:
+                context.startActivity(Intent.createChooser(sendIntent, null));
+                return true;
+
+            case R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
         }
+
         return false;
     }
 
@@ -81,7 +93,7 @@ public class AcademicActivity extends AppCompatActivity {
             noteTextView.setText(Html.fromHtml(getString(R.string.Note)));
 
             downloadURL = urlGetter.getSyllabusURL(branch, year);
-            fileName = branch.replaceAll("\\s+", "-") + "-Syllabus.pdf";
+            fileName = branch.replaceAll("\\s+", "-") + '-' + String.valueOf(year) + "-Syllabus.pdf";
 
         } else {
             downloadURL = urlGetter.getQuestionPaperURL(branch, semester);
@@ -94,14 +106,26 @@ public class AcademicActivity extends AppCompatActivity {
                                                     "Will be added soon! \n" +
                                                     "Please contribute if available.",
                                                         Toast.LENGTH_LONG).show();
-
             return ;
         }
 
+        showDisclaimer();
+    }
 
-
-        // required for android 6.0 and above.
-        checkStoragePermission();
+    private void showDisclaimer() {
+        AlertDialog.Builder disclaimerDialog = new AlertDialog.Builder(AcademicActivity.this);
+        disclaimerDialog.setTitle("Disclaimer")
+                        .setMessage(R.string.disclaimer)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // on OK button clicked proceed to download.
+                                // required for android 6.0 and above.
+                                checkStoragePermission();
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
     }
 
     private String getBranch() {
@@ -174,23 +198,18 @@ public class AcademicActivity extends AppCompatActivity {
             File directory = new File(Environment.getExternalStorageDirectory() + "/UVCE-Connect");
 
             if (!directory.exists()) {
-                if (directory.mkdirs()) {
-                    Toast.makeText(getApplicationContext(), "Oops! Something went wrong!",
-                            Toast.LENGTH_LONG).show();
-
-                    return null;
-                }
+                directory.mkdirs();
             }
 
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url[0]));
-            request.setDescription("Syllabus");
-            request.setTitle(fileName);
-            request.allowScanningByMediaScanner();
-            request.setDestinationInExternalPublicDir("/UVCE-Connect", fileName);
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            request.setDescription("Syllabus")
+                    .setTitle(fileName)
+                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                    .setDestinationInExternalPublicDir("/UVCE-Connect", fileName)
+                    .allowScanningByMediaScanner();
 
             DownloadManager manager = (DownloadManager)
-                    getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);
+                                getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);
             manager.enqueue(request);
             return null;
         }

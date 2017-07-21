@@ -17,6 +17,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
@@ -43,7 +44,14 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
 
 
 
-    public News_Adapter(ArrayList<String> listname, Context context, Activity activity, ArrayList<String> listdetails, ArrayList<String> newsimage, ArrayList<String> newsextraimage, ArrayList<String> timestamplist) {
+    public News_Adapter(ArrayList<String> listname,
+                        Context context,
+                        Activity activity,
+                        ArrayList<String> listdetails,
+                        ArrayList<String> newsimage,
+                        ArrayList<String> newsextraimage,
+                        ArrayList<String> timestamplist) {
+
         this.listname = listname;
         this.context = context;
         this.activity = activity;
@@ -88,45 +96,52 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-
         //Handle TextView and display string from your list
-
         holder.nameTextView.setText(listname.get(position));
-
         holder.detailsTextView.setText(listdetails.get(position));
-
         holder.timeTextView.setText(timestamplist.get(position));
         holder.extraImageView.setImageBitmap(null);
         holder.organImageView.setImageBitmap(null);
 
-
-
-
         if(!newsimage.get(position).equals("")) {
+            StorageReference organref = FirebaseStorage.getInstance()
+                                                       .getReference()
+                                                       .child(newsimage.get(position));
 
-            StorageReference organref = FirebaseStorage.getInstance().getReference().child(newsimage.get(position));
             organref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
 
-
-                    Glide.with(context).load(uri).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.organImageView);
+                    if (!activity.isDestroyed()) {
+                        Glide.with(context)
+                             .load(uri)
+                             .crossFade()
+                             .diskCacheStrategy(DiskCacheStrategy.ALL)
+                             .into(holder.organImageView);
+                    }
                 }
             });
-        } else
+        } else {
             holder.organImageView.setImageBitmap(null);
-
+        }
 
         if(!newsextraimage.get(position).equals("")) {
+            StorageReference mountainsRef = FirebaseStorage.getInstance()
+                                                           .getReference()
+                                                           .child(newsextraimage.get(position));
 
-
-            StorageReference mountainsRef = FirebaseStorage.getInstance().getReference().child(newsextraimage.get(position));
             mountainsRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
 
-
-                    Glide.with(context).load(uri).override(parent.getWidth(),parent.getHeight()).diskCacheStrategy(DiskCacheStrategy.ALL).crossFade().into(holder.extraImageView);
+                    if (!activity.isDestroyed()) {
+                        Glide.with(context)
+                             .load(uri)
+                             .override(parent.getWidth(), parent.getHeight())
+                             .diskCacheStrategy(DiskCacheStrategy.ALL)
+                             .crossFade()
+                             .into(holder.extraImageView);
+                    }
                 }
             });
 
@@ -134,17 +149,16 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
         } else
             holder.extraImageView.setImageBitmap(null);
 
-        Animation animation = AnimationUtils.loadAnimation(context, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+        Animation animation = AnimationUtils.loadAnimation(context,
+                                (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+
         view.startAnimation(animation);
         lastPosition = position;
 
         return view;
     }
     static class ViewHolder {
-        private TextView nameTextView;
-        private TextView timeTextView;
-        private TextView detailsTextView;
-        private ImageView extraImageView;
-        private ImageView organImageView;
+        private TextView nameTextView, timeTextView, detailsTextView;
+        private ImageView extraImageView, organImageView;
     }
 }
