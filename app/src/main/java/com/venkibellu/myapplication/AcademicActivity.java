@@ -93,7 +93,7 @@ public class AcademicActivity extends AppCompatActivity {
             noteTextView.setText(Html.fromHtml(getString(R.string.Note)));
 
             downloadURL = urlGetter.getSyllabusURL(branch, year);
-            fileName = branch.replaceAll("\\s+", "-") + "-Syllabus.pdf";
+            fileName = branch.replaceAll("\\s+", "-") + '-' + String.valueOf(year) + "-Syllabus.pdf";
 
         } else {
             downloadURL = urlGetter.getQuestionPaperURL(branch, semester);
@@ -198,23 +198,18 @@ public class AcademicActivity extends AppCompatActivity {
             File directory = new File(Environment.getExternalStorageDirectory() + "/UVCE-Connect");
 
             if (!directory.exists()) {
-                if (directory.mkdirs()) {
-                    Toast.makeText(getApplicationContext(), "Oops! Something went wrong!",
-                            Toast.LENGTH_LONG).show();
-
-                    return null;
-                }
+                directory.mkdirs();
             }
 
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url[0]));
-            request.setDescription("Syllabus");
-            request.setTitle(fileName);
-            request.allowScanningByMediaScanner();
-            request.setDestinationInExternalPublicDir("/UVCE-Connect", fileName);
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            request.setDescription("Syllabus")
+                    .setTitle(fileName)
+                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                    .setDestinationInExternalPublicDir("/UVCE-Connect", fileName)
+                    .allowScanningByMediaScanner();
 
             DownloadManager manager = (DownloadManager)
-                    getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);
+                                getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);
             manager.enqueue(request);
             return null;
         }

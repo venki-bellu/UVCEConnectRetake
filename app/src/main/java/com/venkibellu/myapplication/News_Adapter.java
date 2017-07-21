@@ -17,6 +17,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
@@ -95,22 +96,14 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-
         //Handle TextView and display string from your list
-
         holder.nameTextView.setText(listname.get(position));
-
         holder.detailsTextView.setText(listdetails.get(position));
-
         holder.timeTextView.setText(timestamplist.get(position));
         holder.extraImageView.setImageBitmap(null);
         holder.organImageView.setImageBitmap(null);
 
-
-
-
         if(!newsimage.get(position).equals("")) {
-
             StorageReference organref = FirebaseStorage.getInstance()
                                                        .getReference()
                                                        .child(newsimage.get(position));
@@ -118,11 +111,14 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             organref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-                    Glide.with(context)
-                         .load(uri)
-                         .crossFade()
-                         .diskCacheStrategy(DiskCacheStrategy.ALL)
-                         .into(holder.organImageView);
+
+                    if (!activity.isDestroyed()) {
+                        Glide.with(context)
+                             .load(uri)
+                             .crossFade()
+                             .diskCacheStrategy(DiskCacheStrategy.ALL)
+                             .into(holder.organImageView);
+                    }
                 }
             });
         } else {
@@ -137,12 +133,15 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             mountainsRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-                    Glide.with(context)
-                         .load(uri)
-                         .override(parent.getWidth(),parent.getHeight())
-                         .diskCacheStrategy(DiskCacheStrategy.ALL)
-                         .crossFade()
-                         .into(holder.extraImageView);
+
+                    if (!activity.isDestroyed()) {
+                        Glide.with(context)
+                             .load(uri)
+                             .override(parent.getWidth(), parent.getHeight())
+                             .diskCacheStrategy(DiskCacheStrategy.ALL)
+                             .crossFade()
+                             .into(holder.extraImageView);
+                    }
                 }
             });
 
