@@ -114,7 +114,7 @@
         <activity
             android:name=".clubs"
             android:parentActivityName=".NewHomePage"
-            android:label="CLUBS">
+            android:label="ACTIVITIES">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.clubs" />
 

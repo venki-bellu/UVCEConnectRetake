@@ -12,16 +12,16 @@
             android:title="Associations" />
         <item
             android:id="@+id/PO"
-            android:icon="@drawable/ic_action_name_po"
+            android:icon="@drawable/ic_po1"
             android:title="Placement Office" />
 
         <item
             android:id="@+id/Clubs"
-            android:icon="@drawable/ic_action_name"
-            android:title="Clubs" />
+            android:icon="@drawable/ic_activities"
+            android:title="Activities" />
         <item
             android:id="@+id/Fests"
-            android:icon="@drawable/ic_action_name_fests"
+            android:icon="@drawable/ic_fest"
             android:title="Fests" />
 
 
@@ -31,11 +31,11 @@
         <menu>
             <item
                 android:id="@+id/Developers"
-                android:icon="@drawable/ic_action_name_developers"
+                android:icon="@drawable/ic_developer_mode"
                 android:title="Develeopers" />
             <item
                 android:id="@+id/Help"
-                android:icon="@drawable/ic_help_outline_black_24dp"
+                android:icon="@drawable/ic_developers1"
                 android:title="About the app" />
         </menu>
 
