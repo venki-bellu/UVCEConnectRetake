@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:textSize="20sp"
+            android:autoLink="all"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="VisionUVCE is a group of UVCE alumni who are focussed on &quot;Giving Back to UVCE&quot; by creating
 awareness among the strong alumni that UVCE has and make them understand the potential that the

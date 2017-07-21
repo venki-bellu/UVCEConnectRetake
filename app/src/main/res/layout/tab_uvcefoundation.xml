@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:textSize="20sp"
+            android:autoLink="all"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="The UVCE Foundation was created by alumni, faculty and well-wishers of UVCE in 2003 to help
 restore the glory of UVCE. The Foundation has members from around the world and has already

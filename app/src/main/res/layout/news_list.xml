@@ -55,6 +55,7 @@
         android:textSize="25dp"
         android:textStyle="normal"
         android:layout_marginTop="10dp"
+        android:autoLink="all"
         android:id="@+id/news_details"/>
     <TextView
         android:layout_width="wrap_content"

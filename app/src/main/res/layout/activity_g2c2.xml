@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:textSize="20sp"
+            android:autoLink="all"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="To accomplish the purpose of clean and green UVCE, a student led initiative, &quot;Go Green and Clean
 Club&quot; which is simply known as G2C2 was setup.

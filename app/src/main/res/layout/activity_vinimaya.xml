@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:textSize="20sp"
+            android:autoLink="all"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="Books; collection of enormous amount of knowledge and guidance in a compressed form; is a vital
 asset for the mankind. ‘VINIMAYA’ meaning ‘Sharing’ in Kannada, work on this very basic principle.

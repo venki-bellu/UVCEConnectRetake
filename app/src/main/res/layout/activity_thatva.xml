@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:textSize="20sp"
+            android:autoLink="all"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="We are aware of the fact that RAMESH ARAVIND, DATTANNA, MANOHMURTHY, namma UVCEs
 proud alumni who with their skills have created an everlasting impact on Kannada film industry.
