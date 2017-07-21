@@ -42,6 +42,12 @@
         <item>8</item>
     </string-array>
 
+    <string name="disclaimer">
+        UVCE Connect Does not claim any responsibility
+        in case any of the information provided is false or
+        outdated.
+    </string>
+
     <string name="Note">
         <![CDATA[
         <p>

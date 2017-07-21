@@ -40,10 +40,15 @@
             android:name=".LogInPage"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".AcademicActivity"
             android:label="Academics"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".NewHomePage">
+        </activity>
+
+
         <activity
             android:name=".News"
             android:label="@string/title_activity_news"
