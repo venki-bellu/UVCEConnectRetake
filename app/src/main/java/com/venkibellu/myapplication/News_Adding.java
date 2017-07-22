@@ -103,7 +103,7 @@ public class News_Adding extends AppCompatActivity {
         add = (Button) findViewById(R.id.news_add_button);
 
 
-        String organ[] = new String[]{"Administration Office", "Placement Office", "Principal's Office", "Vision UVCE"};
+        String organ[] = new String[]{"Administration Office", "Placement Office", "Principal's Office"};
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, organ);
         organization.setAdapter(arrayAdapter);
 
@@ -175,13 +175,13 @@ public class News_Adding extends AppCompatActivity {
                         organization_image = "newsorganisation/Placement Office.jpg";
                     else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Principal's Office"))
                         organization_image = "newsorganisation/Principal's Office.jpg";
-                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Vision UVCE"))
-                        organization_image = "newsorganisation/Vision UVCE.jpg";
+
 
                     if (filePath != null) {
                         //displaying a progress dialog while upload is going on
                         final ProgressDialog progressDialog = new ProgressDialog(News_Adding.this);
                         progressDialog.setTitle("Updating");
+                        progressDialog.setCancelable(false);
                         progressDialog.show();
 
 
@@ -190,7 +190,7 @@ public class News_Adding extends AppCompatActivity {
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Organization").setValue(organization_image);
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Name").setValue(ID);
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Image").setValue("newsimages/" + filePath.getLastPathSegment()+"_"+ID);
-                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Added_By").setValue(Registered_User_Id.registered_user_email);
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Added_By").setValue(Registered_User_Id.name);
                         Date date = new Date();
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Timestamp").setValue(dateFormat.format(date));
                         StorageReference riversRef = storageReference.child("newsimages/" + filePath.getLastPathSegment()+"_"+ID);
@@ -242,6 +242,7 @@ public class News_Adding extends AppCompatActivity {
                         //displaying a progress dialog while upload is going on
                         final ProgressDialog progressDialog = new ProgressDialog(News_Adding.this);
                         progressDialog.setTitle("Updating");
+                        progressDialog.setCancelable(false);
                         progressDialog.show();
 
                         ID = organization.getItemAtPosition(organization.getSelectedItemPosition()).toString();
@@ -249,7 +250,7 @@ public class News_Adding extends AppCompatActivity {
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Organization").setValue(organization_image);
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Name").setValue(ID);
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Image").setValue("");
-                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Added_By").setValue(Registered_User_Id.registered_user_email);
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Added_By").setValue(Registered_User_Id.name);
                         Date date = new Date();
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Timestamp").setValue(dateFormat.format(date));
                         Toast.makeText(getApplicationContext(), "News Successfully Updated", Toast.LENGTH_SHORT).show();
