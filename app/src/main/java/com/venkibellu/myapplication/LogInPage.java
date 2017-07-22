@@ -63,6 +63,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         progress = new ProgressDialog(LogInPage.this);
         progress.setMessage("Fetching Data.....");
         progress.setTitle("Please Wait");
+        progress.setCancelable(false);
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
         homepageIntent = new Intent(this, NewHomePage.class);
