@@ -72,6 +72,7 @@ public class Campus_Says extends Activity {
         progress.setMessage("Fetching Data.....");
         progress.setTitle("Please Wait");
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.setCancelable(false);
         progress.show();
         campus_adapter = new News_Adapter(campusname, this, this, campusdetails, campusorganization, campusimage, campustime);
         ListView listView = (ListView)findViewById(R.id.campus_list);

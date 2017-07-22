@@ -80,6 +80,7 @@ public class News extends Activity {
         progress.setMessage("Fetching Data.....");
         progress.setTitle("Please Wait");
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.setCancelable(false);
         progress.show();
         news_adapter = new News_Adapter(newsname, this, this, newsdetails, newsorganization, newsimage, newstime);
         final ListView listView = (ListView)findViewById(R.id.news_list);
