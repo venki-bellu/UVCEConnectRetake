@@ -40,15 +40,11 @@
             android:name=".LogInPage"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
         <activity
             android:name=".AcademicActivity"
             android:label="Academics"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".NewHomePage">
-        </activity>
-
-
+            android:parentActivityName=".NewHomePage"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".News"
             android:label="@string/title_activity_news"
@@ -70,10 +66,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".about_us"
+            android:label="ABOUT US"
             android:parentActivityName=".NewHomePage"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="ABOUT US">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.about_us" />
 
@@ -84,8 +80,7 @@
             android:name=".associations"
             android:label="ASSOCIATIONS"
             android:parentActivityName=".NewHomePage"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.associations" />
 
@@ -94,8 +89,8 @@
         </activity>
         <activity
             android:name=".po"
-            android:parentActivityName=".NewHomePage"
-            android:label="TRAINING AND PLACEMENT OFFICE">
+            android:label="TRAINING AND PLACEMENT OFFICE"
+            android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.po" />
 
@@ -104,8 +99,8 @@
         </activity>
         <activity
             android:name=".fests"
-            android:parentActivityName=".NewHomePage"
-            android:label="FESTS">
+            android:label="FESTS"
+            android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.fests" />
 
@@ -114,8 +109,8 @@
         </activity>
         <activity
             android:name=".clubs"
-            android:parentActivityName=".NewHomePage"
-            android:label="ACTIVITIES">
+            android:label="ACTIVITIES"
+            android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.clubs" />
 
@@ -124,9 +119,9 @@
         </activity>
         <activity
             android:name=".g2c2"
+            android:label="G2C2"
             android:parentActivityName=".clubs"
-            android:theme="@style/AppTheme"
-            android:label="G2C2">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.g2c2" />
 
@@ -135,8 +130,8 @@
         </activity>
         <activity
             android:name=".vinimaya"
-            android:parentActivityName=".clubs"
-            android:label="VINIMAYA">
+            android:label="VINIMAYA"
+            android:parentActivityName=".clubs">
             >
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.vinimaya" />
@@ -146,9 +141,8 @@
         </activity>
         <activity
             android:name=".sae"
-            android:parentActivityName=".clubs"
             android:label="SAE"
-            >
+            android:parentActivityName=".clubs">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.sae" />
 
@@ -157,8 +151,8 @@
         </activity>
         <activity
             android:name=".chethana"
-            android:parentActivityName=".clubs"
-            android:label="ಚೇತನ - ಯು.ವಿ.ಸಿ.ಇ ಕನ್ನಡ ಸಂಘ">
+            android:label="ಚೇತನ - ಯು.ವಿ.ಸಿ.ಇ ಕನ್ನಡ ಸಂಘ"
+            android:parentActivityName=".clubs">
             >
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.chethana" />
@@ -168,8 +162,8 @@
         </activity>
         <activity
             android:name=".thatva"
-            android:parentActivityName=".clubs"
-            android:label="THATVA">
+            android:label="THATVA"
+            android:parentActivityName=".clubs">
             >
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.thatva" />
@@ -179,8 +173,8 @@
         </activity>
         <activity
             android:name=".chakravyuha"
-            android:parentActivityName=".clubs"
-            android:label="CHAKRAVYUHA">
+            android:label="CHAKRAVYUHA"
+            android:parentActivityName=".clubs">
             >
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.chakravyuha" />
@@ -190,8 +184,8 @@
         </activity>
         <activity
             android:name=".sports"
-            android:parentActivityName=".clubs"
-            android:label="SPORTS">
+            android:label="SPORTS"
+            android:parentActivityName=".clubs">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.sports" />
 
@@ -200,8 +194,8 @@
         </activity>
         <activity
             android:name=".ncc"
-            android:parentActivityName=".clubs"
-            android:label="NCC">
+            android:label="NCC"
+            android:parentActivityName=".clubs">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.ncc" />
 
@@ -210,8 +204,8 @@
         </activity>
         <activity
             android:name=".gb_ram"
-            android:parentActivityName=".clubs"
-            android:label="8GM RAM">
+            android:label="8GM RAM"
+            android:parentActivityName=".clubs">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.gb_ram" />
 
@@ -220,8 +214,8 @@
         </activity>
         <activity
             android:name=".developers"
-            android:parentActivityName=".NewHomePage"
-            android:label="DEVELOPERS">
+            android:label="DEVELOPERS"
+            android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.developers" />
 
@@ -236,15 +230,25 @@
             android:name=".Campus_Adding"
             android:label="@string/title_activity_campus__adding"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".aboutapp"
-                  android:label="ABOUT THE APP"
-                  android:parentActivityName=".NewHomePage">
+        <activity
+            android:name=".aboutapp"
+            android:label="ABOUT THE APP"
+            android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.aboutapp" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ieee"
+            android:label="IEEE"
+            android:parentActivityName=".clubs">
 
+            <intent-filter>
+                <action android:name="com.venkibellu.myapplication.ieee" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 

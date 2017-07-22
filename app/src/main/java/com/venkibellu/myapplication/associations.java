@@ -33,7 +33,7 @@ public class associations extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Alumini Association UVCE"));
         tabLayout.addTab(tabLayout.newTab().setText("Vision UVCE"));
-        tabLayout.addTab(tabLayout.newTab().setText("UVCE Founacadation"));
+        tabLayout.addTab(tabLayout.newTab().setText("UVCE Foundation"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);

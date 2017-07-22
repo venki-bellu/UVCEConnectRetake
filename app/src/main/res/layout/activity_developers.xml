@@ -42,10 +42,10 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_above="@+id/textView4"
         android:layout_alignTop="@+id/imageView"
+        android:layout_marginStart="25dp"
         android:layout_toEndOf="@+id/imageView"
-        android:text="JERRY ALLAN AKSHAY\n\nallanakshay@outlook.com" />
+        android:text="JERRY ALLAN AKSHAY\nallanakshay@outlook.com" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView2"
@@ -63,7 +63,7 @@
         android:layout_height="50dp"
         android:layout_alignStart="@+id/textView3"
         android:layout_alignTop="@+id/imageView2"
-        android:text="YASH KOTHARI\n\nyashkothari199767@gmail.com" />
+        android:text="YASH KOTHARI\nyashkothari199767@gmail.com" />
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -83,7 +83,7 @@
         android:layout_height="50dp"
         android:layout_alignStart="@+id/textView4"
         android:layout_alignTop="@+id/imageView3"
-        android:text="VENKATESH BELAVADI\n\nvenkateshrbelavadi@gmail.com" />
+        android:text="VENKATESH BELAVADI\nvenkateshrbelavadi@gmail.com" />
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -92,7 +92,7 @@
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="294dp"
-        android:src="@drawable/mahith"
+        android:src="@drawable/mahith1"
         app:civ_border_color="#ffffff"
         app:civ_border_width="3dp" />
 
@@ -103,7 +103,7 @@
         android:layout_alignBottom="@+id/imageView4"
         android:layout_alignStart="@+id/textView4"
         android:layout_alignTop="@+id/imageView4"
-        android:text="MAHITH SHETTY\n\nmahth.98@gmail.com" />
+        android:text="MAHITH SHETTY\nmahith.98@gmail.com" />
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -112,7 +112,7 @@
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="374dp"
-        android:src="@drawable/soumya"
+        android:src="@drawable/soumya1"
         app:civ_border_color="#ffffff"
         app:civ_border_width="3dp" />
 
@@ -122,7 +122,7 @@
         android:layout_height="50dp"
         android:layout_alignStart="@+id/textView7"
         android:layout_alignTop="@+id/imageView5"
-        android:text="SOUMYA S\n\nsoumyasraju98@gmail.com" />
+        android:text="SOUMYA S\nsoumyasraju98@gmail.com" />
 
     <TextView
         android:id="@+id/textView9"
@@ -143,7 +143,7 @@
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="478dp"
-        android:src="@drawable/band"
+        android:src="@drawable/suhas"
         app:civ_border_color="#ffffff"
         app:civ_border_width="3dp" />
 
@@ -151,7 +151,7 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="SUHAS CHETHAN"
+        android:text="SUHAS CHETHAN\nSuhas1048@gmail.com"
         android:layout_alignTop="@+id/imageView6"
         android:layout_alignStart="@+id/textView8" />
 
@@ -173,7 +173,7 @@
         android:layout_alignEnd="@+id/textView4"
         android:layout_alignStart="@+id/textView10"
         android:layout_alignTop="@+id/imageView7"
-        android:text="HARSHA S\n\nharsha.s.1997@gmail.com" />
+        android:text="HARSHA S\nharsha.s.1997@gmail.com" />
 
 </RelativeLayout>
       </android.support.v4.widget.NestedScrollView>

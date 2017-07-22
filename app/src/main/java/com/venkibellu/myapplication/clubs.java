@@ -63,8 +63,14 @@ public class clubs extends AppCompatActivity {
                                                         Intent intent6 = new Intent("com.venkibellu.myapplication.chakravyuha");
                                                         startActivity(intent6);
             }
+        });Button b9= (Button)findViewById(R.id.button9);
+        b9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent6 = new Intent("com.venkibellu.myapplication.ieee");
+                startActivity(intent6);
+            }
         });
-
 
                 Button b10= (Button)findViewById(R.id.button10);
                 b10.setOnClickListener(new View.OnClickListener() {
