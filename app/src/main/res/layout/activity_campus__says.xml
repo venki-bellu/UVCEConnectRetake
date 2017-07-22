@@ -9,13 +9,6 @@
     tools:context="com.venkibellu.myapplication.Campus_Says"
     android:background="@color/colorPrimaryDark">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:popupTheme="@style/AppTheme" />
-
 
 
 

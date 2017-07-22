@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class News extends Activity {
+public class News extends AppCompatActivity {
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference ref;
@@ -116,7 +117,7 @@ public class News extends Activity {
         });
 
 
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 }

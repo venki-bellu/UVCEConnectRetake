@@ -14,6 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -28,6 +31,7 @@ public class NewHomePage extends AppCompatActivity
     SharedPreferences logintype;
     GoogleSignInOptions gso;
     GoogleApiClient googleApiClient;
+    private Animation animation;
 
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener authStateListener;
@@ -38,7 +42,14 @@ public class NewHomePage extends AppCompatActivity
         setContentView(R.layout.activity_new_home_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.up_from_bottom);
 
+        TextView news = (TextView)findViewById(R.id.newsfeed);
+        news.startAnimation(animation);
+        TextView campus = (TextView)findViewById(R.id.campus_says);
+        campus.startAnimation(animation);
+        TextView academics = (TextView)findViewById(R.id.syllabus);
+        academics.startAnimation(animation);
         loginPageIntent=new Intent(this,LogInPage.class);
         logintype=getSharedPreferences(getString(R.string.PREF_FILE),MODE_PRIVATE);
         gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();

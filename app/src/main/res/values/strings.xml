@@ -11,7 +11,7 @@
     <string name="LOGIN_TYPE">APP_LOGIN_TYPE</string>
 
     <string name="title_activity_news">News</string>
-    <string name="title_activity_campus__says">Campus_Says</string>
+    <string name="title_activity_campus__says">Campus Says</string>
 
     <!--HACK! DONT CHANGE THE NAME, Feel free to change the value!-->
     <string name="cse">Computer Science and Engineering</string>
