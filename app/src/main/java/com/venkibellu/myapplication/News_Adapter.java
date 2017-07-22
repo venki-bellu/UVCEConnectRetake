@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import com.google.firebase.storage.FirebaseStorage;
@@ -108,19 +109,13 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                                                        .getReference()
                                                        .child(newsimage.get(position));
 
-            organref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
+            Glide.with(context)
+                    .using(new FirebaseImageLoader())
+                    .load(organref)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.organImageView);
 
-                    if (!activity.isDestroyed()) {
-                        Glide.with(context)
-                             .load(uri)
-                             .crossFade()
-                             .diskCacheStrategy(DiskCacheStrategy.ALL)
-                             .into(holder.organImageView);
-                    }
-                }
-            });
         } else {
             holder.organImageView.setImageBitmap(null);
         }
@@ -129,21 +124,13 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             StorageReference mountainsRef = FirebaseStorage.getInstance()
                                                            .getReference()
                                                            .child(newsextraimage.get(position));
-
-            mountainsRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-
-                    if (!activity.isDestroyed()) {
-                        Glide.with(context)
-                             .load(uri)
-                             .override(parent.getWidth(), parent.getHeight())
-                             .diskCacheStrategy(DiskCacheStrategy.ALL)
-                             .crossFade()
-                             .into(holder.extraImageView);
-                    }
-                }
-            });
+            Glide.with(context)
+                    .using(new FirebaseImageLoader())
+                    .load(mountainsRef)
+                    .override(parent.getWidth(), parent.getHeight())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .crossFade()
+                    .into(holder.extraImageView);
 
 
         } else
