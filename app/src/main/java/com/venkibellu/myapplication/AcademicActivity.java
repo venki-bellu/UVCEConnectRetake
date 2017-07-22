@@ -4,6 +4,7 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -17,10 +18,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,6 +39,10 @@ public class AcademicActivity extends AppCompatActivity {
     Intent sendIntent;
     Context context = this;
 
+    private final String PREFERENECE = "UVCE-prefereceFile";
+    private SharedPreferences preference;
+    String setting = "AskAgain";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +57,7 @@ public class AcademicActivity extends AppCompatActivity {
         sendIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                 "mailto", "1917uvce@gmail.com", null));
 
+        preference = getSharedPreferences(PREFERENECE, MODE_PRIVATE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -109,22 +117,36 @@ public class AcademicActivity extends AppCompatActivity {
             return ;
         }
 
-        showDisclaimer();
+        if (preference.contains(setting) && preference.getBoolean(setting, false)) {
+            checkStoragePermission();
+        } else {
+            showDisclaimer();
+        }
     }
 
     private void showDisclaimer() {
         AlertDialog.Builder disclaimerDialog = new AlertDialog.Builder(AcademicActivity.this);
-        disclaimerDialog.setTitle("Disclaimer")
+        LayoutInflater inflater = LayoutInflater.from(this);
+
+        View view = inflater.inflate(R.layout.disclaimer, null);
+        final CheckBox dontShowAgain = (CheckBox) view.findViewById(R.id.checkBoxid);
+
+        disclaimerDialog.setView(view)
+                        .setTitle("Disclaimer")
                         .setMessage(R.string.disclaimer)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                // on OK button clicked proceed to download.
-                                // required for android 6.0 and above.
+
+                                SharedPreferences.Editor editor = preference.edit();
+                                editor.putBoolean(setting, dontShowAgain.isChecked());
+                                editor.apply();
+
                                 checkStoragePermission();
                             }
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setCancelable(false)
                         .show();
     }
 

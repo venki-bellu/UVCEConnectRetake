@@ -133,11 +133,12 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                     .into(holder.extraImageView);
 
 
-        } else
+        } else {
             holder.extraImageView.setImageBitmap(null);
+        }
 
         Animation animation = AnimationUtils.loadAnimation(context,
-                                (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+                (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
 
         view.startAnimation(animation);
         lastPosition = position;
