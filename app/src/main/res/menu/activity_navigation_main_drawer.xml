@@ -29,12 +29,8 @@
 
      <item android:title="Additional Information">
         <menu>
-            <item
-                android:id="@+id/Developers"
-                android:icon="@drawable/ic_developer_mode"
-                android:title="Develeopers" />
-            <item
-                android:id="@+id/Help"
+
+            <item    android:id="@+id/Help"
                 android:icon="@drawable/ic_developers1"
                 android:title="About the app" />
         </menu>

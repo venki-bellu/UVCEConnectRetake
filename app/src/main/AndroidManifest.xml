@@ -66,10 +66,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".about_us"
-            android:label="ABOUT US"
+            android:label="ABOUT UVCE"
             android:parentActivityName=".NewHomePage"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.about_us" />
 
@@ -215,7 +216,7 @@
         <activity
             android:name=".developers"
             android:label="DEVELOPERS"
-            android:parentActivityName=".NewHomePage">
+            android:parentActivityName=".about_us">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.developers" />
 

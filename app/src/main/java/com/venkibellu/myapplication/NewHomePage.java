@@ -145,11 +145,7 @@ public class NewHomePage extends AppCompatActivity
             Intent i6 = new Intent(this, fests.class);
             startActivity(i6);
 
-        } else if (id == R.id.Developers) {
-            Intent i7 = new Intent(this, developers.class);
-            startActivity(i7);
-
-        }else if (id == R.id.Help) {
+        } else if (id == R.id.Help) {
             Intent i8 = new Intent(this, aboutapp.class);
             startActivity(i8);
 
