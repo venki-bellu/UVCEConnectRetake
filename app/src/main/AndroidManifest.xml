@@ -216,7 +216,7 @@
         <activity
             android:name=".developers"
             android:label="DEVELOPERS"
-            android:parentActivityName=".about_us">
+            android:parentActivityName=".aboutapp">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.developers" />
 

@@ -21,20 +21,4 @@ public class about_us extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.aboutuvce_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.developer_options) {
-            Intent i = new Intent(this, developers.class);
-            startActivity(i);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
