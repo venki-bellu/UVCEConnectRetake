@@ -30,6 +30,11 @@ public class associations extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+
+
+
+
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Alumini Association UVCE"));
         tabLayout.addTab(tabLayout.newTab().setText("Vision UVCE"));

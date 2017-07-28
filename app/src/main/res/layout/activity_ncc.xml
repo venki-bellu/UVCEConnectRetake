@@ -14,23 +14,23 @@
         android:padding="10dp"
 
         >
+
         <TextView
+            android:id="@+id/t"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textSize="20sp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="Unity &amp; Discipline&#39; is the motto of every cadet . In living up to its motto, the NCC strives to be and is
 one of the greatest cohesive forces of the nation, bringing together the youth hailing from different
-parts of the country and moulding them into united, secular and disciplined citizens of the nation.\n
-Details about NCC: -\n
+parts of the country and moulding them into united, secular and disciplined citizens of the nation.\n\n
+Details about NCC: -\n\n
 Regiment: NO 2 KAR AIR SQUADRON NCC\n
-AIR WING\n
+AIR WING\n\n
 COMMAND: KAR &amp; GOA DIRECTORATE\n
-BANGALORE B GROUP\n
-STRENGTH:200\n
-Practice done on every Saturday 1200 hours to 1700 hours\n
-Annual intake in the month of July and August.
-" />
+BANGALORE B GROUP\n\n
+STRENGTH:200\n\nPractice done on every Saturday 1200 hours to 1700 hours\nAnnual intake in the month of July and August.
+"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp" />
     </android.support.v7.widget.CardView>
 </android.support.v4.widget.NestedScrollView>

@@ -14,25 +14,25 @@
         android:padding="10dp"
 
         >
+
         <TextView
+            android:id="@+id/t"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textSize="20sp"
             android:autoLink="all"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="To accomplish the purpose of clean and green UVCE, a student led initiative, &quot;Go Green and Clean
 Club&quot; which is simply known as G2C2 was setup.
-\nG 2 C 2 was started back in 2014 by a group of ME CSE department students. It is now run by a team of
+\n\nG 2 C 2 was started back in 2014 by a group of ME CSE department students. It is now run by a team of
 enthusiasts from 2nd and 3rd year BE. Presently it is a proud club of about 100 voluntary members
 who are dedicated towards the cause.
-\nClub aims to involve college faculty, alumni and larger number of students in future days to improve
+\n\nClub aims to involve college faculty, alumni and larger number of students in future days to improve
 its effectiveness.
-\n\n\n
-Contact us through: - gogreenuvce@gmail.com
-\n
-For more information: - Harsha S ( 9480281997 )
+\n\n\nContact us through: - gogreenuvce@gmail.com
+\n\nFor more information: - Harsha S ( 9480281997 )
 
-" />
+"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp" />
     </android.support.v7.widget.CardView>
 </android.support.v4.widget.NestedScrollView>

@@ -14,27 +14,28 @@
         android:padding="10dp"
 
         >
+
         <TextView
+            android:id="@+id/t"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textSize="20sp"
             android:autoLink="all"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="Having immense interest in the field of music, Suhas (violonist) was curious to know if there was an
 existing music band in UVCE. It was then when he got introduced to Raghavendra who is a vocalist
 and plays the acoustic guitar. They did have similar interest in Indian classical and Carnatic music.
 They spoke to each other to find out about other such existing talents in the same place. It was then
 when Sanjay and Sanjit both who play the Keyboard joined in and started their musical journey called
 ‘8GB RAM’. Namma UVCEs proud band.
-\nName sounds unique right, here&#39;s the story behind it. It was a time to name the band such that it gets
+\n\nName sounds unique right, here&#39;s the story behind it. It was a time to name the band such that it gets
 recognized by the outside world. Team came up with many names and ideas but everything wasn&#39;t
 very convincing. It was then thought that the band needed to be named uniquely and usually no band
 name starts with a number, so they came up with &quot;8 GB RAM&quot;.
-\n8GB RAM now is a team of 9 members who are well known, and most promising band in Bengaluru.
+\n\n8GB RAM now is a team of 9 members who are well known, and most promising band in Bengaluru.
 They have won numerous awards in the fests happening in and around Bangalore.
-\n\n\n
-Contact us: - Suhas Chetan (7204870567)
-" />
+\n\n\nContact us: - Suhas Chetan (7204870567)
+"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp" />
     </android.support.v7.widget.CardView>
 </android.support.v4.widget.NestedScrollView>

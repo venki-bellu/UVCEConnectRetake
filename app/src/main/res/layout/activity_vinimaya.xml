@@ -14,25 +14,25 @@
         android:padding="10dp"
 
         >
+
         <TextView
+            android:id="@+id/t"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textSize="20sp"
             android:autoLink="all"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="Books; collection of enormous amount of knowledge and guidance in a compressed form; is a vital
 asset for the mankind. ‘VINIMAYA’ meaning ‘Sharing’ in Kannada, work on this very basic principle.
 Books that a student has can be shared with the club and the books that VINIMAYA has can be
 borrowed by the students. There&#39;s no worry if one doesn&#39;t have a book to share.
-\nWait it’s not just books…! VINIMAYA also shares TV series, Anime, Movies, Ted Talks, E-Books for
+\n\nWait it’s not just books…! VINIMAYA also shares TV series, Anime, Movies, Ted Talks, E-Books for
 the one who seeks. Any student can drop into G 2 C 2 room and borrow their favourite book, anime,
 movie, without any membership.
-\n\n\n
-Website: - http://aliengo.000webhostapp.com/first/vini2.0/vini2home.php
-\n
-Contact: - Thanush (8867768009)
+\n\n\nWebsite: - http://aliengo.000webhostapp.com/first/vini2.0/vini2home.php
+\n\nContact: - Thanush (8867768009)
 
-" />
+"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp" />
     </android.support.v7.widget.CardView>
 </android.support.v4.widget.NestedScrollView>

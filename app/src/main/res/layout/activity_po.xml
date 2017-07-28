@@ -14,24 +14,23 @@
         android:padding="10dp"
 
         >
+
         <TextView
+            android:id="@+id/t"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textSize="20sp"
             android:autoLink="all"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="The power house of UVCE where, Student coordinators take the responsibility to interact with companies under the guidance of Placement Officer Dr.Triveni. Placement Office was established in the year 1989, from then on it acts a bridge between companies and students.
-\nThe TPO has the record of successfully placing 90% of its students into Globally recognized companies with an attractive offer. Batch of 2016 witnessed an all-time record of grabbing 1012 offers which stood 1st in the State in terms of job ratio to number of students.
-\n\n\n
-Write to us: - info@campusuvce.in
+\n\nThe TPO has the record of successfully placing 90% of its students into Globally recognized companies with an attractive offer. Batch of 2016 witnessed an all-time record of grabbing 1012 offers which stood 1st in the State in terms of job ratio to number of students.
+\n\n\nWrite to us: - info@campusuvce.in
+\n\nContact us: - +91-7899037717
 \n
-Contact us: - +91-7899037717
-\n
-          \t\T+080-22276070
-              \n
-Website: - http://campusuvce.in/index.php
+       \t\t\t\t \t \t\t\t080-22276070
+              \n\nWebsite: - http://campusuvce.in/index.php
 
-" />
+"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp" />
     </android.support.v7.widget.CardView>
 </android.support.v4.widget.NestedScrollView>

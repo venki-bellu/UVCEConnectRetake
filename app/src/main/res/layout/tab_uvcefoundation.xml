@@ -14,26 +14,27 @@
         android:padding="10dp"
 
         >
+
         <TextView
+            android:id="@+id/t"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textSize="20sp"
             android:autoLink="all"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="The UVCE Foundation was created by alumni, faculty and well-wishers of UVCE in 2003 to help
 restore the glory of UVCE. The Foundation has members from around the world and has already
 executed various projects at UVCE to address immediate needs of the students of UVCE
-\nUVCE Foundation has been growing in strength ever since its inception &amp; has been widely
+\n\nUVCE Foundation has been growing in strength ever since its inception &amp; has been widely
 recognized as a strong support from the college authorities. The objective of the Foundation is to
 restore the ‘top-ten’ status the college.
-\nUVCE Foundation works with very high-levels of financial transparency &amp; is now recognized with the
+\n\nUVCE Foundation works with very high-levels of financial transparency &amp; is now recognized with the
 Income Tax department &amp; has filed tax returns up-to- date. The Foundation has obtained the 12A
 registration required for operation of the Trust in addition to the 80G exemption. A team is currently
 working to file for Prior approval (FCRA) to receive funds from the UVCE Foundation USA to execute
 projects in UVCE
-\n\n\n
-Website link: - http://uvcefoundation.org
-" />
+\n\n\nWebsite link: - http://uvcefoundation.org
+"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp" />
     </android.support.v7.widget.CardView>
 </android.support.v4.widget.NestedScrollView>

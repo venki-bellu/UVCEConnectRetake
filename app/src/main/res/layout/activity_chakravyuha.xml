@@ -14,20 +14,20 @@
         android:padding="10dp"
 
         >
+
         <TextView
+            android:id="@+id/t"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textSize="20sp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="Life is full of surprises, Adventure is a part and parcel of engineering life. In this limited 4years an
 engineer would have experienced lot of unforgettable moments. To quench one&#39;s thirst for Adventure
 &quot;Chakravyuha&quot; the trekking club of UVCE is setup by students.
-\n
+\n\n
 Club holds 2 trekking drives in a semester. Starting point of every trek being UVCE, it trys to explore
 trekking spots across Bengaluru within highly sophisticated budget. With this practice an unofficial
 bikers club was born who reaches the destination with their own bike.
-\n
+\n\n
 Kunthi betta
 \n
 Maklidurga
@@ -38,6 +38,8 @@ Chanarayanna durga
 \n
 Are the trekking spots visited recently.
 
-" />
+"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp" />
     </android.support.v7.widget.CardView>
 </android.support.v4.widget.NestedScrollView>

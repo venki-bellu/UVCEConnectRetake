@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,30 +17,35 @@
         android:elevation="40dp"
         app:cardCornerRadius="10dp"
         android:padding="10dp"
-
         >
+
         <TextView
+            android:id="@+id/t"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textSize="20sp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="Students volunteer initiative “UVCE Connect”, basically aims at providing students with the facility of
-question papers and syllabus copy irrespective of any department(s) in UVCE. UVCE connect try to
+question papers and syllabus copy irrespective of any department(s) in UVCE. UVCE connect tries to
 establish communication among various branches and eliminate the communication lag that exists
 between them. Important and vital information is made available using cutting edge technology. Users
 are also provided with the benefit of knowing about various events, organizations and information
-regarding UVCE. UVCE Connect was developed by group of enthusiast students with the ideal
+regarding UVCE.
+ \n\nUVCE Connect was developed by group of enthusiast students with the ideal
 purpose of giving back to college. The ideal idea of team helps thousands of students’ to be
-benefited. Vision of developers to involve alumni and provide information in the occasion of Centenary
+benefited.
+ \n\nVision of developers to involve alumni and provide information in the occasion of Centenary
 year would directly benefit college in attracting more and more of alumni. App also concentrates to
 serve as a media of promotion and promise to keep its users informed legibly with latest news related
-to college. The Database right solely belong to the developers of the app and the security of its users
+to college.
+ \n\nThe Database right solely belong to the developers of the app and the security of its users
 is maintained at any cost. Copyrights of the app is completely under the opinion of the developers.
 Using of app data against the developers is prohibited. Developers have the right to monitor and edit
 the app without prior notice. Any kind of disputes aren’t appreciated by the developers regarding the
 app. The developers always provide scope for improvement and the process is invariably dependant
 on time. App is better functional with mobiles working on Android version Lollipop and above.
-" />
+"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp" />
     </android.support.v7.widget.CardView>
 </android.support.v4.widget.NestedScrollView>

@@ -14,30 +14,30 @@
         android:padding="10dp"
 
         >
+
         <TextView
+            android:id="@+id/t"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textSize="20sp"
             android:autoLink="all"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="SAE is the acronym for &quot;Society of automotive Engineers&quot; which is a World Wide organization who set
 standards and validate automotive projects.
-\n
+\n\n
 A student branch of this organization exists in UVCE. The motto of SAE-INDIA stands as ‘The
 Engineering Society for Advancing Mobility in Land Sea Air and Space’. GKDC (go-cart building
 championship), BAJA (Pronounced as BAHA, is an all-terrain vehicle building championship), SUPRA
 (Racing car building championship) are the main National Level competition organised by SAE.
-\nThe student branch of SAE, ‘SAE-INDIA UVCE’ was set up in 2011 due to the earnest efforts of
+\n\nThe student branch of SAE, ‘SAE-INDIA UVCE’ was set up in 2011 due to the earnest efforts of
 Mechanical Students of Batch 2009-2013. The club till date has involved in conducting many activities
 to benefit the members for improving their skills in the technical field.
-\nTeam Em-power UVCE stood 6th (AIR) in GKDC and 124th(AIR) In BAJA which are the best figures
+\n\nTeam Em-power UVCE stood 6th (AIR) in GKDC and 124th(AIR) In BAJA which are the best figures
 till date in the history of its involvement.
-\n\n\n
-Write to us - sae.uvce@gmail.com
-\n
-Contact us – Adithya Pai (9446325235)
+\n\n\nWrite to us - sae.uvce@gmail.com
+\n\nContact us – Adithya Pai (9446325235)
 
-" />
+"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp" />
     </android.support.v7.widget.CardView>
 </android.support.v4.widget.NestedScrollView>

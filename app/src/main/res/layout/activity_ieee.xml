@@ -14,17 +14,18 @@
         android:padding="10dp"
 
         >
+
         <TextView
+            android:id="@+id/t"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textSize="20sp"
             android:autoLink="all"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:text="IEEE UVCE has come to be one of the most recognised student branches across Region 10 of IEEE. Rekindled in 2001, the student branch has since grown to a strength of over 200 student members. The organization's commitment to enhancing and upgrading the core knowledge base of its members to the industry standards is reflected in the host of activities organised by it throghtout the year. Symposiums, guest leactures, hands-on workshops, the National Level Paper Presentation contest - KAGADA, the National Level Technical Fest- IMPETUS; intra collegiate activities- RIPPLES and industrial tours are some of the events held all through the year. Our diligent efforts haven't been left unrecognized. IEEE UVCE was awarded the Exemplory Student Branch in Region 10 for the year 2016. IEEE UVCE WIE affinity group won the Region 10 Outstanding WIE Group Affinity Award. The National Level Paper Presentation Contest- KAGADA was conferred the Darrel Platinum Level Student Activity Award. In the Bangalore Section, Team IEEE UVCE won the Best Student Branch Website Award and also the first runner up in the Poster Presentation Contest. There were individual honours too as our Principal, Dr Venugopal K R was conferred with the IEEE Fellow rade for his exemplary contributions towards the field of education and Dr. P Deepa Shenoy was awraded with the Best Branch Counselor Award. Our spirit of volunteering was recognized when Mahesh R B, Ex- Chairperson IEEE UVCE, won the Outstanding Student Volunteer Award for his contributions.
-\n\n\n
-Contact us: - Suhas Chetan (7204870567)
+            android:text="IEEE UVCE has come to be one of the most recognised student branches across Region 10 of IEEE. Rekindled in 2001, the student branch has since grown to a strength of over 200 student members.\n\nThe organization's commitment to enhancing and upgrading the core knowledge base of its members to the industry standards is reflected in the host of activities organised by it throghtout the year. \n\nSymposiums, guest leactures, hands-on workshops, the National Level Paper Presentation contest - KAGADA, the National Level Technical Fest- IMPETUS; intra collegiate activities- RIPPLES and industrial tours are some of the events held all through the year.\n\nOur diligent efforts haven't been left unrecognized. IEEE UVCE was awarded the Exemplory Student Branch in Region 10 for the year 2016. IEEE UVCE WIE affinity group won the Region 10 Outstanding WIE Group Affinity Award. The National Level Paper Presentation Contest- KAGADA was conferred the Darrel Platinum Level Student Activity Award. In the Bangalore Section, Team IEEE UVCE won the Best Student Branch Website Award and also the first runner up in the Poster Presentation Contest. There were individual honours too as our Principal, Dr Venugopal K R was conferred with the IEEE Fellow rade for his exemplary contributions towards the field of education and Dr. P Deepa Shenoy was awraded with the Best Branch Counselor Award. Our spirit of volunteering was recognized when Mahesh R B, Ex- Chairperson IEEE UVCE, won the Outstanding Student Volunteer Award for his contributions.
+\n\n\nContact us: - Suhas Chetan (7204870567)
 
-" />
+"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp" />
     </android.support.v7.widget.CardView>
 </android.support.v4.widget.NestedScrollView>

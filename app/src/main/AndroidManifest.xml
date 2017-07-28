@@ -90,7 +90,7 @@
         </activity>
         <activity
             android:name=".po"
-            android:label="TRAINING AND PLACEMENT OFFICE"
+            android:label="PLACEMENT OFFICE"
             android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.po" />

@@ -14,12 +14,12 @@
         android:padding="10dp"
 
         >
+
         <TextView
+            android:id="@+id/t"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textSize="20sp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="UVCE JAATHRE:\nAs the name indicates, it&#39;s a colourful one day event organised by 2nd year
 students. During Jaathre various collegiate clubs’ setup their stall at quadrangle of main campus and
 conduct fun games, thereby helping freshers to know about UVCE.
@@ -49,6 +49,8 @@ is carried in the duration of a week . With the history of two decades, it provi
 every individual in college comes together to create a difference. It upholds the pride of UVCE and
 culture of Karnataka. It has always been dealt with grandeur and festivity. Participants throughout
 Karnataka are attracted to this 2 day event. PS:- Rain adds up to the charm of milagro every time.
-" />
+"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp" />
     </android.support.v7.widget.CardView>
 </android.support.v4.widget.NestedScrollView>
