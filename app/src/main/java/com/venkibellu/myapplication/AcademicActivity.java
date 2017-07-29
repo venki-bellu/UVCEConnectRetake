@@ -194,7 +194,7 @@ public class AcademicActivity extends AppCompatActivity {
 
                     // permission not granted, download can't take place.
                     Toast.makeText(getApplicationContext(),
-                            "Permission denied to read your External storage",
+                            "Permission denied to read External storage",
                             Toast.LENGTH_SHORT).show();
                 }
             }
