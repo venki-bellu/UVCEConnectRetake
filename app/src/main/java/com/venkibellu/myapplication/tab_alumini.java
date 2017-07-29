@@ -15,7 +15,7 @@ public class tab_alumini extends Fragment{
         View v =inflater.inflate(R.layout.tab_alumini, container, false);
 
         TextView txt = (TextView) v.findViewById(R.id.t);
-        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/LobsterTwo-Regular.ttf");
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/LibreBaskerville-Bold.ttf");
         txt.setTypeface(font);
         return v;
     }

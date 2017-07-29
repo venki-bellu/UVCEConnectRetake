@@ -19,6 +19,7 @@
             android:layout_margin="10dp"
             android:textSize="20sp"
             android:autoLink="all"
+            android:id="@+id/t"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="ನಾವು ಕನ್ನಡಿಗರು, ವಿಶಾಲ ಹೃದವನ್ನು ಹೊಂದವರು, ಜಗತ್ತಿನ ಮೂಲೆ-ಮೂಲೆಗಳಿಂದ ಹರಿದುಬರುವ ಜನರನ್ನು ತನ್ನ ಓಡಿಲಲ್ಲಿ ಇಟ್ಟು
 ಸಲಹುವವರು. ಈ ಸಲಹುವಿಕೆ ಹೆಚ್ಚಾಯಿತೇನೋ, ಬೆಂಗಳೂರಿನಲ್ಲಿ ಕನ್ನಡಿಗರೇ ಅಲ್ಪಸಂಖ್ಯಾತರಾಗಿದ್ದರೆ. ಕನ್ನಡತನ ಎಂಬುದು

@@ -16,7 +16,7 @@ public class tab_visionuvce extends Fragment {
 
 
         TextView txt = (TextView) v.findViewById(R.id.t);
-        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/LobsterTwo-Regular.ttf");
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/LibreBaskerville-Bold.ttf");
         txt.setTypeface(font);
         return v;
     }

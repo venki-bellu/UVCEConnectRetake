@@ -15,7 +15,7 @@ public class g2c2 extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView t=(TextView)findViewById(R.id.t);
-        Typeface mycustomfont=Typeface.createFromAsset(getAssets(),"fonts/LobsterTwo-Regular.ttf");
+        Typeface mycustomfont=Typeface.createFromAsset(getAssets(),"fonts/LibreBaskerville-Bold.ttf");
         t.setTypeface(mycustomfont);
 
     }

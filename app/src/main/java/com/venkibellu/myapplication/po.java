@@ -16,7 +16,7 @@ public class po extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         t=(TextView)findViewById(R.id.t);
-        Typeface mycustomfont=Typeface.createFromAsset(getAssets(),"fonts/LobsterTwo-Regular.ttf");
+        Typeface mycustomfont=Typeface.createFromAsset(getAssets(),"fonts/LibreBaskerville-Bold.ttf");
         t.setTypeface(mycustomfont);
     }
 }
