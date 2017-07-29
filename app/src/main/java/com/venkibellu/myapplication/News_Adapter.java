@@ -146,6 +146,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .crossFade()
                     .into(holder.extraImageView);
+            holder.extraImageView.setVisibility(View.VISIBLE);
             holder.extraImageView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
@@ -204,7 +205,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             });
 
         } else {
-            holder.extraImageView.setImageBitmap(null);
+            holder.extraImageView.setVisibility(View.GONE);
         }
 
         Animation animation = AnimationUtils.loadAnimation(context,
