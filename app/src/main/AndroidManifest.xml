@@ -69,8 +69,7 @@
             android:label="ABOUT UVCE"
             android:parentActivityName=".NewHomePage"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.about_us" />
 
@@ -241,16 +240,24 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ieee"
+        <activity
+            android:name=".ieee"
             android:label="IEEE"
             android:parentActivityName=".clubs">
-
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.ieee" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".Academic"
+            android:label="@string/title_activity_academic"
+            android:parentActivityName=".NewHomePage"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
     </application>
 
 </manifest>

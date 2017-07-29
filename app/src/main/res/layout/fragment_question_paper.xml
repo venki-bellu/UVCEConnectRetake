@@ -1,37 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.venkibellu.myapplication.AcademicActivity"
+    tools:context="com.venkibellu.myapplication.Academic$PlaceholderFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="36dp"
     android:orientation="vertical">
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <RadioButton
-            android:checked="true"
-            android:id="@+id/syllabusRadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Syllabus"
-            android:layout_marginEnd="35dp"/>
-
-        <RadioButton
-            android:id="@+id/qpRadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Question Papers"/>
-
-    </RadioGroup>
 
     <TextView
         android:id="@+id/branchTextView"
@@ -62,7 +38,7 @@
             android:id="@+id/yearTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Year: "
+            android:text="Semester: "
             android:textColor="@android:color/black"
             android:textSize="24sp"/>
 
@@ -73,12 +49,12 @@
             android:layout_marginStart="60dp"
             android:dropDownWidth="50dp"
             android:entries="@array/semester_array">
-    </Spinner>
+        </Spinner>
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/download_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

@@ -80,7 +80,7 @@ public class NewHomePage extends AppCompatActivity
     }
 
     public void onSyllabusImageViewClicked(View view) {
-        Intent academicPageIntent = new Intent(this, AcademicActivity.class);
+        Intent academicPageIntent = new Intent(this, Academic.class);
         startActivity(academicPageIntent);
     }
 

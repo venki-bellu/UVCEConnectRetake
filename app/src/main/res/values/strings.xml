@@ -14,6 +14,7 @@
     <string name="title_activity_campus__says">Campus Says</string>
 
     <!--HACK! DONT CHANGE THE NAME, Feel free to change the value!-->
+    <string name="arch">Architecture</string>
     <string name="cse">Computer Science and Engineering</string>
     <string name="ce">Civil Engineering</string>
     <string name="eee">Electronic and Electrical Engineering</string>
@@ -23,6 +24,7 @@
     <string name="download">Download</string>
 
     <string-array name="branch_array">
+        <item>@string/arch</item>
         <item>@string/cse</item>
         <item>@string/ce</item>
         <item>@string/ece</item>
@@ -42,6 +44,12 @@
         <item>8</item>
     </string-array>
 
+    <string-array name="year_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
     <string name="disclaimer">
         UVCE Connect does not claim any responsibility
         in case any of the information provided is false or
@@ -80,4 +88,5 @@ Dean, Faculty of Engineering, Member of Syndicate and Academic Council,\n
 Professor, Department of Computer Science and Engineering,\n
 University Visvesvaraya College of Engineering\nBangalore University, Bangalore – 560001.</string>
     <string name="title_activity_ieee">ieee</string>
+    <string name="title_activity_academic">Academic</string>
 </resources>

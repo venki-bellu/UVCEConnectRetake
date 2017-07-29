@@ -13,9 +13,20 @@ class URLGetter {
         here.
      */
 
+    /*****************************************************************************************
+     *                                        SYLLABUS                                       *
+     *                                  GOOGLE DRIVE LINKS                                   *
+     *                                                                                       *
+     ****************************************************************************************/
+
     private final String firstYearSyllabusURL =
             "https://drive.google.com/open?id=0B1UVfii_DmyGSDBYUHZuYVczNDA";
 
+    private final String ARCH_SyllabusURL[] = {
+            "", // second year
+            "", // third year
+            "", // fourth year
+    };
 
     private final String CSE_SyllabusURL[] = {
             "https://drive.google.com/open?id=0B1UVfii_DmyGclBQeDFJM1p5SzQ", // second year
@@ -56,24 +67,87 @@ class URLGetter {
 
 
 
+
+    /*****************************************************************************************
+     *                                    QUESTION PAPERS                                    *
+     *                                  GOOGLE DRIVE LINKS                                   *
+     *                                                                                       *
+     ****************************************************************************************/
+
+    private final String firstYearQPURL =
+            "https://drive.google.com/open?id=0B1lwdi6AwvjVejBockt5dXY5U2c";
+
+    private final String ARCH_QPURL[] = {
+            "",
+            "",
+            ""
+    };
+
+    private final String CSE_QPURL[] = {
+            "https://drive.google.com/open?id=0B1lwdi6AwvjVU2dHYlZjaXZ6dGc", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGeS1WVkhERnd5bU0", // third year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGLTNfRl83MVlXcVE", // fourth year
+    };
+
+    private final String EEE_QPURL[] = {
+            "https://drive.google.com/open?id=0B1UVfii_DmyGYWFwV3E3TUJGZEE", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGbW1rUS0wZWlOWkU", // third year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGUnR2enN6SE1VbkU", // fourth year
+    };
+
+    private final String ECE_QPURL[] = {
+            "https://drive.google.com/open?id=0B1UVfii_DmyGV1hGMnhWVlBMb2s", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGY2lwMkg2cDlzMlE", // third year
+            "", // fourth year
+    };
+
+    private final String ISE_QPURL[] = {
+            "https://drive.google.com/open?id=0B1UVfii_DmyGS29TSlVYcWIzQjA", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGS29TSlVYcWIzQjA", // third year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGS29TSlVYcWIzQjA", // fourth year
+    };
+
+    private final String ME_QPURL[] = {
+            "https://drive.google.com/open?id=0B1UVfii_DmyGa1M0ZGlET0lWVWM", // second year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGaDdZeWlYd3VuS2c", // third year
+            "https://drive.google.com/open?id=0B1UVfii_DmyGWHR6MU8tb2IzWFU", // fourth year
+    };
+
+    private final String CE_QPURL[] = {
+            "", // second year
+            "", // third year
+            "", // fourth year
+    };
+
     // Here is map from the string to the String URL array defined above.
-    private final  static HashMap<String, String[]> syllabusURLmapper = new HashMap<>();
+    private final static HashMap<String, String[]> syllabusURLmapper = new HashMap<>();
+    private final static HashMap<String, String[]> qpURLmapper = new HashMap<>();
 
 
     URLGetter(Context context) {
-        final String cse = context.getString(R.string.cse),
+        final String arch = context.getString(R.string.arch),
+                     cse = context.getString(R.string.cse),
                      ise = context.getString(R.string.ise),
                      ce = context.getString(R.string.ce),
                      me = context.getString(R.string.me),
                      eee = context.getString(R.string.eee),
                      ece = context.getString(R.string.ece);
 
+        syllabusURLmapper.put(arch, ARCH_SyllabusURL);
         syllabusURLmapper.put(cse, CSE_SyllabusURL);
         syllabusURLmapper.put(ise, ISE_SyllabusURL);
         syllabusURLmapper.put(ce, CE_SyllabusURL);
         syllabusURLmapper.put(me, ME_SyllabusURL);
         syllabusURLmapper.put(eee, EEE_SyllabusURL);
         syllabusURLmapper.put(ece, ECE_SyllabusURL);
+
+        syllabusURLmapper.put(arch, ARCH_QPURL);
+        syllabusURLmapper.put(cse, CSE_QPURL);
+        syllabusURLmapper.put(ise, ISE_QPURL);
+        syllabusURLmapper.put(ce, CE_QPURL);
+        syllabusURLmapper.put(me, ME_QPURL);
+        syllabusURLmapper.put(eee, EEE_QPURL);
+        syllabusURLmapper.put(ece, ECE_QPURL);
     }
 
     // returns the download URL by obtaining the ID from the google drive URL.
@@ -99,8 +173,11 @@ class URLGetter {
         String downloadURL = "https://docs.google.com/uc?id=[FILE_ID]&export=download";
         String ID = "";
 
-        // Todo: adding question paper url.
-        return "";
+        if (ID.isEmpty()) {
+            return "";
+        }
+
+        return downloadURL.replace("[FILE_ID]", ID);
     }
 
     // returns the ID from the google drive URL.

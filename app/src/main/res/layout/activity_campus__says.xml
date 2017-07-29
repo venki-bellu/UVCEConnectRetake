@@ -9,9 +9,6 @@
     tools:context="com.venkibellu.myapplication.Campus_Says"
     android:background="@color/colorPrimaryDark">
 
-
-
-
     <RelativeLayout
         android:id="@+id/campusrelative"
         android:paddingTop="10dp"
@@ -19,10 +16,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar">
 
-
-
         <ListView
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/campus_list"

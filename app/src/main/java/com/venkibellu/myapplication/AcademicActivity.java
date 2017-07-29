@@ -88,7 +88,7 @@ public class AcademicActivity extends AppCompatActivity {
     public void downloadButtonClicked(View view) {
         noteTextView.setText("");
         String branch = getBranch();
-        Integer semester = getSemester();
+        Integer year = getSemester();
 
         /* invoke the class URLGetter, context needs to be passed
             to access the strings in resource file.
@@ -97,14 +97,13 @@ public class AcademicActivity extends AppCompatActivity {
 
         // get the downloadURL on the basis of branch and semester selected.
         if (syllabusRadioButton.isChecked()) {
-            int year = (int) Math.ceil(semester / 2.0);
             noteTextView.setText(Html.fromHtml(getString(R.string.Note)));
 
             downloadURL = urlGetter.getSyllabusURL(branch, year);
             fileName = branch.replaceAll("\\s+", "-") + '-' + String.valueOf(year) + "-Syllabus.pdf";
 
         } else {
-            downloadURL = urlGetter.getQuestionPaperURL(branch, semester);
+            downloadURL = urlGetter.getQuestionPaperURL(branch, year);
             fileName = branch.replaceAll("\\s+", "-");
         }
 
@@ -226,7 +225,8 @@ public class AcademicActivity extends AppCompatActivity {
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url[0]));
             request.setDescription("Syllabus")
                     .setTitle(fileName)
-                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                    .setNotificationVisibility(DownloadManager.Request
+                                                              .VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                     .setDestinationInExternalPublicDir("/UVCE-Connect", fileName)
                     .allowScanningByMediaScanner();
 
