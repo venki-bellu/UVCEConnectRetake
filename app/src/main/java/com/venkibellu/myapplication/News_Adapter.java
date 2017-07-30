@@ -1,54 +1,36 @@
 package com.venkibellu.myapplication;
 
 import android.app.Activity;
-
 import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.Context;
-
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-
-
-import android.os.Build;
 import android.os.Environment;
-import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
-
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
-import com.google.android.gms.nearby.connection.Payload;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.util.ArrayList;
 
-import static java.security.AccessController.getContext;
-
 
 public class News_Adapter extends BaseAdapter implements ListAdapter {
+    private boolean zoomOut = false;
     private  static ArrayList<String> listname = new ArrayList<String>();
     private Activity activity;
     private static ArrayList<String> newsimage = new ArrayList<String>();

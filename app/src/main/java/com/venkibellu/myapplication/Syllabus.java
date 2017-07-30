@@ -53,7 +53,12 @@ public class Syllabus extends Fragment implements View.OnClickListener {
     public void downloadButtonClicked() {
         noteTextView.setText("");
         String branch = getBranch();
-        Integer year = getSemester();
+        Integer year = getYear();
+
+        if (year == 5 && !branch.equals(getContext().getString(R.string.arch))) {
+            Toast.makeText(getContext(), "Invalid Selection", Toast.LENGTH_SHORT).show();
+            return ;
+        }
 
         /*
             invoke the class URLGetter, context needs to be passed
@@ -61,12 +66,8 @@ public class Syllabus extends Fragment implements View.OnClickListener {
         */
         URLGetter urlGetter = new URLGetter(getContext());
 
-        // get the downloadURL on the basis of branch and semester selected.
-        noteTextView.setText(Html.fromHtml(getString(R.string.Note)));
-
         downloadURL = urlGetter.getSyllabusURL(branch, year);
         fileName = branch.replaceAll("\\s+", "-") + '-' + String.valueOf(year) + "-Syllabus.pdf";
-
 
         // if syllabus not available return.
         if (downloadURL.isEmpty()) {
@@ -77,14 +78,17 @@ public class Syllabus extends Fragment implements View.OnClickListener {
             return ;
         }
 
-       checkStoragePermission();
+        // get the downloadURL on the basis of branch and semester selected.
+        noteTextView.setText(Html.fromHtml(getString(R.string.Note)));
+
+        checkStoragePermission();
     }
 
     private String getBranch() {
         return branchSpinner.getSelectedItem().toString();
     }
 
-    private Integer getSemester() {
+    private Integer getYear() {
         return Integer.parseInt(semesterSpinner.getSelectedItem().toString());
     }
 

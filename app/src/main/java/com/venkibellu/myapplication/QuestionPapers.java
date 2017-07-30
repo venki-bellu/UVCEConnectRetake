@@ -28,7 +28,6 @@ public class QuestionPapers extends Fragment implements View.OnClickListener {
     private Button button;
     private Spinner branchSpinner, semesterSpinner;
     private String fileName, downloadURL;
-    private TextView noteTextView;
 
 
     @Nullable
@@ -40,7 +39,6 @@ public class QuestionPapers extends Fragment implements View.OnClickListener {
         button.setOnClickListener(this);
         branchSpinner = (Spinner) view.findViewById(R.id.branchSpinner);
         semesterSpinner = (Spinner) view.findViewById(R.id.semesterSpinner);
-        noteTextView = (TextView) view.findViewById(R.id.noteTextView);
 
         return view;
     }
@@ -51,18 +49,21 @@ public class QuestionPapers extends Fragment implements View.OnClickListener {
     }
 
     public void downloadButtonClicked() {
-        noteTextView.setText("");
         String branch = getBranch();
         Integer semester = getSemester();
 
-        /* invoke the class URLGetter, context needs to be passed
+        if (semester > 8 && !branch.equals(getContext().getString(R.string.arch))) {
+            Toast.makeText(getContext(), "Invalid Selection", Toast.LENGTH_SHORT).show();
+            return ;
+        }
+
+        /*
+            invoke the class URLGetter, context needs to be passed
             to access the strings in resource file.
          */
         URLGetter urlGetter = new URLGetter(getContext());
 
         // get the downloadURL on the basis of branch and semester selected.
-        noteTextView.setText(Html.fromHtml(getString(R.string.Note)));
-
         downloadURL = urlGetter.getQuestionPaperURL(branch, semester);
         fileName = branch.replaceAll("\\s+", "-") + '-' + String.valueOf(semester) + ".pdf";
 
@@ -70,8 +71,8 @@ public class QuestionPapers extends Fragment implements View.OnClickListener {
         // if syllabus not available return.
         if (downloadURL.isEmpty()) {
             Toast.makeText(getActivity(), "No resources found.\n" +
-                            "Will be added soon! \n" +
-                            "Please contribute if available.",
+                                          "Will be added soon! \n" +
+                                          "Please contribute if available.",
                     Toast.LENGTH_LONG).show();
             return ;
         }
