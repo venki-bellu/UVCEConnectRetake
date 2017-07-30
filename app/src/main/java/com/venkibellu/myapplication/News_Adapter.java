@@ -30,7 +30,6 @@ import java.util.ArrayList;
 
 
 public class News_Adapter extends BaseAdapter implements ListAdapter {
-    private boolean zoomOut = false;
     private  static ArrayList<String> listname = new ArrayList<String>();
     private Activity activity;
     private static ArrayList<String> newsimage = new ArrayList<String>();
