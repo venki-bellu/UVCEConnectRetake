@@ -5,4 +5,8 @@
         android:title="Sign Out"
         android:id="@+id/signout"/>
 
+    <item
+        android:title="Feedback"
+        android:id="@+id/contact_us"/>
+
 </menu>

@@ -1,7 +1,9 @@
 package com.venkibellu.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.MenuInflater;
@@ -32,7 +34,8 @@ public class NewHomePage extends AppCompatActivity
     GoogleSignInOptions gso;
     GoogleApiClient googleApiClient;
     private Animation animation;
-
+    Context context;
+    Intent sendIntent;
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener authStateListener;
 
@@ -43,7 +46,7 @@ public class NewHomePage extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.up_from_bottom);
-
+        context=this;
         TextView news = (TextView)findViewById(R.id.newsfeed);
         news.startAnimation(animation);
         TextView campus = (TextView)findViewById(R.id.campus_says);
@@ -67,6 +70,9 @@ public class NewHomePage extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        sendIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", "1917uvce@gmail.com", null));
     }
 
     @Override
@@ -116,6 +122,11 @@ public class NewHomePage extends AppCompatActivity
                 startActivity(loginPageIntent);
                 finish();
             }
+        }
+        else if(item.getItemId()==R.id.contact_us)
+        {
+            context.startActivity(Intent.createChooser(sendIntent, null));
+            return true;
         }
         return false;
     }
