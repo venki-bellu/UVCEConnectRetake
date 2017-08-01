@@ -9,9 +9,10 @@ import android.view.MenuInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.support.v4.view.ViewPager;
 
 public class about_us extends AppCompatActivity {
-
+    ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,9 @@ public class about_us extends AppCompatActivity {
         TextView t=(TextView)findViewById(R.id.t);
         Typeface mycustomfont=Typeface.createFromAsset(getAssets(),"fonts/LibreBaskerville-Bold.ttf");
         t.setTypeface(mycustomfont);
+
+
+
     }
 
 }

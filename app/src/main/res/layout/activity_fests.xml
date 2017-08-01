@@ -4,78 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <android.support.v7.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:elevation="40dp"
-        app:cardCornerRadius="10dp"
-        android:padding="10dp"
-        android:id="@+id/c1"
-
-        >
-
-        <TextView
-            android:id="@+id/t"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="UVCE JAATHRE:\n\nAs the name indicates, it's a colourful one day event organised by 2nd year students during the month of Oct every year. During this event various collegiate clubs’ setup their stall at quadrangle of main campus and conduct fun games, thereby helping freshers’ to know about UVCE."
-
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="20sp" />
-    </android.support.v7.widget.CardView>
-
-
-
-
-
-
-
-
-    <android.support.v7.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:elevation="40dp"
-        app:cardCornerRadius="10dp"
-        android:padding="10dp"
-        android:id="@+id/c2"
-        android:layout_below="@+id/c1"
-
-        >
-
-        <TextView
-            android:id="@+id/t2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="KAGADA:\n\nIt's a National level technical symposium, organised by Team IEEE UVCE. Students across Bengaluru take part in this event where they get to showcase their technical knowledge and research in means of Paper and Poster presentation. The best paper and posters are awarded.
-
-"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="20sp" />
-    </android.support.v7.widget.CardView>
-
-
-
-
+        android:layout_height="match_parent"
+        android:padding="10dp">
 
         <android.support.v7.widget.CardView
+            android:id="@+id/c1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:elevation="40dp"
-            app:cardCornerRadius="10dp"
             android:padding="10dp"
+            app:cardCornerRadius="10dp"
+
+            >
+
+            <TextView
+                android:id="@+id/t"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="UVCE JAATHRE:\n\nAs the name indicates, it's a colourful one day event organised by 2nd year students during the month of Oct every year. During this event various collegiate clubs’ setup their stall at quadrangle of main campus and conduct fun games, thereby helping freshers’ to know about UVCE."
+
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="20sp" />
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/c2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/c1"
+            android:layout_margin="5dp"
+            android:elevation="40dp"
+            android:padding="10dp"
+            app:cardCornerRadius="10dp"
+
+            >
+
+            <TextView
+                android:id="@+id/t2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="KAGADA:\n\nIt's a National level technical symposium, organised by Team IEEE UVCE. Students across Bengaluru take part in this event where they get to showcase their technical knowledge and research in means of Paper and Poster presentation. The best paper and posters are awarded.
+
+"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="20sp" />
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
             android:id="@+id/c3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/c2"
+            android:layout_margin="5dp"
+            android:elevation="40dp"
+            android:padding="10dp"
+            app:cardCornerRadius="10dp"
 
 
             >
@@ -92,18 +87,15 @@
         </android.support.v7.widget.CardView>
 
 
-
-
-
         <android.support.v7.widget.CardView
+            android:id="@+id/c4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/c3"
             android:layout_margin="5dp"
             android:elevation="40dp"
-            app:cardCornerRadius="10dp"
             android:padding="10dp"
-            android:id="@+id/c4"
-            android:layout_below="@+id/c3"
+            app:cardCornerRadius="10dp"
 
             >
 
@@ -119,19 +111,15 @@
         </android.support.v7.widget.CardView>
 
 
-
-
-
-
         <android.support.v7.widget.CardView
+            android:id="@+id/c5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/c4"
             android:layout_margin="5dp"
             android:elevation="40dp"
-            app:cardCornerRadius="10dp"
             android:padding="10dp"
-            android:id="@+id/c5"
-            android:layout_below="@+id/c4"
+            app:cardCornerRadius="10dp"
 
 
             >
@@ -148,17 +136,15 @@
         </android.support.v7.widget.CardView>
 
 
-
-
         <android.support.v7.widget.CardView
+            android:id="@+id/c6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/c5"
             android:layout_margin="5dp"
             android:elevation="40dp"
-            app:cardCornerRadius="10dp"
             android:padding="10dp"
-            android:id="@+id/c6"
-            android:layout_below="@+id/c5"
+            app:cardCornerRadius="10dp"
 
 
             >
@@ -175,17 +161,15 @@
         </android.support.v7.widget.CardView>
 
 
-
-
         <android.support.v7.widget.CardView
+            android:id="@+id/c7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/c6"
             android:layout_margin="5dp"
             android:elevation="40dp"
-            app:cardCornerRadius="10dp"
             android:padding="10dp"
-            android:id="@+id/c7"
-            android:layout_below="@+id/c6"
+            app:cardCornerRadius="10dp"
 
 
             >
@@ -202,17 +186,15 @@
         </android.support.v7.widget.CardView>
 
 
-
-
         <android.support.v7.widget.CardView
+            android:id="@+id/c8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/c7"
             android:layout_margin="5dp"
             android:elevation="40dp"
-            app:cardCornerRadius="10dp"
             android:padding="10dp"
-            android:id="@+id/c8"
-            android:layout_below="@+id/c7"
+            app:cardCornerRadius="10dp"
 
 
             >
@@ -227,7 +209,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="20sp" />
         </android.support.v7.widget.CardView>
-
 
 
     </RelativeLayout>
