@@ -186,6 +186,7 @@ public class RegisterPage extends AppCompatActivity {
 
                         ref.child(String.valueOf(Integer.parseInt(key) + 1)).setValue(hashMap);
                         Registered_User_Id.name = name.getText().toString();
+                        Registered_User_Id.admin = "NORMAL";
                         Toast.makeText(getApplicationContext(),"Registration Success",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(RegisterPage.this, NewHomePage.class);
                         startActivity(intent);

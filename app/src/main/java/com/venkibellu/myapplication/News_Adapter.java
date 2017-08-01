@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -55,10 +57,16 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
     Query query;
     ValueEventListener cquerynewevent;
     ValueEventListener querynewevent;
+    ValueEventListener equerynewevent;
+    ValueEventListener cequerynewevent;
     private int keyval;
     ValueEventListener queryevent;
     ValueEventListener cqueryevent;
+    ValueEventListener equeryevent;
+    ValueEventListener cequeryevent;
     private StorageReference remove;
+    private Animation animation;
+    private View view;
 
 
     public News_Adapter(ArrayList<String> listname,
@@ -96,7 +104,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
 
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
-        View view = convertView;
+        view = convertView;
         final ViewHolder holder;
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -210,7 +218,17 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
         }
 
         Button delete = (Button)view.findViewById(R.id.news_delete);
-        Button edit = (Button)view.findViewById(R.id.news_edit);
+        final TextView time = (TextView)view.findViewById(R.id.timestamp);
+        final Button edit = (Button)view.findViewById(R.id.news_edit);
+        final Button submit = (Button)view.findViewById(R.id.news_edit_submit);
+        final EditText editText = (EditText)view.findViewById(R.id.news_details_edit);
+
+        if(!Registered_User_Id.admin.equals("ADMIN"))
+        {
+            edit.setVisibility(View.GONE);
+            submit.setVisibility(View.GONE);
+            delete.setVisibility(View.GONE);
+        }
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,10 +257,12 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                             query.addValueEventListener(queryevent = new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    for (DataSnapshot child : dataSnapshot.getChildren()) {
-                                        keyval = Integer.parseInt(child.getKey());
-                                        keyval = keyval + position;
-                                    }
+                                    try {
+                                        for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                            keyval = Integer.parseInt(child.getKey());
+                                            keyval = keyval + position;
+                                        }
+                                    }catch (Exception e) {}
 
                                 }
 
@@ -319,10 +339,12 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                             query.addValueEventListener(cqueryevent = new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    for (DataSnapshot child : dataSnapshot.getChildren()) {
-                                        keyval = Integer.parseInt(child.getKey());
-                                        keyval = keyval + position;
-                                    }
+                                    try {
+                                        for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                            keyval = Integer.parseInt(child.getKey());
+                                            keyval = keyval + position;
+                                        }
+                                    }catch (Exception e) {}
 
                                 }
 
@@ -382,15 +404,140 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
 
             }
         });
+        editText.setText(holder.detailsTextView.getText());
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                view.clearAnimation();
+
+                if(Registered_User_Id.fromactivity.equals("News")) {
+
+
+                    News.ref.removeEventListener(News.myevent);
+
+
+                    editText.setVisibility(View.VISIBLE);
+
+                    holder.detailsTextView.setVisibility(View.GONE);
+                    submit.setVisibility(View.VISIBLE);
+                    edit.setVisibility(View.GONE);
+                    submit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            refnum = fbdb.getInstance().getReference().child("News");
+                            query = refnum.orderByKey().limitToFirst(1);
+                            query.addValueEventListener(equeryevent = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    try{
+                                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                        keyval = Integer.parseInt(child.getKey());
+                                        keyval = keyval + position;
+                                    }
+                                    }catch (Exception e) {}
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+                            refnum.addListenerForSingleValueEvent(equerynewevent = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                                    refnum.child(String.valueOf(keyval)).child("News_Details").setValue(editText.getText().toString());
+                                    if(!time.getText().toString().endsWith("(Edited)"))
+                                        refnum.child(String.valueOf(keyval)).child("Timestamp").setValue(time.getText().toString() + " (Edited)");
+                                    submit.setVisibility(View.GONE);
+                                    edit.setVisibility(View.VISIBLE);
+                                    editText.setVisibility(View.INVISIBLE);
+                                    holder.detailsTextView.setVisibility(View.VISIBLE);
+                                    News.ref.addValueEventListener(News.myevent);
+                                    refnum.removeEventListener(equerynewevent);
+
+
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+                    });
+
+                }
+                if(Registered_User_Id.fromactivity.equals("Campus Says"))
+                {
+                    Campus_Says.ref.removeEventListener(Campus_Says.myevent);
+                    editText.setVisibility(View.VISIBLE);
+                    holder.detailsTextView.setVisibility(View.GONE);
+                    submit.setVisibility(View.VISIBLE);
+                    edit.setVisibility(View.GONE);
+                    submit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            refnum = fbdb.getInstance().getReference().child("Campus Says");
+                            query = refnum.orderByKey().limitToFirst(1);
+                            query.addValueEventListener(cequeryevent = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    try{
+                                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                        keyval = Integer.parseInt(child.getKey());
+                                        keyval = keyval + position;
+                                    }
+                                    }catch (Exception e) {}
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+                            refnum.addListenerForSingleValueEvent(cequerynewevent = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    try{
+
+                                        refnum.child(String.valueOf(keyval)).child("Campus_Details").setValue(editText.getText().toString());
+                                        if(!time.getText().toString().endsWith("(Edited)"))
+                                        refnum.child(String.valueOf(keyval)).child("Timestamp").setValue(time.getText().toString() + " (Edited)");
+                                    submit.setVisibility(View.GONE);
+                                    edit.setVisibility(View.VISIBLE);
+                                    editText.setVisibility(View.INVISIBLE);
+                                    holder.detailsTextView.setVisibility(View.VISIBLE);
+                                        Campus_Says.ref.addValueEventListener(Campus_Says.myevent);
+                                    refnum.removeEventListener(cequerynewevent);
+                                    }catch (Exception e) {}
+
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+                    });
+
+                }
+
+
+
+
 
             }
         });
 
-        Animation animation = AnimationUtils.loadAnimation(context,
+        animation = AnimationUtils.loadAnimation(context,
                 (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
 
         view.startAnimation(animation);

@@ -137,6 +137,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
                             if (snapshot.child("Google_ID").getValue().toString().equals(accountcheck)) {
                                 progress.dismiss();
                                 Registered_User_Id.name = snapshot.child("Name").getValue().toString();
+                                Registered_User_Id.admin = snapshot.child("Designation").getValue().toString();
                                 counter++;
                                 startActivity(homepageIntent);
                                 finish();
@@ -184,6 +185,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
 
     public void bypass(View v) {
+        Registered_User_Id.admin = "";
         startActivity(homepageIntent);
         finish();
     }

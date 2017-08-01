@@ -10,4 +10,5 @@ public class Registered_User_Id {
     public static String registered_user_email;
     public static  String name;
     public static String fromactivity;
+    public static String admin;
 }

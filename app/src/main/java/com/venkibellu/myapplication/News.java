@@ -39,7 +39,7 @@ import java.util.ArrayList;
 public class News extends AppCompatActivity {
 
     private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference ref;
+    public static DatabaseReference ref;
     private DatabaseReference myref;
     private ArrayList<String> newsname = new ArrayList<String>();
     private ArrayList<String> newstime = new ArrayList<String>();
@@ -50,6 +50,7 @@ public class News extends AppCompatActivity {
     private ProgressDialog progress;
     private FloatingActionButton fab;
     public static AlertDialog.Builder builder;
+    public static ValueEventListener myevent;
 
 
 
@@ -75,7 +76,7 @@ public class News extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
         ref = mFirebaseDatabase.getInstance().getReference().child("News");
 
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addValueEventListener(myevent = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try{

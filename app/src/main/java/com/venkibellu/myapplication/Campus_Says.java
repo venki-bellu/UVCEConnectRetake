@@ -29,7 +29,7 @@ import java.util.ArrayList;
 public class Campus_Says extends AppCompatActivity {
 
     private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference ref;
+    public static DatabaseReference ref;
     private ArrayList<String> campusname = new ArrayList<String>();
     private ArrayList<String> campusdetails = new ArrayList<String>();
     private ArrayList<String> campusimage = new ArrayList<String>();
@@ -40,6 +40,7 @@ public class Campus_Says extends AppCompatActivity {
     private ProgressDialog progress;
     private DatabaseReference myref;
     public static AlertDialog.Builder builderc;
+    public static ValueEventListener myevent;
 
 
     @Override
@@ -67,7 +68,7 @@ public class Campus_Says extends AppCompatActivity {
         Registered_User_Id.fromactivity = "Campus Says";
 
             ref = mFirebaseDatabase.getInstance().getReference().child("Campus Says");
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addValueEventListener(myevent = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try{
