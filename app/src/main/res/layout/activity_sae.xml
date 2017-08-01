@@ -21,19 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:autoLink="all"
-            android:text="SAE is the acronym for &quot;Society of automotive Engineers&quot; which is a World Wide organization who set
-standards and validate automotive projects.
-\n\nA student branch of this organization exists in UVCE. The motto of SAE-INDIA stands as ‘The
-Engineering Society for Advancing Mobility in Land Sea Air and Space’. GKDC (go-cart building
-championship), BAJA (Pronounced as BAHA, is an all-terrain vehicle building championship), SUPRA
-(Racing car building championship) are the main National Level competition organised by SAE.
-\n\nThe student branch of SAE, ‘SAE-INDIA UVCE’ was set up in 2011 due to the earnest efforts of
-Mechanical Students of Batch 2009-2013. The club till date has involved in conducting many activities
-to benefit the members for improving their skills in the technical field.
-\n\nTeam Em-power UVCE stood 6th (AIR) in GKDC and 124th(AIR) In BAJA which are the best figures
-till date in the history of its involvement.
-\n\n\nWrite to us - sae.uvce@gmail.com
-\n\nContact us – Adithya Pai (9446325235)
+            android:text="Society of automotive Engineers (SAE) is a World Wide organization which sets standards and validates automotive projects. A student branch of this organization exists in UVCE. The motto of SAE-INDIA stands as ‘The Engineering Society for Advancing Mobility in Land Sea Air and Space’. \n\nGKDC (go-cart building championship), BAJA (Pronounced as BAHA, is an all-terrain vehicle building championship), SUPRA (Racing car building championship) are the main National Level competition organised by SAE.\n\nThe student branch of SAE, ‘SAE-INDIA UVCE’ was set up in 2011 due to the earnest efforts of Mechanical Students of Batch 2009-2013. The club till date has involved in conducting many activities to benefit the members for improving their skills in the technical field. \n\nTeam “Em-power UVCE” stood 6th (AIR) in GKDC and 124th (AIR) In BAJA which are the best figures till date in the history of its involvement.\n\nEmail: sae.uvce@gmail.com \n\nContact: Adithya Pai (9446325235)
 
 "
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
