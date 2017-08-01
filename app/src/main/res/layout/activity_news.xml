@@ -29,12 +29,12 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_news"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:src="@drawable/ic_add_black_24dp"
         android:maxHeight="10dp"
         android:maxWidth="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
