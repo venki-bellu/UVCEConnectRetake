@@ -1,20 +1,18 @@
 package com.venkibellu.myapplication;
 
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
-
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,9 +34,8 @@ public class Campus_Says extends AppCompatActivity {
     private ArrayList<String> campustime = new ArrayList<String>();
     private News_Adapter campus_adapter;
     private FloatingActionButton fab;
-    private ProgressDialog progress;
     private DatabaseReference myref;
-
+    private LinearLayout progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +77,7 @@ public class Campus_Says extends AppCompatActivity {
                         campustime.add(snapshot.child("Timestamp").getValue().toString());
                     }
                     campus_adapter.notifyDataSetChanged();
-                    progress.dismiss();
-
+                    progress.setVisibility(View.GONE);
                 } catch (Exception e){}
             }
 
@@ -90,12 +86,10 @@ public class Campus_Says extends AppCompatActivity {
 
             }
         });
-        progress = new ProgressDialog(Campus_Says.this);
-        progress.setMessage("Fetching Data.....");
-        progress.setTitle("Please Wait");
-        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progress.setCancelable(false);
-        progress.show();
+
+        progress = (LinearLayout) findViewById(R.id.progressLayout);
+        progress.setVisibility(View.VISIBLE);
+
         campus_adapter = new News_Adapter(campusname, this, this, campusdetails, campusorganization, campusimage, campustime);
         ListView listView = (ListView)findViewById(R.id.campus_list);
         listView.setAdapter(campus_adapter);

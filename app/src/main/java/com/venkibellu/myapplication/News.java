@@ -1,41 +1,26 @@
 package com.venkibellu.myapplication;
 
 
-import android.app.AlertDialog;
-import android.app.DownloadManager;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.app.Activity;
-import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class News extends AppCompatActivity {
@@ -49,9 +34,8 @@ public class News extends AppCompatActivity {
     private ArrayList<String> newsimage = new ArrayList<String>();
     private ArrayList<String> newsorganization = new ArrayList<String>();
     private News_Adapter news_adapter;
-    private ProgressDialog progress;
     private FloatingActionButton fab;
-    private LinearLayout linlaHeaderProgress;
+    private LinearLayout progress;
 
 
     @Override
@@ -76,7 +60,6 @@ public class News extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
         ref = mFirebaseDatabase.getInstance().getReference().child("News");
 
-        linlaHeaderProgress = (LinearLayout) findViewById(R.id.linlaHeaderProgress);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -96,8 +79,7 @@ public class News extends AppCompatActivity {
                         newstime.add(snapshot.child("Timestamp").getValue().toString());
                     }
                     news_adapter.notifyDataSetChanged();
-//                    progress.dismiss();
-                    linlaHeaderProgress.setVisibility(View.GONE);
+                    progress.setVisibility(View.GONE);
 
                 } catch (Exception e){ }
             }
@@ -108,14 +90,8 @@ public class News extends AppCompatActivity {
             }
         });
 
-
-//        progress = new ProgressDialog(News.this);
-//        progress.setMessage("Fetching Data.....");
-//        progress.setTitle("Please Wait");
-//        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-//        progress.setCancelable(false);
-//        progress.show();
-        linlaHeaderProgress.setVisibility(View.VISIBLE);
+        progress = (LinearLayout) findViewById(R.id.progressLayout);
+        progress.setVisibility(View.VISIBLE);
 
         news_adapter = new News_Adapter(newsname, this, this, newsdetails, newsorganization, newsimage, newstime);
         final ListView listView = (ListView)findViewById(R.id.news_list);
