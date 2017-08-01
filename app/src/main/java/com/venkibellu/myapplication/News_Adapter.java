@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
@@ -188,6 +189,16 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
         } else {
             holder.extraImageView.setVisibility(View.GONE);
         }
+
+        Button delete = (Button)view.findViewById(R.id.news_delete);
+        Button edit = (Button)view.findViewById(R.id.news_edit);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         Animation animation = AnimationUtils.loadAnimation(context,
                 (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);

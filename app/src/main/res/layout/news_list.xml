@@ -52,7 +52,7 @@
         android:text="Details"
         android:typeface="serif"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="25dp"
+        android:textSize="20sp"
         android:textStyle="normal"
         android:layout_marginTop="10dp"
         android:autoLink="all"
@@ -68,7 +68,29 @@
         android:id="@+id/timestamp"
         android:textColor="#7e7b7b"
         android:padding="10dp"/>
+            <Button
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/timestamp"
+                android:layout_alignParentRight="true"
+                android:padding="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/news_delete"
+                android:id="@+id/news_delete"/>
+            <Button
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/timestamp"
+                android:padding="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toLeftOf="@id/news_delete"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/news_edit"
+                android:id="@+id/news_edit"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
+
+
 
 </RelativeLayout>
