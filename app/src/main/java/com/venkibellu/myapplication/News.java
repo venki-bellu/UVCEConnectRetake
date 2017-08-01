@@ -18,7 +18,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -49,7 +51,7 @@ public class News extends AppCompatActivity {
     private News_Adapter news_adapter;
     private ProgressDialog progress;
     private FloatingActionButton fab;
-
+    private LinearLayout linlaHeaderProgress;
 
 
     @Override
@@ -74,6 +76,7 @@ public class News extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
         ref = mFirebaseDatabase.getInstance().getReference().child("News");
 
+        linlaHeaderProgress = (LinearLayout) findViewById(R.id.linlaHeaderProgress);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -93,7 +96,8 @@ public class News extends AppCompatActivity {
                         newstime.add(snapshot.child("Timestamp").getValue().toString());
                     }
                     news_adapter.notifyDataSetChanged();
-                    progress.dismiss();
+//                    progress.dismiss();
+                    linlaHeaderProgress.setVisibility(View.GONE);
 
                 } catch (Exception e){ }
             }
@@ -103,12 +107,16 @@ public class News extends AppCompatActivity {
 
             }
         });
-        progress = new ProgressDialog(News.this);
-        progress.setMessage("Fetching Data.....");
-        progress.setTitle("Please Wait");
-        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progress.setCancelable(false);
-        progress.show();
+
+
+//        progress = new ProgressDialog(News.this);
+//        progress.setMessage("Fetching Data.....");
+//        progress.setTitle("Please Wait");
+//        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        progress.setCancelable(false);
+//        progress.show();
+        linlaHeaderProgress.setVisibility(View.VISIBLE);
+
         news_adapter = new News_Adapter(newsname, this, this, newsdetails, newsorganization, newsimage, newstime);
         final ListView listView = (ListView)findViewById(R.id.news_list);
         listView.setAdapter(news_adapter);
