@@ -203,7 +203,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
         Animation animation = AnimationUtils.loadAnimation(context,
                 (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
 
-        view.startAnimation(animation);
+//        view.startAnimation(animation);
         lastPosition = position;
 
         return view;
