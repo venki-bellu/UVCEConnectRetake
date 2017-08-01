@@ -3,8 +3,10 @@ package com.venkibellu.myapplication;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
@@ -12,6 +14,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -42,11 +47,18 @@ public class Campus_Says extends AppCompatActivity {
     public static AlertDialog.Builder builderc;
     public static ValueEventListener myevent;
 
+    Context context=this;
+    Intent sendIntent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campus__says);
+
+        sendIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", "1917uvce@gmail.com", null));
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT,"Request to Post in Campus Says");
 
         builderc = new AlertDialog.Builder(this);
 
@@ -162,6 +174,20 @@ public class Campus_Says extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater=getMenuInflater();
+        menuInflater.inflate(R.menu.campus_says_menu,menu);
+        return true;
+    }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.say_something)
+        {
+            context.startActivity(Intent.createChooser(sendIntent, null));
+            return true;
+        }
+        return false;
+    }
 }

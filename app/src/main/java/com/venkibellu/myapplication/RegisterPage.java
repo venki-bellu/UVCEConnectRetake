@@ -87,10 +87,12 @@ public class RegisterPage extends AppCompatActivity {
                     // Invalid request
                     // ...
                     Toast.makeText(getApplicationContext(),"Invalid Mobile number",Toast.LENGTH_SHORT).show();
+                    progress.dismiss();
                 } else if (e instanceof FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded
                     // ...
                     Toast.makeText(getApplicationContext(),"Server Error. Unable to register",Toast.LENGTH_SHORT).show();
+                    progress.dismiss();
                 }
 
             }
