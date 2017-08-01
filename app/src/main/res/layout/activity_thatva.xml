@@ -21,15 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:autoLink="all"
-            android:text="We are aware of the fact that RAMESH ARAVIND, DATTANNA, MANOHMURTHY, namma UVCEs
-proud alumni who with their skills have created an everlasting impact on Kannada film industry.
-\n\nUVCEs leading colligate Club which aims to improve one&#39;s skill in acting is Thathva.
-\n\nThathva was established by Abhishek Chakma from ECE batch of 2015, inspired by club Darpan.
-Currently Thathva consists of 60+ students involved in the activity. Members of Thathva took part in a
-street play ensemble called Manthan which took place in Forum mall, Kormangla.
-\n\nThe main objective is to *Promote theatre in college *Set up a platform for theatre enthusiasts *to
-collaborate and do what they love
-\n\n\nContact: - Darshan (8867362582)
+            android:text="We are aware of the fact that RAMESH ARAVIND, DATTANNA, MANOHMURTHY are namma UVCE’s proud alumni who with their skills have created an everlasting impact on Kannada film industry.\n\nUVCE’s leading colligate Club which aims to improve one's skill in acting is Thathva.\n\nThathva was established by Abhishek Chakma from ECE batch of 2015, inspired by club Darpan. Currently Thathva consists of 60+ students involved in the activity. Members of Thathva took part in a street play ensemble called Manthan, they put-up plays in every fest.. \n\nThe main objective is to \n\n* Promote theatre in college\n\n* Set up a platform for theatre enthusiasts \n\n* To collaborate and do what they love\n\nContact: Darshan (8867362582)
 "
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="20sp" />

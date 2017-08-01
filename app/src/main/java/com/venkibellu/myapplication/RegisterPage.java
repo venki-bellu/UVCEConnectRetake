@@ -1,5 +1,6 @@
 package com.venkibellu.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
@@ -52,6 +53,7 @@ public class RegisterPage extends AppCompatActivity {
     String mVerificationId;
     PhoneAuthProvider.ForceResendingToken mResendToken;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
+    private ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +105,8 @@ public class RegisterPage extends AppCompatActivity {
                 requesetOTP.setEnabled(false);
                 submitButton.setEnabled(true);
                 phoneNumber.setEnabled(false);
+                enteredOTP.setEnabled(true);
+                progress.dismiss();
             }
         };
 
@@ -237,6 +241,13 @@ public class RegisterPage extends AppCompatActivity {
                     RegisterPage.this,               // Activity (for callback binding)
                     mCallbacks                         //OnVerificationStateChangedCallbacks
             );
+
+            progress = new ProgressDialog(RegisterPage.this);
+            progress.setMessage("Sending OTP...");
+            progress.setTitle("Please Wait");
+            progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progress.setCancelable(false);
+            progress.show();
         }
         else
         {

@@ -29,7 +29,8 @@
         android:layout_height="wrap_content"
         android:text="Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:layout_below="@+id/registerpage_heading"/>
+        android:layout_below="@+id/registerpage_button_submit"
+        android:enabled="false"/>
 
     <EditText
         android:id="@+id/registerpage_name"
@@ -131,7 +132,7 @@
         android:layout_height="wrap_content"
         android:text="Phone number"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:layout_below="@+id/registerpage_registerno"
+        android:layout_below="@+id/registerpage_heading"
         android:layout_marginTop="20dp"
         />
 
@@ -172,7 +173,8 @@
         android:hint="Enter OTP"
         android:inputType="number"
         android:gravity="center_horizontal"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:enabled="false"/>
 
     <Button
         android:id="@+id/registerpage_button_submit"
@@ -190,7 +192,7 @@
         android:id="@+id/registerpage_button_register"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/registerpage_button_submit"
+        android:layout_below="@+id/registerpage_registerno"
         android:layout_centerHorizontal="true"
         android:text="Register"
         android:onClick="registerUser"

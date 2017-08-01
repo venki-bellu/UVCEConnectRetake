@@ -1,9 +1,11 @@
 package com.venkibellu.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class IntroductionScreen extends AppCompatActivity {
 
@@ -23,6 +25,7 @@ public class IntroductionScreen extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },3000);
+        },1500);
     }
+
 }
