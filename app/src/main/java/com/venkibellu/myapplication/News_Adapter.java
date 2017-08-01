@@ -456,6 +456,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                                     edit.setVisibility(View.VISIBLE);
                                     editText.setVisibility(View.INVISIBLE);
                                     holder.detailsTextView.setVisibility(View.VISIBLE);
+                                    holder.detailsTextView.setText(editText.getText().toString());
                                     News.ref.addValueEventListener(News.myevent);
                                     refnum.removeEventListener(equerynewevent);
 
@@ -512,7 +513,8 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                                     submit.setVisibility(View.GONE);
                                     edit.setVisibility(View.VISIBLE);
                                     editText.setVisibility(View.INVISIBLE);
-                                    holder.detailsTextView.setVisibility(View.VISIBLE);
+                                        holder.detailsTextView.setVisibility(View.VISIBLE);
+                                        holder.detailsTextView.setText(editText.getText().toString());
                                         Campus_Says.ref.addValueEventListener(Campus_Says.myevent);
                                     refnum.removeEventListener(cequerynewevent);
                                     }catch (Exception e) {}

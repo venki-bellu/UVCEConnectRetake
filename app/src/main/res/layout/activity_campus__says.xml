@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.venkibellu.myapplication.Campus_Says"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorPrimaryDark"
+    android:padding="10dp">
 
     <RelativeLayout
         android:id="@+id/campusrelative"
