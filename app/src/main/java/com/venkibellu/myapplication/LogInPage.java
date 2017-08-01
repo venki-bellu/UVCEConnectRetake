@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -44,7 +45,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     private DatabaseReference ref;
     private GoogleSignInAccount account;
     public static String accountcheck;
-    private ProgressDialog progress;
+    private LinearLayout progress;
 
 
 
@@ -59,13 +60,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
-        progress = new ProgressDialog(LogInPage.this);
-        progress.setMessage("Fetching Data.....");
-        progress.setTitle("Please Wait");
-        progress.setCancelable(false);
-        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-
+        progress = (LinearLayout) findViewById(R.id.progressLayout);
         homepageIntent = new Intent(this, NewHomePage.class);
 
         sharedPreferences = LogInPage.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
@@ -88,7 +83,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         //Ignore above comment. This is working fine. (Bellu)
         OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
         if (opr.isDone()) {
-            progress.show();
+            progress.setVisibility(View.VISIBLE);
             GoogleSignInResult result = opr.get();
 
             handleSignInResult(result);
@@ -113,7 +108,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     }
 
     private void signIn() {
-        progress.show();
+        progress.setVisibility(View.VISIBLE);
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         startActivityForResult(signInIntent, REQ_CODE);
     }
@@ -135,7 +130,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
                         int counter = 0;
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             if (snapshot.child("Google_ID").getValue().toString().equals(accountcheck)) {
-                                progress.dismiss();
+                                progress.setVisibility(View.GONE);
                                 Registered_User_Id.name = snapshot.child("Name").getValue().toString();
                                 counter++;
                                 startActivity(homepageIntent);
@@ -143,7 +138,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
                             }
                         }
                         if (counter == 0) {
-                            progress.dismiss();
+                            progress.setVisibility(View.GONE);
                             Intent intent = new Intent(LogInPage.this, RegisterPage.class);
                             startActivity(intent);
                             finish();
@@ -164,7 +159,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
             editor.commit();
 
         } else {
-            progress.dismiss();
+            progress.setVisibility(View.GONE);
             System.out.println("Sign-in Failed: " + result.getStatus());
             Toast.makeText(getApplicationContext(), "Google Sign In failure", Toast.LENGTH_LONG).show();
         }

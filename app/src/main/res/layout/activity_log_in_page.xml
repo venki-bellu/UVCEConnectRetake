@@ -8,8 +8,22 @@
     tools:context="com.venkibellu.myapplication.LogInPage"
     android:background="@drawable/loginpagebackground">
 
+    <LinearLayout
+        android:id="@+id/progressLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.ProgressBarAccent">
+        </ProgressBar>
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
