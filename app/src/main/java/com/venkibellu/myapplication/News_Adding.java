@@ -12,6 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,12 +66,13 @@ public class News_Adding extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         storageReference = FirebaseStorage.getInstance().getReference();
         super.onCreate(savedInstanceState);
+        getWindow();
         setContentView(R.layout.activity_news__adding);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ref = mfbdb.getInstance().getReference().child("News");
 
-
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         Query query = ref.orderByKey().limitToFirst(1);
 
