@@ -1,6 +1,7 @@
 package com.venkibellu.myapplication;
 
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -38,12 +39,15 @@ public class Campus_Says extends AppCompatActivity {
     private FloatingActionButton fab;
     private ProgressDialog progress;
     private DatabaseReference myref;
+    public static AlertDialog.Builder builderc;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campus__says);
+
+        builderc = new AlertDialog.Builder(this);
 
         if (Build.VERSION.SDK_INT >= 23) { // if android version >= 6.0
             if (ContextCompat.checkSelfPermission(
@@ -60,6 +64,7 @@ public class Campus_Says extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),
                 "Long press an image to download it",
                 Toast.LENGTH_SHORT).show();
+        Registered_User_Id.fromactivity = "Campus Says";
 
             ref = mFirebaseDatabase.getInstance().getReference().child("Campus Says");
         ref.addValueEventListener(new ValueEventListener() {

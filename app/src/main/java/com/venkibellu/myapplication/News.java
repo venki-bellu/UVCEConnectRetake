@@ -49,6 +49,7 @@ public class News extends AppCompatActivity {
     private News_Adapter news_adapter;
     private ProgressDialog progress;
     private FloatingActionButton fab;
+    public static AlertDialog.Builder builder;
 
 
 
@@ -56,7 +57,7 @@ public class News extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
-
+        builder = new AlertDialog.Builder(this);
         if (Build.VERSION.SDK_INT >= 23) { // if android version >= 6.0
             if (ContextCompat.checkSelfPermission(
                     getApplicationContext(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -68,7 +69,7 @@ public class News extends AppCompatActivity {
                         1);
             }
         }
-
+        Registered_User_Id.fromactivity = "News";
         Toast.makeText(getApplicationContext(),
                 "Long press an image to download it",
                 Toast.LENGTH_SHORT).show();

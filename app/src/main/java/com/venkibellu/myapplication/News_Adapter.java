@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +24,20 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.util.ArrayList;
+
+import static com.venkibellu.myapplication.Campus_Says.builderc;
+import static com.venkibellu.myapplication.News.builder;
 
 
 public class News_Adapter extends BaseAdapter implements ListAdapter {
@@ -40,6 +50,15 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
     private Context context;
     private int lastPosition = -1;
     private String fileName;
+    private FirebaseDatabase fbdb;
+    private DatabaseReference refnum;
+    Query query;
+    ValueEventListener cquerynewevent;
+    ValueEventListener querynewevent;
+    private int keyval;
+    ValueEventListener queryevent;
+    ValueEventListener cqueryevent;
+    private StorageReference remove;
 
 
     public News_Adapter(ArrayList<String> listname,
@@ -194,6 +213,177 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
         Button edit = (Button)view.findViewById(R.id.news_edit);
 
         delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(Registered_User_Id.fromactivity.equals("News")) {
+
+                builder.setCancelable(true);
+                builder.setTitle("Alert");
+                builder.setIcon(android.R.drawable.ic_dialog_alert);
+                builder.setCancelable(true);
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.setMessage("Are you sure you want to delete this post?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                            refnum = fbdb.getInstance().getReference().child("News");
+                            query = refnum.orderByKey().limitToFirst(1);
+                            query.addValueEventListener(queryevent = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                        keyval = Integer.parseInt(child.getKey());
+                                        keyval = keyval + position;
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
+
+
+                            refnum.addListenerForSingleValueEvent(querynewevent = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    try {
+
+                                        if(!dataSnapshot.child(String.valueOf(keyval)).child("News_Image").getValue().toString().equals("")) {
+                                            remove = FirebaseStorage.getInstance().getReference().child(dataSnapshot.child(String.valueOf(keyval)).child("News_Image").getValue().toString());
+                                            remove.delete();
+                                        }
+
+                                            for (int i = keyval; i > keyval-position; i--) {
+                                                refnum.child(String.valueOf(i)).child("Added_By").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("Added_By").getValue());
+                                                refnum.child(String.valueOf(i)).child("News_Details").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("News_Details").getValue());
+                                                refnum.child(String.valueOf(i)).child("News_Image").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("News_Image").getValue());
+                                                refnum.child(String.valueOf(i)).child("News_Name").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("News_Name").getValue());
+                                                refnum.child(String.valueOf(i)).child("News_Organization").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("News_Organization").getValue());
+                                                refnum.child(String.valueOf(i)).child("Timestamp").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("Timestamp").getValue());
+
+                                            }
+
+
+                            refnum.child(String.valueOf(keyval-position)).removeValue();
+                                        refnum.removeEventListener(querynewevent);
+
+
+                                    } catch (Exception e) {
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
+
+                    }
+                });
+
+                    builder.show();
+
+                        }
+                        if(Registered_User_Id.fromactivity.equals("Campus Says"))
+                        {
+                            builderc.setCancelable(true);
+                            builderc.setTitle("Alert");
+                            builderc.setIcon(android.R.drawable.ic_dialog_alert);
+                            builderc.setCancelable(true);
+                            builderc.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                            builderc.setMessage("Are you sure you want to delete this post?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                            refnum = fbdb.getInstance().getReference().child("Campus Says");
+                            query = refnum.orderByKey().limitToFirst(1);
+                            query.addValueEventListener(cqueryevent = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                        keyval = Integer.parseInt(child.getKey());
+                                        keyval = keyval + position;
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
+
+
+                            refnum.addListenerForSingleValueEvent(cquerynewevent = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    try {
+
+                                        if(!dataSnapshot.child(String.valueOf(keyval)).child("Campus_Image").getValue().toString().equals("")) {
+                                            remove = FirebaseStorage.getInstance().getReference().child(dataSnapshot.child(String.valueOf(keyval)).child("Campus_Image").getValue().toString());
+                                            remove.delete();
+                                        }
+
+                                        for (int i = keyval; i > keyval-position; i--) {
+                                            refnum.child(String.valueOf(i)).child("Added_By").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("Added_By").getValue());
+                                            refnum.child(String.valueOf(i)).child("Campus_Details").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("Campus_Details").getValue());
+                                            refnum.child(String.valueOf(i)).child("Campus_Image").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("Campus_Image").getValue());
+                                            refnum.child(String.valueOf(i)).child("Campus_Name").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("Campus_Name").getValue());
+                                            refnum.child(String.valueOf(i)).child("Campus_Organization").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("Campus_Organization").getValue());
+                                            refnum.child(String.valueOf(i)).child("Timestamp").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("Timestamp").getValue());
+
+                                        }
+
+
+                                        refnum.child(String.valueOf(keyval-position)).removeValue();
+                                        refnum.removeEventListener(cquerynewevent);
+
+
+                                    } catch (Exception e) {
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
+                                }
+                            });
+
+                            builderc.show();
+
+
+                        }
+
+
+
+            }
+        });
+
+        edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
