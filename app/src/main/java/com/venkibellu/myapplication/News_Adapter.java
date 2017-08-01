@@ -84,6 +84,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
         this.newsimage = newsimage;
         this.newsextraimage = newsextraimage;
         this.timestamplist = timestamplist;
+
     }
 
     @Override
@@ -159,8 +160,6 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             holder.extraImageView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-
-
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setCancelable(true);
                     builder.setTitle("Download Image");
@@ -223,8 +222,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
         final Button submit = (Button)view.findViewById(R.id.news_edit_submit);
         final EditText editText = (EditText)view.findViewById(R.id.news_details_edit);
 
-        if(!Registered_User_Id.admin.equals("ADMIN"))
-        {
+        if(!Registered_User_Id.admin.equals("ADMIN")) {
             edit.setVisibility(View.GONE);
             submit.setVisibility(View.GONE);
             delete.setVisibility(View.GONE);
@@ -315,8 +313,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                 });
 
                     builder.show();
-
-                        }
+                }
                         if(Registered_User_Id.fromactivity.equals("Campus Says"))
                         {
                             builderc.setCancelable(true);
@@ -542,7 +539,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
         animation = AnimationUtils.loadAnimation(context,
                 (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
 
-        view.startAnimation(animation);
+//        view.startAnimation(animation);
         lastPosition = position;
 
         return view;
