@@ -20,21 +20,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Life is full of surprises, Adventure is a part and parcel of engineering life. In this limited 4years an
-engineer would have experienced lot of unforgettable moments. To quench one&#39;s thirst for Adventure
-&quot;Chakravyuha&quot; the trekking club of UVCE is setup by students.
-\n\nClub holds 2 trekking drives in a semester. Starting point of every trek being UVCE, it trys to explore
-trekking spots across Bengaluru within highly sophisticated budget. With this practice an unofficial
-bikers club was born who reaches the destination with their own bike.
-\n\n
-Kunthi betta
-\n
-Maklidurga
-\n
-Tadyandimol
-\n
-Chanarayanna durga
-\nAre the trekking spots visited recently.
+            android:autoLink="all"
+            android:text="Life is full of surprises, Adventure is a part and parcel of engineering life. In this limited 4years an engineering student would have experienced lot of unforgettable moments. To quench one's thirst for Adventure &quot;Chakravyuha&quot;the trekking club of UVCE was started by students.\n\nClub usually holds 2 trekking drives in each semester. Starting point of every trek being UVCE, it tries to explore trekking spots across Bengaluru within a tight budget and give students an adventure experience.\n\nThe recent treks being:\n\n
+1.	Kunthi betta\n2.	Makalidurga\n3.	Tadiyandanmol\n4.	Chanarayanna durga\n\nContact Us: Yashwanth H.S(9448430215)
+
 
 "
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"

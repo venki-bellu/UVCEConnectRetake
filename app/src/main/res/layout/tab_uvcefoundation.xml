@@ -21,18 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:autoLink="all"
-            android:text="The UVCE Foundation was created by alumni, faculty and well-wishers of UVCE in 2003 to help
-restore the glory of UVCE. The Foundation has members from around the world and has already
-executed various projects at UVCE to address immediate needs of the students of UVCE
-\n\nUVCE Foundation has been growing in strength ever since its inception &amp; has been widely
-recognized as a strong support from the college authorities. The objective of the Foundation is to
-restore the ‘top-ten’ status the college.
-\n\nUVCE Foundation works with very high-levels of financial transparency &amp; is now recognized with the
-Income Tax department &amp; has filed tax returns up-to- date. The Foundation has obtained the 12A
-registration required for operation of the Trust in addition to the 80G exemption. A team is currently
-working to file for Prior approval (FCRA) to receive funds from the UVCE Foundation USA to execute
-projects in UVCE
-\n\n\nWebsite link: - http://uvcefoundation.org
+            android:text="The UVCE Foundation was created by alumni, faculty and well-wishers of UVCE in 2003 to help in restoring the glory of UVCE. It has members from around the world and has already executed various projects at UVCE to address immediate needs of the students of UVCE\n\nUVCE Foundation has been growing in strength ever since its inception and has been widely recognized as a strong support from the college authorities. The objective of the Foundation is to restore the ‘Top-Ten’ status of the college.\n\nWebsite: http://uvcefoundation.org
+
 "
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="20sp" />
