@@ -228,6 +228,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             edit.setVisibility(View.GONE);
             submit.setVisibility(View.GONE);
             delete.setVisibility(View.GONE);
+//            fab.setVisibiliey(View.GONE)
         }
 
         delete.setOnClickListener(new View.OnClickListener() {

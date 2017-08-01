@@ -2,38 +2,26 @@ package com.venkibellu.myapplication;
 
 
 import android.app.AlertDialog;
-import android.app.DownloadManager;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.app.Activity;
-import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class News extends AppCompatActivity {
@@ -124,26 +112,11 @@ public class News extends AppCompatActivity {
                 finish();
             }
         });
+
         fab.setVisibility(View.GONE);
-        myref = FirebaseDatabase.getInstance().getReference().child("Registered Users");
-        Query query = myref.orderByChild("Google_ID").equalTo(Registered_User_Id.registered_user_id);
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                try {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        if(snapshot.child("Designation").getValue().toString().equals("ADMIN"))
-                            fab.setVisibility(View.VISIBLE);
-                    }
-                }catch(Exception e) {}
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
+        if (Registered_User_Id.admin.equals("ADMIN")) {
+            fab.setVisibility(View.VISIBLE);
+        }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
