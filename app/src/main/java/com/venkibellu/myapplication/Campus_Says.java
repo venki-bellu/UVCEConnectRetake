@@ -18,6 +18,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -42,10 +44,10 @@ public class Campus_Says extends AppCompatActivity {
     private ArrayList<String> campustime = new ArrayList<String>();
     private News_Adapter campus_adapter;
     private FloatingActionButton fab;
-    private ProgressDialog progress;
     private DatabaseReference myref;
     public static AlertDialog.Builder builderc;
     public static ValueEventListener myevent;
+    private LinearLayout progress;
 
     Context context=this;
     Intent sendIntent;
@@ -98,7 +100,7 @@ public class Campus_Says extends AppCompatActivity {
                         campustime.add(snapshot.child("Timestamp").getValue().toString());
                     }
                     campus_adapter.notifyDataSetChanged();
-                    progress.dismiss();
+                    progress.setVisibility(View.GONE);
 
                 } catch (Exception e){}
             }
@@ -108,12 +110,10 @@ public class Campus_Says extends AppCompatActivity {
 
             }
         });
-        progress = new ProgressDialog(Campus_Says.this);
-        progress.setMessage("Fetching Data.....");
-        progress.setTitle("Please Wait");
-        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progress.setCancelable(false);
-        progress.show();
+
+        progress = (LinearLayout) findViewById(R.id.progressLayout);
+        progress.setVisibility(View.VISIBLE);
+
         campus_adapter = new News_Adapter(campusname, this, this, campusdetails, campusorganization, campusimage, campustime);
         ListView listView = (ListView)findViewById(R.id.campus_list);
         listView.setAdapter(campus_adapter);
@@ -149,7 +149,7 @@ public class Campus_Says extends AppCompatActivity {
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
     public void onRequestPermissionsResult(int requestCode,

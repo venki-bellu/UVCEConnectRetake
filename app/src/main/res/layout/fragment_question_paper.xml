@@ -21,11 +21,12 @@
 
     <Spinner
         android:id="@+id/branchSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="50dp"
         android:layout_gravity="center"
+        android:background="@drawable/textbox2"
         android:dropDownWidth="match_parent"
         android:entries="@array/branch_array">
     </Spinner>
@@ -44,10 +45,12 @@
 
         <Spinner
             android:id="@+id/semesterSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="30dp"
             android:dropDownWidth="50dp"
+            android:background="@drawable/textbox2"
+            android:textAlignment="center"
             android:entries="@array/semester_array">
         </Spinner>
 

@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -36,11 +37,10 @@ public class News extends AppCompatActivity {
     private ArrayList<String> newsimage = new ArrayList<String>();
     private ArrayList<String> newsorganization = new ArrayList<String>();
     private News_Adapter news_adapter;
-    private ProgressDialog progress;
     private FloatingActionButton fab;
     public static AlertDialog.Builder builder;
     public static ValueEventListener myevent;
-
+    private LinearLayout progress;
 
 
     @Override
@@ -84,7 +84,7 @@ public class News extends AppCompatActivity {
                         newstime.add(snapshot.child("Timestamp").getValue().toString());
                     }
                     news_adapter.notifyDataSetChanged();
-                    progress.dismiss();
+                    progress.setVisibility(View.GONE);
 
                 } catch (Exception e){ }
             }
@@ -94,12 +94,10 @@ public class News extends AppCompatActivity {
 
             }
         });
-        progress = new ProgressDialog(News.this);
-        progress.setMessage("Fetching Data.....");
-        progress.setTitle("Please Wait");
-        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progress.setCancelable(false);
-        progress.show();
+
+        progress = (LinearLayout) findViewById(R.id.progressLayout);
+        progress.setVisibility(View.VISIBLE);
+
         news_adapter = new News_Adapter(newsname, this, this, newsdetails, newsorganization, newsimage, newstime);
         final ListView listView = (ListView)findViewById(R.id.news_list);
         listView.setAdapter(news_adapter);

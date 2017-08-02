@@ -10,43 +10,58 @@
     android:background="@color/colorPrimaryDark"
     android:padding="10dp">
 
-<RelativeLayout
-    android:id="@+id/newsrelative"
-    android:paddingTop="10dp"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_below="@id/toolbar">
-
-
-
-    <ListView
-
+    <RelativeLayout
+        android:id="@+id/newsrelative"
+        android:paddingTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/news_list"
-        android:dividerHeight="10dp">
-    </ListView>
+        android:layout_below="@id/toolbar">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add_news"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/ic_add_black_24dp"
-        android:maxHeight="10dp"
-        android:maxWidth="10dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:elevation="4dp" />
-</RelativeLayout>
+        <LinearLayout
+            android:id="@+id/progressLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone" >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="News"
-        android:textColor="@color/cardview_light_background"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:layout_above="@id/newsrelative"/>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme.ProgressBarAccent">
+            </ProgressBar>
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/news_list"
+            android:dividerHeight="5dp">
+        </ListView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/add_news"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_add_black_24dp"
+            android:maxHeight="10dp"
+            android:maxWidth="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:elevation="4dp" />
+    </RelativeLayout>
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:text="News"-->
+        <!--android:textColor="@color/cardview_light_background"-->
+        <!--android:textSize="20dp"-->
+        <!--android:gravity="center"-->
+        <!--android:textStyle="bold"-->
+        <!--android:layout_above="@id/newsrelative"/>-->
 </RelativeLayout>
