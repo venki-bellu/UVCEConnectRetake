@@ -4,14 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:clipToPadding="false"
+    android:padding="10dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
     <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:elevation="40dp"
-        app:cardCornerRadius="10dp"
         android:padding="10dp"
+        app:cardCornerRadius="10dp"
 
         >
 
@@ -21,8 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:autoLink="all"
-            android:text="Life is full of surprises, Adventure is a part and parcel of engineering life. In this limited 4years an engineering student would have experienced lot of unforgettable moments. To quench one's thirst for Adventure &quot;Chakravyuha&quot;the trekking club of UVCE was started by students.\n\nClub usually holds 2 trekking drives in each semester. Starting point of every trek being UVCE, it tries to explore trekking spots across Bengaluru within a tight budget and give students an adventure experience.\n\nThe recent treks being:\n\n
-1.	Kunthi betta\n2.	Makalidurga\n3.	Tadiyandanmol\n4.	Chanarayanna durga\n\nContact Us: Yashwanth H.S(9448430215)
+            android:text="Life is full of surprises, Adventure is a part and parcel of engineering life. In this limited 4years an engineering student would have experienced lot of unforgettable moments. To quench one's thirst for Adventure &quot;Chakravyuha&quot;the trekking club of UVCE was started by students.\n\nClub usually holds 2 trekking drives in each semester. Starting point of every trek being UVCE, it tries to explore trekking spots across Bengaluru within a tight budget and give students an adventure experience.\n\nThe recent treks being:\n\n1.	Kunthi betta\n2.	Makalidurga\n3.	Tadiyandanmol\n4.	Chanarayanna durga\n\nContact Us: Yashwanth.H.S(9448430215)
 
 
 "
