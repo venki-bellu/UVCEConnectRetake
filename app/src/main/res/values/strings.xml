@@ -92,4 +92,5 @@ Professor, Department of Computer Science and Engineering,\n
 University Visvesvaraya College of Engineering\nBangalore University, Bangalore – 560001.</string>
     <string name="title_activity_ieee">ieee</string>
     <string name="title_activity_academic">Academic</string>
+    <string name="semester">Semester :</string>
 </resources>
