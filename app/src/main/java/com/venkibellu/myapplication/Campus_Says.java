@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -76,9 +77,6 @@ public class Campus_Says extends AppCompatActivity {
             }
         }
 
-        Toast.makeText(getApplicationContext(),
-                "Long press an image to download it",
-                Toast.LENGTH_SHORT).show();
         Registered_User_Id.fromactivity = "Campus Says";
 
             ref = mFirebaseDatabase.getInstance().getReference().child("Campus Says");
@@ -150,6 +148,24 @@ public class Campus_Says extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (!view.canScrollList(View.SCROLL_AXIS_VERTICAL) && scrollState == SCROLL_STATE_IDLE)
+                {
+                    //When List reaches bottom and the list isn't moving (is idle)
+                    fab.hide();
+                }
+                else
+                    fab.show();
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });
     }
 
     public void onRequestPermissionsResult(int requestCode,

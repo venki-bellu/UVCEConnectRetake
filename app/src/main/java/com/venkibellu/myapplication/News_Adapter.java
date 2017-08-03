@@ -204,6 +204,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                             dialog.dismiss();
                         }
                     });
+                    builder.setIcon(R.drawable.ic_cloud_download_black_24dp);
                     builder.show();
 
 

@@ -181,12 +181,6 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     }
 
 
-    public void bypass(View v) {
-        Registered_User_Id.admin = "";
-        startActivity(homepageIntent);
-        finish();
-    }
-
 
 }
 

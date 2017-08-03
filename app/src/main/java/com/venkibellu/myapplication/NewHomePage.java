@@ -1,11 +1,14 @@
 package com.venkibellu.myapplication;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -18,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.auth.api.Auth;
@@ -38,6 +42,9 @@ public class NewHomePage extends AppCompatActivity
     Intent sendIntent;
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener authStateListener;
+    private final String PREFERENECE = "UVCE-prefereceFile-Download";
+    private SharedPreferences preference;
+    String setting = "AskAgain";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +80,15 @@ public class NewHomePage extends AppCompatActivity
 
         sendIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                 "mailto", "1917uvce@gmail.com", null));
+
+        preference = getSharedPreferences(PREFERENECE, MODE_PRIVATE);
+
+        if (preference.contains(setting) && preference.getBoolean(setting, false)) {
+
+        } else {
+            showDisclaimer();
+        }
+        
     }
 
     @Override
@@ -176,4 +192,27 @@ public class NewHomePage extends AppCompatActivity
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+    private void showDisclaimer() {
+        AlertDialog.Builder disclaimerDialog = new AlertDialog.Builder(this);
+        LayoutInflater inflater = LayoutInflater.from(this);
+
+        View view = inflater.inflate(R.layout.disclaimer_image, null);
+        final CheckBox dontShowAgain = (CheckBox) view.findViewById(R.id.checkBoxid_image);
+
+        disclaimerDialog.setView(view)
+                .setTitle("Please Note")
+                .setMessage("\nIn order to download an image from News/Campus Says, long press the image to download it.")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        SharedPreferences.Editor editor = preference.edit();
+                        editor.putBoolean(setting, dontShowAgain.isChecked());
+                        editor.apply();
+                    }
+                })
+                .setCancelable(false)
+                .show();
+    }
+
 }

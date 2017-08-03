@@ -7,12 +7,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -41,6 +43,7 @@ public class News extends AppCompatActivity {
     public static AlertDialog.Builder builder;
     public static ValueEventListener myevent;
     private LinearLayout progress;
+    private  ListView listView;
 
 
     @Override
@@ -60,9 +63,6 @@ public class News extends AppCompatActivity {
             }
         }
         Registered_User_Id.fromactivity = "News";
-        Toast.makeText(getApplicationContext(),
-                "Long press an image to download it",
-                Toast.LENGTH_SHORT).show();
         ref = mFirebaseDatabase.getInstance().getReference().child("News");
 
         ref.addValueEventListener(myevent = new ValueEventListener() {
@@ -99,7 +99,7 @@ public class News extends AppCompatActivity {
         progress.setVisibility(View.VISIBLE);
 
         news_adapter = new News_Adapter(newsname, this, this, newsdetails, newsorganization, newsimage, newstime);
-        final ListView listView = (ListView)findViewById(R.id.news_list);
+        listView = (ListView)findViewById(R.id.news_list);
         listView.setAdapter(news_adapter);
 
         fab = (FloatingActionButton) findViewById(R.id.add_news);
@@ -119,6 +119,30 @@ public class News extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (!view.canScrollList(View.SCROLL_AXIS_VERTICAL) && scrollState == SCROLL_STATE_IDLE)
+                {
+                    //When List reaches bottom and the list isn't moving (is idle)
+                    fab.hide();
+                }
+                else
+                    fab.show();
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });
+
+
+
+
     }
 
     public void onRequestPermissionsResult(int requestCode,

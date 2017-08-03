@@ -5,13 +5,11 @@
     android:padding="10dp">
 
     <CheckBox
-        android:id="@+id/checkBoxid"
+        android:id="@+id/checkBoxid_image"
         android:layout_marginTop="20dp"
         android:textColor="#019199"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Don't Show Again."/>
-
-
 
 </LinearLayout>
