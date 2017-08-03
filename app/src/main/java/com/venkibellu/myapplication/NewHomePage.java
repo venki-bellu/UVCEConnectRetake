@@ -88,7 +88,7 @@ public class NewHomePage extends AppCompatActivity
         } else {
             showDisclaimer();
         }
-        
+
     }
 
     @Override

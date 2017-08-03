@@ -130,8 +130,10 @@ public class News extends AppCompatActivity {
                     //When List reaches bottom and the list isn't moving (is idle)
                     fab.hide();
                 }
-                else
+                else {
+                    if(Registered_User_Id.admin.equals("ADMIN"))
                     fab.show();
+                }
             }
 
             @Override
