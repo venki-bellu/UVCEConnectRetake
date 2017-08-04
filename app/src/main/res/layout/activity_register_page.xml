@@ -29,8 +29,7 @@
         android:layout_height="wrap_content"
         android:text="Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:layout_below="@+id/registerpage_button_submit"
-        android:enabled="false"/>
+        android:layout_below="@+id/registerpage_button_submit" />
 
     <EditText
         android:id="@+id/registerpage_name"
