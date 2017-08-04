@@ -117,7 +117,6 @@ public class News extends AppCompatActivity {
             fab.setVisibility(View.VISIBLE);
         }
 
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {

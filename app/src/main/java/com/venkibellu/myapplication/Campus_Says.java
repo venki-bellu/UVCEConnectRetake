@@ -144,7 +144,6 @@ public class Campus_Says extends AppCompatActivity {
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             private int currentVisibleItemCount;

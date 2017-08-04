@@ -40,23 +40,25 @@
             android:name=".LogInPage"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".AcademicActivity"
             android:label="Academics"
             android:parentActivityName=".NewHomePage"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".News"
             android:label="@string/title_activity_news"
             android:parentActivityName=".NewHomePage"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".Campus_Says"
             android:label="@string/title_activity_campus__says"
             android:parentActivityName=".NewHomePage"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".RegisterPage"
             android:screenOrientation="portrait"
