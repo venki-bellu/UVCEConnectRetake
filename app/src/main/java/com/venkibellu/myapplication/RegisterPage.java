@@ -296,6 +296,7 @@ public class RegisterPage extends AppCompatActivity {
                     mCallbacks                         //OnVerificationStateChangedCallbacks
             );
 
+
             progress = new ProgressDialog(RegisterPage.this);
             progress.setMessage("Sending OTP...");
             progress.setTitle("Please Wait");
