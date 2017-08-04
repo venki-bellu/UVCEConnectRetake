@@ -124,7 +124,7 @@
         <activity
             android:name=".g2c2"
             android:label="G2C2"
-            android:parentActivityName=".clubs"
+            android:parentActivityName=".activities"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.g2c2" />
@@ -156,7 +156,7 @@
         <activity
             android:name=".chethana"
             android:label="ಚೇತನ - ಯು.ವಿ.ಸಿ.ಇ ಕನ್ನಡ ಸಂಘ"
-            android:parentActivityName=".clubs">
+            android:parentActivityName=".activities">
             >
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.chethana" />
@@ -167,7 +167,7 @@
         <activity
             android:name=".thatva"
             android:label="THATVA"
-            android:parentActivityName=".clubs">
+            android:parentActivityName=".activities">
             >
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.thatva" />
@@ -247,7 +247,7 @@
         <activity
             android:name=".ieee"
             android:label="IEEE"
-            android:parentActivityName=".clubs">
+            android:parentActivityName=".activities">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.ieee" />
 
@@ -262,6 +262,15 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
+        <activity android:name=".activities"
+            android:label="ACTIVITIES"
+            android:parentActivityName=".NewHomePage">
+        <intent-filter>
+            <action android:name="com.venkibellu.myapplication.clubs" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+        </activity>
     </application>
 
 </manifest>
