@@ -23,8 +23,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:autoLink="web"
-            android:text="Alumni association aims to build a stronger UVCE with its various initiatives like,\n\nLecture series:\n\n
-1.	Providing scholarship\n2.	Corpus funds\n3.	Awarding achievers\n4.	Planning Centenary building\n5.	Community service\n\nThe alumni association strives to keep its members informed about the activities that happen in the college through its news-letter. \n\nWebsite: http://uvcealumni.org/index.html
+            android:text="Alumni are the vital asset for any educational institution. UVCE being a century old college finds its alumni spread widely across globe. Alumni association aims to gather its strong alumni network and build a better UVCE with its various initiatives like,\n\n
+1.	Lecture series\n\n
+2.	Providing scholarship\n\n
+3.	Corpus funds\n\n
+4.	Awarding achievers\n\n
+5.	Planning Centenary building\n\n
+6.	Community service\n\nThe alumni association strives to keep its members informed about the activities that happen in the college through its newsletter.\n\nWebsite: http://uvcealumni.org/index.html
+
 
 
 "

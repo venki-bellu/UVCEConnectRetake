@@ -26,25 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Students volunteer initiative “UVCE Connect”, basically aims at providing students with the facility of
-question papers and syllabus copy irrespective of any department(s) in UVCE. UVCE connect tries to
-establish communication among various branches and eliminate the communication lag that exists
-between them. Important and vital information is made available using cutting edge technology. Users
-are also provided with the benefit of knowing about various events, organizations and information
-regarding UVCE.
- \n\nUVCE Connect was developed by group of enthusiast students with the ideal
-purpose of giving back to college. The ideal idea of team helps thousands of students’ to be
-benefited.
- \n\nVision of developers to involve alumni and provide information in the occasion of Centenary
-year would directly benefit college in attracting more and more of alumni. App also concentrates to
-serve as a media of promotion and promise to keep its users informed legibly with latest news related
-to college.
- \n\nThe Database right solely belong to the developers of the app and the security of its users
-is maintained at any cost. Copyrights of the app is completely under the opinion of the developers.
-Using of app data against the developers is prohibited. Developers have the right to monitor and edit
-the app without prior notice. Any kind of disputes aren’t appreciated by the developers regarding the
-app. The developers always provide scope for improvement and the process is invariably dependant
-on time. App is better functional with mobiles working on Android version Lollipop and above.
+            android:text="Students volunteer initiative “UVCE Connect”, basically aims at providing students with the facility of question papers and syllabus copy irrespective of any department(s) in UVCE. App tries to establish communication among students of various branches and eliminate the communication lag that exists between them. Important and vital information is made available using cutting edge technology. Users are also provided with the benefit of knowing about various events, organizations and information regarding UVCE. App is better functional with mobiles working on Android version Jelly Bean and above.\n\nThis App is developed by group of enthusiastic students with the ideal purpose of giving back to college and also hoping thousands of students’ be benefited from it. Vision of developers is to involve alumni and provide information on the occasion of Centenary year that would directly benefit college in attracting more and more of alumni.
 "
             android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
