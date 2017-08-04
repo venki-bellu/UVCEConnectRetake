@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="UVCE JAATHRE:\n\nAs the name indicates, it's a colourful one day event organised by 2nd year students during the month of Oct every year. During this event various collegiate clubs’ setup their stall at quadrangle of main campus and conduct fun games, thereby helping freshers’ to know about UVCE."
+            android:text="UVCE JAATHRE:\n\nAs the name indicates, it's a colourful one day event organised by 2nd year students during the month of Oct every year. During this event various collegiate clubs’ setup their stall at quadrangle of main campus and conduct fun games, thereby helping freshers to know about UVCE."
 
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="20sp" />
@@ -57,8 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="KAGADA:\n\nIt's a National level technical symposium, organised by Team IEEE UVCE. Students across Bengaluru take part in this event where they get to showcase their technical knowledge and research in means of Paper and Poster presentation. The best paper and posters are awarded.
-
+            android:text="KAGADA:\n\nIt's a National level technical symposium, organised by Team IEEE UVCE. Students across the country take part in this event where they get to showcase their technical knowledge and research by means of Paper and Poster presentation. The best paper and posters are awarded.
 "
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="20sp" />
@@ -86,8 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="FIESTA:\n\nIt's a one day intra collegiate Cultural fest of UVCE organised by 3rd year students in odd semester. It's a Cultural extravaganza which accelerates UVCEians to participate in widespread events. Students from every department of UVCE participate in this fest.
-"
+                android:text="FIESTA:\n\nIt's a one day intra collegiate Cultural fest of UVCE organised by 3rd year students in odd semester. It's a Cultural extravaganza which accelerates UVCEians to participate in widespread events. Students from every department of UVCE participate in this fest."
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="20sp" />
         </android.support.v7.widget.CardView>
@@ -113,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="CIVISTA:\n\nThis event is similar to fiesta but this being celebrated by our friends at Jnana Bharathi campus. Civista is the annual Cultural fest of Civil department. Similar to Fiesta this is organised by 3rd year students. It attracts huge number of participants from the Bangalore University campus.
+                android:text="CIVISTA:\n\nThis event is similar to fiesta but this being celebrated by Civil Students at Jnana Bharathi campus. Civista is the annual Cultural fest of Civil department and is organised by 3rd year students. It attracts huge number of participants from the Bangalore University campus.
 "
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="20sp" />
@@ -196,8 +194,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="ESPORTIVO:\n\nSports has a high calibre in UVCE. The craze setup for football and cricket is everlasting in the century old college. Esportivo is a week-long event organised by sports geeks to uphold the sportsmanship sprit among various teams across Bengaluru.
-"
+                android:text="ESPORTIVO:\n\nSports has a high calibre in UVCE. The craze setup for football and cricket is everlasting in the century old college. Esportivo is a week-long event organised by sports geeks to uphold the sportsmanship sprit among various teams across Bengaluru."
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="20sp" />
         </android.support.v7.widget.CardView>
@@ -223,8 +220,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="MILAGRO:\n\nMILAGRO is the biggest cultural festival in UVCE organised by final year students which spans over two days. However the entire week will be called as Milagro Week and various events are held to entertain the students. With the history of two decades, it provides a platform where every individual in college comes together to create a difference. It upholds the pride of UVCE and culture of Karnataka. It has always been dealt with grandeur and festivity.
-            "
+                android:text="MILAGRO:\n\nMILAGRO is the biggest cultural festival in UVCE organised by final year students which spans over two days. However, the entire week will be called as Milagro Week and various events are held to entertain the students. With the history of two decades, it provides a platform where every individual in college comes together to create a difference. It upholds the pride of UVCE and culture of Karnataka. It has always been dealt with grandeur and festivity. "
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="20sp" />
         </android.support.v7.widget.CardView>

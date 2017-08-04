@@ -22,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Unity and Discipline’ is the motto of every cadet. In living up to its motto, the NCC strives to be and is one of the greatest cohesive forces of the nation, bringing together the youth hailing from different parts of the country and moulding them into united, secular and disciplined citizens of the nation.\n\nDetails about NCC: -\n\nRegiment: NO 2 KAR AIR SQUADRON NCC\nAIR WING\n\nCOMMAND: KAR and GOA DIRECTORATE\nBANGALORE B GROUP\n\nSTRENGTH:200\n\nPractice done on every Saturday 1200 hours to 1700 hours\n\nAnnual intake in the month of July and August."
+            android:autoLink="all"
+            android:text="Unity and Discipline’ is the motto of every cadet. In living up to its motto, the NCC strives to be and is one of the greatest cohesive forces of the nation, bringing together the youth hailing from different parts of the country and moulding them into united, secular and disciplined citizens of the nation.\n\nDetails about NCC: -\n\nRegiment: NO 2 KAR AIR SQUADRON NCC\nAIR WING\n\nCOMMAND: KAR and GOA DIRECTORATE\nBANGALORE B GROUP\n\nSTRENGTH:200\n\nPractice done on every Saturday 1200 hours to 1700 hours\n\nAnnual intake in the month of July and August.\n\nContact:- Balasubramani (886162992)"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="20sp" />
     </android.support.v7.widget.CardView>

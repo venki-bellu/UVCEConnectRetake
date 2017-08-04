@@ -23,7 +23,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:autoLink="all"
-            android:text="Books, collection of enormous amount of knowledge and guidance in a compressed form; is a vital asset for the mankind. ‘VINIMAYA’ meaning ‘Sharing’ in Kannada, works on this very basic principle. Books that a student has can be shared with the club and the books that VINIMAYA holds can be borrowed by the students. There's no worry if one doesn't have a book to share.\n\nWait it’s not just books…! VINIMAYA also shares TV series, Anime, Movies, Ted Talks, E-Books for the one who seeks. Any student can drop into G2C2 room and borrow their favourite book, anime, movie, without any membership.\n\nWebsite: - http://aliengo.000webhostapp.com/first/vini2.0/vini2home.php\n\nContact: - Thanush (8867768009)
+            android:text="Books are a collection of enormous amount of knowledge and guidance in a compressed form; it is a vital asset for the mankind. ‘VINIMAYA’ meaning ‘Sharing’ in Kannada, works on this very basic principle. Books that a student has can be shared with the club and the books that VINIMAYA has can be borrowed by the students. There's no worry if one doesn't have a book to share.\n\nWait it’s not just books…! VINIMAYA also shares TV series, Anime, Movies, Ted Talks, E-Books for the one who seeks. Any student can drop into G2C2 room and borrow their favourite book, anime, movie, without any membership.\n\nWebsite: - http://aliengo.000webhostapp.com/first/vini2.0/vini2home.php\n\nContact: - Thanush (8867768009)
+
+
 
 "
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"

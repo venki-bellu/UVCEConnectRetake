@@ -23,7 +23,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:autoLink="all"
-            android:text="Vision-UVCE is a group of UVCE alumni who are focussed on &quot;Giving Back to UVCE&quot; by creating awareness among the strong alumni and make them understand the potential that the creation of an alumni group, working for the betterment of college brings about.\n\nIt is VU's responsibility to make sure, the flag of our alma mater flies high in the air and also as proud alumni of this college, there is a need to take part in the operations involved with the institution.\n\nMajor programs held under VISION UVCE:\n\n* Sampada – A monthly magazine that offers you a ride though UVCE\n\n* VU scholarship – Every year scholarships are provided to the needy\n\n* VU champs – Recognising Student volunteers\n\n* Parichaya – A detailed profile of UVCE’s great alumni\n\n* Samvaada – Occasional meetings between the alumnus’ and college staffs \n\nVU also supports and funds various student initiatives which seems promising in terms of idea and its reach. It's also involved in taking care of student’s utility in campus by funding to the required cause. VU raises its fund from wide-spread alumni network of UVCE.\n\nWebsite:  http://www.visionuvce.in \n\nEmail: contact@visionuvce.in\n\nContact:  +91-9740111552
+            android:text="VisionUVCE is a group of UVCE alumni who are focussed on &quot;Giving Back to UVCE&quot; by creating awareness among the strong alumni and make them understand the potential that the creation of an alumni group, working for the betterment of college brings about.\n\nIt is VU's responsibility to make sure, the flag of our alma mater flies high in the air and also as proud alumni of this college, there is a need to take part in the operations involved with the institution.\n\nMajor programs held under VISION UVCE:\n\n
+•	Sampada – A monthly magazine that offers you a ride though UVCE\n\n
+•	VU scholarship – Every year scholarships are provided to those in need\n\n
+•	VU champs – Recognition of efforts of Student Volunteers\n\n
+•	Parichaya – A detailed profile of UVCE’s great alumni\n\n
+•	Samvaada – Occasional meet between alumnus, current staff and students\n\n
+•	VU also supports and funds various student initiatives which seems promising in terms of idea and its reach. It's also involved in taking care of student’s utility in campus by funding to the required cause. VU raises its fund from alumni of UVCE.\n\nWebsite:  http://www.visionuvce.in \n\nEmail: contact@visionuvce.in\n\nContact:  +91-9740111552
+
 "
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="20sp" />
