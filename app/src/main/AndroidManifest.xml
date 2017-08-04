@@ -50,13 +50,13 @@
             android:label="@string/title_activity_news"
             android:parentActivityName=".NewHomePage"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
+            android:windowSoftInputMode="stateVisible|adjustPan" />
         <activity
             android:name=".Campus_Says"
             android:label="@string/title_activity_campus__says"
             android:parentActivityName=".NewHomePage"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
+            android:windowSoftInputMode="stateVisible|adjustPan" />
         <activity
             android:name=".RegisterPage"
             android:screenOrientation="portrait"
@@ -154,7 +154,7 @@
         <activity
             android:name=".chethana"
             android:label="ಚೇತನ - ಯು.ವಿ.ಸಿ.ಇ ಕನ್ನಡ ಸಂಘ"
-            android:parentActivityName=".clubs">
+            android:parentActivityName=".activities">
             >
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.chethana" />
@@ -245,21 +245,28 @@
         <activity
             android:name=".ieee"
             android:label="IEEE"
-            android:parentActivityName=".clubs">
+            android:parentActivityName=".activities">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.ieee" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Academic"
             android:label="@string/title_activity_academic"
             android:parentActivityName=".NewHomePage"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity android:name=".activities"
+            android:label="ACTIVITIES"
+            android:parentActivityName=".NewHomePage">
+            <intent-filter>
+                <action android:name="com.venkibellu.myapplication.clubs" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

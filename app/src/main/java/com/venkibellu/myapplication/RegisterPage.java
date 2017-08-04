@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -54,6 +56,8 @@ public class RegisterPage extends AppCompatActivity {
     PhoneAuthProvider.ForceResendingToken mResendToken;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private ProgressDialog progress;
+    CheckBox nonResident;
+    EditText foreignPhoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,8 @@ public class RegisterPage extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         registerUser=(Button)findViewById(R.id.registerpage_button_register);
         name=(EditText) findViewById(R.id.registerpage_name);
+        nonResident=(CheckBox)findViewById(R.id.registerpage_non_indian);
+        foreignPhoneNumber=(EditText)findViewById(R.id.registerpage_foreign_phNumber);
 
 
         mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -111,6 +117,23 @@ public class RegisterPage extends AppCompatActivity {
                 progress.dismiss();
             }
         };
+
+        nonResident.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked==true)
+                {
+                    phoneNumber.setEnabled(false);
+                    foreignPhoneNumber.setVisibility(View.VISIBLE);
+                    Toast.makeText(getApplicationContext(),"Please follow +41546453 format",Toast.LENGTH_LONG).show();
+                }
+                else if(isChecked==false)
+                {
+                    phoneNumber.setEnabled(true);
+                    foreignPhoneNumber.setVisibility(View.GONE);
+                }
+            }
+        });
 
       /*  requesetOTP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,6 +178,8 @@ public class RegisterPage extends AppCompatActivity {
             }
         });
     }
+
+
 
     public void registerUser(View view)
     {
@@ -238,7 +263,7 @@ public class RegisterPage extends AppCompatActivity {
     {
         if(phoneNumber.getText().toString().trim().length()==10) {
             PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                    "+91" + phoneNumber.getText().toString(),     //phone number to verify
+                    getPhoneNumber(),     //phone number to verify
                     60,                 // Timeout duration
                     TimeUnit.SECONDS,   // Unit of timeout
                     RegisterPage.this,               // Activity (for callback binding)
@@ -257,4 +282,19 @@ public class RegisterPage extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Please enter a valid 10 digit phone number",Toast.LENGTH_SHORT).show();
         }
     }
+
+    public String getPhoneNumber()
+    {
+        if(nonResident.isChecked()==true)
+        {
+            return (foreignPhoneNumber.getText().toString());
+        }
+        else if(nonResident.isChecked()==false)
+        {
+            return ("+91"+phoneNumber.getText().toString());
+        }
+        return "";
+    }
 }
+
+

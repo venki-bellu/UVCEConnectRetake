@@ -155,11 +155,28 @@
         android:maxLength="10"
         android:inputType="number" />
 
+    <CheckBox
+        android:id="@+id/registerpage_non_indian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registerpage_phoneNumber"
+        android:layout_centerHorizontal="true"
+        android:text="Not an Resident of India"
+        android:textSize="15dp"/>
+
+    <EditText
+        android:id="@+id/registerpage_foreign_phNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registerpage_non_indian"
+        android:hint="Please enter phone number along with country code(Eg: +41456789)"
+        android:visibility="gone"/>
+
     <Button
         android:id="@+id/registerpage_button_requestOTP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/registerpage_phoneNumber"
+        android:layout_below="@+id/registerpage_foreign_phNumber"
         android:text="Request OTP"
         android:layout_centerHorizontal="true"
         android:onClick="requestOTP"/>

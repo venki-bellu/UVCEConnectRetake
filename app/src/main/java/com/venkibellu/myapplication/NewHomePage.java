@@ -165,7 +165,7 @@ public class NewHomePage extends AppCompatActivity
             startActivity(i3);
 
         } else if (id == R.id.Clubs) {
-            Intent i5 = new Intent(this, clubs.class);
+            Intent i5 = new Intent(this, activities.class);
             startActivity(i5);
 
         } else if (id == R.id.Fests) {
