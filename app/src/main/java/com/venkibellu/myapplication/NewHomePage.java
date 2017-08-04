@@ -24,6 +24,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -50,20 +51,28 @@ public class NewHomePage extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_home_page);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.up_from_bottom);
-        context=this;
-        TextView news = (TextView)findViewById(R.id.newsfeed);
+
+        context = this;
+
+        TextView news = (TextView) findViewById(R.id.newsfeed);
         news.startAnimation(animation);
-        TextView campus = (TextView)findViewById(R.id.campus_says);
+
+        TextView campus = (TextView) findViewById(R.id.campus_says);
         campus.startAnimation(animation);
-        TextView academics = (TextView)findViewById(R.id.syllabus);
+
+        TextView academics = (TextView) findViewById(R.id.syllabus);
         academics.startAnimation(animation);
-        loginPageIntent=new Intent(this,LogInPage.class);
-        logintype=getSharedPreferences(getString(R.string.PREF_FILE),MODE_PRIVATE);
-        gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        googleApiClient=new GoogleApiClient.Builder(this)
+
+        loginPageIntent = new Intent(this, LogInPage.class);
+        logintype = getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
+
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        googleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
@@ -83,12 +92,9 @@ public class NewHomePage extends AppCompatActivity
 
         preference = getSharedPreferences(PREFERENECE, MODE_PRIVATE);
 
-        if (preference.contains(setting) && preference.getBoolean(setting, false)) {
-
-        } else {
+        if (!(preference.contains(setting) && preference.getBoolean(setting, false))) {
             showDisclaimer();
         }
-
     }
 
     @Override
@@ -110,6 +116,7 @@ public class NewHomePage extends AppCompatActivity
         Intent AcademicPageIntent = new Intent(this, News.class);
         startActivity(AcademicPageIntent);
     }
+
     public void onCampusImageViewClicked(View view) {
         Intent AcademicPageIntent = new Intent(this, Campus_Says.class);
         startActivity(AcademicPageIntent);
@@ -117,30 +124,26 @@ public class NewHomePage extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater=getMenuInflater();
-        menuInflater.inflate(R.menu.menu,menu);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==R.id.signout)
-        {
-            Float type=logintype.getFloat(getString(R.string.LOGIN_TYPE),0);
-            if(type==0)
-            {
-                Toast.makeText(getApplicationContext(),"Not Logged In",Toast.LENGTH_SHORT).show();
-            }
-            else if(type==2)
-            {
-                Toast.makeText(getApplicationContext(),"Google Sign Out Success",Toast.LENGTH_LONG).show();
+        if (item.getItemId() == R.id.signout) {
+            Float type = logintype.getFloat(getString(R.string.LOGIN_TYPE), 0);
+
+            if (type == 0) {
+                Toast.makeText(getApplicationContext(), "Not Logged In", Toast.LENGTH_SHORT).show();
+            } else if (type == 2) {
+                Toast.makeText(getApplicationContext(), "Signed out successfully", Toast.LENGTH_LONG).show();
                 Auth.GoogleSignInApi.signOut(googleApiClient);
                 startActivity(loginPageIntent);
                 finish();
             }
-        }
-        else if(item.getItemId()==R.id.contact_us)
-        {
+
+        } else if (item.getItemId() == R.id.contact_us) {
             context.startActivity(Intent.createChooser(sendIntent, null));
             return true;
         }
@@ -182,7 +185,6 @@ public class NewHomePage extends AppCompatActivity
                 Intent i8 = new Intent(this, aboutapp.class);
                 startActivity(i8);
                 break;
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -194,6 +196,7 @@ public class NewHomePage extends AppCompatActivity
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
     private void showDisclaimer() {
         AlertDialog.Builder disclaimerDialog = new AlertDialog.Builder(this);
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -203,7 +206,7 @@ public class NewHomePage extends AppCompatActivity
 
         disclaimerDialog.setView(view)
                 .setTitle("Please Note")
-                .setMessage("\nIn order to download an image from News/Campus Says, long press the image to download it.")
+                .setMessage("\nLong press an image in News feed or Campus Says to download it.")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -216,5 +219,4 @@ public class NewHomePage extends AppCompatActivity
                 .setCancelable(false)
                 .show();
     }
-
 }
