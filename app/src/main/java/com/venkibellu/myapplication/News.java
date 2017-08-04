@@ -120,31 +120,34 @@ public class News extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            private int currentVisibleItemCount;
+            private int currentScrollState;
+            private int currentFirstVisibleItem;
+            private int totalItem;
+
+
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if (!view.canScrollList(View.SCROLL_AXIS_VERTICAL) && scrollState == SCROLL_STATE_IDLE)
-                {
-                    //When List reaches bottom and the list isn't moving (is idle)
+                this.currentScrollState = scrollState;
+
+                if (totalItem - currentFirstVisibleItem == currentVisibleItemCount
+                        && this.currentScrollState == SCROLL_STATE_IDLE) {
                     fab.hide();
-                }
-                else {
-                    if(Registered_User_Id.admin.equals("ADMIN"))
+                } else if (Registered_User_Id.admin.equals("ADMIN")) {
                     fab.show();
                 }
             }
 
             @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
 
+                this.currentFirstVisibleItem = firstVisibleItem;
+                this.currentVisibleItemCount = visibleItemCount;
+                this.totalItem = totalItemCount;
             }
         });
-
-
-
-
     }
 
     public void onRequestPermissionsResult(int requestCode,
