@@ -23,8 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:autoLink="all"
-            android:text="Bangalore based, namma UVCE’s home band, formed by likeminded music loving people, not only have entertained their crowd and have bagged numerous awards, but also holds the glory of performing in various international conference. The uniqueness of 8GB RAM lies in the skilful modification of music track, they also have added life to melodious composition and proved their passion towards the field of music.\n\nCurrently 8 GB RAM consists of 8 members, who believes in winning the crowd and not just the trophy. Members of band have similar interests in Indian classical and Carnatic music. Interested to have them in your event….?\n\nContact: - Sanjay (9482218283)
-"
+            android:text="@string/about_8GBRam"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="20sp" />
     </android.support.v7.widget.CardView>

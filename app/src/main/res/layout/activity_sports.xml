@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Sports at UVCE have remained at its best by the sportsman skill of UVCEians. The physical education department is led by Dr. Lokesh Reddy who is the mentor and monitor of sports at UVCE.\n\nUVCE have its football team and cricket team which is recognized across the state for its excellence in their respective field. Selection process happens once in a year and teams practice in Bangalore University ground located close to UVCE campus."
+            android:text="@string/about_sports"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="20sp" />
     </android.support.v7.widget.CardView>
