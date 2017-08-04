@@ -12,6 +12,12 @@ public class activities extends AppCompatActivity {
     Button chethanaButton;
     Button thathvaButton;
     Button g2c2Button;
+    Button vinimayaButton;
+    Button saeButton;
+    Button gbRamButton;
+    Button chakravyuhaButton;
+    Button nccButton;
+    Button sportsButton;
 
 
 
@@ -53,6 +59,58 @@ public class activities extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(activities.this,g2c2.class);
                 startActivity(intent);
+            }
+        });
+
+        vinimayaButton=(Button)findViewById(R.id.vinimaya_logo);
+        vinimayaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(activities.this,vinimaya.class);
+                startActivity(intent);
+            }
+        });
+
+        saeButton=(Button)findViewById(R.id.sae_logo);
+        saeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(activities.this,sae.class);
+                startActivity(intent);
+            }
+        });
+
+        gbRamButton=(Button)findViewById(R.id.gb_ram_logo);
+        gbRamButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(activities.this,gb_ram.class);
+                startActivity(intent);
+            }
+        });
+
+        chakravyuhaButton=(Button)findViewById(R.id.chakravyuha_logo);
+        chakravyuhaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(activities.this,chakravyuha.class);
+                startActivity(intent);
+            }
+        });
+
+        nccButton=(Button)findViewById(R.id.ncc_logo);
+        nccButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(activities.this,ncc.class));
+            }
+        });
+
+        sportsButton=(Button)findViewById(R.id.sports_logo);
+        sportsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(activities.this,sports.class));
             }
         });
     }

@@ -116,12 +116,31 @@
         android:layout_marginTop="20dp"
         android:visibility="gone"/>
 
+    <TextView
+        android:id="@+id/registerpage_title_occupation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_below="@+id/registerpage_radiogroup"
+        android:text="Occupation"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"/>
+
     <EditText
         android:id="@+id/registerpage_registerno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/registerpage_title_rollno"
         android:hint="00ABCD0000"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/registerpage_occupation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registerpage_title_occupation"
+        android:hint="Current/Last Occupation"
         android:layout_marginTop="8dp"
         android:visibility="gone"/>
 
@@ -213,7 +232,20 @@
         android:text="Register"
         android:onClick="registerUser"
         android:enabled="false"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="15dp"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/registerpage_button_register_new"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registerpage_occupation"
+        android:layout_centerHorizontal="true"
+        android:text="Register"
+        android:onClick="registerUser"
+        android:enabled="false"
+        android:layout_marginTop="15dp"
+        android:visibility="gone"/>
 
 
 

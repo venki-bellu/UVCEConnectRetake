@@ -2,7 +2,7 @@
 <ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#eeeeee">
+    android:background="@drawable/activity_background">
 
 <RelativeLayout
     android:layout_width="match_parent"
@@ -44,6 +44,61 @@
         android:background="@drawable/g_two_c_two_logo"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp" />
+
+    <Button
+        android:id="@+id/vinimaya_logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/g2c2_logo"
+        android:background="@drawable/vinimaya_logo"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp" />
+
+    <Button
+        android:id="@+id/sae_logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/vinimaya_logo"
+        android:background="@drawable/sae_logo"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp" />
+
+    <Button
+        android:id="@+id/gb_ram_logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/sae_logo"
+        android:background="@drawable/gb_ram"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp" />
+
+    <Button
+        android:id="@+id/chakravyuha_logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/gb_ram_logo"
+        android:background="@drawable/chakravyuha_logo"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp" />
+
+    <Button
+        android:id="@+id/ncc_logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/chakravyuha_logo"
+        android:background="@drawable/ncc_logo"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp" />
+
+    <Button
+        android:id="@+id/sports_logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/ncc_logo"
+        android:background="@drawable/sports_logo"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp" />
+
 
 
 

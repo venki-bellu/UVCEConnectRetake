@@ -45,7 +45,6 @@ public class RegisterPage extends AppCompatActivity {
     RadioGroup radioGroup;
     private DatabaseReference ref;
     private String key;
-    Button registerUser;
     EditText name;
     EditText phoneNumber,enteredOTP;
     Button submitButton, requesetOTP;
@@ -58,6 +57,10 @@ public class RegisterPage extends AppCompatActivity {
     private ProgressDialog progress;
     CheckBox nonResident;
     EditText foreignPhoneNumber;
+    TextView titleOccupation;
+    EditText occupation;
+    Button registerButton;
+    Button registerButtonNew;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +77,16 @@ public class RegisterPage extends AppCompatActivity {
         requesetOTP=(Button)findViewById(R.id.registerpage_button_requestOTP);
         submitButton=(Button)findViewById(R.id.registerpage_button_submit);
         mAuth=FirebaseAuth.getInstance();
-        registerUser=(Button)findViewById(R.id.registerpage_button_register);
         name=(EditText) findViewById(R.id.registerpage_name);
         nonResident=(CheckBox)findViewById(R.id.registerpage_non_indian);
         foreignPhoneNumber=(EditText)findViewById(R.id.registerpage_foreign_phNumber);
+        titleOccupation=(TextView)findViewById(R.id.registerpage_title_occupation);
+        occupation=(EditText)findViewById(R.id.registerpage_occupation);
+        registerButton=(Button)findViewById(R.id.registerpage_button_register);
+        registerButtonNew=(Button)findViewById(R.id.registerpage_button_register_new);
+
+
+        Toast.makeText(getApplicationContext(),"Please Reinstall/ClearData app to signIn with different account",Toast.LENGTH_LONG).show();
 
 
         mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -168,10 +177,18 @@ public class RegisterPage extends AppCompatActivity {
                     case R.id.registerpage_status_student:
                         textView.setVisibility(View.VISIBLE);
                         registerNumber.setVisibility(View.VISIBLE);
+                        titleOccupation.setVisibility(View.GONE);
+                        occupation.setVisibility(View.GONE);
+                        registerButton.setVisibility(View.VISIBLE);
+                        registerButtonNew.setVisibility(View.GONE);
                         break;
                     case R.id.registerpage_status_Alumni:
                         textView.setVisibility(View.GONE);
                         registerNumber.setVisibility(View.GONE);
+                        titleOccupation.setVisibility(View.VISIBLE);
+                        occupation.setVisibility(View.VISIBLE);
+                        registerButtonNew.setVisibility(View.VISIBLE);
+                        registerButton.setVisibility(View.GONE);
                         break;
 
                 }
@@ -200,14 +217,22 @@ public class RegisterPage extends AppCompatActivity {
                         hashMap.put("Year Of Joining", yearOfJoining.getText().toString());
                         String userTYpe;
                         if (radioGroup.getCheckedRadioButtonId() == R.id.registerpage_status_Alumni)
+                        {
                             userTYpe = "Alumni";
+                            hashMap.put("Occupation",occupation.getText().toString());
+                        }
                         else {
                             userTYpe = "Student";
                             hashMap.put("Register Number", registerNumber.getText().toString());
                         }
                         hashMap.put("User Type", userTYpe);
                         hashMap.put("Designation", "NORMAL");
-                        hashMap.put("Phone Number", phoneNumber.getText().toString());
+                        if(nonResident.isChecked()) {
+                            hashMap.put("Phone Number", phoneNumber.getText().toString());
+                        }
+                        else if (nonResident.isChecked()){
+                            hashMap.put("Phone Number", foreignPhoneNumber.getText().toString());
+                        }
                         hashMap.put("Email Id", Registered_User_Id.registered_user_email);
                         hashMap.put("Google_ID", Registered_User_Id.registered_user_id);
 
@@ -241,7 +266,8 @@ public class RegisterPage extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             Toast.makeText(getApplicationContext(),"Phone number verification success",Toast.LENGTH_SHORT).show();
-                            registerUser.setEnabled(true);
+                            registerButton.setEnabled(true);
+                            registerButtonNew.setEnabled(true);
                             enteredOTP.setEnabled(false);
                             submitButton.setEnabled(false);
 

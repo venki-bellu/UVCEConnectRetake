@@ -36,15 +36,18 @@ regarding UVCE.
 purpose of giving back to college. The ideal idea of team helps thousands of students’ to be
 benefited.
  \n\nVision of developers to involve alumni and provide information in the occasion of Centenary
-year would directly benefit college in attracting more and more of alumni. App also concentrates to
-serve as a media of promotion and promise to keep its users informed legibly with latest news related
-to college.
- \n\nThe Database right solely belong to the developers of the app and the security of its users
-is maintained at any cost. Copyrights of the app is completely under the opinion of the developers.
-Using of app data against the developers is prohibited. Developers have the right to monitor and edit
+year would directly benefit college in attracting more and more of alumni. \n
+\n
+DISCLAIMER
+\n
+\n
+App also concentrates to serve as a media of promotion and promise to keep its users informed legibly with latest news related
+to college.The Database right solely belong to the developers of the app and the security of its users
+is maintained at any cost. Developers are the rightful copyright owners.
+Using of app data against the developers is prohibited. Developers have the right to monitor and edit or update
 the app without prior notice. Any kind of disputes aren’t appreciated by the developers regarding the
 app. The developers always provide scope for improvement and the process is invariably dependant
-on time. App is better functional with mobiles working on Android version Lollipop and above.
+on time.
 "
             android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"

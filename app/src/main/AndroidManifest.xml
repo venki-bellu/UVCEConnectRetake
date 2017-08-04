@@ -135,7 +135,7 @@
         <activity
             android:name=".vinimaya"
             android:label="VINIMAYA"
-            android:parentActivityName=".clubs">
+            android:parentActivityName=".activities">
 
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.vinimaya" />
@@ -146,7 +146,7 @@
         <activity
             android:name=".sae"
             android:label="SAE"
-            android:parentActivityName=".clubs">
+            android:parentActivityName=".activities">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.sae" />
 
@@ -178,7 +178,7 @@
         <activity
             android:name=".chakravyuha"
             android:label="CHAKRAVYUHA"
-            android:parentActivityName=".clubs">
+            android:parentActivityName=".activities">
             >
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.chakravyuha" />
@@ -199,7 +199,7 @@
         <activity
             android:name=".ncc"
             android:label="NCC"
-            android:parentActivityName=".clubs">
+            android:parentActivityName=".activities">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.ncc" />
 
@@ -209,7 +209,7 @@
         <activity
             android:name=".gb_ram"
             android:label="8GM RAM"
-            android:parentActivityName=".clubs">
+            android:parentActivityName=".activities">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.gb_ram" />
 
@@ -228,11 +228,11 @@
         </activity>
         <activity
             android:name=".News_Adding"
-            android:label="@string/title_activity_news__adding"
+            android:label="Add a News"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Campus_Adding"
-            android:label="@string/title_activity_campus__adding"
+            android:label="Add a campus says"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".aboutapp"
