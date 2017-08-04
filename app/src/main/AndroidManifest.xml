@@ -136,7 +136,7 @@
             android:name=".vinimaya"
             android:label="VINIMAYA"
             android:parentActivityName=".clubs">
-            >
+
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.vinimaya" />
 
