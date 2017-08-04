@@ -122,7 +122,7 @@
         <activity
             android:name=".g2c2"
             android:label="G2C2"
-            android:parentActivityName=".clubs"
+            android:parentActivityName=".activities"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.g2c2" />
@@ -165,7 +165,7 @@
         <activity
             android:name=".thatva"
             android:label="THATVA"
-            android:parentActivityName=".clubs">
+            android:parentActivityName=".activities">
             >
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.thatva" />

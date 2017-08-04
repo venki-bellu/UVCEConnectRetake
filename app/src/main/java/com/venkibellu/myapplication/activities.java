@@ -10,6 +10,8 @@ public class activities extends AppCompatActivity {
 
     Button ieeeButton;
     Button chethanaButton;
+    Button thathvaButton;
+    Button g2c2Button;
 
 
 
@@ -35,7 +37,27 @@ public class activities extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        thathvaButton=(Button)findViewById(R.id.thathva_logo);
+        thathvaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(activities.this,thatva.class);
+                startActivity(intent);
+            }
+        });
+
+        g2c2Button=(Button)findViewById(R.id.g2c2_logo);
+        g2c2Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(activities.this,g2c2.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
 
 
 
