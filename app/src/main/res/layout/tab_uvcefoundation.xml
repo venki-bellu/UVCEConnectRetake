@@ -23,8 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:autoLink="all"
-            android:text="The UVCE Foundation was created by alumni, faculty and well-wishers of UVCE in 2003 to help in restoring the glory of UVCE. It has members from around the world and has already executed various projects at UVCE to address immediate needs of the students of UVCE\n\nUVCE Foundation has been growing in strength ever since its inception and has been widely recognized as a strong support from the college authorities. The objective of the Foundation is to restore the ‘top-ten’ status the college.\n\nWebsite: http://uvcefoundation.org
-"
+            android:text="@string/about_UVCE_Foundations"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="20sp" />
     </android.support.v7.widget.CardView>

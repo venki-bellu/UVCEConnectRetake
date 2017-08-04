@@ -25,15 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:autoLink="all"
-            android:text="Life is full of surprises, Adventure is a part and parcel of engineering life. In this limited 4years an engineering student would have experienced lot of unforgettable moments. To quench one's thirst for Adventure &quot;Chakravyuha&quot; the trekking club of UVCE was started by students.\n\nClub usually holds 2 trekking drives in each semester. Starting point of every trek being UVCE, it tries to explore trekking spots across Bengaluru within a tight budget and give students an adventure experience.\n\nThe recent treks being\n\n
-1.	Kunthi betta \n\n
-2.	Makalidurga \n\n
-3.	Tadiyandanmol \n\n
-4.	Chanarayanna durga\n\nContact:- Yashvanth (9448430215)
-
-
-
-"
+            android:text="@string/about_chakravyua"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="20sp" />
     </android.support.v7.widget.CardView>
