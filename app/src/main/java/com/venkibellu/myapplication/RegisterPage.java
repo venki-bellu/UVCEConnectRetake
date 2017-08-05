@@ -61,6 +61,11 @@ public class RegisterPage extends AppCompatActivity {
     EditText occupation;
     Button registerButton;
     Button registerButtonNew;
+    TextView titleName;
+    TextView titleBranch;
+    TextView titleYearOfJoining;
+    TextView titleCurrentStatus;
+    String mobileNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +89,12 @@ public class RegisterPage extends AppCompatActivity {
         occupation=(EditText)findViewById(R.id.registerpage_occupation);
         registerButton=(Button)findViewById(R.id.registerpage_button_register);
         registerButtonNew=(Button)findViewById(R.id.registerpage_button_register_new);
+        titleName=(TextView)findViewById(R.id.registerpage_title_name);
+        titleBranch=(TextView)findViewById(R.id.registerpage_title_branch);
+        titleYearOfJoining=(TextView)findViewById(R.id.registerpage_title_yearofjoining);
+        titleCurrentStatus=(TextView)findViewById(R.id.registerpage_title_curentstatus);
+
+
 
 
         Toast.makeText(getApplicationContext(),"Please Reinstall/ClearData app to signIn with different account",Toast.LENGTH_LONG).show();
@@ -227,12 +238,7 @@ public class RegisterPage extends AppCompatActivity {
                         }
                         hashMap.put("User Type", userTYpe);
                         hashMap.put("Designation", "NORMAL");
-                        if(nonResident.isChecked()) {
-                            hashMap.put("Phone Number", phoneNumber.getText().toString());
-                        }
-                        else if (nonResident.isChecked()){
-                            hashMap.put("Phone Number", foreignPhoneNumber.getText().toString());
-                        }
+                        hashMap.put("Contact Number",mobileNumber);
                         hashMap.put("Email Id", Registered_User_Id.registered_user_email);
                         hashMap.put("Google_ID", Registered_User_Id.registered_user_id);
 
@@ -270,6 +276,14 @@ public class RegisterPage extends AppCompatActivity {
                             registerButtonNew.setEnabled(true);
                             enteredOTP.setEnabled(false);
                             submitButton.setEnabled(false);
+                            titleName.setVisibility(View.VISIBLE);
+                            name.setVisibility(View.VISIBLE);
+                            titleBranch.setVisibility(View.VISIBLE);
+                            spinner.setVisibility(View.VISIBLE);
+                            titleYearOfJoining.setVisibility(View.VISIBLE);
+                            yearOfJoining.setVisibility(View.VISIBLE);
+                            titleCurrentStatus.setVisibility(View.VISIBLE);
+                            radioGroup.setVisibility(View.VISIBLE);
 
                             FirebaseUser user = task.getResult().getUser();
                             // ...
@@ -287,6 +301,14 @@ public class RegisterPage extends AppCompatActivity {
 
     public void requestOTP(View v)
     {
+        if(nonResident.isChecked())
+        {
+            mobileNumber=foreignPhoneNumber.getText().toString().trim();
+        }
+        else
+        {
+            mobileNumber="+91"+phoneNumber.getText().toString().trim();
+        }
         if(phoneNumber.getText().toString().trim().length()==10) {
             PhoneAuthProvider.getInstance().verifyPhoneNumber(
                     getPhoneNumber(),     //phone number to verify
@@ -314,11 +336,11 @@ public class RegisterPage extends AppCompatActivity {
     {
         if(nonResident.isChecked()==true)
         {
-            return (foreignPhoneNumber.getText().toString());
+            return (foreignPhoneNumber.getText().toString().trim());
         }
         else if(nonResident.isChecked()==false)
         {
-            return ("+91"+phoneNumber.getText().toString());
+            return ("+91"+phoneNumber.getText().toString().trim());
         }
         return "";
     }
