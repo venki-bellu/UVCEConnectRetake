@@ -40,25 +40,21 @@
             android:name=".LogInPage"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
         <activity
             android:name=".AcademicActivity"
             android:label="Academics"
             android:parentActivityName=".NewHomePage"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".News"
             android:label="@string/title_activity_news"
             android:parentActivityName=".NewHomePage"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Campus_Says"
             android:label="@string/title_activity_campus__says"
             android:parentActivityName=".NewHomePage"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".RegisterPage"
             android:screenOrientation="portrait"
@@ -136,7 +132,6 @@
             android:name=".vinimaya"
             android:label="VINIMAYA"
             android:parentActivityName=".activities">
-
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.vinimaya" />
 
@@ -254,23 +249,24 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Academic"
             android:label="@string/title_activity_academic"
             android:parentActivityName=".NewHomePage"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
-        <activity android:name=".activities"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".activities"
             android:label="ACTIVITIES"
             android:parentActivityName=".NewHomePage">
-        <intent-filter>
-            <action android:name="com.venkibellu.myapplication.clubs" />
+            <intent-filter>
+                <action android:name="com.venkibellu.myapplication.activities" />
 
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
+        <activity android:name=".ViewUsers"
+            android:parentActivityName=".NewHomePage"
+            android:label="Registered Users"/>
     </application>
 
 </manifest>

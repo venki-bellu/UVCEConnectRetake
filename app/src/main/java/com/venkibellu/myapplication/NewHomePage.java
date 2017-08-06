@@ -30,6 +30,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class NewHomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
@@ -46,6 +48,8 @@ public class NewHomePage extends AppCompatActivity
     private final String PREFERENECE = "UVCE-prefereceFile-Download";
     private SharedPreferences preference;
     String setting = "AskAgain";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +99,7 @@ public class NewHomePage extends AppCompatActivity
         if (!(preference.contains(setting) && preference.getBoolean(setting, false))) {
             showDisclaimer();
         }
+
     }
 
     @Override
@@ -125,7 +130,10 @@ public class NewHomePage extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu, menu);
+        if(Registered_User_Id.admin.equals("ADMIN"))
+        menuInflater.inflate(R.menu.admin_menu, menu);
+        else
+        menuInflater.inflate(R.menu.menu,menu);
         return true;
     }
 
@@ -146,6 +154,15 @@ public class NewHomePage extends AppCompatActivity
         } else if (item.getItemId() == R.id.contact_us) {
             context.startActivity(Intent.createChooser(sendIntent, null));
             return true;
+        }
+        else if(item.getItemId()== R.id.view_users)
+        {
+            Toast.makeText(getApplicationContext(),"Viewing users",Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(NewHomePage.this,ViewUsers.class));
+        }
+        else if(item.getItemId()==R.id.change_to_alumni)
+        {
+            Toast.makeText(getApplicationContext(),"Promoted to Alumni",Toast.LENGTH_SHORT).show();
         }
         return false;
     }
