@@ -49,11 +49,13 @@
             android:name=".News"
             android:label="@string/title_activity_news"
             android:parentActivityName=".NewHomePage"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Campus_Says"
             android:label="@string/title_activity_campus__says"
             android:parentActivityName=".NewHomePage"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
         <activity
             android:name=".RegisterPage"

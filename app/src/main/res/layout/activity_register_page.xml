@@ -188,7 +188,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/registerpage_phoneNumber"
         android:layout_centerHorizontal="true"
-        android:text="Not an Resident of India"
+        android:text="Not a resident of India ?"
         android:textSize="15dp"/>
 
     <EditText
