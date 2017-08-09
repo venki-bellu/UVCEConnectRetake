@@ -127,12 +127,16 @@ public class RegisterPage extends AppCompatActivity {
             public void onCodeSent(String verificationId,
                                    PhoneAuthProvider.ForceResendingToken token) {
                 Log.d(TAG, "onCodeSent:" + verificationId);
+                if(!phoneNumber.getText().toString().equals("") && !nonResident.isChecked())
                 Toast.makeText(getApplicationContext(),"Verification code sent to +91 "+phoneNumber.getText().toString(),Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getApplicationContext(),"Verification code sent to "+foreignPhoneNumber.getText().toString(),Toast.LENGTH_SHORT).show();
                 mVerificationId = verificationId;
                 mResendToken = token;
                 requesetOTP.setEnabled(false);
                 submitButton.setEnabled(true);
                 phoneNumber.setEnabled(false);
+                foreignPhoneNumber.setEnabled(false);
                 enteredOTP.setEnabled(true);
                 progress.dismiss();
             }
@@ -166,7 +170,7 @@ public class RegisterPage extends AppCompatActivity {
                         mCallbacks                         //OnVerificationStateChangedCallbacks
                 );
             }
-        });*/
+        }); */
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
