@@ -160,10 +160,7 @@ public class NewHomePage extends AppCompatActivity
             Toast.makeText(getApplicationContext(),"Viewing users",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(NewHomePage.this,ViewUsers.class));
         }
-        else if(item.getItemId()==R.id.change_to_alumni)
-        {
-            Toast.makeText(getApplicationContext(),"Promoted to Alumni",Toast.LENGTH_SHORT).show();
-        }
+
         return false;
     }
 

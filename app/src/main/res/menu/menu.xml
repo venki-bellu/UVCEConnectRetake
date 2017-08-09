@@ -9,8 +9,4 @@
         android:title="Feedback"
         android:id="@+id/contact_us"/>
 
-    <item
-        android:title="Promote to alumni"
-        android:id="@+id/change_to_alumni"/>
-
 </menu>
