@@ -103,7 +103,7 @@ public class Campus_Adding extends AppCompatActivity {
         add = (Button) findViewById(R.id.campus_add_button);
 
 
-        String organ[] = new String[]{"Vision UVCE", "IEEE", "Tatva", "G2C2", "SAE", "Vinimaya", "Chakravyuha", "ಚೇತನ", "UVCE Foundation" };
+        String organ[] = new String[]{"Vision UVCE", "IEEE", "Tatva", "G2C2", "SAE", "Vinimaya", "Chakravyuha", "ಚೇತನ", "UVCE Foundation", "UVCE Select" };
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, organ);
         organization.setAdapter(arrayAdapter);
 
@@ -187,6 +187,8 @@ public class Campus_Adding extends AppCompatActivity {
                         organization_image = "campusorganisation/Vision UVCE.jpg";
                     else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("UVCE Foundation"))
                         organization_image = "campusorganisation/UVCE Foundation.jpg";
+                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("UVCE Select"))
+                        organization_image = "campusorganisation/UVCE Select.jpg";
 
                     if (filePath != null) {
                         //displaying a progress dialog while upload is going on
