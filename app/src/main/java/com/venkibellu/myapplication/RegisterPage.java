@@ -309,7 +309,7 @@ public class RegisterPage extends AppCompatActivity {
         {
             mobileNumber="+91"+phoneNumber.getText().toString().trim();
         }
-        if(phoneNumber.getText().toString().trim().length()==10) {
+
             PhoneAuthProvider.getInstance().verifyPhoneNumber(
                     getPhoneNumber(),     //phone number to verify
                     60,                 // Timeout duration
@@ -325,23 +325,21 @@ public class RegisterPage extends AppCompatActivity {
             progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progress.setCancelable(false);
             progress.show();
-        }
-        else
-        {
-            Toast.makeText(getApplicationContext(),"Please enter a valid 10 digit phone number",Toast.LENGTH_SHORT).show();
-        }
+
     }
 
     public String getPhoneNumber()
     {
-        if(nonResident.isChecked()==true)
+        if(nonResident.isChecked()==true&&foreignPhoneNumber.getText().toString().length()!=0)
         {
             return (foreignPhoneNumber.getText().toString().trim());
         }
         else if(nonResident.isChecked()==false)
         {
+            if(phoneNumber.getText().toString().trim().length()==10)
             return ("+91"+phoneNumber.getText().toString().trim());
         }
+        Toast.makeText(getApplicationContext(),"Please enter a valid phone number",Toast.LENGTH_SHORT).show();
         return "";
     }
 }
