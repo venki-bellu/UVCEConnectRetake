@@ -1,33 +1,34 @@
 package com.venkibellu.myapplication;
 
-import android.app.DownloadManager;
-import android.content.Context;
 import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class QuestionPapers extends Fragment implements View.OnClickListener {
-    private Button button;
     private Spinner branchSpinner, semesterSpinner;
-    private String fileName, downloadURL;
+    private String fileName;
+    private String branch, semester;
+    private final String QP = "Question_Papers";
 
 
     @Nullable
@@ -35,7 +36,7 @@ public class QuestionPapers extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_question_paper, container, false);
 
-        button = (Button) view.findViewById(R.id.download_button);
+        Button button = (Button) view.findViewById(R.id.download_button);
         button.setOnClickListener(this);
         branchSpinner = (Spinner) view.findViewById(R.id.branchSpinner);
         semesterSpinner = (Spinner) view.findViewById(R.id.semesterSpinner);
@@ -49,33 +50,17 @@ public class QuestionPapers extends Fragment implements View.OnClickListener {
     }
 
     public void downloadButtonClicked() {
-        String branch = getBranch();
-        Integer semester = getSemester();
+        String b = getBranch();
+        Integer s = getSemester();
 
-        if (semester > 8 && !branch.equals(getContext().getString(R.string.arch))) {
+        if (s > 8 && !b.equals(getContext().getString(R.string.arch))) {
             Toast.makeText(getContext(), "Invalid Selection", Toast.LENGTH_SHORT).show();
             return ;
         }
 
-        /*
-            invoke the class URLGetter, context needs to be passed
-            to access the strings in resource file.
-         */
-        URLGetter urlGetter = new URLGetter(getContext());
+        setBranchSemester(b, s);
 
-        // get the downloadURL on the basis of branch and semester selected.
-        downloadURL = urlGetter.getQuestionPaperURL(branch, semester);
         fileName = branch.replaceAll("\\s+", "-") + '-' + String.valueOf(semester) + ".pdf";
-
-
-        // if syllabus not available return.
-        if (downloadURL.isEmpty()) {
-            Toast.makeText(getActivity(), "No resources found.\n" +
-                                          "Will be added soon! \n" +
-                                          "Please contribute if available.",
-                    Toast.LENGTH_LONG).show();
-            return ;
-        }
 
         checkStoragePermission();
     }
@@ -86,6 +71,41 @@ public class QuestionPapers extends Fragment implements View.OnClickListener {
 
     private Integer getSemester() {
         return Integer.parseInt(semesterSpinner.getSelectedItem().toString());
+    }
+
+    private void setBranchSemester(String b, Integer s) {
+        Map<String, String> branchMapper = new HashMap<>();
+        Map<Integer, String> semesterMapper = new HashMap<>();
+
+        final String arch = getContext().getString(R.string.arch),
+                cse = getContext().getString(R.string.cse),
+                ise = getContext().getString(R.string.ise),
+                ce = getContext().getString(R.string.ce),
+                me = getContext().getString(R.string.me),
+                eee = getContext().getString(R.string.eee),
+                ece = getContext().getString(R.string.ece);
+
+        branchMapper.put(arch, "ARCH");
+        branchMapper.put(cse, "CSE");
+        branchMapper.put(ise, "ISE");
+        branchMapper.put(eee, "EEE");
+        branchMapper.put(ece, "ECE");
+        branchMapper.put(ce, "CE");
+        branchMapper.put(me, "ME");
+
+        semesterMapper.put(1, "Sem_1");
+        semesterMapper.put(2, "Sem_2");
+        semesterMapper.put(3, "Sem_3");
+        semesterMapper.put(4, "Sem_4");
+        semesterMapper.put(5, "Sem_5");
+        semesterMapper.put(6, "Sem_6");
+        semesterMapper.put(7, "Sem_7");
+        semesterMapper.put(8, "Sem_8");
+        semesterMapper.put(9, "Sem_9");
+        semesterMapper.put(10, "Sem_10");
+
+        branch = branchMapper.get(b);
+        semester = semesterMapper.get(s);
     }
 
     protected void checkStoragePermission() {
@@ -134,38 +154,54 @@ public class QuestionPapers extends Fragment implements View.OnClickListener {
 
     // execute the AsyncTask to download Files.
     private void startDownload() {
-        new downloadSyllabus().execute(downloadURL);
-    }
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(QP);
 
+        ref.addValueEventListener(new ValueEventListener() {
+            String url, id, downloadURL = "https://docs.google.com/uc?id=[FILE_ID]&export=download";
 
-    // AsyncTask which will take care of the download using, download manager.
-    private class downloadSyllabus extends AsyncTask<String, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            Toast.makeText(getContext(), "Downloading...", Toast.LENGTH_SHORT).show();
-        }
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-        @Override
-        protected Void doInBackground(String... url) {
-            File directory = new File(Environment.getExternalStorageDirectory() + "/UVCE-Connect");
+                if (semester.equals("Sem_1") && !branch.equals("ARCH")) {
+                    url = dataSnapshot.child("Sem_1").getValue().toString();
+                } else {
+                    url = dataSnapshot.child(branch).child(semester).getValue().toString();
+                }
 
-            if (!directory.exists()) {
-                directory.mkdirs();
+                if (url.equals("-1")) {
+                    Toast.makeText(getContext(), "Resource not found\n" +
+                                    "Will be added soon!\n" +
+                                    "Please contribute if available.",
+                            Toast.LENGTH_LONG).show();
+
+                    return;
+                }
+
+                id = getID(url);
+                downloadURL = downloadURL.replace("[FILE_ID]", id);
+                Download md = new Download(getContext(), fileName, downloadURL);
+                md.start();
             }
 
-            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url[0]));
-            request.setDescription("Syllabus")
-                    .setTitle(fileName)
-                    .setNotificationVisibility(DownloadManager.Request
-                            .VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                    .setDestinationInExternalPublicDir("/UVCE-Connect", fileName)
-                    .allowScanningByMediaScanner();
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-            DownloadManager manager = (DownloadManager)
-                    getContext().getSystemService(Context.DOWNLOAD_SERVICE);
-            manager.enqueue(request);
-            return null;
+            }
+        });
+    }
+
+    // returns the ID from the google drive URL.
+    private String getID(String url) {
+        String ID = "";
+
+        for (int i = url.length() - 1; i >= 0; --i) {
+            if (url.charAt(i) != '=') {
+                ID = url.charAt(i) + ID;
+            } else {
+                break;
+            }
         }
+
+        return ID;
     }
 }

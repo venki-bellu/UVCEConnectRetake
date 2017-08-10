@@ -1,18 +1,14 @@
 package com.venkibellu.myapplication;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import android.widget.VideoView;
-
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -54,10 +50,12 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in_page);
 
+        // for full screen activity
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
 
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.background_video);
-
-
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 

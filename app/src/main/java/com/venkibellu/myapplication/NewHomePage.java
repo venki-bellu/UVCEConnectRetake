@@ -126,6 +126,26 @@ public class NewHomePage extends AppCompatActivity
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("id", Registered_User_Id.registered_user_id);
+        outState.putString("email", Registered_User_Id.registered_user_email);
+        outState.putString("name", Registered_User_Id.name);
+        outState.putString("admin", Registered_User_Id.admin);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        Registered_User_Id.registered_user_id = savedInstanceState.getString("id");
+        Registered_User_Id.registered_user_email = savedInstanceState.getString("email");
+        Registered_User_Id.name = savedInstanceState.getString("name");
+        Registered_User_Id.admin = savedInstanceState.getString("admin");
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         if (Registered_User_Id.admin.equals("ADMIN")) {
