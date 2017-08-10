@@ -2,18 +2,15 @@ package com.venkibellu.myapplication;
 
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -23,7 +20,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -147,6 +143,26 @@ public class News extends AppCompatActivity {
                 this.totalItem = totalItemCount;
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("id", Registered_User_Id.registered_user_id);
+        outState.putString("email", Registered_User_Id.registered_user_email);
+        outState.putString("name", Registered_User_Id.name);
+        outState.putString("admin", Registered_User_Id.admin);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        Registered_User_Id.registered_user_id = savedInstanceState.getString("id");
+        Registered_User_Id.registered_user_email = savedInstanceState.getString("email");
+        Registered_User_Id.name = savedInstanceState.getString("name");
+        Registered_User_Id.admin = savedInstanceState.getString("admin");
     }
 
     public void onRequestPermissionsResult(int requestCode,
