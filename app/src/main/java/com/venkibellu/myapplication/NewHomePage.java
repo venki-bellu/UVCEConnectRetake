@@ -7,18 +7,18 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
@@ -30,8 +30,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class NewHomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
@@ -130,10 +128,11 @@ public class NewHomePage extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        if(Registered_User_Id.admin.equals("ADMIN"))
-        menuInflater.inflate(R.menu.admin_menu, menu);
-        else
-        menuInflater.inflate(R.menu.menu,menu);
+        if (Registered_User_Id.admin.equals("ADMIN")) {
+            menuInflater.inflate(R.menu.admin_menu, menu);
+        } else {
+            menuInflater.inflate(R.menu.menu, menu);
+        }
         return true;
     }
 
@@ -154,10 +153,7 @@ public class NewHomePage extends AppCompatActivity
         } else if (item.getItemId() == R.id.contact_us) {
             context.startActivity(Intent.createChooser(sendIntent, null));
             return true;
-        }
-        else if(item.getItemId()== R.id.view_users)
-        {
-            Toast.makeText(getApplicationContext(),"Viewing users",Toast.LENGTH_SHORT).show();
+        } else if (item.getItemId() == R.id.view_users) {
             startActivity(new Intent(NewHomePage.this,ViewUsers.class));
         }
 
