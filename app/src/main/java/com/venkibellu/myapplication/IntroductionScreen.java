@@ -23,9 +23,7 @@ public class IntroductionScreen extends AppCompatActivity {
         final Intent intent=new Intent(this,LogInPage.class);
 
 
-        //Start service on app created
-        Intent intent1=new Intent(this,NotificationService.class);
-        startService(intent1);
+
 
 
         handler.postDelayed(new Runnable() {

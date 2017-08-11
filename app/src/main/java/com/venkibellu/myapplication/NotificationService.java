@@ -34,18 +34,39 @@ public class NotificationService extends Service {
         firebaseDatabase = FirebaseDatabase.getInstance();
         reference = firebaseDatabase.getReference().child("NotiTest");
 
+
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 NotificationCompat.Builder mBuilder=new NotificationCompat.Builder(NotificationService.this);
-                mBuilder.setContentTitle("A new post is added");
-                mBuilder.setContentText("Please open the app to view post");
-                mBuilder.setSmallIcon(R.drawable.cast_ic_notification_1);
-                mBuilder.setVibrate(new long[] {1000,1000,1000,1000,1000});
+                mBuilder.setContentTitle("UVCE Connect");
+                mBuilder.setContentText("A new post is added.\nClick here to open app");
+                mBuilder.setSmallIcon(R.drawable.notification_icon);
+                mBuilder.setAutoCancel(true);
 
                 Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 mBuilder.setSound(alarmSound);
+
+                // Creates an explicit intent for an Activity in your app
+                Intent resultIntent = new Intent(NotificationService.this,LogInPage.class);
+
+// The stack builder object will contain an artificial back stack for the
+// started Activity.
+// This ensures that navigating backward from the Activity leads out of
+// your application to the Home screen.
+                TaskStackBuilder stackBuilder = TaskStackBuilder.create(NotificationService.this);
+// Adds the back stack for the Intent (but not the Intent itself)
+                stackBuilder.addParentStack(LogInPage.class);
+// Adds the Intent that starts the Activity to the top of the stack
+                stackBuilder.addNextIntent(resultIntent);
+                PendingIntent resultPendingIntent =
+                        stackBuilder.getPendingIntent(
+                                0,
+                                PendingIntent.FLAG_UPDATE_CURRENT
+                        );
+                mBuilder.setContentIntent(resultPendingIntent);
                 NotificationManager mNotificationManager =
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -67,7 +88,6 @@ public class NotificationService extends Service {
 
     @Override
     public int onStartCommand(Intent intent,  int flags, int startId) {
-        Toast.makeText(getApplicationContext(),"Service started...",Toast.LENGTH_SHORT).show();
         return START_STICKY;
     }
 

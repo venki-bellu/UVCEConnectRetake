@@ -70,6 +70,10 @@ public class NewHomePage extends AppCompatActivity
         TextView academics = (TextView) findViewById(R.id.syllabus);
         academics.startAnimation(animation);
 
+        //Start service on app created
+        Intent intent1=new Intent(this,NotificationService.class);
+        startService(intent1);
+
         loginPageIntent = new Intent(this, LogInPage.class);
         logintype = getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
 
