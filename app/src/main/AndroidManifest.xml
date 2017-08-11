@@ -269,6 +269,9 @@
         <activity android:name=".ViewUsers"
             android:parentActivityName=".NewHomePage"
             android:label="Registered Users"/>
+
+        <service android:name=".NotificationService"
+            android:exported="false"/>
     </application>
 
 </manifest>

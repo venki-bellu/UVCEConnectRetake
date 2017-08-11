@@ -1,9 +1,14 @@
 package com.venkibellu.myapplication;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.view.View;
 
 public class IntroductionScreen extends AppCompatActivity {
@@ -13,13 +18,14 @@ public class IntroductionScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_introduction_screen);
 
-        // for full screen activity
-        View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
 
         Handler handler=new Handler();
         final Intent intent=new Intent(this,LogInPage.class);
+
+
+        //Start service on app created
+        Intent intent1=new Intent(this,NotificationService.class);
+        startService(intent1);
 
 
         handler.postDelayed(new Runnable() {

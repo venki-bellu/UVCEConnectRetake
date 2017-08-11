@@ -50,10 +50,6 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in_page);
 
-        // for full screen activity
-        View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
 
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.background_video);
 

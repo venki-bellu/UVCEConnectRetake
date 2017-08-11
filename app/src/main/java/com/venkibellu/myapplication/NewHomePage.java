@@ -176,6 +176,11 @@ public class NewHomePage extends AppCompatActivity
         } else if (item.getItemId() == R.id.view_users) {
             startActivity(new Intent(NewHomePage.this,ViewUsers.class));
         }
+          else if(item.getItemId()==R.id.stop_service)
+        {
+            Intent intent1=new Intent(this,NotificationService.class);
+            stopService(intent1);
+        }
 
         return false;
     }
