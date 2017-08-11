@@ -27,22 +27,24 @@ import com.google.firebase.database.ValueEventListener;
 public class NotificationService extends Service {
 
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference reference;
+    DatabaseReference referenceNews;
+    DatabaseReference referenceCampus_Says;
 
     @Override
     public void onCreate() {
         firebaseDatabase = FirebaseDatabase.getInstance();
-        reference = firebaseDatabase.getReference().child("NotiTest");
+        referenceNews = firebaseDatabase.getReference().child("News");
+        referenceCampus_Says=firebaseDatabase.getReference().child("Campus Says");
 
 
 
-        reference.addValueEventListener(new ValueEventListener() {
+        referenceNews.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 NotificationCompat.Builder mBuilder=new NotificationCompat.Builder(NotificationService.this);
                 mBuilder.setContentTitle("UVCE Connect");
-                mBuilder.setContentText("A new post is added.\nClick here to open app");
+                mBuilder.setContentText("A new post is added in News Feed.");
                 mBuilder.setSmallIcon(R.drawable.notification_icon);
                 mBuilder.setAutoCancel(true);
 
@@ -74,6 +76,55 @@ public class NotificationService extends Service {
 // notification. For example, to cancel the notification, you can pass its ID
 // number to NotificationManager.cancel().
                 mNotificationManager.notify(1, mBuilder.build());
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+
+
+            }
+        });
+
+        referenceCampus_Says.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                NotificationCompat.Builder mBuilder=new NotificationCompat.Builder(NotificationService.this);
+                mBuilder.setContentTitle("UVCE Connect");
+                mBuilder.setContentText("A new post is added in Campus Says.");
+                mBuilder.setSmallIcon(R.drawable.notification_icon);
+                mBuilder.setAutoCancel(true);
+
+                Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                mBuilder.setSound(alarmSound);
+
+                // Creates an explicit intent for an Activity in your app
+                Intent resultIntent = new Intent(NotificationService.this,LogInPage.class);
+
+// The stack builder object will contain an artificial back stack for the
+// started Activity.
+// This ensures that navigating backward from the Activity leads out of
+// your application to the Home screen.
+                TaskStackBuilder stackBuilder = TaskStackBuilder.create(NotificationService.this);
+// Adds the back stack for the Intent (but not the Intent itself)
+                stackBuilder.addParentStack(LogInPage.class);
+// Adds the Intent that starts the Activity to the top of the stack
+                stackBuilder.addNextIntent(resultIntent);
+                PendingIntent resultPendingIntent =
+                        stackBuilder.getPendingIntent(
+                                0,
+                                PendingIntent.FLAG_UPDATE_CURRENT
+                        );
+                mBuilder.setContentIntent(resultPendingIntent);
+                NotificationManager mNotificationManager =
+                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+                // mNotificationId is a unique integer your app uses to identify the
+// notification. For example, to cancel the notification, you can pass its ID
+// number to NotificationManager.cancel().
+                mNotificationManager.notify(2, mBuilder.build());
 
             }
 

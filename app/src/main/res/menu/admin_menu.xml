@@ -13,8 +13,5 @@
         android:title="View Users"
         android:id="@+id/view_users"/>
 
-    <item
-        android:title="Stop service"
-        android:id="@+id/stop_service"/>
 
 </menu>
