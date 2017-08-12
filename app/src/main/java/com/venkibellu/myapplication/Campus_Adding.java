@@ -124,7 +124,7 @@ public class Campus_Adding extends AppCompatActivity {
         add = (Button) findViewById(R.id.campus_add_button);
 
 
-        String organ[] = new String[]{"Vision UVCE", "IEEE", "Tatva", "G2C2", "SAE", "Vinimaya", "Chakravyuha", "ಚೇತನ", "UVCE Foundation", "UVCE Select" };
+        String organ[] = new String[]{"Vision UVCE", "IEEE", "Thatva", "G2C2", "SAE", "Vinimaya", "Chakravyuha", "ಚೇತನ", "UVCE Foundation", "UVCE Select" };
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, organ);
         organization.setAdapter(arrayAdapter);
 
@@ -192,7 +192,7 @@ public class Campus_Adding extends AppCompatActivity {
 
                     if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("IEEE"))
                         organization_image = "campusorganisation/IEEE.jpg";
-                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Tatva"))
+                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Thatva"))
                         organization_image = "campusorganisation/tatva.jpg";
                     else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("G2C2"))
                         organization_image = "campusorganisation/G2C2.jpg";
