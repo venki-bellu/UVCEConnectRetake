@@ -112,16 +112,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".clubs"
-            android:label="ACTIVITIES"
-            android:parentActivityName=".NewHomePage">
-            <intent-filter>
-                <action android:name="com.venkibellu.myapplication.clubs" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".g2c2"
             android:label="G2C2"
             android:parentActivityName=".activities"
@@ -181,16 +171,6 @@
             >
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.chakravyuha" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".sports"
-            android:label="SPORTS"
-            android:parentActivityName=".clubs">
-            <intent-filter>
-                <action android:name="com.venkibellu.myapplication.sports" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
