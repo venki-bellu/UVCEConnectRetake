@@ -1,15 +1,9 @@
 package com.venkibellu.myapplication;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.NotificationCompat;
-import android.view.View;
 
 public class IntroductionScreen extends AppCompatActivity {
 
@@ -19,21 +13,15 @@ public class IntroductionScreen extends AppCompatActivity {
         setContentView(R.layout.activity_introduction_screen);
 
 
-        Handler handler=new Handler();
-        final Intent intent=new Intent(this,LogInPage.class);
-
-
-
-
+        Handler handler = new Handler();
+        final Intent intent = new Intent(this, LogInPage.class);
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 startActivity(intent);
                 finish();
             }
-        },1500);
+        }, 1500);
     }
-
 }

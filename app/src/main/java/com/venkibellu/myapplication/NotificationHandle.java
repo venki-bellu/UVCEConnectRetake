@@ -17,20 +17,21 @@ import com.google.firebase.messaging.RemoteMessage;
 public class NotificationHandle extends FirebaseMessagingService {
 
     private static final String TAG = "FCM Service";
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
         Intent intent = new Intent();
-        Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         PendingIntent pendingIntent = PendingIntent.getActivity(NotificationHandle.this, 0, intent, 0);
-        Notification builder = new  Notification.Builder(this)
+        Notification builder = new Notification.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("UVCE Connect")
                 .setContentText(remoteMessage.getNotification().getBody())
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent).getNotification();
 
-        NotificationManager manager = (NotificationManager)     getSystemService(NOTIFICATION_SERVICE);
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         manager.notify(0, builder);
 
     }

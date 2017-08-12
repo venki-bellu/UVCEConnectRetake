@@ -10,7 +10,6 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
-import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.NotificationCompat;
@@ -42,11 +41,11 @@ public class NotificationService extends Service {
     public void onCreate() {
         firebaseDatabase = FirebaseDatabase.getInstance();
         referenceNews = firebaseDatabase.getReference().child("News");
-        referenceCampus_Says=firebaseDatabase.getReference().child("Campus Says");
+        referenceCampus_Says = firebaseDatabase.getReference().child("Campus Says");
         referenceusers = firebaseDatabase.getInstance().getReference().child("Registered Users");
         preference = getSharedPreferences(PREFERENECE, MODE_PRIVATE);
         id = preference.getString("ID", "null");
-        if(!id.equals("null")) {
+        if (!id.equals("null")) {
             Query query = referenceusers.orderByChild("Google_ID").equalTo(id);
             query.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -116,7 +115,7 @@ public class NotificationService extends Service {
                                 }
 
                             }
-                        },2000);
+                        }, 2000);
 
                     }
 
@@ -194,7 +193,7 @@ public class NotificationService extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent,  int flags, int startId) {
+    public int onStartCommand(Intent intent, int flags, int startId) {
         return START_STICKY;
     }
 
@@ -206,6 +205,6 @@ public class NotificationService extends Service {
 
     @Override
     public void onDestroy() {
-        Toast.makeText(getApplicationContext(),"Service stopped...",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Service stopped...", Toast.LENGTH_SHORT).show();
     }
 }

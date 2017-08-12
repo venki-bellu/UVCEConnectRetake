@@ -55,7 +55,7 @@ public class QuestionPapers extends Fragment implements View.OnClickListener {
 
         if (s > 8 && !b.equals(getContext().getString(R.string.arch))) {
             Toast.makeText(getContext(), "Invalid Selection", Toast.LENGTH_SHORT).show();
-            return ;
+            return;
         }
 
         setBranchSemester(b, s);

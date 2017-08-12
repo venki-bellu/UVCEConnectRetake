@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
@@ -13,11 +12,10 @@
         android:layout_margin="5dp"
         android:elevation="40dp"
         app:cardCornerRadius="10dp"
-        android:padding="10dp"
-
-        >
+        android:padding="10dp">
 
         <TextView
+            android:theme="@style/AppTheme.ProgressBarAccent"
             android:id="@+id/t"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

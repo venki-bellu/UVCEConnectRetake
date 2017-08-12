@@ -5,10 +5,8 @@ import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Environment;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +28,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -44,7 +41,7 @@ import static com.venkibellu.myapplication.News.builder;
 
 
 public class News_Adapter extends BaseAdapter implements ListAdapter {
-    private  static ArrayList<String> listname = new ArrayList<String>();
+    private static ArrayList<String> listname = new ArrayList<String>();
     private Activity activity;
     private static ArrayList<String> newsimage = new ArrayList<String>();
     private static ArrayList<String> newsextraimage = new ArrayList<String>();
@@ -114,11 +111,11 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.news_list, null);
             holder = new ViewHolder();
-            holder.nameTextView = (TextView)view.findViewById(R.id.news_name);
-            holder.timeTextView = (TextView)view.findViewById(R.id.timestamp);
-            holder.detailsTextView = (TextView)view.findViewById(R.id.news_details);
-            holder.extraImageView = (ImageView)view.findViewById(R.id.news_extraimage);
-            holder.organImageView = (ImageView)view.findViewById(R.id.news_image);
+            holder.nameTextView = (TextView) view.findViewById(R.id.news_name);
+            holder.timeTextView = (TextView) view.findViewById(R.id.timestamp);
+            holder.detailsTextView = (TextView) view.findViewById(R.id.news_details);
+            holder.extraImageView = (ImageView) view.findViewById(R.id.news_extraimage);
+            holder.organImageView = (ImageView) view.findViewById(R.id.news_image);
             view.setTag(holder);
 
         } else {
@@ -132,10 +129,10 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
         holder.extraImageView.setImageBitmap(null);
         holder.organImageView.setImageBitmap(null);
 
-        if(!newsimage.get(position).equals("")) {
+        if (!newsimage.get(position).equals("")) {
             StorageReference organref = FirebaseStorage.getInstance()
-                                                       .getReference()
-                                                       .child(newsimage.get(position));
+                    .getReference()
+                    .child(newsimage.get(position));
 
             Glide.with(context)
                     .using(new FirebaseImageLoader())
@@ -148,10 +145,10 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             holder.organImageView.setImageBitmap(null);
         }
 
-        if(!newsextraimage.get(position).equals("")) {
+        if (!newsextraimage.get(position).equals("")) {
             final StorageReference mountainsRef = FirebaseStorage.getInstance()
-                                                           .getReference()
-                                                           .child(newsextraimage.get(position));
+                    .getReference()
+                    .child(newsextraimage.get(position));
             Glide.with(context)
                     .using(new FirebaseImageLoader())
                     .load(mountainsRef)
@@ -193,7 +190,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                                         manager.enqueue(request);
                                         Toast.makeText(context, "Downloading.....", Toast.LENGTH_SHORT).show();
 
-                                    }catch(Exception e){
+                                    } catch (Exception e) {
                                         Toast.makeText(context, "Permission not granted to read External storage. Please grant permission and try again.", Toast.LENGTH_SHORT).show();
                                     }
 
@@ -220,13 +217,13 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             holder.extraImageView.setVisibility(View.GONE);
         }
 
-        Button delete = (Button)view.findViewById(R.id.news_delete);
-        final TextView time = (TextView)view.findViewById(R.id.timestamp);
-        final Button edit = (Button)view.findViewById(R.id.news_edit);
-        final Button submit = (Button)view.findViewById(R.id.news_edit_submit);
-        final EditText editText = (EditText)view.findViewById(R.id.news_details_edit);
+        Button delete = (Button) view.findViewById(R.id.news_delete);
+        final TextView time = (TextView) view.findViewById(R.id.timestamp);
+        final Button edit = (Button) view.findViewById(R.id.news_edit);
+        final Button submit = (Button) view.findViewById(R.id.news_edit_submit);
+        final EditText editText = (EditText) view.findViewById(R.id.news_details_edit);
 
-        if(!Registered_User_Id.admin.equals("ADMIN")) {
+        if (!Registered_User_Id.admin.equals("ADMIN")) {
             edit.setVisibility(View.GONE);
             submit.setVisibility(View.GONE);
             delete.setVisibility(View.GONE);
@@ -236,22 +233,22 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
 
-                if(Registered_User_Id.fromactivity.equals("News")) {
+                if (Registered_User_Id.fromactivity.equals("News")) {
 
-                builder.setCancelable(true);
-                builder.setTitle("Alert");
-                builder.setIcon(android.R.drawable.ic_dialog_alert);
-                builder.setCancelable(true);
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
+                    builder.setCancelable(true);
+                    builder.setTitle("Alert");
+                    builder.setIcon(android.R.drawable.ic_dialog_alert);
+                    builder.setCancelable(true);
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
 
-                builder.setMessage("Are you sure you want to delete this post?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    builder.setMessage("Are you sure you want to delete this post?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
 
                             refnum = fbdb.getInstance().getReference().child("News");
@@ -264,7 +261,8 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                                             keyval = Integer.parseInt(child.getKey());
                                             keyval = keyval + position;
                                         }
-                                    }catch (Exception e) {}
+                                    } catch (Exception e) {
+                                    }
 
                                 }
 
@@ -275,29 +273,28 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                             });
 
 
-
                             refnum.addListenerForSingleValueEvent(querynewevent = new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     try {
 
-                                        if(!dataSnapshot.child(String.valueOf(keyval)).child("News_Image").getValue().toString().equals("")) {
+                                        if (!dataSnapshot.child(String.valueOf(keyval)).child("News_Image").getValue().toString().equals("")) {
                                             remove = FirebaseStorage.getInstance().getReference().child(dataSnapshot.child(String.valueOf(keyval)).child("News_Image").getValue().toString());
                                             remove.delete();
                                         }
 
-                                            for (int i = keyval; i > keyval-position; i--) {
-                                                refnum.child(String.valueOf(i)).child("Added_By").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("Added_By").getValue());
-                                                refnum.child(String.valueOf(i)).child("News_Details").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("News_Details").getValue());
-                                                refnum.child(String.valueOf(i)).child("News_Image").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("News_Image").getValue());
-                                                refnum.child(String.valueOf(i)).child("News_Name").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("News_Name").getValue());
-                                                refnum.child(String.valueOf(i)).child("News_Organization").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("News_Organization").getValue());
-                                                refnum.child(String.valueOf(i)).child("Timestamp").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("Timestamp").getValue());
+                                        for (int i = keyval; i > keyval - position; i--) {
+                                            refnum.child(String.valueOf(i)).child("Added_By").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("Added_By").getValue());
+                                            refnum.child(String.valueOf(i)).child("News_Details").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("News_Details").getValue());
+                                            refnum.child(String.valueOf(i)).child("News_Image").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("News_Image").getValue());
+                                            refnum.child(String.valueOf(i)).child("News_Name").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("News_Name").getValue());
+                                            refnum.child(String.valueOf(i)).child("News_Organization").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("News_Organization").getValue());
+                                            refnum.child(String.valueOf(i)).child("Timestamp").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("Timestamp").getValue());
 
-                                            }
+                                        }
 
 
-                            refnum.child(String.valueOf(keyval-position)).removeValue();
+                                        refnum.child(String.valueOf(keyval - position)).removeValue();
                                         refnum.removeEventListener(querynewevent);
 
 
@@ -313,27 +310,26 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                             });
 
 
-                    }
-                });
+                        }
+                    });
 
                     builder.show();
                 }
-                        if(Registered_User_Id.fromactivity.equals("Campus Says"))
-                        {
-                            builderc.setCancelable(true);
-                            builderc.setTitle("Alert");
-                            builderc.setIcon(android.R.drawable.ic_dialog_alert);
-                            builderc.setCancelable(true);
-                            builderc.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
+                if (Registered_User_Id.fromactivity.equals("Campus Says")) {
+                    builderc.setCancelable(true);
+                    builderc.setTitle("Alert");
+                    builderc.setIcon(android.R.drawable.ic_dialog_alert);
+                    builderc.setCancelable(true);
+                    builderc.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
 
-                            builderc.setMessage("Are you sure you want to delete this post?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                    builderc.setMessage("Are you sure you want to delete this post?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
                             refnum = fbdb.getInstance().getReference().child("Campus Says");
                             query = refnum.orderByKey().limitToFirst(1);
@@ -345,7 +341,8 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                                             keyval = Integer.parseInt(child.getKey());
                                             keyval = keyval + position;
                                         }
-                                    }catch (Exception e) {}
+                                    } catch (Exception e) {
+                                    }
 
                                 }
 
@@ -356,18 +353,17 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                             });
 
 
-
                             refnum.addListenerForSingleValueEvent(cquerynewevent = new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     try {
 
-                                        if(!dataSnapshot.child(String.valueOf(keyval)).child("Campus_Image").getValue().toString().equals("")) {
+                                        if (!dataSnapshot.child(String.valueOf(keyval)).child("Campus_Image").getValue().toString().equals("")) {
                                             remove = FirebaseStorage.getInstance().getReference().child(dataSnapshot.child(String.valueOf(keyval)).child("Campus_Image").getValue().toString());
                                             remove.delete();
                                         }
 
-                                        for (int i = keyval; i > keyval-position; i--) {
+                                        for (int i = keyval; i > keyval - position; i--) {
                                             refnum.child(String.valueOf(i)).child("Added_By").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("Added_By").getValue());
                                             refnum.child(String.valueOf(i)).child("Campus_Details").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("Campus_Details").getValue());
                                             refnum.child(String.valueOf(i)).child("Campus_Image").setValue(dataSnapshot.child(String.valueOf(i - 1)).child("Campus_Image").getValue());
@@ -378,7 +374,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                                         }
 
 
-                                        refnum.child(String.valueOf(keyval-position)).removeValue();
+                                        refnum.child(String.valueOf(keyval - position)).removeValue();
                                         refnum.removeEventListener(cquerynewevent);
 
 
@@ -393,14 +389,13 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                                 }
                             });
 
-                                }
-                            });
-
-                            builderc.show();
-
-
                         }
+                    });
 
+                    builderc.show();
+
+
+                }
 
 
             }
@@ -417,10 +412,11 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         try {
-                            for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren())
                                 newpos = snapshot.getKey();
 
-                        } catch (Exception e) {}
+                        } catch (Exception e) {
+                        }
                     }
 
                     @Override
@@ -430,7 +426,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                 });
 
 
-                if(Registered_User_Id.fromactivity.equals("News")) {
+                if (Registered_User_Id.fromactivity.equals("News")) {
 
 
                     News.ref.removeEventListener(News.myevent);
@@ -449,12 +445,13 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                             query.addValueEventListener(equeryevent = new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    try{
-                                    for (DataSnapshot child : dataSnapshot.getChildren()) {
-                                        keyval = Integer.parseInt(child.getKey());
-                                        keyval = keyval + position;
+                                    try {
+                                        for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                            keyval = Integer.parseInt(child.getKey());
+                                            keyval = keyval + position;
+                                        }
+                                    } catch (Exception e) {
                                     }
-                                    }catch (Exception e) {}
 
                                 }
 
@@ -469,7 +466,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
 
 
                                     refnum.child(String.valueOf(keyval)).child("News_Details").setValue(editText.getText().toString());
-                                    if(!time.getText().toString().endsWith("(Edited)"))
+                                    if (!time.getText().toString().endsWith("(Edited)"))
                                         refnum.child(String.valueOf(keyval)).child("Timestamp").setValue(time.getText().toString() + " (Edited)");
                                     submit.setVisibility(View.GONE);
                                     edit.setVisibility(View.VISIBLE);
@@ -478,8 +475,8 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                                     holder.detailsTextView.setText(editText.getText().toString());
                                     News.ref.addValueEventListener(News.myevent);
                                     refnum.removeEventListener(equerynewevent);
-                                    for(int i = 1; i<=Integer.parseInt(newpos); i++)
-                                    refusers.child(String.valueOf(i)).child("Notification_Viewed_News").setValue("No");
+                                    for (int i = 1; i <= Integer.parseInt(newpos); i++)
+                                        refusers.child(String.valueOf(i)).child("Notification_Viewed_News").setValue("No");
 
                                 }
 
@@ -492,8 +489,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                     });
 
                 }
-                if(Registered_User_Id.fromactivity.equals("Campus Says"))
-                {
+                if (Registered_User_Id.fromactivity.equals("Campus Says")) {
                     Campus_Says.ref.removeEventListener(Campus_Says.myevent);
                     editText.setVisibility(View.VISIBLE);
                     holder.detailsTextView.setVisibility(View.GONE);
@@ -507,12 +503,13 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                             query.addValueEventListener(cequeryevent = new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    try{
-                                    for (DataSnapshot child : dataSnapshot.getChildren()) {
-                                        keyval = Integer.parseInt(child.getKey());
-                                        keyval = keyval + position;
+                                    try {
+                                        for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                            keyval = Integer.parseInt(child.getKey());
+                                            keyval = keyval + position;
+                                        }
+                                    } catch (Exception e) {
                                     }
-                                    }catch (Exception e) {}
 
                                 }
 
@@ -524,21 +521,22 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                             refnum.addListenerForSingleValueEvent(cequerynewevent = new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    try{
+                                    try {
 
                                         refnum.child(String.valueOf(keyval)).child("Campus_Details").setValue(editText.getText().toString());
-                                        if(!time.getText().toString().endsWith("(Edited)"))
-                                        refnum.child(String.valueOf(keyval)).child("Timestamp").setValue(time.getText().toString() + " (Edited)");
-                                    submit.setVisibility(View.GONE);
-                                    edit.setVisibility(View.VISIBLE);
-                                    editText.setVisibility(View.INVISIBLE);
+                                        if (!time.getText().toString().endsWith("(Edited)"))
+                                            refnum.child(String.valueOf(keyval)).child("Timestamp").setValue(time.getText().toString() + " (Edited)");
+                                        submit.setVisibility(View.GONE);
+                                        edit.setVisibility(View.VISIBLE);
+                                        editText.setVisibility(View.INVISIBLE);
                                         holder.detailsTextView.setVisibility(View.VISIBLE);
                                         holder.detailsTextView.setText(editText.getText().toString());
                                         Campus_Says.ref.addValueEventListener(Campus_Says.myevent);
-                                    refnum.removeEventListener(cequerynewevent);
-                                        for(int i = 1; i<=Integer.parseInt(newpos); i++)
-                                        refusers.child(String.valueOf(i)).child("Notification_Viewed_Campus").setValue("No");
-                                    }catch (Exception e) {}
+                                        refnum.removeEventListener(cequerynewevent);
+                                        for (int i = 1; i <= Integer.parseInt(newpos); i++)
+                                            refusers.child(String.valueOf(i)).child("Notification_Viewed_Campus").setValue("No");
+                                    } catch (Exception e) {
+                                    }
 
 
                                 }
@@ -552,9 +550,6 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                     });
 
                 }
-
-
-
 
 
             }
@@ -574,7 +569,6 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
         private TextView nameTextView, timeTextView, detailsTextView;
         private ImageView extraImageView, organImageView;
     }
-
 
 
 }

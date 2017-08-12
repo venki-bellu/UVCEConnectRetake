@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -18,9 +17,7 @@
         android:elevation="40dp"
         app:cardCornerRadius="10dp"
         android:padding="10dp"
-        android:id="@+id/c1"
-
-        >
+        android:id="@+id/c1">
 
         <TextView
             android:id="@+id/t"
@@ -28,17 +25,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="UVCE JAATHRE:\n\nAs the name indicates, it's a colourful one day event organised by 2nd year students during the month of Oct every year. During this event various collegiate clubs’ setup their stall at quadrangle of main campus and conduct fun games, thereby helping freshers to know about UVCE."
-
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="20sp" />
     </android.support.v7.widget.CardView>
-
-
-
-
-
-
-
 
     <android.support.v7.widget.CardView
         android:layout_width="wrap_content"

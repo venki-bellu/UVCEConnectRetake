@@ -65,7 +65,7 @@ public class AcademicActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.academic_page_menu,menu);
+        menuInflater.inflate(R.menu.academic_page_menu, menu);
         return true;
     }
 
@@ -110,10 +110,10 @@ public class AcademicActivity extends AppCompatActivity {
         // if syllabus not available return.
         if (downloadURL.isEmpty()) {
             Toast.makeText(getApplicationContext(), "No resources found.\n" +
-                                                    "Will be added soon! \n" +
-                                                    "Please contribute if available.",
-                                                        Toast.LENGTH_LONG).show();
-            return ;
+                            "Will be added soon! \n" +
+                            "Please contribute if available.",
+                    Toast.LENGTH_LONG).show();
+            return;
         }
 
         if (preference.contains(setting) && preference.getBoolean(setting, false)) {
@@ -131,22 +131,22 @@ public class AcademicActivity extends AppCompatActivity {
         final CheckBox dontShowAgain = (CheckBox) view.findViewById(R.id.checkBoxid);
 
         disclaimerDialog.setView(view)
-                        .setTitle("Disclaimer")
-                        .setMessage(R.string.disclaimer)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                .setTitle("Disclaimer")
+                .setMessage(R.string.disclaimer)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                                SharedPreferences.Editor editor = preference.edit();
-                                editor.putBoolean(setting, dontShowAgain.isChecked());
-                                editor.apply();
+                        SharedPreferences.Editor editor = preference.edit();
+                        editor.putBoolean(setting, dontShowAgain.isChecked());
+                        editor.apply();
 
-                                checkStoragePermission();
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setCancelable(false)
-                        .show();
+                        checkStoragePermission();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setCancelable(false)
+                .show();
     }
 
     private String getBranch() {
@@ -226,12 +226,12 @@ public class AcademicActivity extends AppCompatActivity {
             request.setDescription("Syllabus")
                     .setTitle(fileName)
                     .setNotificationVisibility(DownloadManager.Request
-                                                              .VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                            .VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                     .setDestinationInExternalPublicDir("/UVCE-Connect", fileName)
                     .allowScanningByMediaScanner();
 
             DownloadManager manager = (DownloadManager)
-                                getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);
+                    getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);
             manager.enqueue(request);
             return null;
         }

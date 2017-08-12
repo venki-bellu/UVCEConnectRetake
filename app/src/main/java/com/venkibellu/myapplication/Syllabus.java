@@ -40,6 +40,7 @@ public class Syllabus extends Fragment implements View.OnClickListener {
 
         Button button = (Button) view.findViewById(R.id.download_button);
         button.setOnClickListener(this);
+
         branchSpinner = (Spinner) view.findViewById(R.id.branchSpinner);
         semesterSpinner = (Spinner) view.findViewById(R.id.semesterSpinner);
         noteTextView = (TextView) view.findViewById(R.id.noteTextView);

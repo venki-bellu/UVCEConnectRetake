@@ -1,12 +1,12 @@
 package com.venkibellu.myapplication;
 
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class chethana extends AppCompatActivity {
-TextView t;
+    TextView t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,8 +15,8 @@ TextView t;
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        t=(TextView)findViewById(R.id.t);
-        Typeface mycustomfont=Typeface.createFromAsset(getAssets(),"fonts/LibreBaskerville-Bold.ttf");
+        t = (TextView) findViewById(R.id.t);
+        Typeface mycustomfont = Typeface.createFromAsset(getAssets(), "fonts/LibreBaskerville-Bold.ttf");
         t.setTypeface(mycustomfont);
     }
 }

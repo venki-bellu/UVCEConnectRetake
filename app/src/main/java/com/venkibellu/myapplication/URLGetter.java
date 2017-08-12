@@ -69,9 +69,6 @@ class URLGetter {
     };
 
 
-
-
-
     /*****************************************************************************************
      *                                    QUESTION PAPERS                                    *
      *                                  GOOGLE DRIVE LINKS                                   *
@@ -156,12 +153,12 @@ class URLGetter {
     URLGetter(Context _context) {
         context = _context;
         final String arch = context.getString(R.string.arch),
-                     cse = context.getString(R.string.cse),
-                     ise = context.getString(R.string.ise),
-                     ce = context.getString(R.string.ce),
-                     me = context.getString(R.string.me),
-                     eee = context.getString(R.string.eee),
-                     ece = context.getString(R.string.ece);
+                cse = context.getString(R.string.cse),
+                ise = context.getString(R.string.ise),
+                ce = context.getString(R.string.ce),
+                me = context.getString(R.string.me),
+                eee = context.getString(R.string.eee),
+                ece = context.getString(R.string.ece);
 
         syllabusURLmapper.put(arch, ARCH_SyllabusURL);
         syllabusURLmapper.put(cse, CSE_SyllabusURL);

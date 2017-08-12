@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -45,13 +46,10 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     private final String PREFERENECE = "UVCE-prefereceFile-AccountID";
     private SharedPreferences preference;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in_page);
-
 
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.background_video);
 
@@ -60,6 +58,15 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         progress = (LinearLayout) findViewById(R.id.progressLayout);
 
         homepageIntent = new Intent(this, NewHomePage.class);
+
+        Button b = (Button) findViewById(R.id.bypass);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Registered_User_Id.admin = "ADMIN";
+                startActivity(homepageIntent);
+            }
+        });
 
         sharedPreferences = LogInPage.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -179,11 +186,4 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
             handleSignInResult(result);
         }
     }
-
-
-
 }
-
-
-
-

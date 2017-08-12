@@ -48,7 +48,6 @@ public class NewHomePage extends AppCompatActivity
     String setting = "AskAgain";
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +70,7 @@ public class NewHomePage extends AppCompatActivity
         academics.startAnimation(animation);
 
         //Start service on app created
-        Intent intent1=new Intent(this,NotificationService.class);
+        Intent intent1 = new Intent(this, NotificationService.class);
         startService(intent1);
 
         loginPageIntent = new Intent(this, LogInPage.class);
@@ -178,7 +177,7 @@ public class NewHomePage extends AppCompatActivity
             context.startActivity(Intent.createChooser(sendIntent, null));
             return true;
         } else if (item.getItemId() == R.id.view_users) {
-            startActivity(new Intent(NewHomePage.this,ViewUsers.class));
+            startActivity(new Intent(NewHomePage.this, ViewUsers.class));
         }
 
 

@@ -46,7 +46,7 @@ public class Campus_Says extends AppCompatActivity {
     public static ValueEventListener myevent;
     private LinearLayout progress;
 
-    Context context=this;
+    Context context = this;
     Intent sendIntent;
 
 
@@ -57,7 +57,7 @@ public class Campus_Says extends AppCompatActivity {
 
         sendIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                 "mailto", "1917uvce@gmail.com", null));
-        sendIntent.putExtra(Intent.EXTRA_SUBJECT,"Request to Post in Campus Says");
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Request to Post in Campus Says");
 
         builderc = new AlertDialog.Builder(this);
 
@@ -75,18 +75,17 @@ public class Campus_Says extends AppCompatActivity {
 
         Registered_User_Id.fromactivity = "Campus Says";
 
-            ref = mFirebaseDatabase.getInstance().getReference().child("Campus Says");
+        ref = mFirebaseDatabase.getInstance().getReference().child("Campus Says");
         ref.addValueEventListener(myevent = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                try{
+                try {
                     campusname.clear();
                     campusdetails.clear();
                     campusimage.clear();
                     campusorganization.clear();
                     campustime.clear();
-                    for(DataSnapshot snapshot : dataSnapshot.getChildren())
-                    {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         campusname.add(snapshot.child("Campus_Name").getValue().toString());
                         campusdetails.add(snapshot.child("Campus_Details").getValue().toString());
                         campusimage.add(snapshot.child("Campus_Image").getValue().toString());
@@ -96,7 +95,8 @@ public class Campus_Says extends AppCompatActivity {
                     campus_adapter.notifyDataSetChanged();
                     progress.setVisibility(View.GONE);
 
-                } catch (Exception e){}
+                } catch (Exception e) {
+                }
             }
 
             @Override
@@ -109,7 +109,7 @@ public class Campus_Says extends AppCompatActivity {
         progress.setVisibility(View.VISIBLE);
 
         campus_adapter = new News_Adapter(campusname, this, this, campusdetails, campusorganization, campusimage, campustime);
-        ListView listView = (ListView)findViewById(R.id.campus_list);
+        ListView listView = (ListView) findViewById(R.id.campus_list);
         listView.setAdapter(campus_adapter);
 
         fab = (FloatingActionButton) findViewById(R.id.add_campus);
@@ -129,10 +129,11 @@ public class Campus_Says extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        if(snapshot.child("Designation").getValue().toString().equals("ADMIN"))
-                           fab.setVisibility(View.VISIBLE);
+                        if (snapshot.child("Designation").getValue().toString().equals("ADMIN"))
+                            fab.setVisibility(View.VISIBLE);
                     }
-                }catch(Exception e) {}
+                } catch (Exception e) {
+                }
             }
 
             @Override
@@ -219,15 +220,14 @@ public class Campus_Says extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater=getMenuInflater();
-        menuInflater.inflate(R.menu.campus_says_menu,menu);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.campus_says_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==R.id.say_something)
-        {
+        if (item.getItemId() == R.id.say_something) {
             context.startActivity(Intent.createChooser(sendIntent, null));
             return true;
         }

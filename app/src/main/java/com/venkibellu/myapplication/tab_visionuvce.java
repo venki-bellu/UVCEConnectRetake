@@ -12,7 +12,7 @@ public class tab_visionuvce extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v= inflater.inflate(R.layout.tab_visionuvce, container, false);
+        View v = inflater.inflate(R.layout.tab_visionuvce, container, false);
 
 
         TextView txt = (TextView) v.findViewById(R.id.t);

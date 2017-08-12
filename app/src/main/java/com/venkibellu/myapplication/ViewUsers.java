@@ -4,16 +4,26 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -75,11 +85,10 @@ public class ViewUsers extends AppCompatActivity {
         }
     }
 
-    ArrayAdapter<User> adapter;
-    ArrayList<User> users;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference reference;
-    LinearLayout progress;
+    private ArrayAdapter<User> adapter;
+    private ArrayList<User> userList;
+    private DatabaseReference reference;
+    private LinearLayout progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,14 +98,68 @@ public class ViewUsers extends AppCompatActivity {
         progress = (LinearLayout) findViewById(R.id.progressLayout);
         progress.setVisibility(View.VISIBLE);
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        reference = firebaseDatabase.getReference().child("Registered Users");
+        reference = FirebaseDatabase.getInstance().getReference().child("Registered Users");
 
-        users = new ArrayList<>();
+        userList = new ArrayList<>();
         adapter = new UserListAdapter();
 
-        populateUserList();
-        populateListView();
+        try {
+            populateUserList();
+            populateListView();
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Something went wrong!",
+                    Toast.LENGTH_SHORT).show();
+            Log.e("ViewUsers", e.getMessage());
+        }
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.list_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                populateUserList();
+            }
+        });
+    }
+
+    private void populateUserList() {
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String name = snapshot.child("Name").getValue().toString();
+                    String key = snapshot.getKey();
+
+                    userList.add(new User(name, key));
+                }
+
+                formatNames();
+                progress.setVisibility(View.GONE);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void formatNames() {
+        for (int i = 0; i < userList.size(); ++i) {
+            String name = userList.get(i).getName(),
+                    capitalizedName = WordUtils.capitalizeFully(name),
+                    key = userList.get(i).getKey();
+
+            userList.set(i, new User(capitalizedName, key));
+        }
+
+        Collections.sort(userList, new Comparator<User>() {
+            @Override
+            public int compare(User user, User t1) {
+                return user.getName().compareTo(t1.getName());
+            }
+        });
     }
 
     private void populateListView() {
@@ -106,10 +169,86 @@ public class ViewUsers extends AppCompatActivity {
         userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                User selectedUser = users.get(i);
+                User selectedUser = userList.get(i);
                 getUserInformation(selectedUser);
             }
         });
+    }
+
+    private class UserListAdapter extends ArrayAdapter<User> implements Filterable {
+
+        public UserListAdapter() {
+            super(ViewUsers.this, R.layout.list_users_row, userList);
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            View itemView = convertView;
+            if (itemView == null) {
+                itemView = getLayoutInflater().inflate(R.layout.list_users_row, parent, false);
+            }
+
+            if (position < userList.size()) {
+                User currentUser = userList.get(position);
+                TextView userNameTextView = (TextView) itemView.findViewById(R.id.user_name_text);
+                userNameTextView.setText(currentUser.getName());
+
+                return itemView;
+            }
+
+            return itemView;
+        }
+
+        Filter userFilter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                FilterResults filterResults = new FilterResults();
+                ArrayList<User> tempUserList = new ArrayList<>();
+
+                if (charSequence != null && userList != null) {
+                    for (int i = 0; i < userList.size(); ++i) {
+                        if (userList.get(i).getName().equals(charSequence)) {
+                            tempUserList.add(userList.get(i));
+                        }
+                    }
+
+                    filterResults.values = tempUserList;
+                    filterResults.count = tempUserList.size();
+                }
+
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+                for (User user : userList) {
+                    System.out.print(user.getName() + ' ');
+                }
+                System.out.println();
+
+                userList = (ArrayList<User>) filterResults.values;
+
+                for (User user : userList) {
+                    System.out.print(user.getName() + ' ');
+                }
+                System.out.println();
+
+
+                if (filterResults.count > 0 && !userList.isEmpty()) {
+                    adapter.notifyDataSetChanged();
+                } else {
+                    adapter.notifyDataSetInvalidated();
+                }
+            }
+        };
+
+        @NonNull
+        @Override
+        public Filter getFilter() {
+            return userFilter;
+        }
     }
 
     private void getUserInformation(final User selectedUser) {
@@ -119,6 +258,7 @@ public class ViewUsers extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String branch, email, phone, status, year;
+
                 email = dataSnapshot.child(key).child("Email Id").getValue().toString();
                 branch = dataSnapshot.child(key).child("Branch").getValue().toString();
                 phone = dataSnapshot.child(key).child("Contact Number").getValue().toString();
@@ -146,18 +286,21 @@ public class ViewUsers extends AppCompatActivity {
         TextView branchTextView = (TextView) view.findViewById(R.id.dialog_branch_field);
         TextView statusTextView = (TextView) view.findViewById(R.id.dialog_status_field);
         TextView yearTextView = (TextView) view.findViewById(R.id.dialog_year_field);
+        TextView keyTextView = (TextView) view.findViewById(R.id.dialog_key_field);
 
         String email = "\u2022  " + user.getEmail();
         String phone = "\u2022  " + user.getPhone();
         String branch = "\u2022  " + user.getBranch();
         String status = "\u2022  " + user.getStatus();
         String year = "\u2022  " + user.getYearOfJoining();
+        String key = "\u2022   Key : " + user.getKey();
 
         emailTextView.setText(email);
         phoneTextView.setText(phone);
         branchTextView.setText(branch);
         statusTextView.setText(status);
         yearTextView.setText(year);
+        keyTextView.setText(key);
 
         userInfoDialog.setView(view)
                 .setTitle(user.getName())
@@ -172,69 +315,31 @@ public class ViewUsers extends AppCompatActivity {
                 .show();
     }
 
-    private class UserListAdapter extends ArrayAdapter<User> {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_search, menu);
 
-        public UserListAdapter() {
-            super(ViewUsers.this, R.layout.list_users_row, users);
-        }
+        MenuItem item = menu.findItem(R.id.menu_search_item);
 
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            View itemView = convertView;
-            if (itemView == null) {
-                itemView = getLayoutInflater().inflate(R.layout.list_users_row, parent, false);
-            }
+        android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView)
+                MenuItemCompat.getActionView(item);
 
-            User currentUser = users.get(position);
-            TextView userNameTextView = (TextView) itemView.findViewById(R.id.user_name_text);
-
-            userNameTextView.setText(currentUser.getName());
-
-            return itemView;
-        }
-    }
-
-    private void populateUserList() {
-        reference.addValueEventListener(new ValueEventListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                users.clear();
-                try {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        String name = snapshot.child("Name").getValue().toString();
-                        String key = snapshot.getKey();
-
-                        users.add(new User(name, key));
-                    }
-                } catch (Exception e) {
-                }
-
-                formatNames();
-                progress.setVisibility(View.GONE);
-                adapter.notifyDataSetChanged();
+            public boolean onQueryTextSubmit(String query) {
+                adapter.getFilter().filter(query);
+//                userList.clear();
+//                adapter.notifyDataSetChanged();
+                return false;
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+            public boolean onQueryTextChange(String newText) {
+                return false;
             }
         });
-    }
 
-    private void formatNames() {
-        for (int i = 0; i < users.size(); ++i) {
-            String name = users.get(i).getName(), capitalizedName = "", key = users.get(i).getKey();
-            capitalizedName = WordUtils.capitalizeFully(name);
-
-            users.set(i, new User(capitalizedName, key));
-        }
-
-        Collections.sort(users, new Comparator<User>() {
-            @Override
-            public int compare(User user, User t1) {
-                return user.getName().compareTo(t1.getName());
-            }
-        });
+        return super.onCreateOptionsMenu(menu);
     }
 }

@@ -2,14 +2,15 @@ package com.venkibellu.myapplication;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 public class aboutapp extends AppCompatActivity {
-   TextView t;
+    TextView t;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,18 +19,11 @@ public class aboutapp extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        t=(TextView)findViewById(R.id.t);
-        Typeface mycustomfont=Typeface.createFromAsset(getAssets(),"fonts/LibreBaskerville-Bold.ttf");
-        t.setTypeface(mycustomfont);
-
-
-
-
-
-
-
-
+        t = (TextView) findViewById(R.id.t);
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/LibreBaskerville-Bold.ttf");
+        t.setTypeface(font);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.aboutuvce_main, menu);

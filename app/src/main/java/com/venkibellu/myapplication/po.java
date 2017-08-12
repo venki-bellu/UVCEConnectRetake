@@ -1,13 +1,13 @@
 package com.venkibellu.myapplication;
 
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.util.Linkify;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class po extends AppCompatActivity {
-   TextView t;
+    TextView t;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,8 +15,8 @@ public class po extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        t=(TextView)findViewById(R.id.t);
-        Typeface mycustomfont=Typeface.createFromAsset(getAssets(),"fonts/LibreBaskerville-Bold.ttf");
+        t = (TextView) findViewById(R.id.t);
+        Typeface mycustomfont = Typeface.createFromAsset(getAssets(), "fonts/LibreBaskerville-Bold.ttf");
         t.setTypeface(mycustomfont);
     }
 }

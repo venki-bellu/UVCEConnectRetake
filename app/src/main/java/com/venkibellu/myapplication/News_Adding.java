@@ -7,8 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.cast.framework.media.ImagePicker;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -60,7 +57,7 @@ public class News_Adding extends AppCompatActivity {
     private DatabaseReference ref;
     private FirebaseDatabase mfbdb;
     private String ID;
-    private  String organization_image;
+    private String organization_image;
     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy, hh:mm a");
 
     @Override
@@ -72,7 +69,6 @@ public class News_Adding extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ref = mfbdb.getInstance().getReference().child("News");
         newref = mfbdb.getInstance().getReference().child("Registered Users");
-
 
 
         Query query = ref.orderByKey().limitToFirst(1);
@@ -101,10 +97,11 @@ public class News_Adding extends AppCompatActivity {
         newquery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                try{
-                    for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                try {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren())
                         newnewpos = snapshot.getKey();
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                }
 
             }
 
@@ -115,11 +112,10 @@ public class News_Adding extends AppCompatActivity {
         });
 
 
-
-        details = (EditText)findViewById(R.id.news_details_add);
+        details = (EditText) findViewById(R.id.news_details_add);
         organization = (Spinner) findViewById(R.id.organisation_news_add);
         picture = (Button) findViewById(R.id.choose_pic_news);
-        pictureshow = (ImageView)findViewById(R.id.news_imageview);
+        pictureshow = (ImageView) findViewById(R.id.news_imageview);
         add = (Button) findViewById(R.id.news_add_button);
 
 
@@ -146,8 +142,7 @@ public class News_Adding extends AppCompatActivity {
 
                 if (!details.getText().toString().trim().equals("")) {
 
-                    if(Integer.parseInt(newpos)<-19)
-                    {
+                    if (Integer.parseInt(newpos) < -19) {
                         Query mquery = ref.orderByKey().equalTo("-1");
                         mquery.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -167,14 +162,13 @@ public class News_Adding extends AppCompatActivity {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                for(int i = 0; i<19;i++)
-                                {
-                                    ref.child(String.valueOf(-(i+1))).child("News_Name").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("News_Name").getValue().toString());
-                                    ref.child(String.valueOf(-(i+1))).child("News_Image").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("News_Image").getValue().toString());
-                                    ref.child(String.valueOf(-(i+1))).child("News_Details").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("News_Details").getValue().toString());
-                                    ref.child(String.valueOf(-(i+1))).child("News_Organization").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("News_Organization").getValue().toString());
-                                    ref.child(String.valueOf(-(i+1))).child("Added_By").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("Added_By").getValue().toString());
-                                    ref.child(String.valueOf(-(i+1))).child("Timestamp").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("Timestamp").getValue().toString());
+                                for (int i = 0; i < 19; i++) {
+                                    ref.child(String.valueOf(-(i + 1))).child("News_Name").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("News_Name").getValue().toString());
+                                    ref.child(String.valueOf(-(i + 1))).child("News_Image").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("News_Image").getValue().toString());
+                                    ref.child(String.valueOf(-(i + 1))).child("News_Details").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("News_Details").getValue().toString());
+                                    ref.child(String.valueOf(-(i + 1))).child("News_Organization").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("News_Organization").getValue().toString());
+                                    ref.child(String.valueOf(-(i + 1))).child("Added_By").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Added_By").getValue().toString());
+                                    ref.child(String.valueOf(-(i + 1))).child("Timestamp").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Timestamp").getValue().toString());
                                 }
                                 ref.child("-21").removeValue();
 
@@ -189,11 +183,11 @@ public class News_Adding extends AppCompatActivity {
                         ref.removeEventListener(myevent1);
 
                     }
-                    if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Administration Office"))
+                    if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Administration Office"))
                         organization_image = "newsorganisation/Administration Office.jpg";
-                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Placement Office"))
+                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Placement Office"))
                         organization_image = "newsorganisation/Placement Office.jpg";
-                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Principal's Office"))
+                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Principal's Office"))
                         organization_image = "newsorganisation/Principal's Office.jpg";
 
 
@@ -209,11 +203,11 @@ public class News_Adding extends AppCompatActivity {
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Details").setValue(details.getText().toString());
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Organization").setValue(organization_image);
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Name").setValue(ID);
-                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Image").setValue("newsimages/" + filePath.getLastPathSegment()+"_"+ID);
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("News_Image").setValue("newsimages/" + filePath.getLastPathSegment() + "_" + ID);
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Added_By").setValue(Registered_User_Id.name);
                         Date date = new Date();
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Timestamp").setValue(dateFormat.format(date));
-                        StorageReference riversRef = storageReference.child("newsimages/" + filePath.getLastPathSegment()+"_"+ID);
+                        StorageReference riversRef = storageReference.child("newsimages/" + filePath.getLastPathSegment() + "_" + ID);
                         riversRef.putFile(filePath)
                                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
@@ -224,8 +218,7 @@ public class News_Adding extends AppCompatActivity {
 
                                         //and displaying a success toast
                                         Toast.makeText(getApplicationContext(), "News Successfully Updated", Toast.LENGTH_LONG).show();
-                                        for(int i=1; i<=Integer.parseInt(newnewpos); i++)
-                                        {
+                                        for (int i = 1; i <= Integer.parseInt(newnewpos); i++) {
                                             newref.child(String.valueOf(i)).child("Notification_Viewed_News").setValue("No");
                                         }
                                         Intent intent = new Intent(News_Adding.this, News.class);
@@ -258,8 +251,6 @@ public class News_Adding extends AppCompatActivity {
                                 });
 
 
-
-
                     }
                     //if there is not any file
                     else {
@@ -279,8 +270,7 @@ public class News_Adding extends AppCompatActivity {
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Timestamp").setValue(dateFormat.format(date));
                         Toast.makeText(getApplicationContext(), "News Successfully Updated", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
-                        for(int i=1; i<=Integer.parseInt(newnewpos); i++)
-                        {
+                        for (int i = 1; i <= Integer.parseInt(newnewpos); i++) {
                             newref.child(String.valueOf(i)).child("Notification_Viewed_News").setValue("No");
                         }
                         Intent intent = new Intent(News_Adding.this, News.class);
@@ -293,8 +283,6 @@ public class News_Adding extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please Enter all the fields", Toast.LENGTH_SHORT).show();
             }
         });
-
-
 
 
     }

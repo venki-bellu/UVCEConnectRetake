@@ -7,8 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.cast.framework.media.ImagePicker;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -40,29 +37,24 @@ import java.util.Date;
 
 public class Campus_Adding extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 234;
+    public static String newpos = "0";
+    private static String newnewpos;
     EditText details;
     Spinner organization;
     Button picture;
     ImageView pictureshow;
     Button add;
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy, hh:mm a");
     private String organization_image = "";
     private ValueEventListener myevent1;
     private DatabaseReference newref;
-
-
-
     //a Uri object to store file path
     private Uri filePath;
-
     //firebase storage reference
     private StorageReference storageReference;
-
-    public static String newpos = "0";
-    private static String newnewpos;
     private DatabaseReference ref;
     private FirebaseDatabase mfbdb;
     private String ID;
-    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy, hh:mm a");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +65,6 @@ public class Campus_Adding extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ref = mfbdb.getInstance().getReference().child("Campus Says");
         newref = mfbdb.getInstance().getReference().child("Registered Users");
-
 
 
         Query query = ref.orderByKey().limitToFirst(1);
@@ -88,8 +79,6 @@ public class Campus_Adding extends AppCompatActivity {
 
                 } catch (Exception e) {
                 }
-
-
             }
 
             @Override
@@ -102,10 +91,11 @@ public class Campus_Adding extends AppCompatActivity {
         newquery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                try{
-                    for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                try {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren())
                         newnewpos = snapshot.getKey();
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                }
 
             }
 
@@ -115,28 +105,24 @@ public class Campus_Adding extends AppCompatActivity {
             }
         });
 
-
-
-        details = (EditText)findViewById(R.id.campus_details_add);
+        details = (EditText) findViewById(R.id.campus_details_add);
         organization = (Spinner) findViewById(R.id.organisation_campus_add);
         picture = (Button) findViewById(R.id.choose_pic_campus);
-        pictureshow = (ImageView)findViewById(R.id.campus_imageview);
+        pictureshow = (ImageView) findViewById(R.id.campus_imageview);
         add = (Button) findViewById(R.id.campus_add_button);
 
 
-        String organ[] = new String[]{"Vision UVCE", "IEEE", "Thatva", "G2C2", "SAE", "Vinimaya", "Chakravyuha", "ಚೇತನ", "UVCE Foundation", "UVCE Select" };
+        String organ[] = new String[]{"Vision UVCE", "IEEE", "Thatva", "G2C2", "SAE", "Vinimaya", "Chakravyuha", "ಚೇತನ", "UVCE Foundation", "UVCE Select"};
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, organ);
         organization.setAdapter(arrayAdapter);
 
         picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intentfile = new Intent();
                 intentfile.setType("image/*");
                 intentfile.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intentfile, "Select Picture"), PICK_IMAGE_REQUEST);
-
             }
         });
 
@@ -147,8 +133,7 @@ public class Campus_Adding extends AppCompatActivity {
 
                 if (!details.getText().toString().trim().equals("")) {
 
-                    if(Integer.parseInt(newpos)<-19)
-                    {
+                    if (Integer.parseInt(newpos) < -19) {
                         Query mquery = ref.orderByKey().equalTo("-1");
                         mquery.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -168,14 +153,13 @@ public class Campus_Adding extends AppCompatActivity {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                for(int i = 0; i<19;i++)
-                                {
-                                    ref.child(String.valueOf(-(i+1))).child("Campus_Name").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("Campus_Name").getValue().toString());
-                                    ref.child(String.valueOf(-(i+1))).child("Campus_Image").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("Campus_Image").getValue().toString());
-                                    ref.child(String.valueOf(-(i+1))).child("Campus_Details").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("Campus_Details").getValue().toString());
-                                    ref.child(String.valueOf(-(i+1))).child("Campus_Organization").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("Campus_Organization").getValue().toString());
-                                    ref.child(String.valueOf(-(i+1))).child("Added_By").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("Added_By").getValue().toString());
-                                    ref.child(String.valueOf(-(i+1))).child("Timestamp").setValue(dataSnapshot.child(String.valueOf(-(i+2))).child("Timestamp").getValue().toString());
+                                for (int i = 0; i < 19; i++) {
+                                    ref.child(String.valueOf(-(i + 1))).child("Campus_Name").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Campus_Name").getValue().toString());
+                                    ref.child(String.valueOf(-(i + 1))).child("Campus_Image").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Campus_Image").getValue().toString());
+                                    ref.child(String.valueOf(-(i + 1))).child("Campus_Details").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Campus_Details").getValue().toString());
+                                    ref.child(String.valueOf(-(i + 1))).child("Campus_Organization").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Campus_Organization").getValue().toString());
+                                    ref.child(String.valueOf(-(i + 1))).child("Added_By").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Added_By").getValue().toString());
+                                    ref.child(String.valueOf(-(i + 1))).child("Timestamp").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Timestamp").getValue().toString());
                                 }
                                 ref.child("-21").removeValue();
 
@@ -190,25 +174,25 @@ public class Campus_Adding extends AppCompatActivity {
 
                     }
 
-                    if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("IEEE"))
+                    if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("IEEE"))
                         organization_image = "campusorganisation/IEEE.jpg";
-                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Thatva"))
+                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Thatva"))
                         organization_image = "campusorganisation/tatva.jpg";
-                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("G2C2"))
+                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("G2C2"))
                         organization_image = "campusorganisation/G2C2.jpg";
-                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("SAE"))
+                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("SAE"))
                         organization_image = "campusorganisation/SAE.jpg";
-                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Vinimaya"))
+                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Vinimaya"))
                         organization_image = "campusorganisation/Vinimaya.jpg";
-                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Chakravyuha"))
+                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Chakravyuha"))
                         organization_image = "campusorganisation/chakravyuha.jpg";
-                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("ಚೇತನ"))
+                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("ಚೇತನ"))
                         organization_image = "campusorganisation/chethana.jpg";
-                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Vision UVCE"))
+                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Vision UVCE"))
                         organization_image = "campusorganisation/Vision UVCE.jpg";
-                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("UVCE Foundation"))
+                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("UVCE Foundation"))
                         organization_image = "campusorganisation/UVCE Foundation.jpg";
-                    else if(organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("UVCE Select"))
+                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("UVCE Select"))
                         organization_image = "campusorganisation/UVCE Select.jpg";
 
                     if (filePath != null) {
@@ -223,11 +207,11 @@ public class Campus_Adding extends AppCompatActivity {
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Campus_Details").setValue(details.getText().toString());
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Campus_Organization").setValue(organization_image);
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Campus_Name").setValue(ID);
-                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Campus_Image").setValue("campusimages/" + filePath.getLastPathSegment()+"_"+ID);
+                        ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Campus_Image").setValue("campusimages/" + filePath.getLastPathSegment() + "_" + ID);
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Added_By").setValue(Registered_User_Id.name);
                         Date date = new Date();
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Timestamp").setValue(dateFormat.format(date));
-                        StorageReference riversRef = storageReference.child("campusimages/" + filePath.getLastPathSegment()+"_"+ID);
+                        StorageReference riversRef = storageReference.child("campusimages/" + filePath.getLastPathSegment() + "_" + ID);
                         riversRef.putFile(filePath)
                                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
@@ -238,8 +222,7 @@ public class Campus_Adding extends AppCompatActivity {
 
                                         //and displaying a success toast
                                         Toast.makeText(getApplicationContext(), "Campus Says Successfully Updated", Toast.LENGTH_LONG).show();
-                                        for(int i=1; i<=Integer.parseInt(newnewpos); i++)
-                                        {
+                                        for (int i = 1; i <= Integer.parseInt(newnewpos); i++) {
                                             newref.child(String.valueOf(i)).child("Notification_Viewed_Campus").setValue("No");
                                         }
                                         Intent intent = new Intent(Campus_Adding.this, Campus_Says.class);
@@ -272,8 +255,6 @@ public class Campus_Adding extends AppCompatActivity {
                                 });
 
 
-
-
                     }
                     //if there is not any file
                     else {
@@ -294,8 +275,7 @@ public class Campus_Adding extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Campus Says Successfully Updated", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
 
-                        for(int i=1; i<=Integer.parseInt(newnewpos); i++)
-                        {
+                        for (int i = 1; i <= Integer.parseInt(newnewpos); i++) {
                             newref.child(String.valueOf(i)).child("Notification_Viewed_Campus").setValue("No");
                         }
 
@@ -309,8 +289,6 @@ public class Campus_Adding extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please Enter all the fields", Toast.LENGTH_SHORT).show();
             }
         });
-
-
 
 
     }

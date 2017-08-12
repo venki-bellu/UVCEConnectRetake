@@ -2,10 +2,10 @@ package com.venkibellu.myapplication;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -46,9 +47,9 @@ public class RegisterPage extends AppCompatActivity {
     private DatabaseReference ref;
     private String key;
     EditText name;
-    EditText phoneNumber,enteredOTP;
+    EditText phoneNumber, enteredOTP;
     Button submitButton, requesetOTP;
-    final String TAG="FIREBASE";
+    final String TAG = "FIREBASE";
     private FirebaseAuth mAuth;
     boolean mVerificationInProgress = false;
     String mVerificationId;
@@ -72,35 +73,33 @@ public class RegisterPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
 
-        spinner=(Spinner)findViewById(R.id.registerpage_branch);
-        textView=(TextView)findViewById(R.id.registerpage_title_rollno);
-        registerNumber=(EditText)findViewById(R.id.registerpage_registerno);
-        yearOfJoining=(EditText)findViewById(R.id.registerpage_yearofjoining);
-        radioGroup=(RadioGroup)findViewById(R.id.registerpage_radiogroup);
-        phoneNumber=(EditText)findViewById(R.id.registerpage_phoneNumber);
-        enteredOTP=(EditText)findViewById(R.id.registerpage_OTP);
-        requesetOTP=(Button)findViewById(R.id.registerpage_button_requestOTP);
-        submitButton=(Button)findViewById(R.id.registerpage_button_submit);
-        mAuth=FirebaseAuth.getInstance();
-        name=(EditText) findViewById(R.id.registerpage_name);
-        nonResident=(CheckBox)findViewById(R.id.registerpage_non_indian);
-        foreignPhoneNumber=(EditText)findViewById(R.id.registerpage_foreign_phNumber);
-        titleOccupation=(TextView)findViewById(R.id.registerpage_title_occupation);
-        occupation=(EditText)findViewById(R.id.registerpage_occupation);
-        registerButton=(Button)findViewById(R.id.registerpage_button_register);
-        registerButtonNew=(Button)findViewById(R.id.registerpage_button_register_new);
-        titleName=(TextView)findViewById(R.id.registerpage_title_name);
-        titleBranch=(TextView)findViewById(R.id.registerpage_title_branch);
-        titleYearOfJoining=(TextView)findViewById(R.id.registerpage_title_yearofjoining);
-        titleCurrentStatus=(TextView)findViewById(R.id.registerpage_title_curentstatus);
+        spinner = (Spinner) findViewById(R.id.registerpage_branch);
+        textView = (TextView) findViewById(R.id.registerpage_title_rollno);
+        registerNumber = (EditText) findViewById(R.id.registerpage_registerno);
+        yearOfJoining = (EditText) findViewById(R.id.registerpage_yearofjoining);
+        radioGroup = (RadioGroup) findViewById(R.id.registerpage_radiogroup);
+        phoneNumber = (EditText) findViewById(R.id.registerpage_phoneNumber);
+        enteredOTP = (EditText) findViewById(R.id.registerpage_OTP);
+        requesetOTP = (Button) findViewById(R.id.registerpage_button_requestOTP);
+        submitButton = (Button) findViewById(R.id.registerpage_button_submit);
+        mAuth = FirebaseAuth.getInstance();
+        name = (EditText) findViewById(R.id.registerpage_name);
+        nonResident = (CheckBox) findViewById(R.id.registerpage_non_indian);
+        foreignPhoneNumber = (EditText) findViewById(R.id.registerpage_foreign_phNumber);
+        titleOccupation = (TextView) findViewById(R.id.registerpage_title_occupation);
+        occupation = (EditText) findViewById(R.id.registerpage_occupation);
+        registerButton = (Button) findViewById(R.id.registerpage_button_register);
+        registerButtonNew = (Button) findViewById(R.id.registerpage_button_register_new);
+        titleName = (TextView) findViewById(R.id.registerpage_title_name);
+        titleBranch = (TextView) findViewById(R.id.registerpage_title_branch);
+        titleYearOfJoining = (TextView) findViewById(R.id.registerpage_title_yearofjoining);
+        titleCurrentStatus = (TextView) findViewById(R.id.registerpage_title_curentstatus);
 
 
+        // Toast.makeText(getApplicationContext(),"Please Reinstall/ClearData app to signIn with different account",Toast.LENGTH_LONG).show();
 
 
-       // Toast.makeText(getApplicationContext(),"Please Reinstall/ClearData app to signIn with different account",Toast.LENGTH_LONG).show();
-
-
-        mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
 
@@ -112,12 +111,12 @@ public class RegisterPage extends AppCompatActivity {
                 if (e instanceof FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
                     // ...
-                    Toast.makeText(getApplicationContext(),"Invalid Mobile number",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Invalid Mobile number", Toast.LENGTH_SHORT).show();
                     progress.dismiss();
                 } else if (e instanceof FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded
                     // ...
-                    Toast.makeText(getApplicationContext(),"Server Error. Unable to register",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Server Error. Unable to register", Toast.LENGTH_SHORT).show();
                     progress.dismiss();
                 }
 
@@ -127,10 +126,10 @@ public class RegisterPage extends AppCompatActivity {
             public void onCodeSent(String verificationId,
                                    PhoneAuthProvider.ForceResendingToken token) {
                 Log.d(TAG, "onCodeSent:" + verificationId);
-                if(!phoneNumber.getText().toString().equals("") && !nonResident.isChecked())
-                Toast.makeText(getApplicationContext(),"Verification code sent to +91 "+phoneNumber.getText().toString(),Toast.LENGTH_SHORT).show();
+                if (!phoneNumber.getText().toString().equals("") && !nonResident.isChecked())
+                    Toast.makeText(getApplicationContext(), "Verification code sent to +91 " + phoneNumber.getText().toString(), Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(getApplicationContext(),"Verification code sent to "+foreignPhoneNumber.getText().toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Verification code sent to " + foreignPhoneNumber.getText().toString(), Toast.LENGTH_SHORT).show();
                 mVerificationId = verificationId;
                 mResendToken = token;
                 requesetOTP.setEnabled(false);
@@ -145,14 +144,11 @@ public class RegisterPage extends AppCompatActivity {
         nonResident.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked==true)
-                {
+                if (isChecked == true) {
                     phoneNumber.setEnabled(false);
                     foreignPhoneNumber.setVisibility(View.VISIBLE);
-                    Toast.makeText(getApplicationContext(),"Please follow +41546453 format",Toast.LENGTH_LONG).show();
-                }
-                else if(isChecked==false)
-                {
+                    Toast.makeText(getApplicationContext(), "Please follow +41546453 format", Toast.LENGTH_LONG).show();
+                } else if (isChecked == false) {
                     phoneNumber.setEnabled(true);
                     foreignPhoneNumber.setVisibility(View.GONE);
                 }
@@ -175,20 +171,18 @@ public class RegisterPage extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(enteredOTP.getText().toString().trim().length()==6) {
+                if (enteredOTP.getText().toString().trim().length() == 6) {
                     PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, enteredOTP.getText().toString());
                     signInWithPhoneAuthCredential(credential);
-                }
-                else
-                    Toast.makeText(getApplicationContext(),"Please enter valid OTP",Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(getApplicationContext(), "Please enter valid OTP", Toast.LENGTH_SHORT).show();
             }
         });
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                switch (checkedId)
-                {
+                switch (checkedId) {
                     case R.id.registerpage_status_student:
                         textView.setVisibility(View.VISIBLE);
                         registerNumber.setVisibility(View.VISIBLE);
@@ -212,37 +206,33 @@ public class RegisterPage extends AppCompatActivity {
     }
 
 
-
-    public void registerUser(View view)
-    {
+    public void registerUser(View view) {
 
         ref = FirebaseDatabase.getInstance().getReference().child("Registered Users");
         Query query = ref.orderByKey().limitToLast(1);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                try{
-                    for(DataSnapshot snapshot : dataSnapshot.getChildren())
-                    key = snapshot.getKey();
+                try {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                        key = snapshot.getKey();
 
-                    if(!(name.getText().toString().trim().equals("") || yearOfJoining.getText().toString().trim().equals("")) && yearOfJoining.getText().toString().trim().length() == 4) {
+                    if (!(name.getText().toString().trim().equals("") || yearOfJoining.getText().toString().trim().equals("")) && yearOfJoining.getText().toString().trim().length() == 4) {
                         HashMap<String, String> hashMap = new HashMap<String, String>();
                         hashMap.put("Name", name.getText().toString());
                         hashMap.put("Branch", spinner.getSelectedItem().toString());
                         hashMap.put("Year Of Joining", yearOfJoining.getText().toString());
                         String userTYpe;
-                        if (radioGroup.getCheckedRadioButtonId() == R.id.registerpage_status_Alumni)
-                        {
+                        if (radioGroup.getCheckedRadioButtonId() == R.id.registerpage_status_Alumni) {
                             userTYpe = "Alumni";
-                            hashMap.put("Occupation",occupation.getText().toString());
-                        }
-                        else {
+                            hashMap.put("Occupation", occupation.getText().toString());
+                        } else {
                             userTYpe = "Student";
                             hashMap.put("Register Number", registerNumber.getText().toString());
                         }
                         hashMap.put("User Type", userTYpe);
                         hashMap.put("Designation", "NORMAL");
-                        hashMap.put("Contact Number",mobileNumber);
+                        hashMap.put("Contact Number", mobileNumber);
                         hashMap.put("Email Id", Registered_User_Id.registered_user_email);
                         hashMap.put("Google_ID", Registered_User_Id.registered_user_id);
                         hashMap.put("Notification_Viewed_News", "No");
@@ -251,15 +241,15 @@ public class RegisterPage extends AppCompatActivity {
                         ref.child(String.valueOf(Integer.parseInt(key) + 1)).setValue(hashMap);
                         Registered_User_Id.name = name.getText().toString();
                         Registered_User_Id.admin = "NORMAL";
-                        Toast.makeText(getApplicationContext(),"Registration Success",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Registration Success", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(RegisterPage.this, NewHomePage.class);
                         startActivity(intent);
                         finish();
-                    }
-                    else
+                    } else
                         Toast.makeText(getApplicationContext(), "Please Enter all the Fields", Toast.LENGTH_SHORT).show();
 
-                }catch(Exception e) {}
+                } catch (Exception e) {
+                }
             }
 
             @Override
@@ -277,7 +267,7 @@ public class RegisterPage extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            Toast.makeText(getApplicationContext(),"Phone number verification success",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Phone number verification success", Toast.LENGTH_SHORT).show();
                             registerButton.setEnabled(true);
                             registerButtonNew.setEnabled(true);
                             enteredOTP.setEnabled(false);
@@ -296,7 +286,7 @@ public class RegisterPage extends AppCompatActivity {
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(getApplicationContext(),"Phone number verification failed",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Phone number verification failed", Toast.LENGTH_SHORT).show();
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 // The verification code entered was invalid
                             }
@@ -305,47 +295,39 @@ public class RegisterPage extends AppCompatActivity {
                 });
     }
 
-    public void requestOTP(View v)
-    {
-        if(nonResident.isChecked())
-        {
-            mobileNumber=foreignPhoneNumber.getText().toString().trim();
-        }
-        else
-        {
-            mobileNumber="+91"+phoneNumber.getText().toString().trim();
+    public void requestOTP(View v) {
+        if (nonResident.isChecked()) {
+            mobileNumber = foreignPhoneNumber.getText().toString().trim();
+        } else {
+            mobileNumber = "+91" + phoneNumber.getText().toString().trim();
         }
 
-            PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                    getPhoneNumber(),     //phone number to verify
-                    60,                 // Timeout duration
-                    TimeUnit.SECONDS,   // Unit of timeout
-                    RegisterPage.this,               // Activity (for callback binding)
-                    mCallbacks                         //OnVerificationStateChangedCallbacks
-            );
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                getPhoneNumber(),     //phone number to verify
+                60,                 // Timeout duration
+                TimeUnit.SECONDS,   // Unit of timeout
+                RegisterPage.this,               // Activity (for callback binding)
+                mCallbacks                         //OnVerificationStateChangedCallbacks
+        );
 
 
-            progress = new ProgressDialog(RegisterPage.this);
-            progress.setMessage("Sending OTP...");
-            progress.setTitle("Please Wait");
-            progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            progress.setCancelable(false);
-            progress.show();
+        progress = new ProgressDialog(RegisterPage.this);
+        progress.setMessage("Sending OTP...");
+        progress.setTitle("Please Wait");
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.setCancelable(false);
+        progress.show();
 
     }
 
-    public String getPhoneNumber()
-    {
-        if(nonResident.isChecked()==true&&foreignPhoneNumber.getText().toString().length()!=0)
-        {
+    public String getPhoneNumber() {
+        if (nonResident.isChecked() == true && foreignPhoneNumber.getText().toString().length() != 0) {
             return (foreignPhoneNumber.getText().toString().trim());
+        } else if (nonResident.isChecked() == false) {
+            if (phoneNumber.getText().toString().trim().length() == 10)
+                return ("+91" + phoneNumber.getText().toString().trim());
         }
-        else if(nonResident.isChecked()==false)
-        {
-            if(phoneNumber.getText().toString().trim().length()==10)
-            return ("+91"+phoneNumber.getText().toString().trim());
-        }
-        Toast.makeText(getApplicationContext(),"Please enter a valid phone number",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
         return "";
     }
 }

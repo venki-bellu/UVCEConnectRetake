@@ -39,7 +39,7 @@ public class News extends AppCompatActivity {
     public static AlertDialog.Builder builder;
     public static ValueEventListener myevent;
     private LinearLayout progress;
-    private  ListView listView;
+    private ListView listView;
 
 
     @Override
@@ -64,15 +64,14 @@ public class News extends AppCompatActivity {
         ref.addValueEventListener(myevent = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                try{
+                try {
 
                     newsname.clear();
                     newsdetails.clear();
                     newsimage.clear();
                     newsorganization.clear();
                     newstime.clear();
-                    for(DataSnapshot snapshot : dataSnapshot.getChildren())
-                    {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         newsname.add(snapshot.child("News_Name").getValue().toString());
                         newsdetails.add(snapshot.child("News_Details").getValue().toString());
                         newsimage.add(snapshot.child("News_Image").getValue().toString());
@@ -82,7 +81,8 @@ public class News extends AppCompatActivity {
                     news_adapter.notifyDataSetChanged();
                     progress.setVisibility(View.GONE);
 
-                } catch (Exception e){ }
+                } catch (Exception e) {
+                }
             }
 
             @Override
@@ -95,7 +95,7 @@ public class News extends AppCompatActivity {
         progress.setVisibility(View.VISIBLE);
 
         news_adapter = new News_Adapter(newsname, this, this, newsdetails, newsorganization, newsimage, newstime);
-        listView = (ListView)findViewById(R.id.news_list);
+        listView = (ListView) findViewById(R.id.news_list);
         listView.setAdapter(news_adapter);
 
         fab = (FloatingActionButton) findViewById(R.id.add_news);
