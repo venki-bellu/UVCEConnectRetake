@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
@@ -67,6 +68,8 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
     private StorageReference remove;
     private Animation animation;
     private View view;
+    private DatabaseReference refusers;
+    private String newpos;
 
 
     public News_Adapter(ArrayList<String> listname,
@@ -408,6 +411,24 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
                 view.clearAnimation();
+                refusers = fbdb.getInstance().getReference().child("Registered Users");
+                Query querynew = refusers.orderByChild("Google_ID").equalTo(Registered_User_Id.registered_user_id);
+                querynew.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        try {
+                            for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                                newpos = snapshot.getKey();
+
+                        } catch (Exception e) {}
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
 
                 if(Registered_User_Id.fromactivity.equals("News")) {
 
@@ -458,7 +479,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                                     News.ref.addValueEventListener(News.myevent);
                                     refnum.removeEventListener(equerynewevent);
 
-
+                                    refusers.child(newpos).child("Notification_Viewed_News").setValue("No");
 
                                 }
 
@@ -515,6 +536,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                                         holder.detailsTextView.setText(editText.getText().toString());
                                         Campus_Says.ref.addValueEventListener(Campus_Says.myevent);
                                     refnum.removeEventListener(cequerynewevent);
+                                        refusers.child(newpos).child("Notification_Viewed_Campus").setValue("No");
                                     }catch (Exception e) {}
 
 

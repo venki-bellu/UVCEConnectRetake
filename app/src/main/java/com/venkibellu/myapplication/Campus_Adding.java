@@ -47,6 +47,8 @@ public class Campus_Adding extends AppCompatActivity {
     Button add;
     private String organization_image = "";
     private ValueEventListener myevent1;
+    private DatabaseReference newref;
+
 
 
     //a Uri object to store file path
@@ -56,6 +58,7 @@ public class Campus_Adding extends AppCompatActivity {
     private StorageReference storageReference;
 
     public static String newpos = "0";
+    private static String newnewpos;
     private DatabaseReference ref;
     private FirebaseDatabase mfbdb;
     private String ID;
@@ -69,6 +72,7 @@ public class Campus_Adding extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ref = mfbdb.getInstance().getReference().child("Campus Says");
+        newref = mfbdb.getInstance().getReference().child("Registered Users");
 
 
 
@@ -85,6 +89,23 @@ public class Campus_Adding extends AppCompatActivity {
                 } catch (Exception e) {
                 }
 
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        Query newquery = newref.orderByKey().limitToLast(1);
+        newquery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                try{
+                    for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                        newnewpos = snapshot.getKey();
+                } catch (Exception e) {}
 
             }
 
@@ -217,6 +238,10 @@ public class Campus_Adding extends AppCompatActivity {
 
                                         //and displaying a success toast
                                         Toast.makeText(getApplicationContext(), "Campus Says Successfully Updated", Toast.LENGTH_LONG).show();
+                                        for(int i=1; i<=Integer.parseInt(newnewpos); i++)
+                                        {
+                                            newref.child(String.valueOf(i)).child("Notification_Viewed_Campus").setValue("No");
+                                        }
                                         Intent intent = new Intent(Campus_Adding.this, Campus_Says.class);
                                         startActivity(intent);
                                         finish();
@@ -268,6 +293,12 @@ public class Campus_Adding extends AppCompatActivity {
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Timestamp").setValue(dateFormat.format(date));
                         Toast.makeText(getApplicationContext(), "Campus Says Successfully Updated", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
+
+                        for(int i=1; i<=Integer.parseInt(newnewpos); i++)
+                        {
+                            newref.child(String.valueOf(i)).child("Notification_Viewed_Campus").setValue("No");
+                        }
+
                         Intent intent = new Intent(Campus_Adding.this, Campus_Says.class);
                         startActivity(intent);
                         finish();

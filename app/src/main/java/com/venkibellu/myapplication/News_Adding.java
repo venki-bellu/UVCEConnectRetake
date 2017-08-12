@@ -53,8 +53,10 @@ public class News_Adding extends AppCompatActivity {
 
     //firebase storage reference
     private StorageReference storageReference;
+    private DatabaseReference newref;
 
     public static String newpos = "0";
+    private static String newnewpos;
     private DatabaseReference ref;
     private FirebaseDatabase mfbdb;
     private String ID;
@@ -69,6 +71,7 @@ public class News_Adding extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ref = mfbdb.getInstance().getReference().child("News");
+        newref = mfbdb.getInstance().getReference().child("Registered Users");
 
 
 
@@ -85,6 +88,23 @@ public class News_Adding extends AppCompatActivity {
                 } catch (Exception e) {
                 }
 
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        Query newquery = newref.orderByKey().limitToLast(1);
+        newquery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                try{
+                    for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                        newnewpos = snapshot.getKey();
+                } catch (Exception e) {}
 
             }
 
@@ -204,6 +224,10 @@ public class News_Adding extends AppCompatActivity {
 
                                         //and displaying a success toast
                                         Toast.makeText(getApplicationContext(), "News Successfully Updated", Toast.LENGTH_LONG).show();
+                                        for(int i=1; i<=Integer.parseInt(newnewpos); i++)
+                                        {
+                                            newref.child(String.valueOf(i)).child("Notification_Viewed_News").setValue("No");
+                                        }
                                         Intent intent = new Intent(News_Adding.this, News.class);
                                         startActivity(intent);
                                         finish();
@@ -255,6 +279,10 @@ public class News_Adding extends AppCompatActivity {
                         ref.child(String.valueOf(Integer.parseInt(newpos) - 1)).child("Timestamp").setValue(dateFormat.format(date));
                         Toast.makeText(getApplicationContext(), "News Successfully Updated", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
+                        for(int i=1; i<=Integer.parseInt(newnewpos); i++)
+                        {
+                            newref.child(String.valueOf(i)).child("Notification_Viewed_News").setValue("No");
+                        }
                         Intent intent = new Intent(News_Adding.this, News.class);
                         startActivity(intent);
                         finish();

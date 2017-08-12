@@ -42,6 +42,8 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     private GoogleSignInAccount account;
     public static String accountcheck;
     private LinearLayout progress;
+    private final String PREFERENECE = "UVCE-prefereceFile-AccountID";
+    private SharedPreferences preference;
 
 
 
@@ -115,6 +117,10 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
             account = result.getSignInAccount();
             ref = FirebaseDatabase.getInstance().getReference().child("Registered Users");
             Registered_User_Id.registered_user_id = account.getId();
+            preference = getSharedPreferences(PREFERENECE, MODE_PRIVATE);
+            SharedPreferences.Editor editorid = preference.edit();
+            editorid.putString("ID", account.getId());
+            editorid.apply();
             Registered_User_Id.registered_user_email = account.getEmail();
             accountcheck = account.getId();
 
