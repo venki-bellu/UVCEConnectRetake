@@ -14,7 +14,7 @@
     </style>
 
     <style name="AppTheme.ProgressBarAccent">
-        <item name="colorAccent">@color/colorPrimary</item> <!-- Whatever color you want-->
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
