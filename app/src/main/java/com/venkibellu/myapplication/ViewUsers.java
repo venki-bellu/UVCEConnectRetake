@@ -24,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ViewUsers extends AppCompatActivity {
 
@@ -135,7 +137,7 @@ public class ViewUsers extends AppCompatActivity {
     }
 
     private void showUserInformation(User user) {
-        final AlertDialog.Builder disclaimerDialog = new AlertDialog.Builder(ViewUsers.this);
+        final AlertDialog.Builder userInfoDialog = new AlertDialog.Builder(ViewUsers.this);
         LayoutInflater inflater = LayoutInflater.from(this);
 
         View view = inflater.inflate(R.layout.user_dialog, null);
@@ -157,7 +159,7 @@ public class ViewUsers extends AppCompatActivity {
         statusTextView.setText(status);
         yearTextView.setText(year);
 
-        disclaimerDialog.setView(view)
+        userInfoDialog.setView(view)
                 .setTitle(user.getName())
                 .setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
                     @Override
@@ -228,6 +230,11 @@ public class ViewUsers extends AppCompatActivity {
             users.set(i, new User(capitalizedName, key));
         }
 
-//        Collections.sort(users);
+        Collections.sort(users, new Comparator<User>() {
+            @Override
+            public int compare(User user, User t1) {
+                return user.getName().compareTo(t1.getName());
+            }
+        });
     }
 }
