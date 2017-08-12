@@ -412,7 +412,7 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             public void onClick(View v) {
                 view.clearAnimation();
                 refusers = fbdb.getInstance().getReference().child("Registered Users");
-                Query querynew = refusers.orderByChild("Google_ID").equalTo(Registered_User_Id.registered_user_id);
+                Query querynew = refusers.orderByKey().limitToLast(1);
                 querynew.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -478,8 +478,8 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                                     holder.detailsTextView.setText(editText.getText().toString());
                                     News.ref.addValueEventListener(News.myevent);
                                     refnum.removeEventListener(equerynewevent);
-
-                                    refusers.child(newpos).child("Notification_Viewed_News").setValue("No");
+                                    for(int i = 1; i<=Integer.parseInt(newpos); i++)
+                                    refusers.child(String.valueOf(i)).child("Notification_Viewed_News").setValue("No");
 
                                 }
 
@@ -536,7 +536,8 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                                         holder.detailsTextView.setText(editText.getText().toString());
                                         Campus_Says.ref.addValueEventListener(Campus_Says.myevent);
                                     refnum.removeEventListener(cequerynewevent);
-                                        refusers.child(newpos).child("Notification_Viewed_Campus").setValue("No");
+                                        for(int i = 1; i<=Integer.parseInt(newpos); i++)
+                                        refusers.child(String.valueOf(i)).child("Notification_Viewed_Campus").setValue("No");
                                     }catch (Exception e) {}
 
 
