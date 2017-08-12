@@ -61,6 +61,7 @@
         <activity
             android:name=".RegisterPage"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NewHomePage"
@@ -106,16 +107,6 @@
             android:parentActivityName=".NewHomePage">
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.fests" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".clubs"
-            android:label="ACTIVITIES"
-            android:parentActivityName=".NewHomePage">
-            <intent-filter>
-                <action android:name="com.venkibellu.myapplication.clubs" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -180,16 +171,6 @@
             >
             <intent-filter>
                 <action android:name="com.venkibellu.myapplication.chakravyuha" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".sports"
-            android:label="SPORTS"
-            android:parentActivityName=".clubs">
-            <intent-filter>
-                <action android:name="com.venkibellu.myapplication.sports" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

@@ -97,7 +97,7 @@ public class RegisterPage extends AppCompatActivity {
 
 
 
-        Toast.makeText(getApplicationContext(),"Please Reinstall/ClearData app to signIn with different account",Toast.LENGTH_LONG).show();
+       // Toast.makeText(getApplicationContext(),"Please Reinstall/ClearData app to signIn with different account",Toast.LENGTH_LONG).show();
 
 
         mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -245,6 +245,8 @@ public class RegisterPage extends AppCompatActivity {
                         hashMap.put("Contact Number",mobileNumber);
                         hashMap.put("Email Id", Registered_User_Id.registered_user_email);
                         hashMap.put("Google_ID", Registered_User_Id.registered_user_id);
+                        hashMap.put("Notification_Viewed_News", "No");
+                        hashMap.put("Notification_Viewed_Campus", "No");
 
                         ref.child(String.valueOf(Integer.parseInt(key) + 1)).setValue(hashMap);
                         Registered_User_Id.name = name.getText().toString();
