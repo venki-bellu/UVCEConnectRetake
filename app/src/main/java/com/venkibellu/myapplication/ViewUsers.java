@@ -19,7 +19,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -86,7 +85,7 @@ public class ViewUsers extends AppCompatActivity {
     }
 
     private ArrayAdapter<User> adapter;
-    private ArrayList<User> userList;
+    private ArrayList<User> userList, permanentUserList;
     private DatabaseReference reference;
     private LinearLayout progress;
 
@@ -101,6 +100,7 @@ public class ViewUsers extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference().child("Registered Users");
 
         userList = new ArrayList<>();
+        permanentUserList = new ArrayList<>();
         adapter = new UserListAdapter();
 
         populateUserList();
@@ -122,6 +122,7 @@ public class ViewUsers extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userList.clear();
+                permanentUserList.clear();
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String name = snapshot.child("Name").getValue().toString();
@@ -131,6 +132,10 @@ public class ViewUsers extends AppCompatActivity {
                 }
 
                 formatNames();
+
+                for (User user : userList) {
+                    permanentUserList.add(user);
+                }
                 adapter.notifyDataSetChanged();
                 progress.setVisibility(View.GONE);
             }
@@ -193,10 +198,6 @@ public class ViewUsers extends AppCompatActivity {
             if (position < userList.size()) {
                 User currentUser = userList.get(position);
                 userNameTextView.setText(currentUser.getName());
-            } else {
-                userNameTextView.setText("Temp");
-                ImageView logo = (ImageView) itemView.findViewById(R.id.image);
-                logo.setVisibility(View.GONE);
             }
 
             return itemView;
@@ -208,11 +209,11 @@ public class ViewUsers extends AppCompatActivity {
                 FilterResults filterResults = new FilterResults();
                 ArrayList<User> tempUserList = new ArrayList<>();
 
-                if (charSequence != null && userList != null) {
-                    for (int i = 0; i < userList.size(); ++i) {
-                        if (stringsMatch(userList.get(i).getName().toLowerCase(),
+                if (charSequence != null && permanentUserList != null) {
+                    for (int i = 0; i < permanentUserList.size(); ++i) {
+                        if (stringsMatch(permanentUserList.get(i).getName().toLowerCase(),
                                 charSequence.toString().toLowerCase())) {
-                            tempUserList.add(userList.get(i));
+                            tempUserList.add(permanentUserList.get(i));
                         }
                     }
 
