@@ -404,6 +404,8 @@ public class ViewUsers extends AppCompatActivity {
         }
     }
 
+    android.support.v7.widget.SearchView searchView;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -411,10 +413,9 @@ public class ViewUsers extends AppCompatActivity {
 
         MenuItem item = menu.findItem(R.id.menu_search_item);
 
-        android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView)
-                MenuItemCompat.getActionView(item);
+        searchView = (android.support.v7.widget.SearchView) MenuItemCompat.getActionView(item);
 
-
+        searchView.setQueryHint("Search by " + searchParam);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -438,11 +439,13 @@ public class ViewUsers extends AppCompatActivity {
             case R.id.menu_search_name:
                 item.setChecked(true);
                 searchParam = NAME;
+                searchView.setQueryHint("Search by " + NAME);
                 break;
 
             case R.id.menu_search_phone:
                 item.setChecked(true);
                 searchParam = PHONE;
+                searchView.setQueryHint("Search by " + PHONE);
                 break;
 
             case R.id.menu_sort:
