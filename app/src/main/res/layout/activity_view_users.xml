@@ -37,7 +37,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
-        android:src="@android:drawable/stat_notify_sync_noanim"
-        android:theme="@style/AppTheme.ProgressBarAccent" />
+        android:src="@android:drawable/stat_notify_sync"
+        android:theme="@style/AppTheme" />
 
 </RelativeLayout>
