@@ -2,6 +2,7 @@ package com.venkibellu.myapplication;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
@@ -109,13 +111,23 @@ public class ViewUsers extends AppCompatActivity {
         populateUserList();
         populateListView();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.list_fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.list_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Refreshed", Toast.LENGTH_SHORT).show();
+                fab.startAnimation(AnimationUtils.loadAnimation(ViewUsers.this, R.anim.rotate));
 
-                populateUserList();
+                userList.clear();
+                adapter.notifyDataSetChanged();
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        populateUserList();
+
+                    }
+                }, 1100);
             }
         });
     }
@@ -163,7 +175,12 @@ public class ViewUsers extends AppCompatActivity {
             userList.set(i, new User(capitalizedName, key, phone));
         }
 
-        sort(ALPHABETIC);
+        // sort by the previous toggle state.
+        if (sortToggleState.equals(KEY)) {
+            sort(ALPHABETIC);
+        } else {
+            sort(KEY);
+        }
     }
 
     private void sort(final String sortParam) {
