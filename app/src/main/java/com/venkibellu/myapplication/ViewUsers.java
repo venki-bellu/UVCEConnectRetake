@@ -312,17 +312,19 @@ public class ViewUsers extends AppCompatActivity {
         yearTextView.setText(year);
         keyTextView.setText(key);
 
-        userInfoDialog.setView(view)
-                .setTitle(user.getName())
-                .setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .setIcon(R.drawable.user_logo)
-                .setCancelable(false)
-                .show();
+        try {
+            userInfoDialog.setView(view)
+                    .setTitle(user.getName())
+                    .setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    })
+                    .setIcon(R.drawable.user_logo)
+                    .setCancelable(false)
+                    .show();
+        } catch (Exception e) {}
     }
 
     @Override
