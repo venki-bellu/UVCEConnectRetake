@@ -110,6 +110,7 @@ public class ViewUsers extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Refreshed", Toast.LENGTH_SHORT).show();
                 populateUserList();
             }
         });
@@ -227,25 +228,14 @@ public class ViewUsers extends AppCompatActivity {
                 ArrayList<User> results = (ArrayList<User>) filterResults.values;
 
                 if (filterResults.count > 0) {
-
-                    for (User user : userList) {
-                        System.out.print(user.getName() + ' ');
-                    }
-                    System.out.println();
-
                     userList.clear();
                     for (User user : results) {
                         userList.add(user);
                     }
-
-                    for (User user : userList) {
-                        System.out.print(user.getName() + ' ');
-                    }
-
-                    System.out.println();
                     notifyDataSetChanged();
                 } else {
-                    Toast.makeText(getApplicationContext(), "No Result", Toast.LENGTH_SHORT).show();
+                    userList.clear();
+                    notifyDataSetChanged();
                 }
             }
         };
@@ -312,7 +302,6 @@ public class ViewUsers extends AppCompatActivity {
         yearTextView.setText(year);
         keyTextView.setText(key);
 
-        try {
             userInfoDialog.setView(view)
                     .setTitle(user.getName())
                     .setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
@@ -324,7 +313,6 @@ public class ViewUsers extends AppCompatActivity {
                     .setIcon(R.drawable.user_logo)
                     .setCancelable(false)
                     .show();
-        } catch (Exception e) {}
     }
 
     @Override
