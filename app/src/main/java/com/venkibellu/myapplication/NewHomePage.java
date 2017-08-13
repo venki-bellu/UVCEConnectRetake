@@ -151,11 +151,14 @@ public class NewHomePage extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu, menu);
+
+        MenuItem item = menu.findItem(R.id.view_users);
+
         if (Registered_User_Id.admin.equals("ADMIN")) {
-            menuInflater.inflate(R.menu.admin_menu, menu);
-        } else {
-            menuInflater.inflate(R.menu.menu, menu);
+            item.setVisible(true);
         }
+
         return true;
     }
 

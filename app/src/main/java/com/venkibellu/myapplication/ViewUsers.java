@@ -317,7 +317,7 @@ public class ViewUsers extends AppCompatActivity {
     }
 
     private void getUserInformation(final User selectedUser) {
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             String key = selectedUser.getKey();
 
             @Override
@@ -337,6 +337,7 @@ public class ViewUsers extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
+
         });
     }
 
