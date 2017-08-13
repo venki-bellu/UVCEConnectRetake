@@ -1,5 +1,6 @@
 package com.venkibellu.myapplication;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +11,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
@@ -93,6 +96,7 @@ public class ViewUsers extends AppCompatActivity {
     private final String ALPHABETIC = "AZ", KEY = "key";
     private String searchParam = NAME;
     private String sortToggleState = KEY;
+    android.support.v7.widget.SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +119,8 @@ public class ViewUsers extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                forceCloseKeyboard();
+
                 fab.startAnimation(AnimationUtils.loadAnimation(ViewUsers.this, R.anim.rotate));
 
                 userList.clear();
@@ -130,6 +136,18 @@ public class ViewUsers extends AppCompatActivity {
                 }, 1100);
             }
         });
+    }
+
+    private void forceCloseKeyboard() {
+        searchView.clearFocus();
+        View view = this.getCurrentFocus();
+
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)
+                    getSystemService(Context.INPUT_METHOD_SERVICE);
+
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     private void populateUserList() {
@@ -184,6 +202,8 @@ public class ViewUsers extends AppCompatActivity {
     }
 
     private void sort(final String sortParam) {
+        forceCloseKeyboard();
+
         switch (sortParam) {
             case ALPHABETIC:
                 Collections.sort(userList, new Comparator<User>() {
@@ -219,6 +239,7 @@ public class ViewUsers extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i < userList.size()) {
+                    forceCloseKeyboard();
                     User selectedUser = userList.get(i);
                     getUserInformation(selectedUser);
                 }
@@ -404,8 +425,6 @@ public class ViewUsers extends AppCompatActivity {
         }
     }
 
-    android.support.v7.widget.SearchView searchView;
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -419,6 +438,7 @@ public class ViewUsers extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                forceCloseKeyboard();
                 adapter.getFilter().filter(query);
                 return false;
             }
@@ -438,14 +458,20 @@ public class ViewUsers extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_search_name:
                 item.setChecked(true);
+
                 searchParam = NAME;
+                searchView.setInputType(InputType.TYPE_CLASS_TEXT);
                 searchView.setQueryHint("Search by " + NAME);
+
                 break;
 
             case R.id.menu_search_phone:
                 item.setChecked(true);
+
                 searchParam = PHONE;
+                searchView.setInputType(InputType.TYPE_CLASS_NUMBER);
                 searchView.setQueryHint("Search by " + PHONE);
+
                 break;
 
             case R.id.menu_sort:
