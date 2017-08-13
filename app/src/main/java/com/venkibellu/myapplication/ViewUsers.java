@@ -448,14 +448,10 @@ public class ViewUsers extends AppCompatActivity {
                 sort(sortToggleState);
 
                 if (sortToggleState.equals(ALPHABETIC)) {
-                    Toast.makeText(getApplicationContext(), "Sorted alphabetically",
-                            Toast.LENGTH_SHORT).show();
-
+                    item.setIcon(android.R.drawable.ic_menu_sort_by_size);
                     sortToggleState = KEY;
                 } else {
-                    Toast.makeText(getApplicationContext(), "Sorted by Key",
-                            Toast.LENGTH_SHORT).show();
-
+                    item.setIcon(android.R.drawable.ic_menu_sort_alphabetically);
                     sortToggleState = ALPHABETIC;
                 }
                 break;
