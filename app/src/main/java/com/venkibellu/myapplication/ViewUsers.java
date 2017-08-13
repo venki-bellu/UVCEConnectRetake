@@ -88,6 +88,7 @@ public class ViewUsers extends AppCompatActivity {
     private DatabaseReference reference;
     private LinearLayout progress;
     private final String NAME = "name", PHONE = "phone";
+    private final String ALPHABETIC = "AZ", KEY = "key";
     private String searchParam = NAME;
 
     @Override
@@ -161,13 +162,36 @@ public class ViewUsers extends AppCompatActivity {
             userList.set(i, new User(capitalizedName, key, phone));
         }
 
-        Collections.sort(userList, new Comparator<User>() {
-            @Override
-            public int compare(User user, User t1) {
-                return user.getName().compareTo(t1.getName());
-            }
-        });
+        sort(ALPHABETIC);
     }
+
+    private void sort(final String sortParam) {
+        switch (sortParam) {
+            case ALPHABETIC:
+                Collections.sort(userList, new Comparator<User>() {
+                    @Override
+                    public int compare(User user, User t1) {
+                        return user.getName().compareTo(t1.getName());
+                    }
+                });
+                break;
+
+            case KEY:
+                Collections.sort(userList, new Comparator<User>() {
+                    @Override
+                    public int compare(User user, User t1) {
+                        int key1 = Integer.parseInt(user.getKey());
+                        int key2 = Integer.parseInt(t1.getKey());
+
+                        return key1 - key2;
+                    }
+                });
+                break;
+        }
+
+        adapter.notifyDataSetChanged();
+    }
+
 
     private void populateListView() {
         ListView userListView = (ListView) findViewById(R.id.view_users_list_view);
@@ -399,6 +423,16 @@ public class ViewUsers extends AppCompatActivity {
             case R.id.menu_search_phone:
                 Toast.makeText(getApplicationContext(), "Search by Phone", Toast.LENGTH_SHORT).show();
                 searchParam = PHONE;
+                break;
+
+            case R.id.menu_sort_az:
+                sort(ALPHABETIC);
+                Toast.makeText(getApplicationContext(), "Sorted alphabetically", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.menu_sort_key:
+                sort(KEY);
+                Toast.makeText(getApplicationContext(), "Sorted by key", Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);

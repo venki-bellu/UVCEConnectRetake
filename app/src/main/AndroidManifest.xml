@@ -261,7 +261,7 @@
 
         <activity
             android:name=".ViewUsers"
-            android:label="Registered Users"
+            android:label="Users"
             android:parentActivityName=".NewHomePage"
             android:screenOrientation="portrait">
 
