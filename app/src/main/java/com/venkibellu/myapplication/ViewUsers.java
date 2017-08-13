@@ -414,6 +414,7 @@ public class ViewUsers extends AppCompatActivity {
         android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView)
                 MenuItemCompat.getActionView(item);
 
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -435,12 +436,12 @@ public class ViewUsers extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_search_name:
-                Toast.makeText(getApplicationContext(), "Search by Name", Toast.LENGTH_SHORT).show();
+                item.setChecked(true);
                 searchParam = NAME;
                 break;
 
             case R.id.menu_search_phone:
-                Toast.makeText(getApplicationContext(), "Search by Phone", Toast.LENGTH_SHORT).show();
+                item.setChecked(true);
                 searchParam = PHONE;
                 break;
 
@@ -448,10 +449,10 @@ public class ViewUsers extends AppCompatActivity {
                 sort(sortToggleState);
 
                 if (sortToggleState.equals(ALPHABETIC)) {
-                    item.setIcon(android.R.drawable.ic_menu_sort_by_size);
+                    item.setIcon(R.drawable.ic_menu_sort_by_size);
                     sortToggleState = KEY;
                 } else {
-                    item.setIcon(android.R.drawable.ic_menu_sort_alphabetically);
+                    item.setIcon(R.drawable.ic_menu_sort_alphabetically);
                     sortToggleState = ALPHABETIC;
                 }
                 break;
