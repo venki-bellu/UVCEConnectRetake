@@ -112,6 +112,7 @@ public class ViewUsers extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "Refreshed", Toast.LENGTH_SHORT).show();
+
                 populateUserList();
             }
         });
@@ -342,6 +343,7 @@ public class ViewUsers extends AppCompatActivity {
         yearTextView.setText(year);
         keyTextView.setText(key);
 
+        try {
             userInfoDialog.setView(view)
                     .setTitle(user.getName())
                     .setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
@@ -353,6 +355,10 @@ public class ViewUsers extends AppCompatActivity {
                     .setIcon(R.drawable.user_logo)
                     .setCancelable(false)
                     .show();
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Oops! Something went wrong",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

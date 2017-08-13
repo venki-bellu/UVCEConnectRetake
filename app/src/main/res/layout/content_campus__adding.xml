@@ -32,6 +32,7 @@
 
             <EditText
                 android:padding="10dp"
+                android:theme="@style/AppTheme.EditTextAccent"
                 android:background="@drawable/textbox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -52,8 +53,8 @@
                 android:layout_height="wrap_content"
                 android:text="Add Image"
                 android:textAllCaps="false"
-                android:background="@color/colorPrimary"
-                android:textColor="@color/cardview_light_background"
+                android:background="@android:color/holo_green_light"
+                android:textColor="@android:color/black"
                 android:padding="10dp"
                 android:id="@+id/choose_pic_campus"/>
 
@@ -62,7 +63,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:background="@color/colorAccent"
+                android:background="@android:color/holo_orange_light"
+                android:textColor="@android:color/black"
                 android:text="Post"
                 android:textAllCaps="false"
                 android:id="@+id/campus_add_button"/>
