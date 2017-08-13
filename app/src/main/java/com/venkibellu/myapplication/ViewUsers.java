@@ -41,16 +41,16 @@ public class ViewUsers extends AppCompatActivity {
     private class User {
         private String key, name, email, phone, status, yearOfJoining, branch;
 
-        User(String name, String key) {
+        User(String name, String key, String phone) {
             this.name = name;
             this.key = key;
+            this.phone = phone;
         }
 
-        void setCompleteInformation(String email, String branch, String phone,
+        void setCompleteInformation(String email, String branch,
                                     String status, String year) {
             this.email = email;
             this.branch = branch;
-            this.phone = phone;
             this.status = status;
             this.yearOfJoining = year;
         }
@@ -88,6 +88,8 @@ public class ViewUsers extends AppCompatActivity {
     private ArrayList<User> userList, permanentUserList;
     private DatabaseReference reference;
     private LinearLayout progress;
+    private final String NAME = "name", PHONE = "phone";
+    private String searchParam = NAME;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,9 +128,10 @@ public class ViewUsers extends AppCompatActivity {
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String name = snapshot.child("Name").getValue().toString();
+                    String phone = snapshot.child("Contact Number").getValue().toString();
                     String key = snapshot.getKey();
 
-                    userList.add(new User(name, key));
+                    userList.add(new User(name, key, phone));
                 }
 
                 formatNames();
@@ -136,6 +139,7 @@ public class ViewUsers extends AppCompatActivity {
                 for (User user : userList) {
                     permanentUserList.add(user);
                 }
+
                 adapter.notifyDataSetChanged();
                 progress.setVisibility(View.GONE);
             }
@@ -151,9 +155,10 @@ public class ViewUsers extends AppCompatActivity {
         for (int i = 0; i < userList.size(); ++i) {
             String name = userList.get(i).getName(),
                     capitalizedName = WordUtils.capitalizeFully(name),
-                    key = userList.get(i).getKey();
+                    key = userList.get(i).getKey(),
+                    phone = userList.get(i).getPhone();
 
-            userList.set(i, new User(capitalizedName, key));
+            userList.set(i, new User(capitalizedName, key, phone));
         }
 
         Collections.sort(userList, new Comparator<User>() {
@@ -211,9 +216,22 @@ public class ViewUsers extends AppCompatActivity {
 
                 if (charSequence != null && permanentUserList != null) {
                     for (int i = 0; i < permanentUserList.size(); ++i) {
-                        if (stringsMatch(permanentUserList.get(i).getName().toLowerCase(),
-                                charSequence.toString().toLowerCase())) {
-                            tempUserList.add(permanentUserList.get(i));
+                        String query = charSequence.toString().toLowerCase();
+                        String userName = permanentUserList.get(i).getName().toLowerCase();
+                        String phone = permanentUserList.get(i).getPhone();
+
+                        switch (searchParam) {
+                            case NAME:
+                                if (userNameMatches(userName, query)) {
+                                    tempUserList.add(permanentUserList.get(i));
+                                }
+                                break;
+
+                            case PHONE:
+                                if (userPhoneMatches(phone, query)) {
+                                    tempUserList.add(permanentUserList.get(i));
+                                }
+                                break;
                         }
                     }
 
@@ -248,7 +266,11 @@ public class ViewUsers extends AppCompatActivity {
         }
     }
 
-    public boolean stringsMatch(String userName, String query) {
+    public boolean userPhoneMatches(String userPhone, String query) {
+        return userPhone.contains(query);
+    }
+
+    public boolean userNameMatches(String userName, String query) {
         String[] nameTokens = userName.split(" ");
 
         for (String tokens : nameTokens) {
@@ -284,7 +306,7 @@ public class ViewUsers extends AppCompatActivity {
                 status = dataSnapshot.child(key).child("User Type").getValue().toString();
                 year = dataSnapshot.child(key).child("Year Of Joining").getValue().toString();
 
-                selectedUser.setCompleteInformation(email, branch, phone, status, year);
+                selectedUser.setCompleteInformation(email, branch, status, year);
                 showUserInformation(selectedUser);
             }
 
@@ -300,19 +322,20 @@ public class ViewUsers extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
 
         View view = inflater.inflate(R.layout.user_dialog, null);
-        TextView emailTextView = (TextView) view.findViewById(R.id.dialog_email_field);
-        TextView phoneTextView = (TextView) view.findViewById(R.id.dialog_phone_field);
-        TextView branchTextView = (TextView) view.findViewById(R.id.dialog_branch_field);
-        TextView statusTextView = (TextView) view.findViewById(R.id.dialog_status_field);
-        TextView yearTextView = (TextView) view.findViewById(R.id.dialog_year_field);
-        TextView keyTextView = (TextView) view.findViewById(R.id.dialog_key_field);
 
-        String email = "\u2022  " + user.getEmail();
-        String phone = "\u2022  " + user.getPhone();
-        String branch = "\u2022  " + user.getBranch();
-        String status = "\u2022  " + user.getStatus();
-        String year = "\u2022  " + user.getYearOfJoining();
-        String key = "\u2022   Key : " + user.getKey();
+        TextView emailTextView = (TextView) view.findViewById(R.id.dialog_email_field),
+                phoneTextView = (TextView) view.findViewById(R.id.dialog_phone_field),
+                branchTextView = (TextView) view.findViewById(R.id.dialog_branch_field),
+                statusTextView = (TextView) view.findViewById(R.id.dialog_status_field),
+                yearTextView = (TextView) view.findViewById(R.id.dialog_year_field),
+                keyTextView = (TextView) view.findViewById(R.id.dialog_key_field);
+
+        String email = "\u2022  " + user.getEmail(),
+                phone = "\u2022  " + user.getPhone(),
+                branch = "\u2022  " + user.getBranch(),
+                status = "\u2022  " + user.getStatus(),
+                year = "\u2022  " + user.getYearOfJoining(),
+                key = "\u2022   Key : " + user.getKey();
 
         emailTextView.setText(email);
         phoneTextView.setText(phone);
@@ -359,5 +382,21 @@ public class ViewUsers extends AppCompatActivity {
         });
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_search_name:
+                Toast.makeText(getApplicationContext(), "Search by Name", Toast.LENGTH_SHORT).show();
+                searchParam = NAME;
+                break;
+
+            case R.id.menu_search_phone:
+                Toast.makeText(getApplicationContext(), "Search by Phone", Toast.LENGTH_SHORT).show();
+                searchParam = PHONE;
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
