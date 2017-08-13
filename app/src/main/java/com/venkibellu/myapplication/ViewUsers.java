@@ -335,7 +335,7 @@ public class ViewUsers extends AppCompatActivity {
                 branch = "\u2022  " + user.getBranch(),
                 status = "\u2022  " + user.getStatus(),
                 year = "\u2022  " + user.getYearOfJoining(),
-                key = "\u2022   Key : " + user.getKey();
+                key = "\u2022  Key : " + user.getKey();
 
         emailTextView.setText(email);
         phoneTextView.setText(phone);
