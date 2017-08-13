@@ -16,12 +16,12 @@
             android:checked="true"
             android:id="@+id/menu_search_name"
             android:title="@string/search_name"
-            app:showAsAction="never"></item>
+            app:showAsAction="never" />
 
         <item
             android:id="@+id/menu_search_phone"
             android:title="@string/search_by_phone"
-            app:showAsAction="never"></item>
+            app:showAsAction="never" />
 
     </group>
 
@@ -31,7 +31,5 @@
         android:title="@string/sort"
         android:icon="@android:drawable/ic_menu_sort_by_size"
         app:showAsAction="ifRoom">
-
     </item>
-
 </menu>

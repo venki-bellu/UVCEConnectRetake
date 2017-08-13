@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +65,6 @@ public class Syllabus extends Fragment implements View.OnClickListener {
         setBranchYear(b, y);
         fileName = b.replaceAll("\\s+", "-") + '-' + String.valueOf(y) + ".pdf";
 
-        noteTextView.setText(Html.fromHtml(getString(R.string.Note)));
         checkStoragePermission();
     }
 
