@@ -90,6 +90,7 @@ public class ViewUsers extends AppCompatActivity {
     private final String NAME = "name", PHONE = "phone";
     private final String ALPHABETIC = "AZ", KEY = "key";
     private String searchParam = NAME;
+    private String sortToggleState = KEY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -426,14 +427,20 @@ public class ViewUsers extends AppCompatActivity {
                 searchParam = PHONE;
                 break;
 
-            case R.id.menu_sort_az:
-                sort(ALPHABETIC);
-                Toast.makeText(getApplicationContext(), "Sorted alphabetically", Toast.LENGTH_SHORT).show();
-                break;
+            case R.id.menu_sort:
+                sort(sortToggleState);
 
-            case R.id.menu_sort_key:
-                sort(KEY);
-                Toast.makeText(getApplicationContext(), "Sorted by key", Toast.LENGTH_SHORT).show();
+                if (sortToggleState.equals(ALPHABETIC)) {
+                    Toast.makeText(getApplicationContext(), "Sorted alphabetically",
+                            Toast.LENGTH_SHORT).show();
+
+                    sortToggleState = KEY;
+                } else {
+                    Toast.makeText(getApplicationContext(), "Sorted by Key",
+                            Toast.LENGTH_SHORT).show();
+
+                    sortToggleState = ALPHABETIC;
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);

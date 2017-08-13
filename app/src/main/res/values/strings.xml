@@ -268,5 +268,6 @@ Contact: - Sanjay (9482218283)
     <string name="search_by_phone">Search by phone</string>
     <string name="sort_by_key">Sort by key</string>
     <string name="sort_alphabetically">Sort alphabetically</string>
+    <string name="sort">Sort</string>
 </resources>
 
