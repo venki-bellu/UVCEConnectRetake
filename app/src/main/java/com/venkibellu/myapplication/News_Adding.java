@@ -183,13 +183,23 @@ public class News_Adding extends AppCompatActivity {
                         ref.removeEventListener(myevent1);
 
                     }
-                    if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Administration Office"))
-                        organization_image = "newsorganisation/Administration Office.jpg";
-                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Placement Office"))
-                        organization_image = "newsorganisation/Placement Office.jpg";
-                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Principal's Office"))
-                        organization_image = "newsorganisation/Principal's Office.jpg";
 
+                    String organisation_name = organization.getItemAtPosition
+                            (organization.getSelectedItemPosition()).toString();
+
+                    switch (organisation_name) {
+                        case "Administration Office":
+                            organization_image = "newsorganisation/Administration Office.jpg";
+                            break;
+
+                        case "Placement Office":
+                            organization_image = "newsorganisation/Placement Office.jpg";
+                            break;
+
+                        case "Principal's Office":
+                            organization_image = "newsorganisation/Principal's Office.jpg";
+                            break;
+                    }
 
                     if (filePath != null) {
                         //displaying a progress dialog while upload is going on

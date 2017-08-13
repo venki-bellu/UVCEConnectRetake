@@ -174,26 +174,50 @@ public class Campus_Adding extends AppCompatActivity {
 
                     }
 
-                    if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("IEEE"))
-                        organization_image = "campusorganisation/IEEE.jpg";
-                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Thatva"))
-                        organization_image = "campusorganisation/tatva.jpg";
-                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("G2C2"))
-                        organization_image = "campusorganisation/G2C2.jpg";
-                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("SAE"))
-                        organization_image = "campusorganisation/SAE.jpg";
-                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Vinimaya"))
-                        organization_image = "campusorganisation/Vinimaya.jpg";
-                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Chakravyuha"))
-                        organization_image = "campusorganisation/chakravyuha.jpg";
-                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("ಚೇತನ"))
-                        organization_image = "campusorganisation/chethana.jpg";
-                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("Vision UVCE"))
-                        organization_image = "campusorganisation/Vision UVCE.jpg";
-                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("UVCE Foundation"))
-                        organization_image = "campusorganisation/UVCE Foundation.jpg";
-                    else if (organization.getItemAtPosition(organization.getSelectedItemPosition()).toString().equals("UVCE Select"))
-                        organization_image = "campusorganisation/UVCE Select.jpg";
+                    String organisation_name = organization.getItemAtPosition
+                            (organization.getSelectedItemPosition()).toString();
+
+                    switch (organisation_name) {
+                        case "IEEE":
+                            organization_image = "campusorganisation/IEEE.jpg";
+                            break;
+
+                        case "Thatva":
+                            organization_image = "campusorganisation/tatva.jpg";
+                            break;
+
+                        case "G2C2":
+                            organization_image = "campusorganisation/G2C2.jpg";
+                            break;
+
+                        case "SAE":
+                            organization_image = "campusorganisation/SAE.jpg";
+                            break;
+
+                        case "Vinimaya":
+                            organization_image = "campusorganisation/Vinimaya.jpg";
+                            break;
+
+                        case "Chakravyuha":
+                            organization_image = "campusorganisation/chakravyuha.jpg";
+                            break;
+
+                        case "ಚೇತನ":
+                            organization_image = "campusorganisation/chethana.jpg";
+                            break;
+
+                        case "Vision UVCE":
+                            organization_image = "campusorganisation/Vision UVCE.jpg";
+                            break;
+
+                        case "UVCE Foundation":
+                            organization_image = "campusorganisation/UVCE Foundation.jpg";
+                            break;
+
+                        case "UVCE Select":
+                            organization_image = "campusorganisation/UVCE Select.jpg";
+                            break;
+                    }
 
                     if (filePath != null) {
                         //displaying a progress dialog while upload is going on
