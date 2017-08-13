@@ -47,8 +47,7 @@ public class ViewUsers extends AppCompatActivity {
             this.phone = phone;
         }
 
-        void setCompleteInformation(String email, String branch,
-                                    String status, String year) {
+        void setCompleteInformation(String email, String branch, String status, String year) {
             this.email = email;
             this.branch = branch;
             this.status = status;
@@ -298,11 +297,10 @@ public class ViewUsers extends AppCompatActivity {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String branch, email, phone, status, year;
+                String branch, email, status, year;
 
                 email = dataSnapshot.child(key).child("Email Id").getValue().toString();
                 branch = dataSnapshot.child(key).child("Branch").getValue().toString();
-                phone = dataSnapshot.child(key).child("Contact Number").getValue().toString();
                 status = dataSnapshot.child(key).child("User Type").getValue().toString();
                 year = dataSnapshot.child(key).child("Year Of Joining").getValue().toString();
 
