@@ -249,7 +249,25 @@ public class ViewUsers extends AppCompatActivity {
     }
 
     public boolean stringsMatch(String userName, String query) {
-        return userName.contains(query);
+        String[] nameTokens = userName.split(" ");
+
+        for (String tokens : nameTokens) {
+            int i = 0;
+
+            while (i < tokens.length() && i < query.length()) {
+                if (tokens.charAt(i) != query.charAt(i)) {
+                    break;
+                }
+
+                ++i;
+            }
+
+            if (i == query.length()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void getUserInformation(final User selectedUser) {
