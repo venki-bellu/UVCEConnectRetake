@@ -9,7 +9,6 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -103,14 +103,8 @@ public class ViewUsers extends AppCompatActivity {
         userList = new ArrayList<>();
         adapter = new UserListAdapter();
 
-        try {
-            populateUserList();
-            populateListView();
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Something went wrong!",
-                    Toast.LENGTH_SHORT).show();
-            Log.e("ViewUsers", e.getMessage());
-        }
+        populateUserList();
+        populateListView();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.list_fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -123,9 +117,11 @@ public class ViewUsers extends AppCompatActivity {
 
     private void populateUserList() {
         reference.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userList.clear();
+
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String name = snapshot.child("Name").getValue().toString();
                     String key = snapshot.getKey();
@@ -134,8 +130,8 @@ public class ViewUsers extends AppCompatActivity {
                 }
 
                 formatNames();
-                progress.setVisibility(View.GONE);
                 adapter.notifyDataSetChanged();
+                progress.setVisibility(View.GONE);
             }
 
             @Override
@@ -169,15 +165,17 @@ public class ViewUsers extends AppCompatActivity {
         userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                User selectedUser = userList.get(i);
-                getUserInformation(selectedUser);
+                if (i < userList.size()) {
+                    User selectedUser = userList.get(i);
+                    getUserInformation(selectedUser);
+                }
             }
         });
     }
 
     private class UserListAdapter extends ArrayAdapter<User> implements Filterable {
 
-        public UserListAdapter() {
+        UserListAdapter() {
             super(ViewUsers.this, R.layout.list_users_row, userList);
         }
 
@@ -189,12 +187,15 @@ public class ViewUsers extends AppCompatActivity {
                 itemView = getLayoutInflater().inflate(R.layout.list_users_row, parent, false);
             }
 
+            TextView userNameTextView = (TextView) itemView.findViewById(R.id.user_name_text);
+
             if (position < userList.size()) {
                 User currentUser = userList.get(position);
-                TextView userNameTextView = (TextView) itemView.findViewById(R.id.user_name_text);
                 userNameTextView.setText(currentUser.getName());
-
-                return itemView;
+            } else {
+                userNameTextView.setText("Temp");
+                ImageView logo = (ImageView) itemView.findViewById(R.id.image);
+                logo.setVisibility(View.GONE);
             }
 
             return itemView;
@@ -208,7 +209,8 @@ public class ViewUsers extends AppCompatActivity {
 
                 if (charSequence != null && userList != null) {
                     for (int i = 0; i < userList.size(); ++i) {
-                        if (userList.get(i).getName().equals(charSequence)) {
+                        if (stringsMatch(userList.get(i).getName().toLowerCase(),
+                                charSequence.toString().toLowerCase())) {
                             tempUserList.add(userList.get(i));
                         }
                     }
@@ -222,24 +224,28 @@ public class ViewUsers extends AppCompatActivity {
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                ArrayList<User> results = (ArrayList<User>) filterResults.values;
 
-                for (User user : userList) {
-                    System.out.print(user.getName() + ' ');
-                }
-                System.out.println();
+                if (filterResults.count > 0) {
 
-                userList = (ArrayList<User>) filterResults.values;
+                    for (User user : userList) {
+                        System.out.print(user.getName() + ' ');
+                    }
+                    System.out.println();
 
-                for (User user : userList) {
-                    System.out.print(user.getName() + ' ');
-                }
-                System.out.println();
+                    userList.clear();
+                    for (User user : results) {
+                        userList.add(user);
+                    }
 
+                    for (User user : userList) {
+                        System.out.print(user.getName() + ' ');
+                    }
 
-                if (filterResults.count > 0 && !userList.isEmpty()) {
-                    adapter.notifyDataSetChanged();
+                    System.out.println();
+                    notifyDataSetChanged();
                 } else {
-                    adapter.notifyDataSetInvalidated();
+                    Toast.makeText(getApplicationContext(), "No Result", Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -249,6 +255,10 @@ public class ViewUsers extends AppCompatActivity {
         public Filter getFilter() {
             return userFilter;
         }
+    }
+
+    public boolean stringsMatch(String userName, String query) {
+        return userName.contains(query);
     }
 
     private void getUserInformation(final User selectedUser) {
@@ -329,13 +339,12 @@ public class ViewUsers extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 adapter.getFilter().filter(query);
-//                userList.clear();
-//                adapter.notifyDataSetChanged();
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
                 return false;
             }
         });

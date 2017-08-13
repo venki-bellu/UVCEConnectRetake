@@ -262,7 +262,10 @@
         <activity
             android:name=".ViewUsers"
             android:label="Registered Users"
-            android:parentActivityName=".NewHomePage"></activity>
+            android:parentActivityName=".NewHomePage"
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <service android:name=".NotificationService" />
 
