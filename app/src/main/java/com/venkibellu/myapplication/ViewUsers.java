@@ -139,7 +139,9 @@ public class ViewUsers extends AppCompatActivity {
     }
 
     private void forceCloseKeyboard() {
-        searchView.clearFocus();
+        try {
+            searchView.clearFocus();
+        }catch (Exception e) {}
         View view = this.getCurrentFocus();
 
         if (view != null) {
