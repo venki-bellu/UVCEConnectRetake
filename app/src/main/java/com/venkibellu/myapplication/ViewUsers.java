@@ -280,14 +280,20 @@ public class ViewUsers extends AppCompatActivity {
                 ArrayList<User> tempUserList = new ArrayList<>();
 
                 if (charSequence != null && permanentUserList != null) {
+                    String query = charSequence.toString().toLowerCase();
+
+                    boolean fullMatch = false;
+                    if (query.contains(" ")) {
+                        fullMatch = true;
+                    }
+
                     for (int i = 0; i < permanentUserList.size(); ++i) {
-                        String query = charSequence.toString().toLowerCase();
                         String userName = permanentUserList.get(i).getName().toLowerCase();
                         String phone = permanentUserList.get(i).getPhone();
 
                         switch (searchParam) {
                             case NAME:
-                                if (userNameMatches(userName, query)) {
+                                if (userNameMatches(userName, query, fullMatch)) {
                                     tempUserList.add(permanentUserList.get(i));
                                 }
                                 break;
@@ -335,7 +341,11 @@ public class ViewUsers extends AppCompatActivity {
         return userPhone.contains(query);
     }
 
-    public boolean userNameMatches(String userName, String query) {
+    public boolean userNameMatches(String userName, String query, boolean fullMatch) {
+        if (fullMatch) {
+            return userName.contains(query);
+        }
+
         String[] nameTokens = userName.split(" ");
 
         for (String tokens : nameTokens) {
