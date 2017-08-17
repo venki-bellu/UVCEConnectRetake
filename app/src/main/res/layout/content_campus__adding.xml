@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -20,8 +20,7 @@
             android:id="@+id/organisation_campus_add"
             android:layout_marginTop="80dp"
             android:background="@drawable/textbox"
-            android:spinnerMode="dropdown">
-        </Spinner>
+            android:spinnerMode="dropdown"></Spinner>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -39,7 +38,7 @@
                 android:paddingTop="@dimen/floating_hint_margin"
                 android:id="@+id/campus_details_add"
                 android:gravity="start"
-                android:textAlignment="viewStart"/>
+                android:textAlignment="viewStart" />
         </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
@@ -56,7 +55,7 @@
                 android:background="@android:color/holo_green_light"
                 android:textColor="@android:color/black"
                 android:padding="10dp"
-                android:id="@+id/choose_pic_campus"/>
+                android:id="@+id/choose_pic_campus" />
 
             <Button
                 android:layout_marginStart="30dp"
@@ -67,7 +66,7 @@
                 android:textColor="@android:color/black"
                 android:text="Post"
                 android:textAllCaps="false"
-                android:id="@+id/campus_add_button"/>
+                android:id="@+id/campus_add_button" />
         </LinearLayout>
 
         <ImageView
@@ -75,6 +74,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:layout_gravity="center"
-            android:id="@+id/campus_imageview"/>
+            android:id="@+id/campus_imageview" />
     </LinearLayout>
 </ScrollView>

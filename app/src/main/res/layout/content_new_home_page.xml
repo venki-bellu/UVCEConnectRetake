@@ -16,7 +16,6 @@
         android:orientation="vertical">
 
 
-
         <TextView
             android:id="@+id/newsfeed"
             android:layout_width="match_parent"
@@ -59,16 +58,16 @@
             android:onClick="onSyllabusImageViewClicked" />
 
         <!--<TextView-->
-            <!--android:id="@+id/question_papers"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="170dp"-->
-            <!--android:layout_below="@id/syllabus"-->
-            <!--android:background="@drawable/exam_homepage"-->
-            <!--android:padding="10dp"-->
-            <!--android:text="Question Papers"-->
-            <!--android:textColor="@color/cardview_light_background"-->
-            <!--android:gravity="bottom"-->
-            <!--android:textSize="40sp"/>-->
+        <!--android:id="@+id/question_papers"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="170dp"-->
+        <!--android:layout_below="@id/syllabus"-->
+        <!--android:background="@drawable/exam_homepage"-->
+        <!--android:padding="10dp"-->
+        <!--android:text="Question Papers"-->
+        <!--android:textColor="@color/cardview_light_background"-->
+        <!--android:gravity="bottom"-->
+        <!--android:textSize="40sp"/>-->
 
     </LinearLayout>
 </ScrollView>

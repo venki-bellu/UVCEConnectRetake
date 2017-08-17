@@ -7,7 +7,7 @@
 
     <item
         android:title="Feedback"
-        android:id="@+id/contact_us"/>
+        android:id="@+id/contact_us" />
 
     <item
         android:title="Sign Out"

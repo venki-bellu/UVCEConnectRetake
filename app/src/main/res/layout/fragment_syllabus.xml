@@ -16,7 +16,7 @@
         android:text="@string/department"
         android:textColor="@android:color/black"
         android:textAlignment="viewEnd"
-        android:textSize="24sp"/>
+        android:textSize="24sp" />
 
 
     <Spinner
@@ -28,8 +28,7 @@
         android:layout_gravity="center"
         android:dropDownWidth="match_parent"
         android:background="@drawable/textbox2"
-        android:entries="@array/branch_array">
-    </Spinner>
+        android:entries="@array/branch_array"></Spinner>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,7 +40,7 @@
             android:layout_height="wrap_content"
             android:text="Year: "
             android:textColor="@android:color/black"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
 
         <Spinner
             android:id="@+id/semesterSpinner"
@@ -51,8 +50,7 @@
             android:dropDownWidth="50dp"
             android:textAlignment="center"
             android:background="@drawable/textbox2"
-            android:entries="@array/year_array">
-        </Spinner>
+            android:entries="@array/year_array"></Spinner>
     </LinearLayout>
 
     <Button
@@ -66,7 +64,7 @@
         android:text="@string/download"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/noteTextView"
@@ -74,6 +72,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:textColor="@android:color/holo_blue_light"
-        android:layout_gravity="bottom"/>
+        android:layout_gravity="bottom" />
 
 </LinearLayout>

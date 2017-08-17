@@ -3,6 +3,6 @@
 
     <item
         android:title="Contribute"
-        android:id="@+id/academicPage_contribute"/>
+        android:id="@+id/academicPage_contribute" />
 
 </menu>

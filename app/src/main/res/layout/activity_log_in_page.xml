@@ -15,15 +15,14 @@
         android:layout_height="fill_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone" >
+        android:visibility="gone">
 
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.ProgressBarAccent">
-        </ProgressBar>
+            android:theme="@style/AppTheme.ProgressBarAccent"></ProgressBar>
     </LinearLayout>
 
     <!--<Button-->
@@ -40,5 +39,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:elevation="10dp"/>
+        android:elevation="10dp" />
 </RelativeLayout>
