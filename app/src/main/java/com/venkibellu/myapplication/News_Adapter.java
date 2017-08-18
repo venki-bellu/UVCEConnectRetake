@@ -134,12 +134,14 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
                     .getReference()
                     .child(newsimage.get(position));
 
-            Glide.with(context)
-                    .using(new FirebaseImageLoader())
-                    .load(organref)
-                    .crossFade()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(holder.organImageView);
+            if (!activity.isDestroyed()) {
+                Glide.with(context)
+                        .using(new FirebaseImageLoader())
+                        .load(organref)
+                        .crossFade()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(holder.organImageView);
+            }
 
         } else {
             holder.organImageView.setImageBitmap(null);
@@ -149,13 +151,16 @@ public class News_Adapter extends BaseAdapter implements ListAdapter {
             final StorageReference mountainsRef = FirebaseStorage.getInstance()
                     .getReference()
                     .child(newsextraimage.get(position));
-            Glide.with(context)
-                    .using(new FirebaseImageLoader())
-                    .load(mountainsRef)
-                    .override(parent.getWidth(), parent.getHeight())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .crossFade()
-                    .into(holder.extraImageView);
+
+            if (!activity.isDestroyed()) {
+                Glide.with(context)
+                        .using(new FirebaseImageLoader())
+                        .load(mountainsRef)
+                        .override(parent.getWidth(), parent.getHeight())
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .crossFade()
+                        .into(holder.extraImageView);
+            }
             holder.extraImageView.setVisibility(View.VISIBLE);
             holder.extraImageView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
