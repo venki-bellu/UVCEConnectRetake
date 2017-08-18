@@ -41,8 +41,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+/*
+    ViewUsers class to sync information about each user and
+     - provide options to search by name or phone.
+     - provide information about each user: name, branch, year of joining, email
+       contact number, status
+     - to sort
+ */
 public class ViewUsers extends AppCompatActivity {
 
+    /*
+        User class contains information about each user
+        - name, branch, year of joining, email, contact number, status
+     */
     private class User {
         private String key, name, email, phone, status, yearOfJoining, branch;
 
@@ -92,11 +103,14 @@ public class ViewUsers extends AppCompatActivity {
     private ArrayList<User> userList, permanentUserList;
     private DatabaseReference reference;
     private LinearLayout progress;
+    android.support.v7.widget.SearchView searchView;
+
+    // Required to toggle the sort and search parameters.
     private final String NAME = "name", PHONE = "phone";
     private final String ALPHABETIC = "AZ", KEY = "key";
+
     private String searchParam = NAME;
     private String sortToggleState = KEY;
-    android.support.v7.widget.SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +126,7 @@ public class ViewUsers extends AppCompatActivity {
         permanentUserList = new ArrayList<>();
         adapter = new UserListAdapter();
 
+        // sync the userList with Firebase.
         populateUserList();
         populateListView();
 
@@ -123,6 +138,8 @@ public class ViewUsers extends AppCompatActivity {
 
                 fab.startAnimation(AnimationUtils.loadAnimation(ViewUsers.this, R.anim.rotate));
 
+                // no actual purpose, just for look and feel, clear the list and display
+                // after some time :)
                 userList.clear();
                 adapter.notifyDataSetChanged();
 
@@ -138,6 +155,7 @@ public class ViewUsers extends AppCompatActivity {
         });
     }
 
+
     private void forceCloseKeyboard() {
         if (searchView.hasFocus()) {
             searchView.clearFocus();
@@ -145,6 +163,7 @@ public class ViewUsers extends AppCompatActivity {
 
         View view = this.getCurrentFocus();
 
+        // if view is null then keyboard was not open.
         if (view != null) {
             InputMethodManager imm = (InputMethodManager)
                     getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -153,6 +172,10 @@ public class ViewUsers extends AppCompatActivity {
         }
     }
 
+    /*
+        sync data with Firebase, store the user name, phone, key in userList
+        after formatting them.
+     */
     private void populateUserList() {
         reference.addValueEventListener(new ValueEventListener() {
 
@@ -161,6 +184,7 @@ public class ViewUsers extends AppCompatActivity {
                 userList.clear();
                 permanentUserList.clear();
 
+                // sync the name, contact number and key of each user.
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String name = snapshot.child("Name").getValue().toString();
                     String phone = snapshot.child("Contact Number").getValue().toString();
@@ -169,8 +193,10 @@ public class ViewUsers extends AppCompatActivity {
                     userList.add(new User(name, key, phone));
                 }
 
+                // Capitalize names and sort.
                 formatNames();
 
+                // Permanent list required for real time update on searching.
                 for (User user : userList) {
                     permanentUserList.add(user);
                 }
@@ -186,6 +212,7 @@ public class ViewUsers extends AppCompatActivity {
         });
     }
 
+    // capitalise each name and sort the user list.
     private void formatNames() {
         for (int i = 0; i < userList.size(); ++i) {
             String name = userList.get(i).getName(),
@@ -204,6 +231,7 @@ public class ViewUsers extends AppCompatActivity {
         }
     }
 
+    // sort based on the parameter, ALPHABETIC or KEY
     private void sort(final String sortParam) {
         forceCloseKeyboard();
 
@@ -233,14 +261,17 @@ public class ViewUsers extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-
+    // populates the list.
     private void populateListView() {
         ListView userListView = (ListView) findViewById(R.id.view_users_list_view);
         userListView.setAdapter(adapter);
 
+        // Show a dialog box on clicking any list item.
         userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // check if the user corresponding to the list view
+                // selected is within the userList
                 if (i < userList.size()) {
                     forceCloseKeyboard();
                     User selectedUser = userList.get(i);
@@ -260,12 +291,15 @@ public class ViewUsers extends AppCompatActivity {
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             View itemView = convertView;
+
+            // inflat the view, if not already present
             if (itemView == null) {
                 itemView = getLayoutInflater().inflate(R.layout.list_users_row, parent, false);
             }
 
             TextView userNameTextView = (TextView) itemView.findViewById(R.id.user_name_text);
 
+            // set the text only if present within userList
             if (position < userList.size()) {
                 User currentUser = userList.get(position);
                 userNameTextView.setText(currentUser.getName());
@@ -274,12 +308,17 @@ public class ViewUsers extends AppCompatActivity {
             return itemView;
         }
 
+        // filter the search result based on the search query.
         Filter userFilter = new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
+                // FilterResults required to be passed on completion.
                 FilterResults filterResults = new FilterResults();
+
+                // tempUserList: stores the filtered result, temporarily.
                 ArrayList<User> tempUserList = new ArrayList<>();
 
+                // if there is a query and usersList is not empty, then perform filtering.
                 if (charSequence != null && permanentUserList != null) {
                     String query = charSequence.toString().toLowerCase();
 
@@ -311,21 +350,22 @@ public class ViewUsers extends AppCompatActivity {
                     filterResults.count = tempUserList.size();
                 }
 
+                // returns it to publish result.
                 return filterResults;
             }
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                userList.clear();
                 ArrayList<User> results = (ArrayList<User>) filterResults.values;
 
+                // if there are any matches update the userList from the results.
                 if (filterResults.count > 0) {
-                    userList.clear();
                     for (User user : results) {
                         userList.add(user);
                     }
                     notifyDataSetChanged();
                 } else {
-                    userList.clear();
                     notifyDataSetChanged();
                 }
             }
@@ -342,6 +382,19 @@ public class ViewUsers extends AppCompatActivity {
         return userPhone.contains(query);
     }
 
+    /*
+          Search Algorithm:
+          - Initially convert the userName and query text to lower case.
+
+          - if text query contains any space then perform a full match, i.e, character by
+            character matching.
+
+          - else, tokenize the userName by splitting into words delimited by spaces.
+
+              - match the query string with each token, looking for a match.
+
+              - if successful return true.
+     */
     public boolean userNameMatches(String userName, String query, boolean fullMatch) {
         if (fullMatch) {
             return userName.contains(query);
@@ -368,6 +421,7 @@ public class ViewUsers extends AppCompatActivity {
         return false;
     }
 
+    // get the complete user information based on the selected user in list.
     private void getUserInformation(final User selectedUser) {
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             String key = selectedUser.getKey();
@@ -393,6 +447,7 @@ public class ViewUsers extends AppCompatActivity {
         });
     }
 
+    // show the dialog box, containing user information.
     private void showUserInformation(User user) {
         final AlertDialog.Builder userInfoDialog = new AlertDialog.Builder(ViewUsers.this);
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -475,7 +530,6 @@ public class ViewUsers extends AppCompatActivity {
                 searchParam = NAME;
                 searchView.setInputType(InputType.TYPE_CLASS_TEXT);
                 searchView.setQueryHint("Search by " + NAME);
-
                 break;
 
             case R.id.menu_search_phone:
@@ -484,7 +538,6 @@ public class ViewUsers extends AppCompatActivity {
                 searchParam = PHONE;
                 searchView.setInputType(InputType.TYPE_CLASS_NUMBER);
                 searchView.setQueryHint("Search by " + PHONE);
-
                 break;
 
             case R.id.menu_sort:
