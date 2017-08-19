@@ -21,12 +21,14 @@ import java.util.ArrayList;
 
 @SuppressWarnings("FieldCanBeLocal")
 class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.UserInfoHolder> {
+    private static boolean justClicked;
     private final String NAME = "name", PHONE = "phone";
     private ArrayList<User> userList, permanentUserList;
 
     RecyclerAdapter(ArrayList<User> userList, ArrayList<User> permanentUserList) {
         this.userList = userList;
         this.permanentUserList = permanentUserList;
+        justClicked = false;
     }
 
     @Override
@@ -62,6 +64,11 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.UserInfoHolde
 
         @Override
         public void onClick(View view) {
+            if (justClicked) {
+                return;
+            }
+
+            justClicked = true;
             getUserInformation(selectedUser, view.getContext());
         }
 
@@ -235,6 +242,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.UserInfoHolde
                     .setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            justClicked = false;
                             dialogInterface.dismiss();
                         }
                     })
