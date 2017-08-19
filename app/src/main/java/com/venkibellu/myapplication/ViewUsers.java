@@ -1,40 +1,28 @@
 package com.venkibellu.myapplication;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -50,62 +38,11 @@ import java.util.Comparator;
      - to sort
  */
 public class ViewUsers extends AppCompatActivity {
-
-    /*
-        User class contains information about each user
-        - name, branch, year of joining, email, contact number, status
-     */
-    private class User {
-        private String key, name, email, phone, status, yearOfJoining, branch;
-
-        User(String name, String key, String phone) {
-            this.name = name;
-            this.key = key;
-            this.phone = phone;
-        }
-
-        void setCompleteInformation(String email, String branch, String status, String year) {
-            this.email = email;
-            this.branch = branch;
-            this.status = status;
-            this.yearOfJoining = year;
-        }
-
-        String getKey() {
-            return key;
-        }
-
-        String getName() {
-            return name;
-        }
-
-        String getEmail() {
-            return email;
-        }
-
-        String getPhone() {
-            return phone;
-        }
-
-        String getStatus() {
-            return status;
-        }
-
-        String getYearOfJoining() {
-            return yearOfJoining;
-        }
-
-        String getBranch() {
-            return branch;
-        }
-    }
-
-    Toolbar toolbar;
-
-    private ArrayAdapter<User> adapter;
+    private RecyclerAdapter mAdapter;
     private ArrayList<User> userList, permanentUserList;
     private DatabaseReference reference;
     private LinearLayout progress;
+
     android.support.v7.widget.SearchView searchView;
 
     // Required to toggle the sort and search parameters.
@@ -119,11 +56,6 @@ public class ViewUsers extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_users);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.inflateMenu(R.menu.menu_search);
-
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         progress = (LinearLayout) findViewById(R.id.progressLayout);
@@ -133,7 +65,8 @@ public class ViewUsers extends AppCompatActivity {
 
         userList = new ArrayList<>();
         permanentUserList = new ArrayList<>();
-        adapter = new UserListAdapter();
+
+        mAdapter = new RecyclerAdapter(userList, permanentUserList);
 
         // sync the userList with Firebase.
         populateUserList();
@@ -143,33 +76,17 @@ public class ViewUsers extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                forceCloseKeyboard();
+                hideKeyboard();
 
                 fab.startAnimation(AnimationUtils.loadAnimation(ViewUsers.this, R.anim.rotate));
 
                 // perform sync again.
                 userList.clear();
-                adapter.notifyDataSetChanged();
+                mAdapter.notifyDataSetChanged();
 
                 populateUserList();
             }
         });
-    }
-
-    private void forceCloseKeyboard() {
-        if (searchView != null && searchView.hasFocus()) {
-            searchView.clearFocus();
-        }
-
-        View view = this.getCurrentFocus();
-
-        // if view is null then keyboard was not open.
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager)
-                    getSystemService(Context.INPUT_METHOD_SERVICE);
-
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
     }
 
     /*
@@ -201,7 +118,7 @@ public class ViewUsers extends AppCompatActivity {
                     permanentUserList.add(user);
                 }
 
-                adapter.notifyDataSetChanged();
+                mAdapter.notifyDataSetChanged();
                 progress.setVisibility(View.GONE);
 
                 reference.removeEventListener(this);
@@ -212,6 +129,23 @@ public class ViewUsers extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void hideKeyboard() {
+
+        if (searchView != null && searchView.hasFocus()) {
+            searchView.clearFocus();
+        }
+
+        View view = this.getCurrentFocus();
+
+        // if view is null then keyboard was not open.
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)
+                    getSystemService(Context.INPUT_METHOD_SERVICE);
+
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     // capitalise each name and sort the user list.
@@ -235,7 +169,7 @@ public class ViewUsers extends AppCompatActivity {
 
     // sort based on the parameter, ALPHABETIC or KEY
     private void sort(final String sortParam) {
-        forceCloseKeyboard();
+        hideKeyboard();
 
         switch (sortParam) {
             case ALPHABETIC:
@@ -260,250 +194,17 @@ public class ViewUsers extends AppCompatActivity {
                 break;
         }
 
-        adapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 
     // populates the list.
     private void populateListView() {
-        ListView userListView = (ListView) findViewById(R.id.view_users_list_view);
-        userListView.setAdapter(adapter);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.view_user_recyclerView);
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
 
-        // Show a dialog box on clicking any list item.
-        userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                // check if the user corresponding to the list view
-                // selected is within the userList
-                if (i < userList.size()) {
-                    forceCloseKeyboard();
-                    User selectedUser = userList.get(i);
-                    getUserInformation(selectedUser);
-                }
-            }
-        });
-    }
-
-    private class UserListAdapter extends ArrayAdapter<User> implements Filterable {
-
-        UserListAdapter() {
-            super(ViewUsers.this, R.layout.list_users_row, userList);
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            View itemView = convertView;
-
-            // inflat the view, if not already present
-            if (itemView == null) {
-                itemView = getLayoutInflater().inflate(R.layout.list_users_row, parent, false);
-            }
-
-            TextView userNameTextView = (TextView) itemView.findViewById(R.id.user_name_text);
-
-            // set the text only if present within userList
-            if (position < userList.size()) {
-                User currentUser = userList.get(position);
-                userNameTextView.setText(currentUser.getName());
-            }
-
-            return itemView;
-        }
-
-        // filter the search result based on the search query.
-        Filter userFilter = new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                // FilterResults required to be passed on completion.
-                FilterResults filterResults = new FilterResults();
-
-                // tempUserList: stores the filtered result, temporarily.
-                ArrayList<User> tempUserList = new ArrayList<>();
-
-                // if there is a query and usersList is not empty, then perform filtering.
-                if (charSequence != null && permanentUserList != null) {
-                    String query = charSequence.toString().toLowerCase();
-
-                    boolean fullMatch = false;
-                    if (query.contains(" ")) {
-                        fullMatch = true;
-                    }
-
-                    for (int i = 0; i < permanentUserList.size(); ++i) {
-                        String userName = permanentUserList.get(i).getName().toLowerCase();
-                        String phone = permanentUserList.get(i).getPhone();
-
-                        switch (searchParam) {
-                            case NAME:
-                                if (userNameMatches(userName, query, fullMatch)) {
-                                    tempUserList.add(permanentUserList.get(i));
-                                }
-                                break;
-
-                            case PHONE:
-                                if (userPhoneMatches(phone, query)) {
-                                    tempUserList.add(permanentUserList.get(i));
-                                }
-                                break;
-                        }
-                    }
-
-                    filterResults.values = tempUserList;
-                    filterResults.count = tempUserList.size();
-                }
-
-                // returns it to publish result.
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                userList.clear();
-                ArrayList<User> results = (ArrayList<User>) filterResults.values;
-
-                // if there are any matches update the userList from the results.
-                if (filterResults.count > 0) {
-                    for (User user : results) {
-                        userList.add(user);
-                    }
-                    notifyDataSetChanged();
-                } else {
-                    notifyDataSetChanged();
-                }
-            }
-        };
-
-        @NonNull
-        @Override
-        public Filter getFilter() {
-            return userFilter;
-        }
-    }
-
-    public boolean userPhoneMatches(String userPhone, String query) {
-        return userPhone.contains(query);
-    }
-
-    /*
-          Search Algorithm:
-          - Initially convert the userName and query text to lower case.
-
-          - if text query contains any space then perform a full match, i.e, character by
-            character matching.
-
-          - else, tokenize the userName by splitting into words delimited by spaces.
-
-              - match the query string with each token, looking for a match.
-
-              - if successful return true.
-     */
-    public boolean userNameMatches(String userName, String query, boolean fullMatch) {
-        if (fullMatch) {
-            return userName.contains(query);
-        }
-
-        String[] nameTokens = userName.split(" ");
-
-        for (String tokens : nameTokens) {
-            int i = 0;
-
-            while (i < tokens.length() && i < query.length()) {
-                if (tokens.charAt(i) != query.charAt(i)) {
-                    break;
-                }
-
-                ++i;
-            }
-
-            if (i == query.length()) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    // get the complete user information based on the selected user in list.
-    private void getUserInformation(final User selectedUser) {
-        final String key = selectedUser.getKey();
-        final Query query = reference.orderByKey().equalTo(key);
-
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                String branch, email, status, year;
-
-                // store the data of selected user's key.
-                DataSnapshot snapshot = dataSnapshot.child(key);
-
-                // parse each child from the data.
-                try {
-                    email = snapshot.child("Email Id").getValue().toString();
-                    branch = snapshot.child("Branch").getValue().toString();
-                    status = snapshot.child("User Type").getValue().toString();
-                    year = snapshot.child("Year Of Joining").getValue().toString();
-                } catch (NullPointerException e) {
-                    Toast.makeText(ViewUsers.this, "Data corrupted, please refresh", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                selectedUser.setCompleteInformation(email, branch, status, year);
-                query.removeEventListener(this);
-                showUserInformation(selectedUser);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    // show the dialog box, containing user information.
-    private void showUserInformation(User user) {
-        final AlertDialog.Builder userInfoDialog = new AlertDialog.Builder(ViewUsers.this);
-        LayoutInflater inflater = LayoutInflater.from(this);
-
-        View view = inflater.inflate(R.layout.user_dialog, null);
-
-        TextView emailTextView = (TextView) view.findViewById(R.id.dialog_email_field),
-                phoneTextView = (TextView) view.findViewById(R.id.dialog_phone_field),
-                branchTextView = (TextView) view.findViewById(R.id.dialog_branch_field),
-                statusTextView = (TextView) view.findViewById(R.id.dialog_status_field),
-                yearTextView = (TextView) view.findViewById(R.id.dialog_year_field),
-                keyTextView = (TextView) view.findViewById(R.id.dialog_key_field);
-
-        String email = "\u2022  " + user.getEmail(),
-                phone = "\u2022  " + user.getPhone(),
-                branch = "\u2022  " + user.getBranch(),
-                status = "\u2022  " + user.getStatus(),
-                year = "\u2022  " + user.getYearOfJoining(),
-                key = "\u2022  Key : " + user.getKey();
-
-        emailTextView.setText(email);
-        phoneTextView.setText(phone);
-        branchTextView.setText(branch);
-        statusTextView.setText(status);
-        yearTextView.setText(year);
-        keyTextView.setText(key);
-
-        try {
-            userInfoDialog.setView(view)
-                    .setTitle(user.getName())
-                    .setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    })
-                    .setIcon(R.drawable.user_logo)
-                    .setCancelable(true)
-                    .show();
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Oops! Something went wrong",
-                    Toast.LENGTH_SHORT).show();
-        }
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(this).build());
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -519,14 +220,14 @@ public class ViewUsers extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                forceCloseKeyboard();
-                adapter.getFilter().filter(query);
+                hideKeyboard();
+                mAdapter.filter(query, searchParam);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
+                mAdapter.filter(newText, searchParam);
                 return false;
             }
         });

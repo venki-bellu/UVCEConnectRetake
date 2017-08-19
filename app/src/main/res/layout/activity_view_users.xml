@@ -5,11 +5,6 @@
     android:layout_height="match_parent"
     tools:context="com.venkibellu.myapplication.ViewUsers">
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:id="@+id/toolbar"
-        android:background="@color/colorPrimary"
-        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:id="@+id/progressLayout"
@@ -29,9 +24,8 @@
         </ProgressBar>
     </LinearLayout>
 
-    <ListView
-        android:layout_below="@+id/toolbar"
-        android:id="@+id/view_users_list_view"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/view_user_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
