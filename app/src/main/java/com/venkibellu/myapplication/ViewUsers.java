@@ -2,7 +2,6 @@ package com.venkibellu.myapplication;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,9 +12,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,7 +41,7 @@ public class ViewUsers extends AppCompatActivity {
     private ArrayList<User> userList, permanentUserList;
     private DatabaseReference reference;
     private AVLoadingIndicatorView avi;
-
+    private PullRefreshLayout refreshLayout;
     android.support.v7.widget.SearchView searchView;
 
     // Required to toggle the sort and search parameters.
@@ -72,17 +71,11 @@ public class ViewUsers extends AppCompatActivity {
         populateUserList();
         populateListView();
 
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.list_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        refreshLayout = (PullRefreshLayout) findViewById(R.id.view_users_refresh);
+        refreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
             @Override
-            public void onClick(View view) {
-                hideKeyboard();
-
-                fab.startAnimation(AnimationUtils.loadAnimation(ViewUsers.this, R.anim.rotate));
-
+            public void onRefresh() {
                 // perform sync again.
-                userList.clear();
-                mAdapter.notifyDataSetChanged();
                 populateUserList();
             }
         });
@@ -120,6 +113,7 @@ public class ViewUsers extends AppCompatActivity {
                 mAdapter.notifyDataSetChanged();
 
                 avi.hide();
+                refreshLayout.setRefreshing(false);
                 reference.removeEventListener(this);
             }
 
