@@ -3,7 +3,6 @@ package com.venkibellu.myapplication;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +10,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -33,6 +33,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.apache.commons.lang3.text.WordUtils;
@@ -99,6 +100,8 @@ public class ViewUsers extends AppCompatActivity {
         }
     }
 
+    Toolbar toolbar;
+
     private ArrayAdapter<User> adapter;
     private ArrayList<User> userList, permanentUserList;
     private DatabaseReference reference;
@@ -116,6 +119,12 @@ public class ViewUsers extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_users);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.inflateMenu(R.menu.menu_search);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         progress = (LinearLayout) findViewById(R.id.progressLayout);
         progress.setVisibility(View.VISIBLE);
@@ -138,26 +147,17 @@ public class ViewUsers extends AppCompatActivity {
 
                 fab.startAnimation(AnimationUtils.loadAnimation(ViewUsers.this, R.anim.rotate));
 
-                // no actual purpose, just for look and feel, clear the list and display
-                // after some time :)
+                // perform sync again.
                 userList.clear();
                 adapter.notifyDataSetChanged();
 
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        populateUserList();
-
-                    }
-                }, 1100);
+                populateUserList();
             }
         });
     }
 
-
     private void forceCloseKeyboard() {
-        if (searchView.hasFocus()) {
+        if (searchView != null && searchView.hasFocus()) {
             searchView.clearFocus();
         }
 
@@ -177,7 +177,7 @@ public class ViewUsers extends AppCompatActivity {
         after formatting them.
      */
     private void populateUserList() {
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -203,6 +203,8 @@ public class ViewUsers extends AppCompatActivity {
 
                 adapter.notifyDataSetChanged();
                 progress.setVisibility(View.GONE);
+
+                reference.removeEventListener(this);
             }
 
             @Override
@@ -423,19 +425,31 @@ public class ViewUsers extends AppCompatActivity {
 
     // get the complete user information based on the selected user in list.
     private void getUserInformation(final User selectedUser) {
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            String key = selectedUser.getKey();
+        final String key = selectedUser.getKey();
+        final Query query = reference.orderByKey().equalTo(key);
 
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 String branch, email, status, year;
 
-                email = dataSnapshot.child(key).child("Email Id").getValue().toString();
-                branch = dataSnapshot.child(key).child("Branch").getValue().toString();
-                status = dataSnapshot.child(key).child("User Type").getValue().toString();
-                year = dataSnapshot.child(key).child("Year Of Joining").getValue().toString();
+                // store the data of selected user's key.
+                DataSnapshot snapshot = dataSnapshot.child(key);
+
+                // parse each child from the data.
+                try {
+                    email = snapshot.child("Email Id").getValue().toString();
+                    branch = snapshot.child("Branch").getValue().toString();
+                    status = snapshot.child("User Type").getValue().toString();
+                    year = snapshot.child("Year Of Joining").getValue().toString();
+                } catch (NullPointerException e) {
+                    Toast.makeText(ViewUsers.this, "Data corrupted, please refresh", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 selectedUser.setCompleteInformation(email, branch, status, year);
+                query.removeEventListener(this);
                 showUserInformation(selectedUser);
             }
 
@@ -443,7 +457,6 @@ public class ViewUsers extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-
         });
     }
 
@@ -485,7 +498,7 @@ public class ViewUsers extends AppCompatActivity {
                         }
                     })
                     .setIcon(R.drawable.user_logo)
-                    .setCancelable(false)
+                    .setCancelable(true)
                     .show();
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Oops! Something went wrong",

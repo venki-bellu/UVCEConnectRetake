@@ -260,6 +260,7 @@
         <activity
             android:name=".ViewUsers"
             android:label="Users"
+            android:theme="@style/ViewUsersTheme"
             android:parentActivityName=".NewHomePage"
             android:screenOrientation="portrait">
 

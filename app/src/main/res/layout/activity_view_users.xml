@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/AppTheme.WhiteAccent"
     tools:context="com.venkibellu.myapplication.ViewUsers">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:id="@+id/toolbar"
+        android:background="@color/colorPrimary"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:id="@+id/progressLayout"
@@ -25,6 +30,7 @@
     </LinearLayout>
 
     <ListView
+        android:layout_below="@+id/toolbar"
         android:id="@+id/view_users_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
