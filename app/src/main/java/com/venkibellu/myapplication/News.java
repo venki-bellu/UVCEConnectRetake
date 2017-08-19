@@ -12,7 +12,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AbsListView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -38,7 +38,8 @@ public class News extends AppCompatActivity {
     private FloatingActionButton fab;
     public static AlertDialog.Builder builder;
     public static ValueEventListener myevent;
-    private LinearLayout progress;
+    //    private LinearLayout progress;
+    private AVLoadingIndicatorView avi;
     private ListView listView;
 
 
@@ -46,6 +47,7 @@ public class News extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+
         builder = new AlertDialog.Builder(this);
         if (Build.VERSION.SDK_INT >= 23) { // if android version >= 6.0
             if (ContextCompat.checkSelfPermission(
@@ -58,6 +60,7 @@ public class News extends AppCompatActivity {
                         1);
             }
         }
+
         Registered_User_Id.fromactivity = "News";
         ref = mFirebaseDatabase.getInstance().getReference().child("News");
 
@@ -79,7 +82,8 @@ public class News extends AppCompatActivity {
                         newstime.add(snapshot.child("Timestamp").getValue().toString());
                     }
                     news_adapter.notifyDataSetChanged();
-                    progress.setVisibility(View.GONE);
+//                    progress.setVisibility(View.GONE);
+                    avi.hide();
 
                 } catch (Exception e) {
                 }
@@ -91,8 +95,10 @@ public class News extends AppCompatActivity {
             }
         });
 
-        progress = (LinearLayout) findViewById(R.id.progressLayout);
-        progress.setVisibility(View.VISIBLE);
+        avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
+        avi.show();
+//        progress = (LinearLayout) findViewById(R.id.progressLayout);
+//        progress.setVisibility(View.VISIBLE);
 
         news_adapter = new News_Adapter(newsname, this, this, newsdetails, newsorganization, newsimage, newstime);
         listView = (ListView) findViewById(R.id.news_list);

@@ -15,13 +15,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.LinearLayout;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.wang.avi.AVLoadingIndicatorView;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import org.apache.commons.lang3.text.WordUtils;
@@ -41,7 +41,7 @@ public class ViewUsers extends AppCompatActivity {
     private RecyclerAdapter mAdapter;
     private ArrayList<User> userList, permanentUserList;
     private DatabaseReference reference;
-    private LinearLayout progress;
+    private AVLoadingIndicatorView avi;
 
     android.support.v7.widget.SearchView searchView;
 
@@ -58,8 +58,8 @@ public class ViewUsers extends AppCompatActivity {
         setContentView(R.layout.activity_view_users);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        progress = (LinearLayout) findViewById(R.id.progressLayout);
-        progress.setVisibility(View.VISIBLE);
+        avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
+        avi.show();
 
         reference = FirebaseDatabase.getInstance().getReference().child("Registered Users");
 
@@ -83,7 +83,6 @@ public class ViewUsers extends AppCompatActivity {
                 // perform sync again.
                 userList.clear();
                 mAdapter.notifyDataSetChanged();
-
                 populateUserList();
             }
         });
@@ -119,8 +118,8 @@ public class ViewUsers extends AppCompatActivity {
                 }
 
                 mAdapter.notifyDataSetChanged();
-                progress.setVisibility(View.GONE);
 
+                avi.hide();
                 reference.removeEventListener(this);
             }
 

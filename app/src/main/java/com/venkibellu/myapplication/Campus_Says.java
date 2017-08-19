@@ -17,7 +17,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -44,8 +44,8 @@ public class Campus_Says extends AppCompatActivity {
     private DatabaseReference myref;
     public static AlertDialog.Builder builderc;
     public static ValueEventListener myevent;
-    private LinearLayout progress;
-
+    //    private LinearLayout progress;
+    private AVLoadingIndicatorView avi;
     Context context = this;
     Intent sendIntent;
 
@@ -93,8 +93,8 @@ public class Campus_Says extends AppCompatActivity {
                         campustime.add(snapshot.child("Timestamp").getValue().toString());
                     }
                     campus_adapter.notifyDataSetChanged();
-                    progress.setVisibility(View.GONE);
-
+//                    progress.setVisibility(View.GONE);
+                    avi.hide();
                 } catch (Exception e) {
                 }
             }
@@ -105,8 +105,10 @@ public class Campus_Says extends AppCompatActivity {
             }
         });
 
-        progress = (LinearLayout) findViewById(R.id.progressLayout);
-        progress.setVisibility(View.VISIBLE);
+        avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
+        avi.show();
+//        progress = (LinearLayout) findViewById(R.id.progressLayout);
+//        progress.setVisibility(View.VISIBLE);
 
         campus_adapter = new News_Adapter(campusname, this, this, campusdetails, campusorganization, campusimage, campustime);
         ListView listView = (ListView) findViewById(R.id.campus_list);

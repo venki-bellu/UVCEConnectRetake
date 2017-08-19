@@ -17,27 +17,35 @@
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar">
 
-        <LinearLayout
-            android:id="@+id/progressLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="gone">
+        <!--<LinearLayout-->
+        <!--android:id="@+id/progressLayout"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="vertical"-->
+        <!--android:visibility="gone">-->
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.ProgressBarAccent"></ProgressBar>
-        </LinearLayout>
+        <!--<ProgressBar-->
+        <!--android:id="@+id/progressBar"-->
+        <!--style="?android:attr/progressBarStyle"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:theme="@style/AppTheme.ProgressBarAccent"></ProgressBar>-->
+        <!--</LinearLayout>-->
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/avi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:indicatorColor="@color/colorPrimary"
+            app:indicatorName="BallRotateIndicator" />
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/news_list"
-            android:dividerHeight="10dp"></ListView>
+            android:dividerHeight="10dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/add_news"

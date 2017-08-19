@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -24,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.wang.avi.AVLoadingIndicatorView;
 
 
 public class LogInPage extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
@@ -41,7 +41,8 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     private DatabaseReference ref;
     private GoogleSignInAccount account;
     public static String accountcheck;
-    private LinearLayout progress;
+    //    private LinearLayout progress;
+    private AVLoadingIndicatorView avi;
     private final String PREFERENECE = "UVCE-prefereceFile-AccountID";
     private SharedPreferences preference;
 
@@ -54,7 +55,9 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        progress = (LinearLayout) findViewById(R.id.progressLayout);
+        avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
+        avi.hide();
+//        progress = (LinearLayout) findViewById(R.id.progressLayout);
 
         homepageIntent = new Intent(this, NewHomePage.class);
 
@@ -87,7 +90,8 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         //Ignore above comment. This is working fine. (Bellu)
         OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
         if (opr.isDone()) {
-            progress.setVisibility(View.VISIBLE);
+            avi.show();
+//            progress.setVisibility(View.VISIBLE);
             GoogleSignInResult result = opr.get();
 
             handleSignInResult(result);
@@ -112,7 +116,8 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     }
 
     private void signIn() {
-        progress.setVisibility(View.VISIBLE);
+        avi.show();
+//        progress.setVisibility(View.VISIBLE);
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         startActivityForResult(signInIntent, REQ_CODE);
     }
@@ -138,7 +143,8 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
                         int counter = 0;
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             if (snapshot.child("Google_ID").getValue().toString().equals(accountcheck)) {
-                                progress.setVisibility(View.GONE);
+                                avi.hide();
+//                                progress.setVisibility(View.GONE);
                                 Registered_User_Id.name = snapshot.child("Name").getValue().toString();
                                 Registered_User_Id.admin = snapshot.child("Designation").getValue().toString();
                                 counter++;
@@ -147,7 +153,8 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
                             }
                         }
                         if (counter == 0) {
-                            progress.setVisibility(View.GONE);
+                            avi.hide();
+//                            progress.setVisibility(View.GONE);
                             Intent intent = new Intent(LogInPage.this, RegisterPage.class);
                             startActivity(intent);
                             finish();
@@ -168,7 +175,8 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
             editor.commit();
 
         } else {
-            progress.setVisibility(View.GONE);
+            avi.hide();
+//            progress.setVisibility(View.GONE);
             System.out.println("Sign-in Failed: " + result.getStatus());
             Toast.makeText(getApplicationContext(), "Google Sign In failure", Toast.LENGTH_LONG).show();
         }
