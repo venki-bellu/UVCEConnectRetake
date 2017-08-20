@@ -5,8 +5,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -17,7 +15,6 @@ import com.google.firebase.messaging.RemoteMessage;
  */
 
 public class NotificationHandle extends FirebaseMessagingService {
-    private static final String TAG = "FCM Service";
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -35,11 +32,9 @@ public class NotificationHandle extends FirebaseMessagingService {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
                 intent, PendingIntent.FLAG_ONE_SHOT);
 
-        Bitmap largeIcon = BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher);
-
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setLargeIcon(largeIcon)
-                .setSmallIcon(R.drawable.ic_notification_small)
+        builder.setColor(getResources().getColor(R.color.colorNotification))
+                .setSmallIcon(R.drawable.ic_notificaion)
                 .setAutoCancel(true)
                 .setContentTitle(title)
                 .setContentText(content)
