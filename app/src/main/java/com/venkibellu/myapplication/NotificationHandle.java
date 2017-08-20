@@ -17,7 +17,6 @@ import com.google.firebase.messaging.RemoteMessage;
  */
 
 public class NotificationHandle extends FirebaseMessagingService {
-
     private static final String TAG = "FCM Service";
 
     @Override
@@ -32,7 +31,9 @@ public class NotificationHandle extends FirebaseMessagingService {
 
         Intent intent = new Intent(this, LogInPage.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+                intent, PendingIntent.FLAG_ONE_SHOT);
 
         Bitmap largeIcon = BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher);
 
@@ -51,4 +52,3 @@ public class NotificationHandle extends FirebaseMessagingService {
         manager.notify(NOTIFICATION_ID, builder.build());
     }
 }
-
