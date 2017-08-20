@@ -3,9 +3,11 @@ package com.venkibellu.myapplication;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
-import android.media.RingtoneManager;
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.v4.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -21,19 +23,32 @@ public class NotificationHandle extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        Intent intent = new Intent();
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        PendingIntent pendingIntent = PendingIntent.getActivity(NotificationHandle.this, 0, intent, 0);
-        Notification builder = new Notification.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("UVCE Connect")
-                .setContentText(remoteMessage.getNotification().getBody())
-                .setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent).getNotification();
 
-        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        manager.notify(0, builder);
+        String title = remoteMessage.getNotification().getTitle();
+        String content = remoteMessage.getNotification().getBody();
+        String feed = remoteMessage.getData().get("Feed");
 
+        final int NOTIFICATION_ID = (feed.equals("News") ? 1 : 0);
+
+        Intent intent = new Intent(this, LogInPage.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+
+        Bitmap largeIcon = BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        builder.setLargeIcon(largeIcon)
+                .setSmallIcon(R.drawable.ic_notification_small)
+                .setAutoCancel(true)
+                .setContentTitle(title)
+                .setContentText(content)
+                .setDefaults(Notification.DEFAULT_SOUND)
+                .setContentIntent(pendingIntent);
+
+        NotificationManager manager = (NotificationManager)
+                getSystemService(Context.NOTIFICATION_SERVICE);
+
+        manager.notify(NOTIFICATION_ID, builder.build());
     }
 }
 
