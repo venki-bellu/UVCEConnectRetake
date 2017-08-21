@@ -60,6 +60,7 @@
                 android:textStyle="normal"
                 android:layout_marginTop="10dp"
                 android:autoLink="all"
+                android:textIsSelectable="true"
                 android:id="@+id/news_details" />
 
             <EditText
