@@ -30,6 +30,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class NewHomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
@@ -53,6 +54,8 @@ public class NewHomePage extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_home_page);
 
+        FirebaseMessaging.getInstance().subscribeToTopic("UVCE");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -68,10 +71,6 @@ public class NewHomePage extends AppCompatActivity
 
         TextView academics = (TextView) findViewById(R.id.syllabus);
         academics.startAnimation(animation);
-
-        //Start service on app created
-        Intent intent1 = new Intent(this, NotificationService.class);
-        startService(intent1);
 
         loginPageIntent = new Intent(this, LogInPage.class);
         logintype = getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);

@@ -247,7 +247,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.UserInfoHolde
                         }
                     })
                     .setIcon(R.drawable.user_logo)
-                    .setCancelable(true)
+                    .setCancelable(false)
                     .show();
         } catch (Exception e) {
             Toast.makeText(context, "Oops! Something went wrong",

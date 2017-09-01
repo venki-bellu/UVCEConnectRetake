@@ -10,3 +10,5 @@
 .idea
 *.apk
 *.jks
+/UVCE-Connect-FCM-Function/functions/node_modules/
+

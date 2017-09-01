@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#ef9415</color>
     <color name="colorcard">#3a78ff</color>
+    <color name="colorNotification">#3a78ff</color>
 </resources>
