@@ -56,6 +56,9 @@ public class activities extends AppCompatActivity implements View.OnClickListene
             case R.id.sports_logo:
                 startActivity(new Intent(activities.this, sports.class));
                 break;
+
+            case R.id.ecell_logo:
+                startActivity(new Intent(activities.this,ecell.class));
         }
     }
 }
