@@ -8,15 +8,15 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-        android:allowBackup="true"
         android:name=".UVCEConnectRetake"
-        android:largeHeap="true"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--NOTIFICATION-->
+        <!-- NOTIFICATION -->
 
         <service
             android:name=".NotificationHandle"
@@ -26,7 +26,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service android:name=".TokenRefreshapp">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
@@ -36,12 +35,11 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notificaion" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorNotification" />
 
-        <!--NOTIFICATION-->
+        <!-- NOTIFICATION -->
 
         <activity
             android:name=".IntroductionScreen"
@@ -53,20 +51,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".LogInPage"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-            <!--required for opening activity on clicking notification-->
+            <!-- required for opening activity on clicking notification -->
             <intent-filter>
                 <action android:name="OPEN_LOGIN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".News"
             android:label="@string/title_activity_news"
@@ -279,15 +275,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ViewUsers"
             android:label="Users"
             android:parentActivityName=".NewHomePage"
-            android:screenOrientation="portrait">
-
-        </activity>
-
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ecell"
+            android:label="E-Cell"
+            android:parentActivityName=".activities"/>
     </application>
 
 </manifest>
