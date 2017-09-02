@@ -41,7 +41,7 @@ public class Download {
             }
 
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url[0]));
-            request.setDescription("Syllabus")
+            request.setDescription("File Downloading....")
                     .setTitle(fileName)
                     .setNotificationVisibility(DownloadManager.Request
                             .VISIBILITY_VISIBLE_NOTIFY_COMPLETED)

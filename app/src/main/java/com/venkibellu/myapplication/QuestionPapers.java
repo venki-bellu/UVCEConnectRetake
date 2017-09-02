@@ -164,6 +164,8 @@ public class QuestionPapers extends Fragment implements View.OnClickListener {
 
                 if (semester.equals("Sem_1") && !branch.equals("ARCH")) {
                     url = dataSnapshot.child("Sem_1").getValue().toString();
+                } else if(semester.equals("Sem_2") && !branch.equals("ARCH")) {
+                    url = dataSnapshot.child("Sem_2").getValue().toString();
                 } else {
                     url = dataSnapshot.child(branch).child(semester).getValue().toString();
                 }
