@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--NOTIFICATION-->
+        <!--NOTIFICATION START-->
 
         <service
             android:name=".NotificationHandle"
@@ -41,7 +41,7 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorNotification" />
 
-        <!--NOTIFICATION-->
+        <!--NOTIFICATION END-->
 
         <activity
             android:name=".IntroductionScreen"

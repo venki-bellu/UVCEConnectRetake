@@ -152,9 +152,9 @@ public class Syllabus extends Fragment implements View.OnClickListener {
 
     // execute the AsyncTask to download Files.
     private void startDownload() {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(SYLLABUS);
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(SYLLABUS);
 
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             String url, id, downloadURL = "https://docs.google.com/uc?id=[FILE_ID]&export=download";
 
             @Override
@@ -179,6 +179,8 @@ public class Syllabus extends Fragment implements View.OnClickListener {
                 downloadURL = downloadURL.replace("[FILE_ID]", id);
                 Download md = new Download(getContext(), fileName, downloadURL);
                 md.start();
+
+                ref.removeEventListener(this);
             }
 
             @Override
