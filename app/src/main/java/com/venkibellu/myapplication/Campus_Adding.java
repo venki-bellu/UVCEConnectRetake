@@ -138,8 +138,10 @@ public class Campus_Adding extends AppCompatActivity {
                         mquery.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                StorageReference remove = storageReference.child(dataSnapshot.child("-1").child("Campus_Image").getValue().toString());
-                                remove.delete();
+                                if(!dataSnapshot.child("-1").child("Campus_Image").getValue().toString().equals("")) {
+                                    StorageReference remove = storageReference.child(dataSnapshot.child("-1").child("Campus_Image").getValue().toString());
+                                    remove.delete();
+                                }
 
                             }
 
@@ -158,7 +160,9 @@ public class Campus_Adding extends AppCompatActivity {
                                     ref.child(String.valueOf(-(i + 1))).child("Campus_Image").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Campus_Image").getValue().toString());
                                     ref.child(String.valueOf(-(i + 1))).child("Campus_Details").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Campus_Details").getValue().toString());
                                     ref.child(String.valueOf(-(i + 1))).child("Campus_Organization").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Campus_Organization").getValue().toString());
-                                    ref.child(String.valueOf(-(i + 1))).child("Added_By").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Added_By").getValue().toString());
+                                    try {
+                                        ref.child(String.valueOf(-(i + 1))).child("Added_By").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Added_By").getValue().toString());
+                                    } catch(Exception e) {}
                                     ref.child(String.valueOf(-(i + 1))).child("Timestamp").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Timestamp").getValue().toString());
                                 }
                                 ref.child("-21").removeValue();
@@ -253,6 +257,7 @@ public class Campus_Adding extends AppCompatActivity {
                                         for (int i = 1; i <= Integer.parseInt(newnewpos); i++) {
                                             newref.child(String.valueOf(i)).child("Notification_Viewed_Campus").setValue("No");
                                         }
+
                                         Intent intent = new Intent(Campus_Adding.this, Campus_Says.class);
                                         startActivity(intent);
                                         finish();
@@ -283,6 +288,8 @@ public class Campus_Adding extends AppCompatActivity {
                                 });
 
 
+
+
                     }
                     //if there is not any file
                     else {
@@ -306,6 +313,7 @@ public class Campus_Adding extends AppCompatActivity {
                         for (int i = 1; i <= Integer.parseInt(newnewpos); i++) {
                             newref.child(String.valueOf(i)).child("Notification_Viewed_Campus").setValue("No");
                         }
+
 
                         Intent intent = new Intent(Campus_Adding.this, Campus_Says.class);
                         startActivity(intent);
