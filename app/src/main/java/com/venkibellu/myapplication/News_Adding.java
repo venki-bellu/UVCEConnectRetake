@@ -147,8 +147,10 @@ public class News_Adding extends AppCompatActivity {
                         mquery.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                StorageReference remove = storageReference.child(dataSnapshot.child("-1").child("News_Image").getValue().toString());
-                                remove.delete();
+                                if(!dataSnapshot.child("-1").child("News_Image").getValue().toString().equals("")) {
+                                    StorageReference remove = storageReference.child(dataSnapshot.child("-1").child("News_Image").getValue().toString());
+                                    remove.delete();
+                                }
 
                             }
 
@@ -167,7 +169,9 @@ public class News_Adding extends AppCompatActivity {
                                     ref.child(String.valueOf(-(i + 1))).child("News_Image").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("News_Image").getValue().toString());
                                     ref.child(String.valueOf(-(i + 1))).child("News_Details").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("News_Details").getValue().toString());
                                     ref.child(String.valueOf(-(i + 1))).child("News_Organization").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("News_Organization").getValue().toString());
-                                    ref.child(String.valueOf(-(i + 1))).child("Added_By").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Added_By").getValue().toString());
+                                    try {
+                                        ref.child(String.valueOf(-(i + 1))).child("Added_By").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Added_By").getValue().toString());
+                                    } catch (Exception e) {}
                                     ref.child(String.valueOf(-(i + 1))).child("Timestamp").setValue(dataSnapshot.child(String.valueOf(-(i + 2))).child("Timestamp").getValue().toString());
                                 }
                                 ref.child("-21").removeValue();
