@@ -56,6 +56,10 @@ public class NewHomePage extends AppCompatActivity
 
         FirebaseMessaging.getInstance().subscribeToTopic("UVCE");
 
+        if (Registered_User_Id.admin.equals("ADMIN")) {
+            FirebaseMessaging.getInstance().subscribeToTopic("TEST");
+        }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

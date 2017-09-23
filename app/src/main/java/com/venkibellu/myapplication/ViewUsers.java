@@ -57,6 +57,7 @@ public class ViewUsers extends AppCompatActivity {
         setContentView(R.layout.activity_view_users);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
         avi.show();
 

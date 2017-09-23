@@ -22,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -41,7 +42,6 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     private DatabaseReference ref;
     private GoogleSignInAccount account;
     public static String accountcheck;
-    //    private LinearLayout progress;
     private AVLoadingIndicatorView avi;
     private final String PREFERENECE = "UVCE-prefereceFile-AccountID";
     private SharedPreferences preference;
@@ -57,9 +57,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
         avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
         avi.hide();
-//        progress = (LinearLayout) findViewById(R.id.progressLayout);
 
-        homepageIntent = new Intent(this, NewHomePage.class);
 
 //        Button b = (Button) findViewById(R.id.bypass);
 //        b.setOnClickListener(new View.OnClickListener() {
@@ -85,13 +83,9 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
         signInButton.setOnClickListener(this);
 
-
-        //This Might lead to fake sign ins. Just check this. Added by Jerry
-        //Ignore above comment. This is working fine. (Bellu)
         OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
         if (opr.isDone()) {
             avi.show();
-//            progress.setVisibility(View.VISIBLE);
             GoogleSignInResult result = opr.get();
 
             handleSignInResult(result);
@@ -117,7 +111,6 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
     private void signIn() {
         avi.show();
-//        progress.setVisibility(View.VISIBLE);
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         startActivityForResult(signInIntent, REQ_CODE);
     }
@@ -135,33 +128,26 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
             Registered_User_Id.registered_user_email = account.getEmail();
             accountcheck = account.getId();
 
-
-            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            final Query query = ref.orderByChild("Google_ID").equalTo(accountcheck);
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    try {
-                        int counter = 0;
+                    avi.hide();
+                    Intent intent;
+                    if (dataSnapshot.getValue() == null) {
+                        intent = new Intent(LogInPage.this, RegisterPage.class);
+                    } else {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            if (snapshot.child("Google_ID").getValue().toString().equals(accountcheck)) {
-                                avi.hide();
-//                                progress.setVisibility(View.GONE);
-                                Registered_User_Id.name = snapshot.child("Name").getValue().toString();
-                                Registered_User_Id.admin = snapshot.child("Designation").getValue().toString();
-                                counter++;
-                                startActivity(homepageIntent);
-                                finish();
-                            }
-                        }
-                        if (counter == 0) {
-                            avi.hide();
-//                            progress.setVisibility(View.GONE);
-                            Intent intent = new Intent(LogInPage.this, RegisterPage.class);
-                            startActivity(intent);
-                            finish();
+                            Registered_User_Id.name = snapshot.child("Name").getValue().toString();
+                            Registered_User_Id.admin = snapshot.child("Designation").getValue().toString();
                         }
 
-                    } catch (Exception e) {
+                        intent = new Intent(LogInPage.this, NewHomePage.class);
                     }
+
+                    query.removeEventListener(this);
+                    startActivity(intent);
+                    finish();
                 }
 
                 @Override
@@ -170,15 +156,12 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
                 }
             });
 
-
             editor.putFloat(getString(R.string.LOGIN_TYPE), 2);
             editor.commit();
 
         } else {
             avi.hide();
-//            progress.setVisibility(View.GONE);
-            System.out.println("Sign-in Failed: " + result.getStatus());
-            Toast.makeText(getApplicationContext(), "Google Sign In failure", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Google Sign in failed!", Toast.LENGTH_LONG).show();
         }
     }
     //Stop of google sign in methods
